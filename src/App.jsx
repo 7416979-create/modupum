@@ -74,48 +74,32 @@ function SampleNotice({ data }) {
 }
 
 function Home({ go }) {
+  const welfare = useData('welfare')
+  const jobs = useData('jobs')
+  const wn = welfare?.items?.length
+  const jn = jobs ? (jobs.items ?? []).filter((i) => i.end >= today() && i.disabledOnly).length : null
   return (
     <section className="hero">
-      <span className="mono">Modupum — Information for everyone</span>
-      <h1>모두를<br />품는<br /><span className="glow">정보.</span></h1>
-      <p className="lead">복지 제도와 공공기관 장애인 채용 공고를 한곳에서 쉽게 찾아보세요.</p>
-      <ul className="index">
-        <li>
-          <button onClick={() => go('welfare')}>
-            <span className="no" aria-hidden="true">01</span>
-            <span className="t">복지</span>
-            <span className="d">받을 수 있는 복지서비스 찾기 →</span>
-          </button>
-        </li>
-        <li>
-          <button onClick={() => go('jobs')}>
-            <span className="no" aria-hidden="true">02</span>
-            <span className="t">일자리</span>
-            <span className="d">공공기관 장애인 채용 공고 →</span>
-          </button>
-        </li>
-        <li>
-          <button onClick={() => go('apply')}>
-            <span className="no" aria-hidden="true">03</span>
-            <span className="t">신청 안내</span>
-            <span className="d">이용권·바우처 신청 방법 →</span>
-          </button>
-        </li>
-        <li>
-          <button onClick={() => go('news')}>
-            <span className="no" aria-hidden="true">04</span>
-            <span className="t">소식</span>
-            <span className="d">공식 기관이 발표한 복지 소식 →</span>
-          </button>
-        </li>
-        <li>
-          <button className="soon" disabled>
-            <span className="no" aria-hidden="true">05</span>
-            <span className="t">커뮤니티</span>
-            <span className="d">준비 중</span>
-          </button>
-        </li>
-      </ul>
+      <img className="hero-mark mark-light" src="./brand/modupum-mark.svg" alt="" width="72" height="64" />
+      <img className="hero-mark mark-dark" src="./brand/modupum-mark-dark.svg" alt="" width="72" height="64" />
+      <h1>모두를 품는<br />정보.</h1>
+      <p className="lead">복지 제도와 장애인 채용 공고를 한곳에서.</p>
+      <div className="cards">
+        <button className="card" onClick={() => go('welfare')}>
+          <span className="card-t">복지</span>
+          <span className="card-n">{wn != null ? `${wn}건` : ' '}</span>
+          <span className="card-d">받을 수 있는 복지서비스 찾기</span>
+        </button>
+        <button className="card" onClick={() => go('jobs')}>
+          <span className="card-t">일자리</span>
+          <span className="card-n">{jn != null ? `접수 중 ${jn}건` : ' '}</span>
+          <span className="card-d">공공기관 장애인 채용 공고</span>
+        </button>
+      </div>
+      <p className="home-links">
+        <button onClick={() => go('apply')}>신청 안내</button>
+        <button onClick={() => go('news')}>소식</button>
+      </p>
     </section>
   )
 }
@@ -137,8 +121,8 @@ function MoreLinks({ kind }) {
   const list = data?.[kind] ?? []
   if (list.length === 0) return null
   return (
-    <section className="more" aria-labelledby={`more-${kind}`}>
-      <h2 id={`more-${kind}`} className="more-title">더 찾아보기</h2>
+    <details className="more">
+      <summary>관련 사이트</summary>
       <ul className="more-list">
         {list.map((l) => (
           <li key={l.url}>
@@ -149,7 +133,7 @@ function MoreLinks({ kind }) {
           </li>
         ))}
       </ul>
-    </section>
+    </details>
   )
 }
 
@@ -202,8 +186,8 @@ function Apply() {
     <section>
       <h1 className="page-h">신청 안내</h1>
       <SampleNotice data={data} />
-      <p className="mono only-note">{data?.scope ?? ''}</p>
-      <p className="apply-note">금액과 기준은 해마다, 지역마다 달라집니다. 신청하기 전에 아래 원문 안내에서 다시 확인하세요. 확인한 날: {data?.checkedAt ?? ''}</p>
+      <p className="sub">{data?.scope ?? ''}</p>
+      <p className="apply-note">금액과 기준은 해마다, 지역마다 달라집니다. 신청 전에 원문에서 다시 확인하세요. ({data?.checkedAt ?? ''} 확인)</p>
       <ul className="list">
         {pg.slice.map((g) => (
           <li key={g.id} className="item">
@@ -244,7 +228,7 @@ function News() {
     <section>
       <h1 className="page-h">소식</h1>
       <SampleNotice data={data} />
-      <p className="mono only-note">공식 기관이 발표한 소식만 원문 링크와 함께 올립니다</p>
+      <p className="sub">공식 기관이 발표한 소식만 올립니다.</p>
       <ul className="list">
         {pg.slice.map((n) => (
           <li key={n.id} className="item">
@@ -282,7 +266,7 @@ function Jobs() {
     <section>
       <h1 className="page-h">일자리</h1>
       <SampleNotice data={data} />
-      <p className="mono only-note">장애인만 지원할 수 있는 공공기관 채용 공고만 모았습니다</p>
+      <p className="sub">장애인만 지원할 수 있는 공공기관 채용 공고입니다.</p>
       <ul className="list">
         {pg.slice.map((i) => (
           <li key={i.id} className="item">
@@ -320,20 +304,17 @@ function Jobs() {
 }
 
 function About() {
-  const hasTip = Boolean(tipHref(useData('site')))
   return (
     <section className="about">
       <h1 className="page-h">이용 안내</h1>
       <h2>모두품은</h2>
-      <p>장애인과 가족이 복지 제도와 공공기관의 장애인 채용 공고를 한곳에서 찾아볼 수 있도록 정보를 모아 안내합니다. 이용료가 없고 가입도 필요하지 않습니다.</p>
+      <p>장애인과 가족이 복지 제도와 공공기관의 장애인 채용 공고를 한곳에서 찾아볼 수 있게 모아 안내합니다. 이용료도, 가입도 없습니다.</p>
       <h2>정보의 출처</h2>
-      <p>복지 정보는 복지로(한국사회보장정보원), 채용 공고는 공공기관 채용정보(재정경제부)를 바탕으로 합니다. 공공데이터포털에서 받아 하루 세 번(10시, 14시, 18시) 갱신하며, 항목마다 출처와 원문 링크를 표시합니다.</p>
-      <h2>확인해 주세요</h2>
-      <p>이곳의 내용은 안내를 돕기 위한 것입니다. 신청 자격과 접수 기간은 바뀔 수 있으니 반드시 원문에서 확인하세요.</p>
-      <h2>하지 않는 일</h2>
-      <p>지원서를 받지 않으며, 채용을 알선하거나 사람을 추천하지 않습니다.</p>
+      <p>복지는 복지로(한국사회보장정보원), 채용은 공공기관 채용정보를 공공데이터포털에서 받아 하루 세 번(10시, 14시, 18시) 갱신합니다. 항목마다 출처와 원문 링크를 표시합니다.</p>
+      <h2>알아두세요</h2>
+      <p>신청 자격과 접수 기간은 바뀔 수 있으니 반드시 원문에서 확인하세요. 지원서를 받거나 채용을 알선하지 않습니다.</p>
       <h2>개인정보</h2>
-      <p>가입과 로그인이 없고, 이용 기록으로 개인을 알아보지 않습니다.{hasTip ? ' 정보를 알려 주시는 경우 보내신 내용은 확인하고 올리는 데에만 사용합니다.' : ''}</p>
+      <p>가입과 로그인이 없고, 이용 기록으로 개인을 알아보지 않습니다.</p>
     </section>
   )
 }
@@ -394,11 +375,10 @@ export default function App() {
         {tab === 'about' && <About />}
       </main>
       <footer>
-        <p>모두품은 공공데이터를 바탕으로 정보를 안내합니다. 항목마다 출처와 원문 링크를 표시하며, 정확한 내용은 반드시 원문에서 확인하세요.</p>
-        <p>지원서 접수나 채용 알선은 하지 않습니다.</p>
-        <p>
+        <p>공공데이터를 바탕으로 안내합니다. 정확한 내용은 반드시 원문에서 확인하세요.</p>
+        <p className="foot-row">
           <button className="foot-link" onClick={() => setTab('about')}>이용 안내</button>
-          {site?.feedbackUrl && <ExternalLink className="foot-link foot-gap" href={site.feedbackUrl}>의견 보내기</ExternalLink>}
+          {site?.feedbackUrl && <ExternalLink className="foot-link" href={site.feedbackUrl}>의견 보내기</ExternalLink>}
         </p>
       </footer>
     </>
