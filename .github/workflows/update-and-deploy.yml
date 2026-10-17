@@ -1,0 +1,56 @@
+name: update-and-deploy
+
+on:
+  schedule:
+    # GitHub는 UTC 기준. 한국시간 10시, 14시, 18시 = UTC 01시, 05시, 09시
+    - cron: '0 1 * * *'
+    - cron: '0 5 * * *'
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Collect public data
+        run: node scripts/collect.mjs
+        env:
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+      - name: Save data changes
+        run: |
+          git config user.name "modupum-bot"
+          git config user.email "modupum-bot@users.noreply.github.com"
+          git add public/data
+          git diff --cached --quiet || git commit -m "data: auto update"
+          git push || true
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

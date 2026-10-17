@@ -1,0 +1,9 @@
+{
+  "sample": true,
+  "updatedAt": "샘플",
+  "items": [
+    { "id": "j1", "title": "(샘플) 공공기관 장애인 채용 공고 예시 1", "org": "샘플 기관", "disabledOnly": true, "start": "2026-10-01", "end": "2026-12-31", "url": "https://www.gojobs.go.kr" },
+    { "id": "j2", "title": "(샘플) 공공기관 장애인 제한경쟁 채용 공고 예시 2", "org": "샘플 기관", "disabledOnly": true, "start": "2026-10-05", "end": "2026-12-15", "url": "https://www.gojobs.go.kr" },
+    { "id": "j3", "title": "(샘플) 마감된 공고 예시 (자동으로 숨겨짐)", "org": "샘플 기관", "disabledOnly": true, "start": "2026-08-01", "end": "2026-09-01", "url": "https://www.gojobs.go.kr" }
+  ]
+}

@@ -1,0 +1,258 @@
+import { useEffect, useMemo, useRef, useState } from 'react'
+
+const TABS = [
+  { id: 'home', label: '홈' },
+  { id: 'welfare', label: '복지' },
+  { id: 'jobs', label: '일자리' },
+]
+const ROUTES = [...TABS.map((t) => t.id), 'about']
+const TITLES = { home: '모두품', welfare: '복지 - 모두품', jobs: '일자리 - 모두품', about: '이용 안내 - 모두품' }
+
+const today = () => new Date().toISOString().slice(0, 10)
+
+function useData(name) {
+  const [data, setData] = useState(null)
+  useEffect(() => {
+    fetch(`./data/${name}.json`)
+      .then((r) => r.json())
+      .then(setData)
+      .catch(() => setData({ items: [], error: true }))
+  }, [name])
+  return data
+}
+
+const tipHref = (site) =>
+  site?.tipUrl || (site?.tipEmail ? `mailto:${site.tipEmail}?subject=${encodeURIComponent('[모두품] 정보 제보')}` : '')
+
+function ExternalLink({ href, className, children }) {
+  return (
+    <a className={className} href={href} target="_blank" rel="noopener noreferrer">
+      {children}
+      <span className="sr"> (새 창에서 열림)</span>
+    </a>
+  )
+}
+
+function SampleNotice({ data }) {
+  if (!data?.sample) return null
+  return <p className="notice">지금은 샘플 화면입니다. 공공 데이터가 연결되면 실제 정보로 바뀝니다.</p>
+}
+
+function Home({ go }) {
+  return (
+    <section className="hero">
+      <span className="mono">Modupum — Information for everyone</span>
+      <h1>모두를<br />품는<br /><span className="glow">정보.</span></h1>
+      <p className="lead">복지 제도와 공공기관 장애인 채용 공고를 한곳에서 쉽게 찾아보세요.</p>
+      <ul className="index">
+        <li>
+          <button onClick={() => go('welfare')}>
+            <span className="no" aria-hidden="true">01</span>
+            <span className="t">복지</span>
+            <span className="d">받을 수 있는 복지서비스 찾기 →</span>
+          </button>
+        </li>
+        <li>
+          <button onClick={() => go('jobs')}>
+            <span className="no" aria-hidden="true">02</span>
+            <span className="t">일자리</span>
+            <span className="d">공공기관 장애인 채용 공고 →</span>
+          </button>
+        </li>
+        <li>
+          <button className="soon" disabled>
+            <span className="no" aria-hidden="true">03</span>
+            <span className="t">커뮤니티</span>
+            <span className="d">준비 중</span>
+          </button>
+        </li>
+      </ul>
+    </section>
+  )
+}
+
+function TipBox() {
+  const href = tipHref(useData('site'))
+  if (!href) return null
+  return (
+    <section className="tip" aria-labelledby="tip-title">
+      <h2 id="tip-title" className="more-title">알고 계신 정보가 있나요</h2>
+      <p>복지 제도나 장애인 채용 소식을 알려 주시면 확인한 뒤 올립니다. 출처 링크를 함께 보내 주세요.</p>
+      <ExternalLink className="tip-btn" href={href}>정보 알려주기</ExternalLink>
+    </section>
+  )
+}
+
+function MoreLinks({ kind }) {
+  const data = useData('links')
+  const list = data?.[kind] ?? []
+  if (list.length === 0) return null
+  return (
+    <section className="more" aria-labelledby={`more-${kind}`}>
+      <h2 id={`more-${kind}`} className="more-title">더 찾아보기</h2>
+      <ul className="more-list">
+        {list.map((l) => (
+          <li key={l.url}>
+            <ExternalLink href={l.url}>
+              <strong>{l.name}</strong>
+              <span>{l.org} · {l.desc}</span>
+            </ExternalLink>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+function Welfare() {
+  const data = useData('welfare')
+  const [q, setQ] = useState('')
+  const items = useMemo(() => {
+    const list = data?.items ?? []
+    const k = q.trim()
+    return k ? list.filter((i) => `${i.title}${i.summary}${i.category}${i.target}`.includes(k)) : list
+  }, [data, q])
+
+  return (
+    <section>
+      <h1 className="page-h">복지</h1>
+      <SampleNotice data={data} />
+      <input className="search" type="search" placeholder="검색어를 입력하세요" value={q} onChange={(e) => setQ(e.target.value)} aria-label="복지 검색" />
+      <p className="sr" role="status">{data ? `${items.length}건` : ''}</p>
+      <ul className="list">
+        {items.map((i) => (
+          <li key={i.id} className="item">
+            <div className="tags"><span>{i.category}</span><span>{i.target}</span></div>
+            <h2>{i.title}</h2>
+            <p>{i.summary}</p>
+            <ExternalLink href={i.url}>원문 보기 · 출처 {i.source}</ExternalLink>
+          </li>
+        ))}
+        {data && items.length === 0 && <li className="empty">표시할 항목이 없습니다.</li>}
+      </ul>
+      <MoreLinks kind="welfare" />
+      <TipBox />
+    </section>
+  )
+}
+
+function Jobs() {
+  const data = useData('jobs')
+  const items = useMemo(() => {
+    const t = today()
+    // 장애인만 지원할 수 있는 공고(장애인 전용·제한경쟁)만 보여 준다. 우대 공고와 마감된 공고는 제외.
+    return (data?.items ?? []).filter((i) => i.end >= t && i.disabledOnly)
+  }, [data])
+
+  return (
+    <section>
+      <h1 className="page-h">일자리</h1>
+      <SampleNotice data={data} />
+      <p className="mono only-note">장애인만 지원할 수 있는 공공기관 채용 공고만 모았습니다</p>
+      <ul className="list">
+        {items.map((i) => (
+          <li key={i.id} className="item">
+            <div className="tags"><span>{i.org}</span><span>마감 {i.end}</span></div>
+            <h2>{i.title}</h2>
+            <ExternalLink href={i.url}>원문 보기</ExternalLink>
+          </li>
+        ))}
+        {data && items.length === 0 && <li className="empty">현재 접수 중인 공고가 없습니다.</li>}
+      </ul>
+      <details className="check-guide">
+        <summary>지원하기 전에 공고에서 확인할 것</summary>
+        <ul>
+          <li>지원 자격(장애 유형, 장애 정도)이 내게 맞는지</li>
+          <li>중증장애인 우대 여부와 장애인등록증(또는 증명서) 제출 여부</li>
+          <li>한국장애인고용공단 추천이 필요한지</li>
+          <li>근무지 접근성과 출퇴근 지원, 재택·하이브리드 가능 여부</li>
+          <li>근무시간 조정, 보조공학기기 지원, 면접·시험 편의 제공 여부</li>
+          <li>수습 기간 적용 여부와 4대보험, 정규직 전환 조건</li>
+        </ul>
+        <p>일반적인 안내이며, 정확한 조건은 반드시 원문 공고에서 확인하세요.</p>
+      </details>
+      <MoreLinks kind="jobs" />
+      <TipBox />
+    </section>
+  )
+}
+
+function About() {
+  const hasTip = Boolean(tipHref(useData('site')))
+  return (
+    <section className="about">
+      <h1 className="page-h">이용 안내</h1>
+      <h2>모두품은</h2>
+      <p>장애인과 가족이 복지 제도와 공공기관의 장애인 채용 공고를 한곳에서 찾아볼 수 있도록 정보를 모아 안내합니다. 이용료가 없고 가입도 필요하지 않습니다.</p>
+      <h2>정보의 출처</h2>
+      <p>복지 정보는 복지로(한국사회보장정보원), 채용 공고는 공공기관 채용정보(재정경제부)를 바탕으로 합니다. 공공데이터포털에서 받아 하루 세 번(10시, 14시, 18시) 갱신하며, 항목마다 출처와 원문 링크를 표시합니다.</p>
+      <h2>확인해 주세요</h2>
+      <p>이곳의 내용은 안내를 돕기 위한 것입니다. 신청 자격과 접수 기간은 바뀔 수 있으니 반드시 원문에서 확인하세요.</p>
+      <h2>하지 않는 일</h2>
+      <p>지원서를 받지 않으며, 채용을 알선하거나 사람을 추천하지 않습니다.</p>
+      <h2>개인정보</h2>
+      <p>가입과 로그인이 없고, 이용 기록으로 개인을 알아보지 않습니다.{hasTip ? ' 정보를 알려 주시는 경우 보내신 내용은 확인하고 올리는 데에만 사용합니다.' : ''}</p>
+    </section>
+  )
+}
+
+const readHash = () => {
+  const h = window.location.hash.replace('#/', '').replace('#', '')
+  return ROUTES.includes(h) ? h : 'home'
+}
+
+export default function App() {
+  const [tab, setTabState] = useState(readHash)
+  const mainRef = useRef(null)
+  const first = useRef(true)
+
+  const setTab = (id) => {
+    window.location.hash = id === 'home' ? '' : `#/${id}`
+    window.scrollTo({ top: 0 })
+  }
+
+  useEffect(() => {
+    const onHash = () => setTabState(readHash())
+    window.addEventListener('hashchange', onHash)
+    return () => window.removeEventListener('hashchange', onHash)
+  }, [])
+
+  useEffect(() => {
+    document.title = TITLES[tab]
+    if (first.current) {
+      first.current = false
+      return
+    }
+    mainRef.current?.focus()
+  }, [tab])
+
+  return (
+    <>
+      <a className="skip" href="#main" onClick={(e) => { e.preventDefault(); mainRef.current?.focus() }}>본문 바로가기</a>
+      <header className="nav">
+        <div className="nav-inner">
+          <button className="brand" onClick={() => setTab('home')} aria-label="모두품 홈">
+            <img src="./brand/app-icon.svg" alt="" width="38" height="38" onError={(e) => (e.currentTarget.style.display = 'none')} />
+            모두품
+          </button>
+          <nav aria-label="주 메뉴">
+            {TABS.map((t) => (
+              <button key={t.id} className={tab === t.id ? 'on' : ''} aria-current={tab === t.id ? 'page' : undefined} onClick={() => setTab(t.id)}>{t.label}</button>
+            ))}
+          </nav>
+        </div>
+      </header>
+      <main id="main" ref={mainRef} tabIndex={-1}>
+        {tab === 'home' && <Home go={setTab} />}
+        {tab === 'welfare' && <Welfare />}
+        {tab === 'jobs' && <Jobs />}
+        {tab === 'about' && <About />}
+      </main>
+      <footer>
+        <p>모두품은 공공데이터를 바탕으로 정보를 안내합니다. 항목마다 출처와 원문 링크를 표시하며, 정확한 내용은 반드시 원문에서 확인하세요.</p>
+        <p>지원서 접수나 채용 알선은 하지 않습니다.</p>
+        <p><button className="foot-link" onClick={() => setTab('about')}>이용 안내</button></p>
+      </footer>
+    </>
+  )
+}

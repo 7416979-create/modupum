@@ -1,0 +1,9 @@
+{
+  "sample": true,
+  "updatedAt": "샘플",
+  "items": [
+    { "id": "w1", "title": "(샘플) 복지서비스 예시 1", "summary": "실제 데이터가 연결되면 복지로의 서비스 이름과 지원 내용이 여기에 표시됩니다.", "category": "생활지원", "target": "장애인", "source": "복지로", "url": "https://www.bokjiro.go.kr" },
+    { "id": "w2", "title": "(샘플) 복지서비스 예시 2", "summary": "지원 대상, 선정 기준, 신청 방법은 원문 링크에서 확인합니다.", "category": "의료", "target": "장애인 가족", "source": "복지로", "url": "https://www.bokjiro.go.kr" },
+    { "id": "w3", "title": "(샘플) 복지서비스 예시 3", "summary": "항목마다 출처와 원문 링크를 반드시 함께 보여 줍니다.", "category": "교육", "target": "장애 아동", "source": "복지로", "url": "https://www.bokjiro.go.kr" }
+  ]
+}

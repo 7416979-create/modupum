@@ -1,0 +1,16 @@
+{
+  "jobs": [
+    { "name": "한국장애인고용공단", "org": "워크투게더(장애인고용포털) 운영", "desc": "장애인 구인·구직, 고용·직업능력개발 지사 안내", "url": "https://www.kead.or.kr" },
+    { "name": "잡알리오", "org": "공공기관 경영정보 공개시스템", "desc": "공공기관 채용공고와 장애인 제한경쟁 공고", "url": "https://job.alio.go.kr" },
+    { "name": "나라일터", "org": "인사혁신처", "desc": "중앙정부·지방자치단체·공공기관 채용", "url": "https://www.gojobs.go.kr" },
+    { "name": "고용24", "org": "고용노동부", "desc": "장애인 우대·제한경쟁 공고 검색", "url": "https://www.work24.go.kr" },
+    { "name": "고용복지플러스센터", "org": "고용노동부", "desc": "지역별 센터 안내와 취업 상담", "url": "https://www.workplus.go.kr" },
+    { "name": "서울시장애인일자리통합지원센터", "org": "서울특별시", "desc": "서울 지역 구인·구직과 직업훈련", "url": "https://jobable.seoul.go.kr" }
+  ],
+  "welfare": [
+    { "name": "복지로", "org": "보건복지부", "desc": "복지서비스 찾기와 신청", "url": "https://www.bokjiro.go.kr" },
+    { "name": "한국장애인개발원", "org": "한국장애인개발원", "desc": "장애인 일자리·복지 사업 안내", "url": "https://www.koddi.or.kr" },
+    { "name": "복지넷", "org": "한국사회복지협의회", "desc": "사회복지기관·법인 채용과 복지 소식", "url": "https://www.bokji.net" },
+    { "name": "사회복지시설정보시스템", "org": "보건복지부", "desc": "사회복지시설 정보와 채용", "url": "https://www.w4c.go.kr" }
+  ]
+}
