@@ -3,13 +3,13 @@
   --ink: #1d1d1f;
   --muted: #6e6e73;
   --line: #d2d2d7;
-  --accent: #f28a00;
+  --accent: #008542;
   --card: #f5f5f7;
   --card-ink: #1d1d1f;
   --card-muted: #6e6e73;
   --card-line: #d2d2d7;
   --card-inner: #fbfbfd;
-  --card-accent: #a85a00;
+  --card-accent: #006b35;
   --radius: 20px;
   --pill: 999px;
 }
@@ -54,7 +54,7 @@ nav button.on { color: var(--ink); background: color-mix(in srgb, var(--ink) 12%
 main { max-width: 980px; margin: 0 auto; padding: 8px 22px 96px; }
 
 /* 첫 화면 */
-.hero { text-align: center; padding: 64px 0 24px; }
+.hero { text-align: center; padding: 64px 0 24px; background: linear-gradient(180deg, #e6f4ea 0%, rgba(230,244,234,0) 100%); border-radius: 0 0 40px 40px; }
 .hero-mark { display: block; margin: 0 auto 28px; }
 h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -.035em; font-weight: 700; margin: 0 0 18px; }
 .lead { color: var(--muted); font-size: 1.2rem; margin: 0 auto 48px; max-width: 480px; }
@@ -107,7 +107,7 @@ h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -
 .pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; margin: 28px 0 8px; }
 .pager button { min-width: 38px; height: 38px; padding: 0 12px; border-radius: var(--pill); background: var(--card); color: var(--card-ink); font-weight: 600; font-size: .92rem; }
 .pager button:hover:not(:disabled) { background: var(--card-line); }
-.pager button.on { background: var(--accent); color: #111; }
+.pager button.on { background: var(--accent); color: #fff; }
 .pager button:disabled { opacity: .35; cursor: default; }
 .pager-info { width: 100%; text-align: center; font-size: .82rem; color: var(--muted); margin-top: 4px; }
 .pager .pager-info { color: var(--ink); opacity: .7; --ink: inherit; }
