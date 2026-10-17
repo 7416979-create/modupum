@@ -13,20 +13,6 @@
   --radius: 20px;
   --pill: 999px;
 }
-/* 초록 테마: 세아온 오픈 포스터의 짙은 초록과 노랑 포인트 */
-:root[data-theme="green"] {
-  --bg: #14514d;
-  --ink: #fbf8f1;
-  --muted: #cfe3df;
-  --line: rgba(251, 248, 241, .28);
-  --accent: #f2b33d;
-  --card: #fbf8f1;
-  --card-ink: #12302e;
-  --card-muted: #3a4f4d;
-  --card-line: rgba(18, 48, 46, .16);
-  --card-inner: #efeae0;
-  --card-accent: #8a5200;
-}
 /* 카드 안쪽은 카드용 글자색으로 */
 .list, .card, .check-guide, .more, .search, .tags span, .pager button {
   --ink: var(--card-ink);
@@ -150,9 +136,6 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .85rem; }
 .foot-row { display: flex; gap: 20px; margin-top: 8px; }
 .foot-link { padding: 4px 0; color: var(--ink); font-weight: 600; font-size: .9rem; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
 
-.mark-dark { display: none; }
-:root[data-theme="green"] .mark-light { display: none; }
-:root[data-theme="green"] .mark-dark { display: block; }
 .hero-mark { margin: 0 auto 28px; }
 .sub { color: var(--muted); }
 .brand, nav button { white-space: nowrap; }

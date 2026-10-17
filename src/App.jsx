@@ -80,8 +80,7 @@ function Home({ go }) {
   const jn = jobs ? (jobs.items ?? []).filter((i) => i.end >= today() && i.disabledOnly).length : null
   return (
     <section className="hero">
-      <img className="hero-mark mark-light" src="./brand/modupum-mark.svg" alt="" width="72" height="64" />
-      <img className="hero-mark mark-dark" src="./brand/modupum-mark-dark.svg" alt="" width="72" height="64" />
+      <img className="hero-mark" src="./brand/modupum-mark.svg" alt="" width="72" height="64" />
       <h1>모두를 품는<br />정보.</h1>
       <p className="lead">복지 제도와 장애인 채용 공고를 한곳에서.</p>
       <div className="cards">

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://modupum.kr/sitemap.xml
+Sitemap: https://modupum.kr/sitemap.xml
