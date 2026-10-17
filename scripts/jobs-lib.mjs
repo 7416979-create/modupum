@@ -20,6 +20,9 @@ const textOf = (it) =>
   [it.recrutPbancTtl, it.recrutSeNm, it.hireTypeNmLst, it.aplyQlfcCn].filter(Boolean).join(' ')
 
 export const isDisabledOnly = (it, rules) => {
+  const title = it.recrutPbancTtl ?? ''
+  if (!(rules.제목_필수 ?? []).every((w) => title.includes(w))) return false
+  if ((rules.제목_제외 ?? []).some((w) => title.includes(w))) return false
   const text = textOf(it)
   if (!rules.필수.every((w) => text.includes(w))) return false
   if (rules.전용으로_보는_표현.some((w) => text.includes(w))) return true

@@ -24,7 +24,9 @@ test('제한경쟁·전용 공고만 남기고 우대만 있는 공고는 뺀다
       row({ recrutPblntSn: 1, recrutPbancTtl: '2026년 장애인 제한경쟁 채용' }),
       row({ recrutPblntSn: 2, recrutPbancTtl: '일반 채용 공고', prefCn: '장애인 우대' }),
       row({ recrutPblntSn: 3, recrutPbancTtl: '장애인 우대 채용' }),
-      row({ recrutPblntSn: 4, recrutPbancTtl: '청년인턴 모집', aplyQlfcCn: '장애인 구분모집' }),
+      row({ recrutPblntSn: 4, recrutPbancTtl: '청년인턴(장애인 구분모집) 모집', aplyQlfcCn: '장애인 구분모집' }),
+      row({ recrutPblntSn: 6, recrutPbancTtl: '청년인턴 모집', aplyQlfcCn: '장애인 구분모집' }),
+      row({ recrutPblntSn: 7, recrutPbancTtl: '직원(보훈제한경쟁 포함, 장애인 제한경쟁채용 포함) 채용' }),
       row({ recrutPblntSn: 5, recrutPbancTtl: '일반 채용' }),
     ],
   })
