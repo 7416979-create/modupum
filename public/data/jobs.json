@@ -1,9 +1,138 @@
 {
-  "sample": true,
-  "updatedAt": "샘플",
+  "sample": false,
+  "updatedAt": "2026-10-17 18:11",
   "items": [
-    { "id": "j1", "title": "(샘플) 공공기관 장애인 채용 공고 예시 1", "org": "샘플 기관", "disabledOnly": true, "start": "2026-10-01", "end": "2026-12-31", "url": "https://www.gojobs.go.kr" },
-    { "id": "j2", "title": "(샘플) 공공기관 장애인 제한경쟁 채용 공고 예시 2", "org": "샘플 기관", "disabledOnly": true, "start": "2026-10-05", "end": "2026-12-15", "url": "https://www.gojobs.go.kr" },
-    { "id": "j3", "title": "(샘플) 마감된 공고 예시 (자동으로 숨겨짐)", "org": "샘플 기관", "disabledOnly": true, "start": "2026-08-01", "end": "2026-09-01", "url": "https://www.gojobs.go.kr" }
+    {
+      "id": "305923",
+      "title": "한국폴리텍대학 화성캠퍼스 청년인턴(장애인 제한경쟁) 공개채용(2차)공고",
+      "org": "학교법인한국폴리텍",
+      "region": "경기",
+      "hires": 1,
+      "start": "2026-10-13",
+      "end": "2026-10-20",
+      "url": "https://www.kopo.ac.kr/hwaseong/board.do?menu=7078&mode=view&post=786987",
+      "disabledOnly": true
+    },
+    {
+      "id": "305752",
+      "title": "한국언론진흥재단 2026년 2차 정규직 신입사원 채용 공고",
+      "org": "한국언론진흥재단",
+      "region": "서울",
+      "hires": 11,
+      "start": "2026-10-06",
+      "end": "2026-10-20",
+      "url": "https://kpf.or.kr/front/board/boardContentsView.do?board_id=268&contents_id=74a9591e297944da81d66eb34493e7c5&link_g_topmenu_id=ccd1e88d6d7345cca51f20ce9f56d652&link_g_submenu_id=0017607aa5cc49deb9e877eff2ba59e8&link_g_homepage=F",
+      "disabledOnly": true
+    },
+    {
+      "id": "305921",
+      "title": "한국농촌경제연구원 2026년 제9차(재공모) 청년인턴(장애인 제한경쟁) 채용 공고",
+      "org": "한국농촌경제연구원",
+      "region": "전남광주",
+      "hires": 1,
+      "start": "2026-10-12",
+      "end": "2026-10-22",
+      "url": "https://www.krei.re.kr/krei/page/69?cmd=view&pst=505791&pageIndex=1",
+      "disabledOnly": true
+    },
+    {
+      "id": "305860",
+      "title": "2026년 4분기 1차 KDI 청년인턴 채용 공고(장애인 제한경쟁)",
+      "org": "한국개발연구원",
+      "region": "세종",
+      "hires": 1,
+      "start": "2026-10-08",
+      "end": "2026-10-22",
+      "url": "https://www.kdi.re.kr/share/recruitView?rec_no=306&pg=1&rec_type=",
+      "disabledOnly": true
+    },
+    {
+      "id": "305833",
+      "title": "[제2026-117호]2026년도 제6차 경상남도장애아동·발달장애인지원센터(장애아동지원팀) 체험형 청년인턴(장애인 제한경쟁)채용 공고",
+      "org": "한국장애인개발원",
+      "region": "경남",
+      "hires": 1,
+      "start": "2026-10-08",
+      "end": "2026-10-22",
+      "url": "https://koddicpdd.fairyhr.com",
+      "disabledOnly": true
+    },
+    {
+      "id": "305971",
+      "title": "[제2026-118호] 2026년도 제9차 강원특별자치도장애아동·발달장애인지원센터 체험형 청년인턴(장애인 제한경쟁) 채용 공고",
+      "org": "한국장애인개발원",
+      "region": "강원",
+      "hires": 1,
+      "start": "2026-10-13",
+      "end": "2026-10-27",
+      "url": "https://koddicpdd.fairyhr.com",
+      "disabledOnly": true
+    },
+    {
+      "id": "305969",
+      "title": "2026년 소상공인시장진흥공단 하반기 신입직원 채용 공고",
+      "org": "소상공인시장진흥공단",
+      "region": "서울,부산,대구,인천,대전,울산,세종,경기,강원,충북,충남,전북,전남광주,경북,경남,제주",
+      "hires": 20,
+      "start": "2026-10-13",
+      "end": "2026-10-27",
+      "url": "https://semas.plusrecruit.co.kr/",
+      "disabledOnly": true
+    },
+    {
+      "id": "305988",
+      "title": "[한국조세재정연구원] 행정직(전문원) 신규인력채용_장애인제한경쟁",
+      "org": "한국조세재정연구원",
+      "region": "세종",
+      "hires": 1,
+      "start": "2026-10-14",
+      "end": "2026-10-28",
+      "url": "https://www.kipf.re.kr/kor/Plaza/Recruitment/kiRecruitment/view.do?cntNo=452",
+      "disabledOnly": true
+    },
+    {
+      "id": "306068",
+      "title": "[제2026-119호]2026년도 제6차 경기도장애아동·발달장애인지원센터 기간제 계약직(육휴대체) 및 체험형 청년인턴(제한경쟁) 채용 공고",
+      "org": "한국장애인개발원",
+      "region": "경기",
+      "hires": 2,
+      "start": "2026-10-15",
+      "end": "2026-10-30",
+      "url": "https://koddicpdd.fairyhr.com/",
+      "disabledOnly": true
+    },
+    {
+      "id": "306004",
+      "title": "서울적십자병원 계약직 기능직(장애인제한경쟁) 신규채용 공고",
+      "org": "대한적십자사",
+      "region": "서울",
+      "hires": 1,
+      "start": "2026-10-14",
+      "end": "2026-10-30",
+      "url": "https://www.redcross.or.kr/redrecruit",
+      "disabledOnly": true
+    },
+    {
+      "id": "306125",
+      "title": "2026년도 제1차 직원(일반정규직, 실무직(보훈제한경쟁 포함), 조사직, 기간제 근로자, 체험형 청년인턴(장애인 제한경쟁채용 포함) 채용 공고",
+      "org": "한국수산자원공단",
+      "region": "부산,경기,강원,충남,전북,전남광주,경북,경남,제주",
+      "hires": 79,
+      "start": "2026-10-16",
+      "end": "2026-11-02",
+      "url": "https://www.fira.or.kr/newfira/web/news/news01_02.jsp?mode=view&article_no=35879&board_wrapper=%2Fnewfira%2Fweb%2Fnews%2Fnews01_02.jsp&pager.offset=0&board_no=3",
+      "disabledOnly": true
+    },
+    {
+      "id": "302097",
+      "title": "2026년 하반기 체험형 청년인턴(장애인 전형) 모집",
+      "org": "대한무역투자진흥공사",
+      "region": "서울,부산,대구,인천,광주,대전,울산,경기,강원,충북,충남,전북,경북,경남",
+      "hires": 0,
+      "start": "2026-07-01",
+      "end": "2026-12-31",
+      "url": "https://kotra.applyin.co.kr/jobs/22547",
+      "disabledOnly": true
+    }
   ]
 }
