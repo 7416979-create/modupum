@@ -125,3 +125,5 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .85rem; max-width: 640
   .index .d { grid-column: 2; text-align: left; }
   nav button { padding: 6px 10px; }
 }
+
+.foot-gap { margin-left: 20px; }

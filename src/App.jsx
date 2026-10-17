@@ -203,6 +203,7 @@ const readHash = () => {
 
 export default function App() {
   const [tab, setTabState] = useState(readHash)
+  const site = useData('site')
   const mainRef = useRef(null)
   const first = useRef(true)
 
@@ -251,7 +252,10 @@ export default function App() {
       <footer>
         <p>모두품은 공공데이터를 바탕으로 정보를 안내합니다. 항목마다 출처와 원문 링크를 표시하며, 정확한 내용은 반드시 원문에서 확인하세요.</p>
         <p>지원서 접수나 채용 알선은 하지 않습니다.</p>
-        <p><button className="foot-link" onClick={() => setTab('about')}>이용 안내</button></p>
+        <p>
+          <button className="foot-link" onClick={() => setTab('about')}>이용 안내</button>
+          {site?.feedbackUrl && <ExternalLink className="foot-link foot-gap" href={site.feedbackUrl}>의견 보내기</ExternalLink>}
+        </p>
       </footer>
     </>
   )
