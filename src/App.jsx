@@ -4,9 +4,11 @@ const TABS = [
   { id: 'home', label: '홈' },
   { id: 'welfare', label: '복지' },
   { id: 'jobs', label: '일자리' },
+  { id: 'apply', label: '신청' },
+  { id: 'news', label: '소식' },
 ]
 const ROUTES = [...TABS.map((t) => t.id), 'about']
-const TITLES = { home: '모두품', welfare: '복지 - 모두품', jobs: '일자리 - 모두품', about: '이용 안내 - 모두품' }
+const TITLES = { home: '모두품', welfare: '복지 - 모두품', jobs: '일자리 - 모두품', apply: '신청 안내 - 모두품', news: '소식 - 모두품', about: '이용 안내 - 모두품' }
 
 const today = () => new Date().toISOString().slice(0, 10)
 
@@ -60,8 +62,22 @@ function Home({ go }) {
           </button>
         </li>
         <li>
-          <button className="soon" disabled>
+          <button onClick={() => go('apply')}>
             <span className="no" aria-hidden="true">03</span>
+            <span className="t">신청 안내</span>
+            <span className="d">이용권·바우처 신청 방법 →</span>
+          </button>
+        </li>
+        <li>
+          <button onClick={() => go('news')}>
+            <span className="no" aria-hidden="true">04</span>
+            <span className="t">소식</span>
+            <span className="d">공식 기관이 발표한 복지 소식 →</span>
+          </button>
+        </li>
+        <li>
+          <button className="soon" disabled>
+            <span className="no" aria-hidden="true">05</span>
             <span className="t">커뮤니티</span>
             <span className="d">준비 중</span>
           </button>
@@ -131,6 +147,64 @@ function Welfare() {
         {data && items.length === 0 && <li className="empty">표시할 항목이 없습니다.</li>}
       </ul>
       <MoreLinks kind="welfare" />
+      <TipBox />
+    </section>
+  )
+}
+
+function Apply() {
+  const data = useData('guides')
+  const items = data?.items ?? []
+  return (
+    <section>
+      <h1 className="page-h">신청 안내</h1>
+      <SampleNotice data={data} />
+      <p className="mono only-note">{data?.scope ?? ''}</p>
+      <p className="apply-note">금액과 기준은 해마다, 지역마다 달라집니다. 신청하기 전에 아래 원문 안내에서 다시 확인하세요. 확인한 날: {data?.checkedAt ?? ''}</p>
+      <ul className="list">
+        {items.map((g) => (
+          <li key={g.id} className="item">
+            <h2>{g.name}</h2>
+            {g.aka && <div className="tags"><span>{g.aka}</span></div>}
+            <p>{g.summary}</p>
+            <dl className="facts">
+              {g.facts.map(([k, v]) => (
+                <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
+              ))}
+            </dl>
+            <p className="src-links">
+              {g.links.map((l) => (
+                <ExternalLink key={l.url} href={l.url}>{l.label}</ExternalLink>
+              ))}
+            </p>
+          </li>
+        ))}
+        {data && items.length === 0 && <li className="empty">표시할 항목이 없습니다.</li>}
+      </ul>
+      <TipBox />
+    </section>
+  )
+}
+
+function News() {
+  const data = useData('news')
+  const items = data?.items ?? []
+  return (
+    <section>
+      <h1 className="page-h">소식</h1>
+      <SampleNotice data={data} />
+      <p className="mono only-note">공식 기관이 발표한 소식만 원문 링크와 함께 올립니다</p>
+      <ul className="list">
+        {items.map((n) => (
+          <li key={n.id} className="item">
+            <div className="tags"><span>{n.source}</span><span>{n.date}</span></div>
+            <h2>{n.title}</h2>
+            <p>{n.summary}</p>
+            <ExternalLink href={n.url}>원문 보기</ExternalLink>
+          </li>
+        ))}
+        {data && items.length === 0 && <li className="empty">표시할 소식이 없습니다.</li>}
+      </ul>
       <TipBox />
     </section>
   )
@@ -247,6 +321,8 @@ export default function App() {
         {tab === 'home' && <Home go={setTab} />}
         {tab === 'welfare' && <Welfare />}
         {tab === 'jobs' && <Jobs />}
+        {tab === 'apply' && <Apply />}
+        {tab === 'news' && <News />}
         {tab === 'about' && <About />}
       </main>
       <footer>

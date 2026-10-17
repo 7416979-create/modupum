@@ -127,3 +127,16 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .85rem; max-width: 640
 }
 
 .foot-gap { margin-left: 20px; }
+
+.apply-note { color: var(--muted); max-width: 640px; margin: 8px 0 20px; font-size: .95rem; }
+.facts { margin: 14px 0 6px; max-width: 700px; }
+.facts > div { display: grid; grid-template-columns: 96px 1fr; gap: 14px; padding: 10px 0; border-top: 1px solid var(--line); }
+.facts dt { font-weight: 700; color: var(--ink); }
+.facts dd { margin: 0; color: var(--ink); line-height: 1.65; }
+.src-links { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 14px 0 0; }
+@media (max-width: 560px) { .facts > div { grid-template-columns: 1fr; gap: 2px; } }
+@media (max-width: 560px) {
+  .nav-inner { flex-wrap: wrap; gap: 6px 8px; padding: 10px 16px; }
+  nav { display: flex; flex-wrap: wrap; gap: 2px; max-width: 100%; }
+  nav button { padding: 6px 12px; }
+}
