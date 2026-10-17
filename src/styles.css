@@ -155,3 +155,9 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .85rem; }
 :root[data-theme="green"] .mark-dark { display: block; }
 .hero-mark { margin: 0 auto 28px; }
 .sub { color: var(--muted); }
+.brand, nav button { white-space: nowrap; }
+@media (max-width: 480px) {
+  .nav-inner { flex-wrap: wrap; gap: 4px 8px; padding: 8px 16px; }
+  nav { width: 100%; justify-content: space-between; }
+  nav button { padding: 6px 10px; }
+}
