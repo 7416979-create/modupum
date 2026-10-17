@@ -12,6 +12,39 @@ const TITLES = { home: '모두품', welfare: '복지 - 모두품', jobs: '일자
 
 const today = () => new Date().toISOString().slice(0, 10)
 
+const PAGE_SIZE = 10
+
+function usePaged(items, resetKey = '') {
+  const [page, setPage] = useState(1)
+  useEffect(() => { setPage(1) }, [resetKey, items.length])
+  const total = Math.max(1, Math.ceil(items.length / PAGE_SIZE))
+  const cur = Math.min(page, total)
+  const slice = items.slice((cur - 1) * PAGE_SIZE, cur * PAGE_SIZE)
+  const go = (n) => {
+    setPage(n)
+    window.scrollTo({ top: 0 })
+  }
+  return { slice, page: cur, total, go, count: items.length }
+}
+
+function Pager({ pg }) {
+  if (pg.total <= 1) return null
+  const from = Math.max(1, Math.min(pg.page - 2, pg.total - 4))
+  const to = Math.min(pg.total, from + 4)
+  const nums = []
+  for (let n = from; n <= to; n += 1) nums.push(n)
+  return (
+    <nav className="pager" aria-label="페이지 이동">
+      <button onClick={() => pg.go(pg.page - 1)} disabled={pg.page === 1}>이전</button>
+      {nums.map((n) => (
+        <button key={n} className={n === pg.page ? 'on' : ''} aria-current={n === pg.page ? 'page' : undefined} onClick={() => pg.go(n)}>{n}</button>
+      ))}
+      <button onClick={() => pg.go(pg.page + 1)} disabled={pg.page === pg.total}>다음</button>
+      <span className="pager-info">{pg.page} / {pg.total} 쪽 · 전체 {pg.count}건</span>
+    </nav>
+  )
+}
+
 function useData(name) {
   const [data, setData] = useState(null)
   useEffect(() => {
@@ -128,6 +161,7 @@ function Welfare() {
     const k = q.trim()
     return k ? list.filter((i) => `${i.title}${i.summary}${i.category}${i.target}`.includes(k)) : list
   }, [data, q])
+  const pg = usePaged(items, q)
 
   return (
     <section>
@@ -136,16 +170,24 @@ function Welfare() {
       <input className="search" type="search" placeholder="검색어를 입력하세요" value={q} onChange={(e) => setQ(e.target.value)} aria-label="복지 검색" />
       <p className="sr" role="status">{data ? `${items.length}건` : ''}</p>
       <ul className="list">
-        {items.map((i) => (
+        {pg.slice.map((i) => (
           <li key={i.id} className="item">
-            <div className="tags"><span>{i.category}</span><span>{i.target}</span></div>
-            <h2>{i.title}</h2>
-            <p>{i.summary}</p>
-            <ExternalLink href={i.url}>원문 보기 · 출처 {i.source}</ExternalLink>
+            <details>
+              <summary>
+                <h2>{i.title}</h2>
+                <span className="sum-tag">{i.category}</span>
+              </summary>
+              <div className="detail">
+                <div className="tags"><span>{i.category}</span><span>{i.target}</span></div>
+                <p>{i.summary}</p>
+                <ExternalLink href={i.url}>원문 보기 · 출처 {i.source}</ExternalLink>
+              </div>
+            </details>
           </li>
         ))}
         {data && items.length === 0 && <li className="empty">표시할 항목이 없습니다.</li>}
       </ul>
+      <Pager pg={pg} />
       <MoreLinks kind="welfare" />
       <TipBox />
     </section>
@@ -155,6 +197,7 @@ function Welfare() {
 function Apply() {
   const data = useData('guides')
   const items = data?.items ?? []
+  const pg = usePaged(items)
   return (
     <section>
       <h1 className="page-h">신청 안내</h1>
@@ -162,25 +205,32 @@ function Apply() {
       <p className="mono only-note">{data?.scope ?? ''}</p>
       <p className="apply-note">금액과 기준은 해마다, 지역마다 달라집니다. 신청하기 전에 아래 원문 안내에서 다시 확인하세요. 확인한 날: {data?.checkedAt ?? ''}</p>
       <ul className="list">
-        {items.map((g) => (
+        {pg.slice.map((g) => (
           <li key={g.id} className="item">
-            <h2>{g.name}</h2>
-            {g.aka && <div className="tags"><span>{g.aka}</span></div>}
-            <p>{g.summary}</p>
-            <dl className="facts">
-              {g.facts.map(([k, v]) => (
-                <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
-              ))}
-            </dl>
-            <p className="src-links">
-              {g.links.map((l) => (
-                <ExternalLink key={l.url} href={l.url}>{l.label}</ExternalLink>
-              ))}
-            </p>
+            <details>
+              <summary>
+                <h2>{g.name}</h2>
+                {g.aka && <span className="sum-tag">{g.aka}</span>}
+              </summary>
+              <div className="detail">
+                <p>{g.summary}</p>
+                <dl className="facts">
+                  {g.facts.map(([k, v]) => (
+                    <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
+                  ))}
+                </dl>
+                <p className="src-links">
+                  {g.links.map((l) => (
+                    <ExternalLink key={l.url} href={l.url}>{l.label}</ExternalLink>
+                  ))}
+                </p>
+              </div>
+            </details>
           </li>
         ))}
         {data && items.length === 0 && <li className="empty">표시할 항목이 없습니다.</li>}
       </ul>
+      <Pager pg={pg} />
       <TipBox />
     </section>
   )
@@ -189,22 +239,31 @@ function Apply() {
 function News() {
   const data = useData('news')
   const items = data?.items ?? []
+  const pg = usePaged(items)
   return (
     <section>
       <h1 className="page-h">소식</h1>
       <SampleNotice data={data} />
       <p className="mono only-note">공식 기관이 발표한 소식만 원문 링크와 함께 올립니다</p>
       <ul className="list">
-        {items.map((n) => (
+        {pg.slice.map((n) => (
           <li key={n.id} className="item">
-            <div className="tags"><span>{n.source}</span><span>{n.date}</span></div>
-            <h2>{n.title}</h2>
-            <p>{n.summary}</p>
-            <ExternalLink href={n.url}>원문 보기</ExternalLink>
+            <details>
+              <summary>
+                <h2>{n.title}</h2>
+                <span className="sum-tag">{n.date}</span>
+              </summary>
+              <div className="detail">
+                <div className="tags"><span>{n.source}</span><span>{n.date}</span></div>
+                <p>{n.summary}</p>
+                <ExternalLink href={n.url}>원문 보기</ExternalLink>
+              </div>
+            </details>
           </li>
         ))}
         {data && items.length === 0 && <li className="empty">표시할 소식이 없습니다.</li>}
       </ul>
+      <Pager pg={pg} />
       <TipBox />
     </section>
   )
@@ -217,6 +276,7 @@ function Jobs() {
     // 장애인만 지원할 수 있는 공고(장애인 전용·제한경쟁)만 보여 준다. 우대 공고와 마감된 공고는 제외.
     return (data?.items ?? []).filter((i) => i.end >= t && i.disabledOnly)
   }, [data])
+  const pg = usePaged(items)
 
   return (
     <section>
@@ -224,15 +284,23 @@ function Jobs() {
       <SampleNotice data={data} />
       <p className="mono only-note">장애인만 지원할 수 있는 공공기관 채용 공고만 모았습니다</p>
       <ul className="list">
-        {items.map((i) => (
+        {pg.slice.map((i) => (
           <li key={i.id} className="item">
-            <div className="tags"><span>{i.org}</span><span>마감 {i.end}</span></div>
-            <h2>{i.title}</h2>
-            <ExternalLink href={i.url}>원문 보기</ExternalLink>
+            <details>
+              <summary>
+                <h2>{i.title}</h2>
+                <span className="sum-tag">마감 {i.end}</span>
+              </summary>
+              <div className="detail">
+                <div className="tags"><span>{i.org}</span><span>마감 {i.end}</span></div>
+                <ExternalLink href={i.url}>원문 보기</ExternalLink>
+              </div>
+            </details>
           </li>
         ))}
         {data && items.length === 0 && <li className="empty">현재 접수 중인 공고가 없습니다.</li>}
       </ul>
+      <Pager pg={pg} />
       <details className="check-guide">
         <summary>지원하기 전에 공고에서 확인할 것</summary>
         <ul>
