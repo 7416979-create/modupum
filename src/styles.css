@@ -54,7 +54,7 @@ nav button.on { color: var(--ink); background: color-mix(in srgb, var(--ink) 12%
 main { max-width: 980px; margin: 0 auto; padding: 8px 22px 96px; }
 
 /* 첫 화면 */
-.hero { text-align: center; padding: 64px 0 24px; background: linear-gradient(180deg, #e6f4ea 0%, rgba(230,244,234,0) 100%); border-radius: 0 0 40px 40px; }
+.hero { text-align: center; padding: 64px 0 24px; background: radial-gradient(ellipse 70% 100% at 50% 0%, #e6f4ea 0%, rgba(230,244,234,0) 100%); }
 .hero-mark { display: block; margin: 0 auto 28px; }
 h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -.035em; font-weight: 700; margin: 0 0 18px; }
 .lead { color: var(--muted); font-size: 1.2rem; margin: 0 auto 48px; max-width: 480px; }
