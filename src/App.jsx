@@ -24,6 +24,16 @@ const ageTag = (d) => {
   return age === 0 ? { cls: 'today', text: '오늘' } : age === 1 ? { cls: 'yesterday', text: '어제' } : null
 }
 
+// 제목에 기관명이 없으면 '[기관명] 제목'으로 보여 준다(기관명은 짧게)
+const orgLabel = (title, org) => {
+  const t = (title || '').replace(/\s/g, '')
+  const toks = (org || '').replace(/^학교법인\s*/, '').split(/\s+/).filter(Boolean)
+  if (!toks.length) return title
+  if (toks.some((k) => k.length >= 3 && t.includes(k.replace(/^학교법인/, '')))) return title
+  const rest = toks.length > 1 && /[부처]$/.test(toks[0]) ? toks.slice(1) : toks
+  return `[${rest[0].replace(/^학교법인/, '')}] ${title}`
+}
+
 const AgeTag = ({ date }) => {
   const t = ageTag(date)
   return t ? <span className={`age-tag ${t.cls}`}>{t.text}</span> : null
@@ -311,7 +321,7 @@ function Jobs() {
             <li key={i.id} className="item">
               <details>
                 <summary>
-                  <h2><AgeTag date={i.start} />{i.title}</h2>
+                  <h2><AgeTag date={i.start} />{orgLabel(i.title, i.org)}</h2>
                   <span className="sum-tag">{soon ? (left === 0 ? '오늘 마감' : `D-${left}`) : `마감 ${i.end}`}</span>
                 </summary>
                 <div className="detail">
