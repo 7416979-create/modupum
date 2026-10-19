@@ -2,10 +2,10 @@ name: update-and-deploy
 
 on:
   schedule:
-    # GitHub는 UTC 기준. 한국시간 10시, 14시, 18시 = UTC 01시, 05시, 09시
-    - cron: '0 1 * * *'
-    - cron: '0 5 * * *'
-    - cron: '0 9 * * *'
+    # GitHub는 UTC 기준. 정각 지연을 피해 47분에 실행: 한국시간 약 10시, 14시, 18시 = UTC 00:47, 04:47, 08:47
+    - cron: '47 0 * * *'
+    - cron: '47 4 * * *'
+    - cron: '47 8 * * *'
   workflow_dispatch:
   push:
     branches: [main]
