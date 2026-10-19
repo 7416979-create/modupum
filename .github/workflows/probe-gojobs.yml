@@ -1,0 +1,27 @@
+name: probe-gojobs
+
+# 나라일터 공개 목록 페이지의 접근 가능 여부와 구조를 한 번 확인하는 읽기 전용 점검.
+# 사이트 데이터는 바꾸지 않는다. 수동 실행만 가능하다.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: robots.txt
+        run: |
+          echo "== robots.txt"
+          curl -sS -m 30 -A "modupum-bot (+https://modupum.kr)" -w '\nHTTP %{http_code}\n' https://www.gojobs.go.kr/robots.txt | head -60
+      - name: 목록 페이지 (공고명 검색)
+        run: |
+          echo "== list GET"
+          curl -sS -m 30 -A "modupum-bot (+https://modupum.kr)" -L -o /tmp/list.html -w 'HTTP %{http_code} size %{size_download}\n' 'https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo='
+          grep -oE '<form[^>]*>' /tmp/list.html | head -10
+          grep -oE '<input[^>]*name="[^"]*"[^>]*>' /tmp/list.html | head -40
+          grep -oE '<select[^>]*name="[^"]*"[^>]*>' /tmp/list.html | head -10
+          echo "== body sample"
+          sed -e 's/\s\+/ /g' /tmp/list.html | head -c 4000
