@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-18 18:21",
+  "updatedAt": "2026-10-19 11:14",
   "items": [
     {
       "id": "305923",
@@ -88,6 +88,17 @@
       "start": "2026-10-14",
       "end": "2026-10-30",
       "url": "https://www.redcross.or.kr/redrecruit",
+      "disabledOnly": true
+    },
+    {
+      "id": "306061",
+      "title": "(보훈 및 장애인 제한경쟁) 육아휴직자 대체 시간선택제 일자리 채용",
+      "org": "신용보증기금",
+      "region": "서울,대구,인천,대전,세종,경기,충남,전남광주,경남",
+      "hires": 42,
+      "start": "2026-10-19",
+      "end": "2026-11-02",
+      "url": "https://kodit2.saramin.co.kr",
       "disabledOnly": true
     },
     {
