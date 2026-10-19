@@ -11,32 +11,27 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: 목록 요청 방식 확인
+      - name: 상세 링크와 쪽 넘김 확인
         run: |
           UA="modupum-bot (+https://modupum.kr)"
           BASE='https://www.gojobs.go.kr/apmList.do'
-          Q='menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo='
-          curl -sS --retry 2 --retry-delay 10 --retry-all-errors -m 60 -A "$UA" -c /tmp/cj -o /tmp/first.html "$BASE?$Q"
-          echo "== fn_apmList 정의"
-          python3 - <<'PY'
-          import re
-          s = open('/tmp/first.html', encoding='utf-8', errors='replace').read()
-          for m in re.finditer(r'function\s+fn_apmList\s*\([^)]*\)\s*\{', s):
-              print(re.sub(r'\s+', ' ', s[m.start():m.start()+1500]))
-          print('== 400 응답 본문은 별도 요청에서 확인')
-          PY
+          curl -sS --retry 2 --retry-delay 10 --retry-all-errors -m 60 -A "$UA" -c /tmp/cj -o /tmp/get.html -G "$BASE" --data-urlencode 'menuNo=401' --data-urlencode 'mngrMenuYn=N' --data-urlencode 'selMenuNo=400' --data-urlencode 'upperMenuNo=' --data-urlencode 'searchKeyword=장애' --data-urlencode 'searchJobsecode=020'
           sleep 3
-          echo "== GET 방식 (검색어 포함)"
-          curl -sS -m 60 -A "$UA" -b /tmp/cj -o /tmp/get.html -w 'HTTP %{http_code} size %{size_download}\n' -G "$BASE" --data-urlencode 'menuNo=401' --data-urlencode 'mngrMenuYn=N' --data-urlencode 'selMenuNo=400' --data-urlencode 'upperMenuNo=' --data-urlencode 'searchKeyword=장애' --data-urlencode 'searchJobsecode=020'
+          curl -sS -m 60 -A "$UA" -b /tmp/cj -o /tmp/common.js 'https://www.gojobs.go.kr/jsp/cmmn/js/common.js'
           python3 - <<'PY'
           import re
           s = open('/tmp/get.html', encoding='utf-8', errors='replace').read()
-          print('TOTAL:', (re.search(r'Total[^<]{0,80}', s) or [None])[0] if re.search(r'Total[^<]{0,80}', s) else None)
-          i = s.find('<tbody')
-          print('TBODY at', i)
-          print(re.sub(r'\s+', ' ', s[i:i+3500]) if i >= 0 else re.sub(r'\s+', ' ', s[:800]))
+          c = open('/tmp/common.js', encoding='utf-8', errors='replace').read()
+          for name, src in (('page', s), ('common.js', c)):
+              for fn in ('fn_apmView', 'fn_goPage', 'fn_page', 'fn_apmList'):
+                  for m in re.finditer(r'function\s+' + fn + r'\s*\(', src):
+                      print('==', name, fn)
+                      print(re.sub(r'\s+', ' ', src[m.start():m.start()+700]))
+          print('== pagination html')
+          i = s.find('class="paging')
+          if i < 0: i = s.find('paging')
+          print(re.sub(r'\s+', ' ', s[i:i+1800]) if i >= 0 else 'no paging marker')
+          print('== rows')
+          rows = re.findall(r'<tr\s*>.*?</tr>', s[s.find('<tbody'):], re.S)
+          print(len(rows), 'rows on page 1')
           PY
-          sleep 3
-          echo "== 400 본문"
-          curl -sS -m 60 -A "$UA" -b /tmp/cj -e "$BASE?$Q" -o /tmp/post.html -w 'HTTP %{http_code}\n' --data-urlencode 'menuNo=401' --data-urlencode 'selMenuNo=400' --data-urlencode 'mngrMenuYn=N' --data-urlencode 'searchKeyword=장애' --data-urlencode 'searchJobsecode=020' "$BASE?$Q"
-          head -c 1500 /tmp/post.html
