@@ -152,7 +152,6 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .85rem; }
 
 .age-tag { display: inline-block; margin-right: 6px; padding: 1px 8px; border-radius: var(--pill); font-size: 0.68em; font-weight: 600; letter-spacing: 0; vertical-align: middle; }
 .age-tag.today { background: color-mix(in srgb, #e5484d 14%, transparent); color: #d03a3f; }
-.age-tag.new { background: #d92d20; color: #fff; font-weight: 700; }
 .age-tag.yesterday { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
 .survey-pop { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 50; display: flex; justify-content: center; }
 .survey-box { width: 100%; max-width: 380px; padding: 16px 18px; border-radius: 12px; background: #fff; color: #222; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2); }

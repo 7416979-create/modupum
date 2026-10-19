@@ -17,13 +17,11 @@ const daysLeft = (end) => Math.round((Date.parse(end) - Date.parse(today())) / 8
 // 테스트 기간(3개월) 설문 마감일. 이 날짜 이후에는 팝업을 띄우지 않는다.
 const SURVEY_END = '2027-01-19'
 
-// 올라온 날(한국 날짜)이 오늘이면 '오늘', 어제면 '어제', 2~7일 전이면 'NEW' 표시를 붙이고 그 이후에는 없앤다.
+// 올라온 날(한국 날짜)이 오늘이면 '오늘', 어제면 '어제' 표시를 붙이고 그 이후에는 없앤다.
 const ageTag = (d) => {
   if (!d) return null
   const age = Math.round((Date.parse(today()) - Date.parse(String(d).slice(0, 10))) / 86400000)
-  if (age === 0) return { cls: 'today', text: '오늘' }
-  if (age === 1) return { cls: 'yesterday', text: '어제' }
-  return age >= 2 && age <= 7 ? { cls: 'new', text: 'NEW' } : null
+  return age === 0 ? { cls: 'today', text: '오늘' } : age === 1 ? { cls: 'yesterday', text: '어제' } : null
 }
 
 const AgeTag = ({ date }) => {
@@ -279,8 +277,7 @@ function Jobs() {
     // 접수 중인 공고를 모두 보여 주되, 장애인만 지원할 수 있는 공고(장애인 전용·제한경쟁)를 먼저 둔다.
     const open = (data?.items ?? []).filter((i) => i.end >= t).map((i) => ({ ...i, orgType: i.orgType || '공공기관' }))
     // 각 묶음 안에서는 오늘·어제 올라온 공고를 먼저 보여 준다(표시가 첫 화면에서 눈에 띄도록).
-    const isNew = (i) => ['today', 'yesterday'].includes(ageTag(i.start)?.cls)
-    const fresh = (list) => [...list.filter(isNew), ...list.filter((i) => !isNew(i))]
+    const fresh = (list) => [...list.filter((i) => ageTag(i.start)), ...list.filter((i) => !ageTag(i.start))]
     return [...fresh(open.filter((i) => i.disabledOnly)), ...fresh(open.filter((i) => !i.disabledOnly))]
   }, [data])
   const kinds = useMemo(() => ['전체', ...['국가기관', '지자체', '교육청', '공공기관'].filter((k) => all.some((i) => i.orgType === k))], [all])
