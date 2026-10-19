@@ -92,7 +92,7 @@ function Home({ go }) {
         <button className="card" onClick={() => go('jobs')}>
           <span className="card-t">일자리</span>
           <span className="card-n">{jn != null ? `접수 중 ${jn}건` : ' '}</span>
-          <span className="card-d">공공기관 장애인 채용 공고</span>
+          <span className="card-d">공공기관·국가기관·지자체 장애인 채용 공고</span>
         </button>
       </div>
       <p className="home-links">
@@ -265,7 +265,7 @@ function Jobs() {
     <section>
       <h1 className="page-h">일자리</h1>
       <SampleNotice data={data} />
-      <p className="sub">장애인만 지원할 수 있는 공공기관 채용 공고입니다.</p>
+      <p className="sub">장애인만 지원할 수 있는 공공기관·국가기관·지자체 채용 공고입니다.</p>
       <ul className="list">
         {pg.slice.map((i) => (
           <li key={i.id} className="item">
