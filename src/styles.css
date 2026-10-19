@@ -144,3 +144,8 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .85rem; }
   nav { width: 100%; justify-content: space-between; }
   nav button { padding: 6px 10px; }
 }
+
+.kinds { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 16px; }
+.kinds button { height: 36px; padding: 0 14px; border-radius: var(--pill); background: var(--card); color: var(--card-ink); font-weight: 600; font-size: .9rem; }
+.kinds button.on { background: var(--accent); color: #fff; }
+.tags span.soon { background: var(--accent); color: #fff; font-weight: 700; }

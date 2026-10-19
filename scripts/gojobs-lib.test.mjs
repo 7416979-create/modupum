@@ -22,7 +22,7 @@ test('목록 행을 읽는다', () => {
   const { total, rows } = parseList(html)
   assert.equal(total, 3397)
   assert.equal(rows.length, 4)
-  assert.deepEqual(rows[0], { code: '020', sn: '306018', title: '2026년 제28차 충남사회서비스원 본부 기간제(사무보조-장애인전형) 직원 공개채용 재공고', org: '충남사회서비스원', start: '2026-10-19', end: '2026-10-29' })
+  assert.deepEqual(rows[0], { code: '020', sn: '306018', title: '2026년 제28차 충남사회서비스원 본부 기간제(사무보조-장애인전형) 직원 공개채용 재공고', org: '충남사회서비스원', orgType: '공공기관', start: '2026-10-19', end: '2026-10-29' })
 })
 
 test('접수 중 공고를 모두 담고, 장애인전형·제한경쟁만 전용으로 표시한다(마감된 공고는 뺀다)', () => {

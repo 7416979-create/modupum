@@ -16,6 +16,16 @@ const clean = (s) =>
 
 const ymd = /^\d{4}-\d{2}-\d{2}$/
 
+// 목록 아이콘의 alt(공공·국가·지자체·교육 등)를 화면에서 쓰는 기관 종류 이름으로 바꾼다.
+export const orgTypeOf = (alt) => {
+  const a = String(alt ?? '')
+  if (a.includes('공공')) return '공공기관'
+  if (a.includes('국가') || a.includes('중앙')) return '국가기관'
+  if (a.includes('지자체') || a.includes('지방자치')) return '지자체'
+  if (a.includes('교육')) return '교육청'
+  return ''
+}
+
 // 목록 표의 행을 읽는다. 열 순서: 번호, 공고명(기관유형 아이콘 포함), 기관, 게시일, 마감일, 조회수
 export const parseList = (html) => {
   const body = html.includes('<tbody') ? html.slice(html.indexOf('<tbody')) : html
@@ -30,7 +40,8 @@ export const parseList = (html) => {
     const start = clean(tds[3])
     const end = clean(tds[4])
     if (!title || !ymd.test(end)) continue
-    rows.push({ code: view[1], sn: view[2], title, org: clean(tds[2]), start: ymd.test(start) ? start : '', end })
+    const alt = /<img[^>]*\balt="([^"]*)"/.exec(tds[1])?.[1] ?? ''
+    rows.push({ code: view[1], sn: view[2], title, org: clean(tds[2]), orgType: orgTypeOf(alt), start: ymd.test(start) ? start : '', end })
   }
   return { total, rows }
 }
@@ -64,6 +75,7 @@ export const toJob = (row, rules) => ({
   end: row.end,
   url: searchUrl(row.title, row.code),
   disabledOnly: isDisabledOnlyTitle(row.title, rules),
+  orgType: row.orgType || '',
   source: '나라일터',
 })
 

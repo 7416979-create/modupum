@@ -10,7 +10,9 @@ const TABS = [
 const ROUTES = [...TABS.map((t) => t.id), 'about']
 const TITLES = { home: '모두품', welfare: '복지 - 모두품', jobs: '일자리 - 모두품', apply: '신청 안내 - 모두품', news: '소식 - 모두품', about: '이용 안내 - 모두품' }
 
-const today = () => new Date().toISOString().slice(0, 10)
+// 한국 날짜 기준(UTC 날짜를 쓰면 한국 아침 9시 전에 하루 늦게 계산된다)
+const today = () => new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10)
+const daysLeft = (end) => Math.round((Date.parse(end) - Date.parse(today())) / 86400000)
 
 const PAGE_SIZE = 10
 
@@ -254,39 +256,56 @@ function News() {
 
 function Jobs() {
   const data = useData('jobs')
-  const items = useMemo(() => {
+  const [kind, setKind] = useState('전체')
+  const all = useMemo(() => {
     const t = today()
     // 접수 중인 공고를 모두 보여 주되, 장애인만 지원할 수 있는 공고(장애인 전용·제한경쟁)를 먼저 둔다.
-    const open = (data?.items ?? []).filter((i) => i.end >= t)
+    const open = (data?.items ?? []).filter((i) => i.end >= t).map((i) => ({ ...i, orgType: i.orgType || '공공기관' }))
     return [...open.filter((i) => i.disabledOnly), ...open.filter((i) => !i.disabledOnly)]
   }, [data])
-  const pg = usePaged(items)
+  const kinds = useMemo(() => ['전체', ...['국가기관', '지자체', '교육청', '공공기관'].filter((k) => all.some((i) => i.orgType === k))], [all])
+  const items = useMemo(() => (kind === '전체' ? all : all.filter((i) => i.orgType === kind)), [all, kind])
+  const pg = usePaged(items, kind)
 
   return (
     <section>
       <h1 className="page-h">일자리</h1>
       <SampleNotice data={data} />
       <p className="sub">공공기관·국가기관·지자체의 장애 관련 채용 공고입니다. '장애인 제한경쟁'이 붙은 공고는 장애인만 지원할 수 있습니다.</p>
+      {data?.updatedAt && <p className="sub">마지막 갱신 {data.updatedAt} · 접수 중 {all.length}건</p>}
+      {kinds.length > 2 && (
+        <div className="kinds" role="group" aria-label="기관 종류">
+          {kinds.map((k) => (
+            <button key={k} className={k === kind ? 'on' : ''} aria-pressed={k === kind} onClick={() => setKind(k)}>{k}</button>
+          ))}
+        </div>
+      )}
       <ul className="list">
-        {pg.slice.map((i) => (
-          <li key={i.id} className="item">
-            <details>
-              <summary>
-                <h2>{i.title}</h2>
-                <span className="sum-tag">마감 {i.end}</span>
-              </summary>
-              <div className="detail">
-                <div className="tags">
-                  <span>{i.disabledOnly ? '장애인 제한경쟁' : '장애 관련 · 자격 확인 필요'}</span>
-                  <span>{i.org}</span>
-                  <span>마감 {i.end}</span>
-                  {i.source && <span>출처 {i.source}</span>}
+        {pg.slice.map((i) => {
+          const left = daysLeft(i.end)
+          const soon = left <= 3
+          return (
+            <li key={i.id} className="item">
+              <details>
+                <summary>
+                  <h2>{i.title}</h2>
+                  <span className="sum-tag">{soon ? (left === 0 ? '오늘 마감' : `D-${left}`) : `마감 ${i.end}`}</span>
+                </summary>
+                <div className="detail">
+                  <div className="tags">
+                    {soon && <span className="soon">{left === 0 ? '오늘 마감' : `마감 임박 D-${left}`}</span>}
+                    <span>{i.disabledOnly ? '장애인 제한경쟁' : '장애 관련 · 자격 확인 필요'}</span>
+                    <span>{i.org}</span>
+                    <span>{i.orgType}</span>
+                    <span>마감 {i.end}</span>
+                    {i.source && <span>출처 {i.source}</span>}
+                  </div>
+                  <ExternalLink href={i.url}>원문 보기</ExternalLink>
                 </div>
-                <ExternalLink href={i.url}>원문 보기</ExternalLink>
-              </div>
-            </details>
-          </li>
-        ))}
+              </details>
+            </li>
+          )
+        })}
         {data && items.length === 0 && <li className="empty">현재 접수 중인 공고가 없습니다.</li>}
       </ul>
       <Pager pg={pg} />
