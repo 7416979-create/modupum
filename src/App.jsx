@@ -17,10 +17,17 @@ const daysLeft = (end) => Math.round((Date.parse(end) - Date.parse(today())) / 8
 // 테스트 기간(3개월) 설문 마감일. 이 날짜 이후에는 팝업을 띄우지 않는다.
 const SURVEY_END = '2027-01-19'
 
-// 오늘(한국 날짜) 올라온 글에만 작은 반투명 표시를 붙인다.
-const isToday = (d) => !!d && String(d).slice(0, 10) === today()
+// 올라온 날(한국 날짜)이 오늘이면 '오늘', 어제면 '어제' 표시를 붙이고 그 이후에는 없앤다.
+const ageTag = (d) => {
+  if (!d) return null
+  const age = Math.round((Date.parse(today()) - Date.parse(String(d).slice(0, 10))) / 86400000)
+  return age === 0 ? { cls: 'today', text: '오늘' } : age === 1 ? { cls: 'yesterday', text: '어제' } : null
+}
 
-const TodayTag = () => <span className="today-tag">오늘</span>
+const AgeTag = ({ date }) => {
+  const t = ageTag(date)
+  return t ? <span className={`age-tag ${t.cls}`}>{t.text}</span> : null
+}
 
 const PAGE_SIZE = 10
 
@@ -243,7 +250,7 @@ function News() {
           <li key={n.id} className="item">
             <details>
               <summary>
-                <h2>{isToday(n.date) && <TodayTag />}{n.title}</h2>
+                <h2><AgeTag date={n.date} />{n.title}</h2>
                 <span className="sum-tag">{n.date}</span>
               </summary>
               <div className="detail">
@@ -296,7 +303,7 @@ function Jobs() {
             <li key={i.id} className="item">
               <details>
                 <summary>
-                  <h2>{isToday(i.start) && <TodayTag />}{i.title}</h2>
+                  <h2><AgeTag date={i.start} />{i.title}</h2>
                   <span className="sum-tag">{soon ? (left === 0 ? '오늘 마감' : `D-${left}`) : `마감 ${i.end}`}</span>
                 </summary>
                 <div className="detail">
