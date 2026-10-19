@@ -30,6 +30,8 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Collect public data
+        # 수집이 실패해도 기존 데이터로 빌드·배포를 계속한다(실패는 로그에 남는다).
+        continue-on-error: true
         run: node scripts/collect.mjs
         env:
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}

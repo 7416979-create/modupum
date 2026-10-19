@@ -17,8 +17,24 @@ const rules = JSON.parse(await readFile(new URL('./keywords.json', import.meta.u
 const kstNow = new Date(Date.now() + 9 * 3600 * 1000)
 const today = kstNow.toISOString().slice(0, 10)
 
+// 네트워크 오류나 5xx는 잠시 뒤 다시 시도한다(최대 4번).
+const fetchRetry = async (url, options) => {
+  let last
+  for (let attempt = 1; attempt <= 4; attempt += 1) {
+    try {
+      const res = await fetch(url, { ...options, signal: AbortSignal.timeout(30000) })
+      if (res.status < 500) return res
+      last = new Error(`HTTP ${res.status}`)
+    } catch (e) {
+      last = e
+    }
+    if (attempt < 4) await new Promise((r) => setTimeout(r, attempt * 5000))
+  }
+  throw last
+}
+
 const getJson = async (url) => {
-  const res = await fetch(url, { headers: { Accept: 'application/json' } })
+  const res = await fetchRetry(url, { headers: { Accept: 'application/json' } })
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   return res.json()
 }
@@ -54,7 +70,7 @@ async function collectWelfare() {
   const all = []
   let total = Infinity
   for (let page = 1; all.length < total && page <= 20; page += 1) {
-    const res = await fetch(welfareListUrl(key, page))
+    const res = await fetchRetry(welfareListUrl(key, page))
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const { code, total: t, items } = parseWelfareList(await res.text())
     if (code !== '0' && code !== '') throw new Error(`API 응답 코드 ${code}`)
