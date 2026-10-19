@@ -1,0 +1,82 @@
+// 나라일터(gojobs.go.kr) 공개 채용공고 목록(공고명 검색 결과)에서 제목·기관·마감일만 읽어 화면용 데이터로 바꾼다.
+// 공고 내용은 가져오지 않고, 제목과 원문(나라일터) 링크만 남긴다.
+
+export const GOJOBS_LIST = 'https://www.gojobs.go.kr/apmList.do'
+
+const clean = (s) =>
+  String(s ?? '')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim()
+
+const ymd = /^\d{4}-\d{2}-\d{2}$/
+
+// 목록 표의 행을 읽는다. 열 순서: 번호, 공고명(기관유형 아이콘 포함), 기관, 게시일, 마감일, 조회수
+export const parseList = (html) => {
+  const body = html.includes('<tbody') ? html.slice(html.indexOf('<tbody')) : html
+  const total = Number(/Total\s+(\d[\d,]*)/.exec(html)?.[1]?.replace(/,/g, '') ?? 0)
+  const rows = []
+  for (const m of body.matchAll(/<tr\s*>([\s\S]*?)<\/tr>/g)) {
+    const tds = [...m[1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].map((t) => t[1])
+    if (tds.length < 6) continue
+    const view = /fn_apmView\(\s*'([^']*)'\s*,\s*'(\d+)'\s*\)/.exec(tds[1])
+    if (!view) continue
+    const title = clean(tds[1])
+    const start = clean(tds[3])
+    const end = clean(tds[4])
+    if (!title || !ymd.test(end)) continue
+    rows.push({ code: view[1], sn: view[2], title, org: clean(tds[2]), start: ymd.test(start) ? start : '', end })
+  }
+  return { total, rows }
+}
+
+// 제목만으로 장애인 전용 공고인지 본다(keywords.json 규칙과 같은 기준).
+export const isDisabledOnlyTitle = (title, rules) => {
+  if (!(rules.제목_필수 ?? []).every((w) => title.includes(w))) return false
+  if ((rules.제목_제외 ?? []).some((w) => title.includes(w))) return false
+  if (!rules.필수.every((w) => title.includes(w))) return false
+  return rules.전용으로_보는_표현.some((w) => title.includes(w))
+}
+
+// 공고 상세는 나라일터가 POST 로만 열어서 직접 링크가 없다. 제목으로 검색한 목록 주소를 원문 링크로 쓴다.
+export const searchUrl = (title, code = '020') =>
+  `${GOJOBS_LIST}?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=${encodeURIComponent(code)}&searchKeyword=${encodeURIComponent(title)}`
+
+export const toJob = (row) => ({
+  id: `gojobs-${row.sn}`,
+  title: row.title,
+  org: row.org,
+  region: '',
+  hires: null,
+  start: row.start,
+  end: row.end,
+  url: searchUrl(row.title, row.code),
+  disabledOnly: true,
+  source: '나라일터',
+})
+
+export const buildGojobs = (rows, rules, today) =>
+  rows
+    .filter((r) => isDisabledOnlyTitle(r.title, rules))
+    .map(toJob)
+    .filter((j) => j.end >= today)
+
+const norm = (s) => String(s ?? '').replace(/\s+/g, '').toLowerCase()
+
+// 이미 있는 공고(같은 제목·기관)는 두 번 넣지 않는다.
+export const mergeJobs = (base, extra) => {
+  const seen = new Set(base.map((j) => `${norm(j.org)}|${norm(j.title)}`))
+  const out = [...base]
+  for (const j of extra) {
+    const k = `${norm(j.org)}|${norm(j.title)}`
+    if (seen.has(k)) continue
+    seen.add(k)
+    out.push(j)
+  }
+  return out.sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0))
+}

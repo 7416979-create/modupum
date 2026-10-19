@@ -4,6 +4,7 @@
 
 import { readFile, writeFile } from 'node:fs/promises'
 import { buildJobs, listUrl, rowsOf } from './jobs-lib.mjs'
+import { GOJOBS_LIST, parseList, buildGojobs, mergeJobs } from './gojobs-lib.mjs'
 import { listUrl as welfareListUrl, parseList as parseWelfareList, toWelfare } from './welfare-lib.mjs'
 
 const key = process.env.DATA_GO_KR_KEY
@@ -39,6 +40,36 @@ const getJson = async (url) => {
   return res.json()
 }
 
+// 나라일터(국가기관·지자체·교육청) 공고: 공고명에 '장애'가 들어간 목록의 앞쪽 쪽만 읽는다.
+// 사이트 부담을 줄이려고 요청 사이에 3초씩 쉬고, 실패하면 이 부분만 건너뛴다.
+const GOJOBS_PAGES = 12
+const GOJOBS_UA = 'modupum-bot (+https://modupum.kr)'
+
+async function collectGojobs() {
+  const rows = []
+  for (let page = 1; page <= GOJOBS_PAGES; page += 1) {
+    const qs = new URLSearchParams({
+      menuNo: '401',
+      mngrMenuYn: 'N',
+      selMenuNo: '400',
+      upperMenuNo: '',
+      searchJobsecode: '020',
+      searchKeyword: '장애',
+      pageIndex: String(page),
+    })
+    const res = await fetchRetry(`${GOJOBS_LIST}?${qs}`, { headers: { 'User-Agent': GOJOBS_UA } })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const parsed = parseList(await res.text())
+    if (parsed.rows.length === 0) break
+    // 쪽 번호가 먹히지 않아 같은 쪽이 다시 오면 멈춘다.
+    if (rows.length > 0 && parsed.rows[0].sn === rows[rows.length - parsed.rows.length]?.sn) break
+    rows.push(...parsed.rows)
+    await new Promise((r) => setTimeout(r, 3000))
+  }
+  if (rows.length === 0) throw new Error('받은 공고가 없습니다')
+  return buildGojobs(rows, rules, today)
+}
+
 async function collectJobs() {
   const all = []
   let total = Infinity
@@ -52,7 +83,15 @@ async function collectJobs() {
     all.push(...rows)
   }
   if (all.length === 0) throw new Error('받은 공고가 없습니다')
-  const items = buildJobs(all, rules, today)
+  const apiItems = buildJobs(all, rules, today)
+  let items = apiItems
+  try {
+    const extra = await collectGojobs()
+    items = mergeJobs(apiItems, extra)
+    console.log(`나라일터: ${extra.length}건 중 새로 추가 ${items.length - apiItems.length}건`)
+  } catch (e) {
+    console.error(`나라일터 수집 실패(공공기관 공고만 저장): ${e.message}`)
+  }
   const out = { sample: false, updatedAt: kstNow.toISOString().slice(0, 16).replace('T', ' '), items }
   await writeFile(new URL('../public/data/jobs.json', import.meta.url), `${JSON.stringify(out, null, 2)}\n`)
   console.log(`일자리: 전체 ${all.length}건 중 ${items.length}건 저장`)
