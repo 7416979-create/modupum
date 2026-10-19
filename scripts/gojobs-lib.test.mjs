@@ -35,6 +35,16 @@ test('접수 중 공고를 모두 담고, 장애인전형·제한경쟁만 전�
   assert.equal(jobs[0].source, '나라일터')
 })
 
+test('띄어쓰기가 달라도 전용으로 알아보고, 합격자 발표는 뺀다', () => {
+  assert.equal(isDisabledOnlyTitle('공무직근로자(행정실무원, 장애인구분) 채용 공고', rules), true)
+  assert.equal(isDisabledOnlyTitle('기간제 근로자(휴직대체, 장애인제한 경쟁) 채용', rules), true)
+  assert.equal(isDisabledOnlyTitle('(동남청) 공무직 근로자 장애인 제한 공개경쟁 채용 공고', rules), true)
+  assert.equal(isDisabledOnlyTitle('기간제근로자(장애인) 채용 계획 공고', rules), true)
+  assert.equal(isDisabledOnlyTitle('공무직 근로자(행정실무원 장애인구분) 면접전형 합격자 및 안내', rules), true)
+  const rows = [{ code: '020', sn: '1', title: '공무직(장애인구분) 면접전형 합격자 발표', org: 'x', start: '', end: '2026-12-01' }]
+  assert.deepEqual(buildGojobs(rows, rules, '2026-10-19'), [])
+})
+
 test('전용 표현이 없으면 제외한다', () => {
   assert.equal(isDisabledOnlyTitle('장애인 우대 채용', rules), false)
 })

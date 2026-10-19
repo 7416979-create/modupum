@@ -36,12 +36,19 @@ export const parseList = (html) => {
 }
 
 // 제목만으로 장애인 전용 공고인지 본다(keywords.json 규칙과 같은 기준).
+// 띄어쓰기가 제각각이라('장애인제한', '장애인 제한 경쟁') 공백을 모두 지우고 비교한다.
+const squash = (s) => String(s ?? '').replace(/\s+/g, '')
+
 export const isDisabledOnlyTitle = (title, rules) => {
-  if (!(rules.제목_필수 ?? []).every((w) => title.includes(w))) return false
-  if ((rules.제목_제외 ?? []).some((w) => title.includes(w))) return false
-  if (!rules.필수.every((w) => title.includes(w))) return false
-  return rules.전용으로_보는_표현.some((w) => title.includes(w))
+  const t = squash(title)
+  if (!(rules.제목_필수 ?? []).every((w) => t.includes(squash(w)))) return false
+  if ((rules.제목_제외 ?? []).some((w) => t.includes(squash(w)))) return false
+  if (!rules.필수.every((w) => t.includes(squash(w)))) return false
+  return rules.전용으로_보는_표현.some((w) => t.includes(squash(w)))
 }
+
+// 합격자 발표처럼 지원할 수 없는 글은 목록에서 뺀다.
+export const isNotice = (title, rules) => (rules.나라일터_제외 ?? []).some((w) => String(title).includes(w))
 
 // 공고 상세는 나라일터가 POST 로만 열어서 직접 링크가 없다. 제목으로 검색한 목록 주소를 원문 링크로 쓴다.
 export const searchUrl = (title, code = '020') =>
@@ -64,7 +71,7 @@ export const toJob = (row, rules) => ({
 // 장애인만 지원할 수 있는 공고(제한경쟁·장애인전형 등)는 disabledOnly 로 따로 표시한다.
 export const buildGojobs = (rows, rules, today) =>
   rows
-    .filter((r) => r.end >= today)
+    .filter((r) => r.end >= today && !isNotice(r.title, rules))
     .map((r) => toJob(r, rules))
 
 const norm = (s) => String(s ?? '').replace(/\s+/g, '').toLowerCase()
