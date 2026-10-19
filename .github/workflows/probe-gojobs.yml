@@ -1,7 +1,6 @@
 name: probe-gojobs
 
-# 나라일터 공개 목록 페이지의 구조를 한 번 확인하는 읽기 전용 점검.
-# 사이트 데이터는 바꾸지 않는다. 수동 실행만 가능하다.
+# 나라일터 공개 목록 페이지의 구조를 확인하는 읽기 전용 점검(사이트 데이터는 바꾸지 않는다). 수동 실행만 가능하다.
 on:
   workflow_dispatch:
 
@@ -12,22 +11,32 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: 공고명 "장애" 검색 1페이지
+      - name: 목록 요청 방식 확인
         run: |
-          curl -sS --retry 2 --retry-delay 10 --retry-all-errors -m 60 -A "modupum-bot (+https://modupum.kr)" -c /tmp/cj -o /dev/null 'https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo='
-          curl -sS --retry 2 --retry-delay 10 --retry-all-errors -m 60 -A "modupum-bot (+https://modupum.kr)" -b /tmp/cj -L -o /tmp/res.html -w 'HTTP %{http_code} size %{size_download}\n' \
-            --data-urlencode 'menuNo=401' --data-urlencode 'selMenuNo=400' --data-urlencode 'mngrMenuYn=N' \
-            --data-urlencode 'searchKeyword=장애' --data-urlencode 'searchInsttsecode=' --data-urlencode 'searchOrdr=' \
-            'https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo='
+          UA="modupum-bot (+https://modupum.kr)"
+          BASE='https://www.gojobs.go.kr/apmList.do'
+          Q='menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo='
+          curl -sS --retry 2 --retry-delay 10 --retry-all-errors -m 60 -A "$UA" -c /tmp/cj -o /tmp/first.html "$BASE?$Q"
+          echo "== fn_apmList 정의"
           python3 - <<'PY'
           import re
-          s = open('/tmp/res.html', encoding='utf-8', errors='replace').read()
-          m = re.search(r'Total[^<]{0,80}', s)
-          print('TOTAL:', m.group(0) if m else None)
+          s = open('/tmp/first.html', encoding='utf-8', errors='replace').read()
+          for m in re.finditer(r'function\s+fn_apmList\s*\([^)]*\)\s*\{', s):
+              print(re.sub(r'\s+', ' ', s[m.start():m.start()+1500]))
+          print('== 400 응답 본문은 별도 요청에서 확인')
+          PY
+          sleep 3
+          echo "== GET 방식 (검색어 포함)"
+          curl -sS -m 60 -A "$UA" -b /tmp/cj -o /tmp/get.html -w 'HTTP %{http_code} size %{size_download}\n' -G "$BASE" --data-urlencode 'menuNo=401' --data-urlencode 'mngrMenuYn=N' --data-urlencode 'selMenuNo=400' --data-urlencode 'upperMenuNo=' --data-urlencode 'searchKeyword=장애' --data-urlencode 'searchJobsecode=020'
+          python3 - <<'PY'
+          import re
+          s = open('/tmp/get.html', encoding='utf-8', errors='replace').read()
+          print('TOTAL:', (re.search(r'Total[^<]{0,80}', s) or [None])[0] if re.search(r'Total[^<]{0,80}', s) else None)
           i = s.find('<tbody')
           print('TBODY at', i)
-          print(re.sub(r'\s+', ' ', s[i:i+5000]) if i >= 0 else 'no tbody')
-          print('---- pagination hints')
-          for h in re.findall(r'(?:fn_[A-Za-z]*[Pp]age[A-Za-z]*|pageIndex|currentPage|fn_apmList)[^;]{0,80}', s)[:12]:
-              print(h)
+          print(re.sub(r'\s+', ' ', s[i:i+3500]) if i >= 0 else re.sub(r'\s+', ' ', s[:800]))
           PY
+          sleep 3
+          echo "== 400 본문"
+          curl -sS -m 60 -A "$UA" -b /tmp/cj -e "$BASE?$Q" -o /tmp/post.html -w 'HTTP %{http_code}\n' --data-urlencode 'menuNo=401' --data-urlencode 'selMenuNo=400' --data-urlencode 'mngrMenuYn=N' --data-urlencode 'searchKeyword=장애' --data-urlencode 'searchJobsecode=020' "$BASE?$Q"
+          head -c 1500 /tmp/post.html
