@@ -309,6 +309,7 @@ function Jobs() {
         </div>
       )}
       <div className="kinds sorts" role="group" aria-label="정렬">
+        <span className="sort-label">정렬</span>
         {['최신순', '마감임박순'].map((k) => (
           <button key={k} className={k === sort ? 'on' : ''} aria-pressed={k === sort} onClick={() => setSort(k)}>{k}</button>
         ))}

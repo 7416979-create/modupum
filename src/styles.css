@@ -150,6 +150,10 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .85rem; }
 .kinds { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 16px; }
 .kinds button { height: 36px; padding: 0 14px; border-radius: var(--pill); background: var(--card); color: var(--card-ink); font-weight: 600; font-size: .9rem; }
 .kinds button.on { background: var(--accent); color: #fff; }
+.sorts { align-items: center; }
+.sorts .sort-label { font-size: .82rem; color: var(--muted); font-weight: 600; margin-right: 2px; }
+.sorts button { border: 1px solid var(--muted); }
+.sorts button.on { border-color: var(--accent); }
 .tags span.soon { background: var(--accent); color: #fff; font-weight: 700; }
 
 .age-tag { display: inline-block; margin-right: 6px; padding: 1px 8px; border-radius: var(--pill); font-size: 0.68em; font-weight: 600; letter-spacing: 0; vertical-align: middle; }
