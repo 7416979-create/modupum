@@ -149,3 +149,10 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .85rem; }
 .kinds button { height: 36px; padding: 0 14px; border-radius: var(--pill); background: var(--card); color: var(--card-ink); font-weight: 600; font-size: .9rem; }
 .kinds button.on { background: var(--accent); color: #fff; }
 .tags span.soon { background: var(--accent); color: #fff; font-weight: 700; }
+
+.new-tag { display: inline-block; margin-right: 6px; padding: 1px 6px; border-radius: 4px; background: #d92d20; color: #fff; font-size: 0.7em; font-weight: 700; vertical-align: middle; }
+.survey-pop { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 50; display: flex; justify-content: center; }
+.survey-box { width: 100%; max-width: 380px; padding: 16px 18px; border-radius: 12px; background: #fff; color: #222; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2); }
+.survey-box h2 { margin: 0 0 6px; font-size: 1.05em; }
+.survey-box p { margin: 0 0 12px; font-size: 0.92em; }
+.survey-x { display: block; margin-top: 8px; border: 0; background: none; color: #555; text-decoration: underline; cursor: pointer; font: inherit; }

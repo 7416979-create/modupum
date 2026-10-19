@@ -14,6 +14,13 @@ const TITLES = { home: '모두품', welfare: '복지 - 모두품', jobs: '일자
 const today = () => new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10)
 const daysLeft = (end) => Math.round((Date.parse(end) - Date.parse(today())) / 86400000)
 
+// 테스트 기간(3개월) 설문 마감일. 이 날짜 이후에는 팝업을 띄우지 않는다.
+const SURVEY_END = '2027-01-19'
+
+const isRecent = (d, days = 7) => !!d && (Date.now() - new Date(d).getTime()) / 86400000 <= days
+
+const NewTag = () => <span className="new-tag">NEW</span>
+
 const PAGE_SIZE = 10
 
 function usePaged(items, resetKey = '') {
@@ -235,7 +242,7 @@ function News() {
           <li key={n.id} className="item">
             <details>
               <summary>
-                <h2>{n.title}</h2>
+                <h2>{isRecent(n.date) && <NewTag />}{n.title}</h2>
                 <span className="sum-tag">{n.date}</span>
               </summary>
               <div className="detail">
@@ -288,7 +295,7 @@ function Jobs() {
             <li key={i.id} className="item">
               <details>
                 <summary>
-                  <h2>{i.title}</h2>
+                  <h2>{isRecent(i.start) && <NewTag />}{i.title}</h2>
                   <span className="sum-tag">{soon ? (left === 0 ? '오늘 마감' : `D-${left}`) : `마감 ${i.end}`}</span>
                 </summary>
                 <div className="detail">
@@ -340,6 +347,39 @@ function About() {
       <h2>개인정보</h2>
       <p>가입과 로그인이 없고, 이용 기록으로 개인을 알아보지 않습니다.</p>
     </section>
+  )
+}
+
+// 테스트 기간 동안 한 번 띄우는 설문 팝업. "다음에 할게요"를 누르면 이 브라우저에서는 다시 뜨지 않는다.
+function SurveyPopup({ url }) {
+  const [open, setOpen] = useState(false)
+  useEffect(() => {
+    if (!url || today() > SURVEY_END) return
+    try {
+      if (localStorage.getItem('survey-closed')) return
+    } catch {
+      // 저장소를 쓸 수 없으면 매번 띄운다.
+    }
+    setOpen(true)
+  }, [url])
+  if (!open) return null
+  const close = () => {
+    try {
+      localStorage.setItem('survey-closed', '1')
+    } catch {
+      // 저장 실패는 무시한다.
+    }
+    setOpen(false)
+  }
+  return (
+    <div className="survey-pop" role="dialog" aria-modal="false" aria-labelledby="survey-t">
+      <div className="survey-box">
+        <h2 id="survey-t">테스트 설문 (1분)</h2>
+        <p>모두품 3개월 테스트 기간입니다. 한두 문항만 답해 주시면 큰 도움이 됩니다.</p>
+        <ExternalLink className="tip-btn" href={url}>설문 참여하기</ExternalLink>
+        <button className="survey-x" onClick={close}>다음에 할게요</button>
+      </div>
+    </div>
   )
 }
 
@@ -398,6 +438,7 @@ export default function App() {
         {tab === 'news' && <News />}
         {tab === 'about' && <About />}
       </main>
+      <SurveyPopup url={site?.feedbackUrl} />
       <footer>
         <p>공공데이터를 바탕으로 안내합니다. 정확한 내용은 반드시 원문에서 확인하세요.</p>
         <p className="foot-row">
