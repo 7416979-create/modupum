@@ -276,7 +276,9 @@ function Jobs() {
     const t = today()
     // 접수 중인 공고를 모두 보여 주되, 장애인만 지원할 수 있는 공고(장애인 전용·제한경쟁)를 먼저 둔다.
     const open = (data?.items ?? []).filter((i) => i.end >= t).map((i) => ({ ...i, orgType: i.orgType || '공공기관' }))
-    return [...open.filter((i) => i.disabledOnly), ...open.filter((i) => !i.disabledOnly)]
+    // 각 묶음 안에서는 오늘·어제 올라온 공고를 먼저 보여 준다(표시가 첫 화면에서 눈에 띄도록).
+    const fresh = (list) => [...list.filter((i) => ageTag(i.start)), ...list.filter((i) => !ageTag(i.start))]
+    return [...fresh(open.filter((i) => i.disabledOnly)), ...fresh(open.filter((i) => !i.disabledOnly))]
   }, [data])
   const kinds = useMemo(() => ['전체', ...['국가기관', '지자체', '교육청', '공공기관'].filter((k) => all.some((i) => i.orgType === k))], [all])
   const items = useMemo(() => (kind === '전체' ? all : all.filter((i) => i.orgType === kind)), [all, kind])
