@@ -1,7 +1,29 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-19 12:29",
+  "updatedAt": "2026-10-19 12:32",
   "items": [
+    {
+      "id": "305722",
+      "title": "[영주적십자병원] 정규직 조리사, 계약직(간호조무사(상근직), 보조원(장애)), 육아휴직대체(사무보조원, 임상병리사) 공개채용 공고",
+      "org": "대한적십자사",
+      "region": "경북",
+      "hires": 6,
+      "start": "2026-10-02",
+      "end": "2026-10-19",
+      "url": "https://www.redcross.or.kr/redrecruit/",
+      "disabledOnly": true
+    },
+    {
+      "id": "305705",
+      "title": "[원주보훈요양원] 2026년 제3차 체험형 청년인턴(장애인) 채용 ",
+      "org": "한국보훈복지의료공단",
+      "region": "강원",
+      "hires": 5,
+      "start": "2026-10-02",
+      "end": "2026-10-19",
+      "url": "https://www.bohun.or.kr/wjcare/na/ntt/selectNttInfo.do?mi=35524&bbsId=1314&bbsSysId=wjcare&nttSn=189977",
+      "disabledOnly": true
+    },
     {
       "id": "gojobs-305195",
       "title": "국립농산물품질관리원 시험연구소 기간제근로자(장애인) 채용 계획 공고",
@@ -11,7 +33,7 @@
       "start": "2026-10-07",
       "end": "2026-10-19",
       "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EA%B5%AD%EB%A6%BD%EB%86%8D%EC%82%B0%EB%AC%BC%ED%92%88%EC%A7%88%EA%B4%80%EB%A6%AC%EC%9B%90%20%EC%8B%9C%ED%97%98%EC%97%B0%EA%B5%AC%EC%86%8C%20%EA%B8%B0%EA%B0%84%EC%A0%9C%EA%B7%BC%EB%A1%9C%EC%9E%90(%EC%9E%A5%EC%95%A0%EC%9D%B8)%20%EC%B1%84%EC%9A%A9%20%EA%B3%84%ED%9A%8D%20%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": false,
+      "disabledOnly": true,
       "source": "나라일터"
     },
     {
@@ -58,7 +80,7 @@
       "start": "2026-10-08",
       "end": "2026-10-20",
       "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%ED%96%89%EC%A0%95%EC%95%88%EC%A0%84%EB%B6%80%20%EB%8C%80%EB%B3%80%EC%9D%B8%EC%8B%A4%20%EB%94%94%EC%A7%80%ED%84%B8%EC%86%8C%ED%86%B5%ED%8C%80%20%EA%B3%B5%EB%AC%B4%EC%A7%81%EA%B7%BC%EB%A1%9C%EC%9E%90(%ED%96%89%EC%A0%95%EC%8B%A4%EB%AC%B4%EC%9B%90%2C%20%EC%9E%A5%EC%95%A0%EC%9D%B8%EA%B5%AC%EB%B6%84)%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": false,
+      "disabledOnly": true,
       "source": "나라일터"
     },
     {
@@ -70,7 +92,7 @@
       "start": "2026-10-14",
       "end": "2026-10-21",
       "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EA%B5%AD%EB%A6%BD%EA%B5%AD%EC%95%85%EC%9B%90%20%EA%B5%AD%EC%95%85%EC%97%B0%EA%B5%AC%EC%8B%A4%20%EA%B8%B0%EA%B0%84%EC%A0%9C%20%EA%B7%BC%EB%A1%9C%EC%9E%90(%ED%9C%B4%EC%A7%81%EB%8C%80%EC%B2%B4%2C%20%EC%9E%A5%EC%95%A0%EC%9D%B8%EC%A0%9C%ED%95%9C%20%EA%B2%BD%EC%9F%81)%20%EC%B1%84%EC%9A%A9",
-      "disabledOnly": false,
+      "disabledOnly": true,
       "source": "나라일터"
     },
     {
@@ -82,7 +104,7 @@
       "start": "2026-10-13",
       "end": "2026-10-21",
       "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%5B%EC%B6%A9%EC%B2%AD%EC%A7%80%EB%B0%A9%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%B2%AD%5D%202027%EB%85%84%20%EA%B3%B5%EB%AC%B4%EC%A7%81%EA%B7%BC%EB%A1%9C%EC%9E%90(%ED%86%B5%EA%B3%84%EC%A1%B0%EC%82%AC%EA%B4%80)%20%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%20%EA%B2%BD%EC%9F%81%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": false,
+      "disabledOnly": true,
       "source": "나라일터"
     },
     {
@@ -106,8 +128,19 @@
       "start": "2026-10-07",
       "end": "2026-10-21",
       "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=(%EB%8F%99%EB%82%A8%EC%B2%AD_%EC%9A%B8%EC%82%B0)%20%EA%B3%B5%EB%AC%B4%EC%A7%81%20%EA%B7%BC%EB%A1%9C%EC%9E%90%20%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%20%EA%B3%B5%EA%B0%9C%EA%B2%BD%EC%9F%81%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": false,
+      "disabledOnly": true,
       "source": "나라일터"
+    },
+    {
+      "id": "306073",
+      "title": "2026년 한국폴리텍대학 영주캠퍼스 체험형 청년인턴(장애) 채용",
+      "org": "학교법인한국폴리텍",
+      "region": "경북",
+      "hires": 1,
+      "start": "2026-10-15",
+      "end": "2026-10-22",
+      "url": "https://www.kopo.ac.kr/yeongju/board.do?menu=6234&mode=view&post=787219",
+      "disabledOnly": true
     },
     {
       "id": "305921",
@@ -118,6 +151,17 @@
       "start": "2026-10-12",
       "end": "2026-10-22",
       "url": "https://www.krei.re.kr/krei/page/69?cmd=view&pst=505791&pageIndex=1",
+      "disabledOnly": true
+    },
+    {
+      "id": "305886",
+      "title": "분당서울대학교병원 신입(업무지원직 장애인) 직원 채용 공고",
+      "org": "분당서울대학교병원",
+      "region": "경기",
+      "hires": 3,
+      "start": "2026-10-13",
+      "end": "2026-10-22",
+      "url": "https://snubh.recruiter.co.kr",
       "disabledOnly": true
     },
     {
@@ -132,6 +176,28 @@
       "disabledOnly": true
     },
     {
+      "id": "305849",
+      "title": "[한국수자원공사] 금강경영처 사회형평적 인재 단기계약근로자(생활지원서비스) 채용 공고(장애인 제한채용)",
+      "org": "한국수자원공사",
+      "region": "전북",
+      "hires": 2,
+      "start": "2026-10-08",
+      "end": "2026-10-22",
+      "url": "https://k-water.recruiter.co.kr/",
+      "disabledOnly": true
+    },
+    {
+      "id": "305848",
+      "title": "[한국수자원공사] 금강유역본부 사회형평적 인재 단기계약근로자(사무관리_서무보조) 채용 공고(장애인 제한채용)",
+      "org": "한국수자원공사",
+      "region": "전북",
+      "hires": 2,
+      "start": "2026-10-08",
+      "end": "2026-10-22",
+      "url": "https://k-water.recruiter.co.kr/",
+      "disabledOnly": true
+    },
+    {
       "id": "305833",
       "title": "[제2026-117호]2026년도 제6차 경상남도장애아동·발달장애인지원센터(장애아동지원팀) 체험형 청년인턴(장애인 제한경쟁)채용 공고",
       "org": "한국장애인개발원",
@@ -140,6 +206,17 @@
       "start": "2026-10-08",
       "end": "2026-10-22",
       "url": "https://koddicpdd.fairyhr.com",
+      "disabledOnly": true
+    },
+    {
+      "id": "305819",
+      "title": "한전KDN(주) 진주지사 AMI 분야 비정규직(장애인) 모집공고{재공고}",
+      "org": "한전KDN",
+      "region": "경남",
+      "hires": 1,
+      "start": "2026-10-08",
+      "end": "2026-10-22",
+      "url": "없음.",
       "disabledOnly": true
     },
     {
@@ -179,6 +256,17 @@
       "source": "나라일터"
     },
     {
+      "id": "305908",
+      "title": "임시직(장애) 채용공고[261012]",
+      "org": "국립암센터",
+      "region": "경기",
+      "hires": 7,
+      "start": "2026-10-12",
+      "end": "2026-10-23",
+      "url": "https://ncc.recruiter.co.kr/career/jobs/130808",
+      "disabledOnly": true
+    },
+    {
       "id": "gojobs-305716",
       "title": "조달청 공무직근로자(미화) 공개경쟁 채용시험(장애인전형) 안내",
       "org": "조달청",
@@ -213,6 +301,28 @@
       "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%5B%EC%9E%A5%EC%95%A0%EC%9D%B8%EC%A0%9C%ED%95%9C%EA%B2%BD%EC%9F%81%EC%B1%84%EC%9A%A9%5D%20%EA%B8%B0%ED%9A%8D%EC%98%88%EC%82%B0%EC%B2%98%20%EA%B8%B0%EA%B0%84%EC%A0%9C%20%EA%B7%BC%EB%A1%9C%EC%9E%90(%EC%82%AC%EB%AC%B4%EC%9B%90)%20%EC%B1%84%EC%9A%A9%EA%B3%B5%EA%B3%A0_%EA%B8%B0%ED%9A%8D%EC%A1%B0%EC%A0%95%EC%8B%A4%20%EA%B7%9C%EC%A0%9C%EA%B0%9C%ED%98%81%EB%B2%95%EB%AC%B4%EB%8B%B4%EB%8B%B9%EA%B4%80",
       "disabledOnly": true,
       "source": "나라일터"
+    },
+    {
+      "id": "305917",
+      "title": "한전KDN(주) 목포지사 AMI분야 비정규직(장애인) 모집공고(재공고)",
+      "org": "한전KDN",
+      "region": "전남광주",
+      "hires": 3,
+      "start": "2026-10-13",
+      "end": "2026-10-26",
+      "url": ",",
+      "disabledOnly": true
+    },
+    {
+      "id": "305889",
+      "title": "[한국수자원공사] 부산권지사 단기계약근로자(서무보조) 채용 공고(장애인제한채용)",
+      "org": "한국수자원공사",
+      "region": "부산",
+      "hires": 2,
+      "start": "2026-10-12",
+      "end": "2026-10-26",
+      "url": "https://k-water.recruiter.co.kr/",
+      "disabledOnly": true
     },
     {
       "id": "gojobs-305681",
@@ -262,18 +372,6 @@
       "source": "나라일터"
     },
     {
-      "id": "gojobs-305025",
-      "title": "행정안전부 성과관리담당관 공무직 근로자(행정실무원 장애인구분) 면접전형 합격자 및 제출서류 안내 공고",
-      "org": "행정안전부",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-06",
-      "end": "2026-10-27",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%ED%96%89%EC%A0%95%EC%95%88%EC%A0%84%EB%B6%80%20%EC%84%B1%EA%B3%BC%EA%B4%80%EB%A6%AC%EB%8B%B4%EB%8B%B9%EA%B4%80%20%EA%B3%B5%EB%AC%B4%EC%A7%81%20%EA%B7%BC%EB%A1%9C%EC%9E%90(%ED%96%89%EC%A0%95%EC%8B%A4%EB%AC%B4%EC%9B%90%20%EC%9E%A5%EC%95%A0%EC%9D%B8%EA%B5%AC%EB%B6%84)%20%EB%A9%B4%EC%A0%91%EC%A0%84%ED%98%95%20%ED%95%A9%EA%B2%A9%EC%9E%90%20%EB%B0%8F%20%EC%A0%9C%EC%B6%9C%EC%84%9C%EB%A5%98%20%EC%95%88%EB%82%B4%20%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": false,
-      "source": "나라일터"
-    },
-    {
       "id": "305988",
       "title": "[한국조세재정연구원] 행정직(전문원) 신규인력채용_장애인제한경쟁",
       "org": "한국조세재정연구원",
@@ -282,6 +380,17 @@
       "start": "2026-10-14",
       "end": "2026-10-28",
       "url": "https://www.kipf.re.kr/kor/Plaza/Recruitment/kiRecruitment/view.do?cntNo=452",
+      "disabledOnly": true
+    },
+    {
+      "id": "305987",
+      "title": "[한국수자원공사] 2026년 사회형평(장애인) 체험형 인턴(2차) 채용공고",
+      "org": "한국수자원공사",
+      "region": "서울,부산,대구,인천,대전,울산,세종,경기,강원,충북,충남,전북,전남광주,경북,경남,제주",
+      "hires": 40,
+      "start": "2026-10-14",
+      "end": "2026-10-28",
+      "url": "https://www.kwater.or.kr",
       "disabledOnly": true
     },
     {
@@ -309,6 +418,17 @@
       "source": "나라일터"
     },
     {
+      "id": "306014",
+      "title": "2026년 대한적십자사 전북특별자치도지사 비정규직(장애인) 채용 공고 ",
+      "org": "대한적십자사",
+      "region": "전북",
+      "hires": 1,
+      "start": "2026-10-14",
+      "end": "2026-10-29",
+      "url": "https://www.redcross.or.kr/main/pt/pst/selectPstInfo.do?mi=2378&pstSn=505918&bbsId=1422",
+      "disabledOnly": true
+    },
+    {
       "id": "gojobs-306018",
       "title": "2026년 제28차 충남사회서비스원 본부 기간제(사무보조-장애인전형) 직원 공개채용 재공고",
       "org": "충남사회서비스원",
@@ -331,6 +451,28 @@
       "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EA%B5%AD%EB%A6%BD%ED%98%84%EB%8C%80%EB%AF%B8%EC%88%A0%EA%B4%80%20%EC%B2%AD%EC%A3%BC%EA%B4%80%EC%9A%B4%EC%98%81%EB%B6%80%20%EA%B3%B5%EB%AC%B4%EC%A7%81%EA%B7%BC%EB%A1%9C%EC%9E%90(%ED%95%99%EC%98%88%EC%9B%90)%20%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%EA%B2%BD%EC%9F%81%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0",
       "disabledOnly": true,
       "source": "나라일터"
+    },
+    {
+      "id": "306108",
+      "title": "2026년도 2차 한국자산관리공사 장애인 단기계약직 채용 공고",
+      "org": "한국자산관리공사",
+      "region": "부산",
+      "hires": 3,
+      "start": "2026-10-16",
+      "end": "2026-10-30",
+      "url": "https://kamcointern.saramin.co.kr/service/kamcointern/4015/applicant/apply/recruit_default.asp",
+      "disabledOnly": true
+    },
+    {
+      "id": "306075",
+      "title": "한국연구재단 2026년도 체험형 청년인턴(장애)·전문위촉직(변호사)·제8차 사업위촉직 채용 공고",
+      "org": "한국연구재단",
+      "region": "대전",
+      "hires": 8,
+      "start": "2026-10-15",
+      "end": "2026-10-30",
+      "url": "https://www.nrf.re.kr/page/54?ac=view&searchType=&searchText=&pageNum=1&menuNo=54&boardNo=7&menuTypeCd=MENU_TYPE_02&code=&postNo=283914",
+      "disabledOnly": true
     },
     {
       "id": "306068",
@@ -363,30 +505,6 @@
       "start": "2026-10-16",
       "end": "2026-10-30",
       "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=2026%EB%85%84%20%EC%A0%9C6%EC%B0%A8%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0(%EA%B3%B5%EB%AC%B4%EC%A7%81%2C%20%EA%B8%B0%EA%B0%84%EC%A0%9C(%EC%9E%A5%EC%95%A0%EC%9D%B8%EC%A0%9C%ED%95%9C%ED%8F%AC%ED%95%A8))",
-      "disabledOnly": false,
-      "source": "나라일터"
-    },
-    {
-      "id": "gojobs-305947",
-      "title": "2026년도 2차 한국자산관리공사 장애인 단기계약직 채용공고",
-      "org": "한국자산관리공사",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-16",
-      "end": "2026-10-30",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=2026%EB%85%84%EB%8F%84%202%EC%B0%A8%20%ED%95%9C%EA%B5%AD%EC%9E%90%EC%82%B0%EA%B4%80%EB%A6%AC%EA%B3%B5%EC%82%AC%20%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EB%8B%A8%EA%B8%B0%EA%B3%84%EC%95%BD%EC%A7%81%20%EC%B1%84%EC%9A%A9%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": false,
-      "source": "나라일터"
-    },
-    {
-      "id": "gojobs-305855",
-      "title": "한국연구재단 2026년도 체험형 청년인턴(장애)·전문위촉직(변호사)·제8차 사업위촉직 채용 공고",
-      "org": "한국연구재단",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-15",
-      "end": "2026-10-30",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%ED%95%9C%EA%B5%AD%EC%97%B0%EA%B5%AC%EC%9E%AC%EB%8B%A8%202026%EB%85%84%EB%8F%84%20%EC%B2%B4%ED%97%98%ED%98%95%20%EC%B2%AD%EB%85%84%EC%9D%B8%ED%84%B4(%EC%9E%A5%EC%95%A0)%C2%B7%EC%A0%84%EB%AC%B8%EC%9C%84%EC%B4%89%EC%A7%81(%EB%B3%80%ED%98%B8%EC%82%AC)%C2%B7%EC%A0%9C8%EC%B0%A8%20%EC%82%AC%EC%97%85%EC%9C%84%EC%B4%89%EC%A7%81%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0",
       "disabledOnly": false,
       "source": "나라일터"
     },
