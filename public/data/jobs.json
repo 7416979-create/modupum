@@ -1,42 +1,7 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-19 22:27",
+  "updatedAt": "2026-10-20 00:23",
   "items": [
-    {
-      "id": "305722",
-      "title": "[영주적십자병원] 정규직 조리사, 계약직(간호조무사(상근직), 보조원(장애)), 육아휴직대체(사무보조원, 임상병리사) 공개채용 공고",
-      "org": "대한적십자사",
-      "region": "경북",
-      "hires": 6,
-      "start": "2026-10-02",
-      "end": "2026-10-19",
-      "url": "https://www.redcross.or.kr/redrecruit/",
-      "disabledOnly": true
-    },
-    {
-      "id": "305705",
-      "title": "[원주보훈요양원] 2026년 제3차 체험형 청년인턴(장애인) 채용 ",
-      "org": "한국보훈복지의료공단",
-      "region": "강원",
-      "hires": 5,
-      "start": "2026-10-02",
-      "end": "2026-10-19",
-      "url": "https://www.bohun.or.kr/wjcare/na/ntt/selectNttInfo.do?mi=35524&bbsId=1314&bbsSysId=wjcare&nttSn=189977",
-      "disabledOnly": true
-    },
-    {
-      "id": "gojobs-305195",
-      "title": "국립농산물품질관리원 시험연구소 기간제근로자(장애인) 채용 계획 공고",
-      "org": "농림축산식품부 국립농산물품질관리원 시험연구소",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-07",
-      "end": "2026-10-19",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EA%B5%AD%EB%A6%BD%EB%86%8D%EC%82%B0%EB%AC%BC%ED%92%88%EC%A7%88%EA%B4%80%EB%A6%AC%EC%9B%90%20%EC%8B%9C%ED%97%98%EC%97%B0%EA%B5%AC%EC%86%8C%20%EA%B8%B0%EA%B0%84%EC%A0%9C%EA%B7%BC%EB%A1%9C%EC%9E%90(%EC%9E%A5%EC%95%A0%EC%9D%B8)%20%EC%B1%84%EC%9A%A9%20%EA%B3%84%ED%9A%8D%20%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터"
-    },
     {
       "id": "305923",
       "title": "한국폴리텍대학 화성캠퍼스 청년인턴(장애인 제한경쟁) 공개채용(2차)공고",
