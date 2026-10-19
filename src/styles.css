@@ -87,13 +87,15 @@ h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -
 .item details > summary h2 { margin: 0; font-size: 1.05rem; font-weight: 600; line-height: 1.45; flex: 1; letter-spacing: -.01em; }
 .item details > summary:hover h2 { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
 .sum-tag { flex: none; max-width: 38%; font-size: .82rem; color: var(--muted); text-align: right; }
+.sum-tag.dday { white-space: nowrap; max-width: none; font-variant-numeric: tabular-nums; }
+.sum-tag.dday.soon { color: var(--accent); font-weight: 700; }
 .item .detail { padding: 0 0 22px; }
 .item .detail p { color: var(--muted); margin: 8px 0 14px; max-width: 640px; }
 .item .detail a, .src-links a { font-weight: 600; color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .tags { display: flex; gap: 6px; flex-wrap: wrap; }
 .tags span { font-size: .78rem; padding: 3px 10px; background: var(--bg); border-radius: var(--pill); color: var(--muted); }
 .empty { text-align: center; color: var(--muted); padding: 48px 0; }
-@media (max-width: 560px) { .sum-tag { display: none; } .list { padding: 2px 16px; } }
+@media (max-width: 560px) { .sum-tag { display: none; } .sum-tag.dday { display: block; font-size: .74rem; } .list { padding: 2px 16px; } }
 
 /* 신청 안내 */
 .facts { margin: 12px 0 4px; max-width: 700px; }

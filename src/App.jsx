@@ -322,7 +322,7 @@ function Jobs() {
               <details>
                 <summary>
                   <h2><AgeTag date={i.start} />{orgLabel(i.title, i.org)}</h2>
-                  <span className="sum-tag">{soon ? (left === 0 ? '오늘 마감' : `D-${left}`) : `마감 ${i.end}`}</span>
+                  <span className={`sum-tag dday${soon ? ' soon' : ''}`}>{left === 0 ? '오늘 마감' : `D-${left}`}{left > 0 && i.end ? ` · ${String(i.end).slice(5).replace('-', '.')}` : ''}</span>
                 </summary>
                 <div className="detail">
                   <div className="tags">
