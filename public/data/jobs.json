@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-19 14:16",
+  "updatedAt": "2026-10-19 18:17",
   "items": [
     {
       "id": "305722",
@@ -228,6 +228,19 @@
       "disabledOnly": true
     },
     {
+      "id": "gojobs-306098",
+      "title": "(긴급)2026년 명지초등학교 환경실무사 채용 공고(장애인우선채용)",
+      "org": "부산광역시교육청 부산광역시교육청학교행정지원본부 학교채용지원팀",
+      "region": "",
+      "hires": null,
+      "start": "2026-10-19",
+      "end": "2026-10-22",
+      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=(%EA%B8%B4%EA%B8%89)2026%EB%85%84%20%EB%AA%85%EC%A7%80%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90%20%ED%99%98%EA%B2%BD%EC%8B%A4%EB%AC%B4%EC%82%AC%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0(%EC%9E%A5%EC%95%A0%EC%9D%B8%EC%9A%B0%EC%84%A0%EC%B1%84%EC%9A%A9)",
+      "disabledOnly": false,
+      "orgType": "교육청",
+      "source": "나라일터"
+    },
+    {
       "id": "gojobs-305574",
       "title": "국립아시아문화전당 전시기획과 공무직(사무원) 채용 공고(일반 및 장애인 제한경쟁)",
       "org": "문화체육관광부 국립아시아문화전당",
@@ -337,6 +350,19 @@
       "end": "2026-10-26",
       "url": "https://k-water.recruiter.co.kr/",
       "disabledOnly": true
+    },
+    {
+      "id": "gojobs-306100",
+      "title": "2026년 태종대중학교 당직전담사 채용 공고(장애인우선채용)",
+      "org": "부산광역시교육청 부산광역시교육청학교행정지원본부 학교채용지원팀",
+      "region": "",
+      "hires": null,
+      "start": "2026-10-19",
+      "end": "2026-10-26",
+      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=2026%EB%85%84%20%ED%83%9C%EC%A2%85%EB%8C%80%EC%A4%91%ED%95%99%EA%B5%90%20%EB%8B%B9%EC%A7%81%EC%A0%84%EB%8B%B4%EC%82%AC%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0(%EC%9E%A5%EC%95%A0%EC%9D%B8%EC%9A%B0%EC%84%A0%EC%B1%84%EC%9A%A9)",
+      "disabledOnly": false,
+      "orgType": "교육청",
+      "source": "나라일터"
     },
     {
       "id": "gojobs-305681",
@@ -516,6 +542,19 @@
       "end": "2026-10-30",
       "url": "https://www.redcross.or.kr/redrecruit",
       "disabledOnly": true
+    },
+    {
+      "id": "gojobs-306063",
+      "title": "국립국악원 청사관리 공무직(미화) 장애인 제한경쟁 채용 공고",
+      "org": "문화체육관광부 국립국악원 기획운영단",
+      "region": "",
+      "hires": null,
+      "start": "2026-10-19",
+      "end": "2026-10-30",
+      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EA%B5%AD%EB%A6%BD%EA%B5%AD%EC%95%85%EC%9B%90%20%EC%B2%AD%EC%82%AC%EA%B4%80%EB%A6%AC%20%EA%B3%B5%EB%AC%B4%EC%A7%81(%EB%AF%B8%ED%99%94)%20%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%EA%B2%BD%EC%9F%81%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0",
+      "disabledOnly": true,
+      "orgType": "국가기관",
+      "source": "나라일터"
     },
     {
       "id": "gojobs-305971",
