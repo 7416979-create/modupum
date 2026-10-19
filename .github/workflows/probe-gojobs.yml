@@ -1,6 +1,6 @@
 name: probe-gojobs
 
-# 나라일터 공개 목록 페이지의 접근 가능 여부와 구조를 한 번 확인하는 읽기 전용 점검.
+# 나라일터 공개 목록 페이지의 구조를 한 번 확인하는 읽기 전용 점검.
 # 사이트 데이터는 바꾸지 않는다. 수동 실행만 가능하다.
 on:
   workflow_dispatch:
@@ -12,16 +12,22 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: robots.txt
+      - name: 공고명 "장애" 검색 1페이지
         run: |
-          echo "== robots.txt"
-          curl -sS -m 30 -A "modupum-bot (+https://modupum.kr)" -w '\nHTTP %{http_code}\n' https://www.gojobs.go.kr/robots.txt | head -60
-      - name: 목록 페이지 (공고명 검색)
-        run: |
-          echo "== list GET"
-          curl -sS -m 30 -A "modupum-bot (+https://modupum.kr)" -L -o /tmp/list.html -w 'HTTP %{http_code} size %{size_download}\n' 'https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo='
-          grep -oE '<form[^>]*>' /tmp/list.html | head -10
-          grep -oE '<input[^>]*name="[^"]*"[^>]*>' /tmp/list.html | head -40
-          grep -oE '<select[^>]*name="[^"]*"[^>]*>' /tmp/list.html | head -10
-          echo "== body sample"
-          sed -e 's/\s\+/ /g' /tmp/list.html | head -c 4000
+          curl -sS -m 40 -A "modupum-bot (+https://modupum.kr)" -c /tmp/cj -o /dev/null 'https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo='
+          curl -sS -m 40 -A "modupum-bot (+https://modupum.kr)" -b /tmp/cj -L -o /tmp/res.html -w 'HTTP %{http_code} size %{size_download}\n' \
+            --data-urlencode 'menuNo=401' --data-urlencode 'selMenuNo=400' --data-urlencode 'mngrMenuYn=N' \
+            --data-urlencode 'searchKeyword=장애' --data-urlencode 'searchInsttsecode=' --data-urlencode 'searchOrdr=' \
+            'https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo='
+          python3 - <<'PY'
+          import re
+          s = open('/tmp/res.html', encoding='utf-8', errors='replace').read()
+          m = re.search(r'Total[^<]{0,80}', s)
+          print('TOTAL:', m.group(0) if m else None)
+          i = s.find('<tbody')
+          print('TBODY at', i)
+          print(re.sub(r'\s+', ' ', s[i:i+5000]) if i >= 0 else 'no tbody')
+          print('---- pagination hints')
+          for h in re.findall(r'(?:fn_[A-Za-z]*[Pp]age[A-Za-z]*|pageIndex|currentPage|fn_apmList)[^;]{0,80}', s)[:12]:
+              print(h)
+          PY
