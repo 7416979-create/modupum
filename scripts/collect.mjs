@@ -42,7 +42,8 @@ const getJson = async (url) => {
 
 // 나라일터(국가기관·지자체·교육청) 공고: 공고명에 '장애'가 들어간 목록의 앞쪽 쪽만 읽는다.
 // 사이트 부담을 줄이려고 요청 사이에 3초씩 쉬고, 실패하면 이 부분만 건너뛴다.
-const GOJOBS_PAGES = 12
+const GOJOBS_PAGES = 20
+const GOJOBS_MAX_AGE_DAYS = 45
 const GOJOBS_UA = 'modupum-bot (+https://modupum.kr)'
 
 async function collectGojobs() {
@@ -64,6 +65,9 @@ async function collectGojobs() {
     // 쪽 번호가 먹히지 않아 같은 쪽이 다시 오면 멈춘다.
     if (rows.length > 0 && parsed.rows[0].sn === rows[rows.length - parsed.rows.length]?.sn) break
     rows.push(...parsed.rows)
+    // 게시일 순이라, 한 쪽 전체가 오래된 공고면 더 읽지 않는다.
+    const cutoff = new Date(Date.parse(today) - GOJOBS_MAX_AGE_DAYS * 86400000).toISOString().slice(0, 10)
+    if (parsed.rows.every((r) => r.start && r.start < cutoff)) break
     await new Promise((r) => setTimeout(r, 3000))
   }
   if (rows.length === 0) throw new Error('받은 공고가 없습니다')

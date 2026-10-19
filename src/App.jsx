@@ -77,7 +77,7 @@ function Home({ go }) {
   const welfare = useData('welfare')
   const jobs = useData('jobs')
   const wn = welfare?.items?.length
-  const jn = jobs ? (jobs.items ?? []).filter((i) => i.end >= today() && i.disabledOnly).length : null
+  const jn = jobs ? (jobs.items ?? []).filter((i) => i.end >= today()).length : null
   return (
     <section className="hero">
       <img className="hero-mark" src="./brand/modupum-mark.svg" alt="" width="72" height="64" />
@@ -92,7 +92,7 @@ function Home({ go }) {
         <button className="card" onClick={() => go('jobs')}>
           <span className="card-t">일자리</span>
           <span className="card-n">{jn != null ? `접수 중 ${jn}건` : ' '}</span>
-          <span className="card-d">공공기관·국가기관·지자체 장애인 채용 공고</span>
+          <span className="card-d">공공기관·국가기관·지자체 장애 관련 채용 공고</span>
         </button>
       </div>
       <p className="home-links">
@@ -256,8 +256,9 @@ function Jobs() {
   const data = useData('jobs')
   const items = useMemo(() => {
     const t = today()
-    // 장애인만 지원할 수 있는 공고(장애인 전용·제한경쟁)만 보여 준다. 우대 공고와 마감된 공고는 제외.
-    return (data?.items ?? []).filter((i) => i.end >= t && i.disabledOnly)
+    // 접수 중인 공고를 모두 보여 주되, 장애인만 지원할 수 있는 공고(장애인 전용·제한경쟁)를 먼저 둔다.
+    const open = (data?.items ?? []).filter((i) => i.end >= t)
+    return [...open.filter((i) => i.disabledOnly), ...open.filter((i) => !i.disabledOnly)]
   }, [data])
   const pg = usePaged(items)
 
@@ -265,7 +266,7 @@ function Jobs() {
     <section>
       <h1 className="page-h">일자리</h1>
       <SampleNotice data={data} />
-      <p className="sub">장애인만 지원할 수 있는 공공기관·국가기관·지자체 채용 공고입니다.</p>
+      <p className="sub">공공기관·국가기관·지자체의 장애 관련 채용 공고입니다. '장애인 제한경쟁'이 붙은 공고는 장애인만 지원할 수 있습니다.</p>
       <ul className="list">
         {pg.slice.map((i) => (
           <li key={i.id} className="item">
@@ -275,7 +276,12 @@ function Jobs() {
                 <span className="sum-tag">마감 {i.end}</span>
               </summary>
               <div className="detail">
-                <div className="tags"><span>{i.org}</span><span>마감 {i.end}</span></div>
+                <div className="tags">
+                  <span>{i.disabledOnly ? '장애인 제한경쟁' : '장애 관련 · 자격 확인 필요'}</span>
+                  <span>{i.org}</span>
+                  <span>마감 {i.end}</span>
+                  {i.source && <span>출처 {i.source}</span>}
+                </div>
                 <ExternalLink href={i.url}>원문 보기</ExternalLink>
               </div>
             </details>

@@ -47,7 +47,7 @@ export const isDisabledOnlyTitle = (title, rules) => {
 export const searchUrl = (title, code = '020') =>
   `${GOJOBS_LIST}?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=${encodeURIComponent(code)}&searchKeyword=${encodeURIComponent(title)}`
 
-export const toJob = (row) => ({
+export const toJob = (row, rules) => ({
   id: `gojobs-${row.sn}`,
   title: row.title,
   org: row.org,
@@ -56,15 +56,16 @@ export const toJob = (row) => ({
   start: row.start,
   end: row.end,
   url: searchUrl(row.title, row.code),
-  disabledOnly: true,
+  disabledOnly: isDisabledOnlyTitle(row.title, rules),
   source: '나라일터',
 })
 
+// 나라일터에서 '장애'로 검색했을 때 나오는 접수 중 공고를 모두 담는다.
+// 장애인만 지원할 수 있는 공고(제한경쟁·장애인전형 등)는 disabledOnly 로 따로 표시한다.
 export const buildGojobs = (rows, rules, today) =>
   rows
-    .filter((r) => isDisabledOnlyTitle(r.title, rules))
-    .map(toJob)
-    .filter((j) => j.end >= today)
+    .filter((r) => r.end >= today)
+    .map((r) => toJob(r, rules))
 
 const norm = (s) => String(s ?? '').replace(/\s+/g, '').toLowerCase()
 

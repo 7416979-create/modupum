@@ -25,11 +25,14 @@ test('목록 행을 읽는다', () => {
   assert.deepEqual(rows[0], { code: '020', sn: '306018', title: '2026년 제28차 충남사회서비스원 본부 기간제(사무보조-장애인전형) 직원 공개채용 재공고', org: '충남사회서비스원', start: '2026-10-19', end: '2026-10-29' })
 })
 
-test('장애인전형(붙여 쓴 표기)과 제한경쟁을 전용으로 보고, 포함이 있거나 마감된 공고는 뺀다', () => {
+test('접수 중 공고를 모두 담고, 장애인전형·제한경쟁만 전용으로 표시한다(마감된 공고는 뺀다)', () => {
   const jobs = buildGojobs(parseList(html).rows, rules, '2026-10-19')
-  assert.deepEqual(jobs.map((j) => j.id), ['gojobs-306018', 'gojobs-306017'])
+  assert.deepEqual(jobs.map((j) => [j.id, j.disabledOnly]), [
+    ['gojobs-306018', true],
+    ['gojobs-306017', true],
+    ['gojobs-306016', false],
+  ])
   assert.equal(jobs[0].source, '나라일터')
-  assert.equal(jobs[0].disabledOnly, true)
 })
 
 test('전용 표현이 없으면 제외한다', () => {
