@@ -14,8 +14,8 @@ jobs:
     steps:
       - name: 공고명 "장애" 검색 1페이지
         run: |
-          curl -sS -m 40 -A "modupum-bot (+https://modupum.kr)" -c /tmp/cj -o /dev/null 'https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo='
-          curl -sS -m 40 -A "modupum-bot (+https://modupum.kr)" -b /tmp/cj -L -o /tmp/res.html -w 'HTTP %{http_code} size %{size_download}\n' \
+          curl -sS --retry 2 --retry-delay 10 --retry-all-errors -m 60 -A "modupum-bot (+https://modupum.kr)" -c /tmp/cj -o /dev/null 'https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo='
+          curl -sS --retry 2 --retry-delay 10 --retry-all-errors -m 60 -A "modupum-bot (+https://modupum.kr)" -b /tmp/cj -L -o /tmp/res.html -w 'HTTP %{http_code} size %{size_download}\n' \
             --data-urlencode 'menuNo=401' --data-urlencode 'selMenuNo=400' --data-urlencode 'mngrMenuYn=N' \
             --data-urlencode 'searchKeyword=장애' --data-urlencode 'searchInsttsecode=' --data-urlencode 'searchOrdr=' \
             'https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo='
