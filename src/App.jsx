@@ -317,13 +317,13 @@ function Jobs() {
         </div>
       )}
       <div className="jobs-notes">
-        {data?.updatedAt && <p className="sub">마지막 갱신 {data.updatedAt} · 접수 중 {all.length}건</p>}
         {fresh && (
-          <p className="sub">
-            {fresh.todayN > 0 ? `오늘 새 공고 ${fresh.todayN}건` : `오늘은 새 공고가 없어요 · 마지막 신규 등록 ${fresh.last}(${fresh.lastN}건)`}
-            {' · '}최근 7일 신규 {fresh.week}건
-          </p>
+          <div className="fresh-bar" role="status">
+            <strong>{fresh.todayN > 0 ? `오늘 새 공고 ${fresh.todayN}건!` : '오늘은 새 공고가 없어요!'}</strong>
+            <span className="fresh-sub">{fresh.todayN > 0 ? '' : `마지막 신규 등록 ${fresh.last}(${fresh.lastN}건) · `}최근 7일 신규 {fresh.week}건</span>
+          </div>
         )}
+        {data?.updatedAt && <p className="sub">마지막 갱신 {data.updatedAt} · 접수 중 {all.length}건</p>}
         <details className="jobs-help">
           <summary>안내 보기</summary>
           <p className="sub">공공기관·국가기관·지자체의 장애 관련 채용 공고입니다. '장애인 제한경쟁'이 붙은 공고는 장애인만 지원할 수 있습니다.</p>

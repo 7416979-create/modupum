@@ -171,6 +171,9 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .85rem; }
 .kinds-row button { flex: 0 0 auto; white-space: nowrap; }
 .jobs-notes { margin: 0 0 12px; }
 .jobs-notes .sub { font-size: .82rem; color: var(--muted); margin: 0 0 4px; }
+.fresh-bar { background: color-mix(in srgb, currentColor 8%, transparent); border-radius: 12px; padding: 8px 12px; margin: 0 0 8px; font-size: .9rem; color: var(--ink); display: flex; flex-direction: column; gap: 2px; }
+.fresh-bar strong { font-weight: 700; }
+.fresh-sub { font-size: .8rem; opacity: .8; }
 .jobs-help summary { font-size: .82rem; color: var(--muted); cursor: pointer; margin: 2px 0 4px; }
 .seg-wrap { display: flex; justify-content: flex-end; margin: 0 0 8px; }
 .seg { display: inline-flex; }
