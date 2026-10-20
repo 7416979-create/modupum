@@ -1,6 +1,8 @@
 // 나라일터(gojobs.go.kr) 공개 채용공고 목록(공고명 검색 결과)에서 제목·기관·마감일만 읽어 화면용 데이터로 바꾼다.
 // 공고 내용은 가져오지 않고, 제목과 원문(나라일터) 링크만 남긴다.
 
+import { dedupeJobs } from './dedupe-lib.mjs'
+
 export const GOJOBS_LIST = 'https://www.gojobs.go.kr/apmList.do'
 
 const clean = (s) =>
@@ -87,17 +89,6 @@ export const buildGojobs = (rows, rules, today) =>
     .map((r) => toJob(r, rules))
     .filter((j) => j.disabledOnly)
 
-const norm = (s) => String(s ?? '').replace(/\s+/g, '').toLowerCase()
-
-// 이미 있는 공고(같은 제목·기관)는 두 번 넣지 않는다.
-export const mergeJobs = (base, extra) => {
-  const seen = new Set(base.map((j) => `${norm(j.org)}|${norm(j.title)}`))
-  const out = [...base]
-  for (const j of extra) {
-    const k = `${norm(j.org)}|${norm(j.title)}`
-    if (seen.has(k)) continue
-    seen.add(k)
-    out.push(j)
-  }
-  return out.sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0))
-}
+// 이미 있는 공고(기관·제목·마감일이 같거나 원문 주소가 같은 것)는 하나만 남긴다. 규칙은 dedupe-lib.mjs.
+export const mergeJobs = (base, extra) =>
+  dedupeJobs([...base, ...extra]).items.sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0))

@@ -5,6 +5,7 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { buildJobs, listUrl, rowsOf } from './jobs-lib.mjs'
 import { GOJOBS_LIST, parseList, buildGojobs, mergeJobs } from './gojobs-lib.mjs'
+import { validateJobs, validateWelfare, isAbnormalDrop } from './validate-lib.mjs'
 import { listUrl as welfareListUrl, parseList as parseWelfareList, toWelfare } from './welfare-lib.mjs'
 
 const key = process.env.DATA_GO_KR_KEY
@@ -122,9 +123,22 @@ async function collectWelfare() {
     all.push(...items)
   }
   if (all.length === 0) throw new Error('받은 복지서비스가 없습니다')
-  const items = all.map(toWelfare).filter((i) => i.id && i.title)
+  const checked = validateWelfare(all.map(toWelfare).filter((i) => i.id && i.title))
+  for (const f of checked.fixes) console.log(`[검수:welfare] 자동 정리 - ${f}`)
+  if (checked.errors.length) {
+    checked.errors.forEach((e) => console.error(`[검수:welfare] 오류 - ${e}`))
+    throw new Error(`검수 실패(${checked.errors.length}건): 기존 welfare.json 을 유지합니다`)
+  }
+  const items = checked.items
+  const welfareUrl = new URL('../public/data/welfare.json', import.meta.url)
+  const prev = JSON.parse(await readFile(welfareUrl, 'utf8').catch(() => '{}'))
+  const prevCount = Array.isArray(prev.items) ? prev.items.length : 0
+  if (isAbnormalDrop(prevCount, items.length)) {
+    console.warn(`[검수:welfare] 경고 - 건수 급감(${prevCount}건 → ${items.length}건). 기존 welfare.json 을 유지합니다`)
+    return
+  }
   const out = { sample: false, updatedAt: kstNow.toISOString().slice(0, 16).replace('T', ' '), items }
-  await writeFile(new URL('../public/data/welfare.json', import.meta.url), `${JSON.stringify(out, null, 2)}\n`)
+  await writeFile(welfareUrl, `${JSON.stringify(out, null, 2)}\n`)
   console.log(`복지: ${items.length}건 저장`)
 }
 
