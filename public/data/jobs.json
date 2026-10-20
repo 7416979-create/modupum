@@ -1,57 +1,7 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-20 21:47",
+  "updatedAt": "2026-10-21 00:02",
   "items": [
-    {
-      "id": "305923",
-      "title": "한국폴리텍대학 화성캠퍼스 청년인턴(장애인 제한경쟁) 공개채용(2차)공고",
-      "org": "학교법인한국폴리텍",
-      "region": "경기",
-      "hires": 1,
-      "start": "2026-10-13",
-      "end": "2026-10-20",
-      "url": "https://www.kopo.ac.kr/hwaseong/board.do?menu=7078&mode=view&post=786987",
-      "disabledOnly": true
-    },
-    {
-      "id": "gojobs-305888",
-      "title": "국립현대미술관 서울 행정지원과 공무직 근로자 채용(장애인 제한경쟁) 공고",
-      "org": "문화체육관광부 국립현대미술관 기획운영단",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-16",
-      "end": "2026-10-20",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EA%B5%AD%EB%A6%BD%ED%98%84%EB%8C%80%EB%AF%B8%EC%88%A0%EA%B4%80%20%EC%84%9C%EC%9A%B8%20%ED%96%89%EC%A0%95%EC%A7%80%EC%9B%90%EA%B3%BC%20%EA%B3%B5%EB%AC%B4%EC%A7%81%20%EA%B7%BC%EB%A1%9C%EC%9E%90%20%EC%B1%84%EC%9A%A9(%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%EA%B2%BD%EC%9F%81)%20%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터"
-    },
-    {
-      "id": "gojobs-305641",
-      "title": "국립부산국악원 장악과 공무직 채용 공고(장애인 제한경쟁)",
-      "org": "문화체육관광부 국립국악원 부산국악원",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-13",
-      "end": "2026-10-20",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EA%B5%AD%EB%A6%BD%EB%B6%80%EC%82%B0%EA%B5%AD%EC%95%85%EC%9B%90%20%EC%9E%A5%EC%95%85%EA%B3%BC%20%EA%B3%B5%EB%AC%B4%EC%A7%81%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0(%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%EA%B2%BD%EC%9F%81)",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터"
-    },
-    {
-      "id": "gojobs-305385",
-      "title": "행정안전부 대변인실 디지털소통팀 공무직근로자(행정실무원, 장애인구분) 채용 공고",
-      "org": "행정안전부 대변인 디지털소통팀",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-08",
-      "end": "2026-10-20",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%ED%96%89%EC%A0%95%EC%95%88%EC%A0%84%EB%B6%80%20%EB%8C%80%EB%B3%80%EC%9D%B8%EC%8B%A4%20%EB%94%94%EC%A7%80%ED%84%B8%EC%86%8C%ED%86%B5%ED%8C%80%20%EA%B3%B5%EB%AC%B4%EC%A7%81%EA%B7%BC%EB%A1%9C%EC%9E%90(%ED%96%89%EC%A0%95%EC%8B%A4%EB%AC%B4%EC%9B%90%2C%20%EC%9E%A5%EC%95%A0%EC%9D%B8%EA%B5%AC%EB%B6%84)%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터"
-    },
     {
       "id": "gojobs-305736",
       "title": "국립국악원 국악연구실 기간제 근로자(휴직대체, 장애인제한 경쟁) 채용",
