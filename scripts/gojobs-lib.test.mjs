@@ -25,12 +25,11 @@ test('목록 행을 읽는다', () => {
   assert.deepEqual(rows[0], { code: '020', sn: '306018', title: '2026년 제28차 충남사회서비스원 본부 기간제(사무보조-장애인전형) 직원 공개채용 재공고', org: '충남사회서비스원', orgType: '공공기관', start: '2026-10-19', end: '2026-10-29' })
 })
 
-test('접수 중 공고를 모두 담고, 장애인전형·제한경쟁만 전용으로 표시한다(마감된 공고는 뺀다)', () => {
+test('접수 중 공고 중 장애인전형·제한경쟁만 담는다(일반 경쟁·마감 공고는 뺀다)', () => {
   const jobs = buildGojobs(parseList(html).rows, rules, '2026-10-19')
   assert.deepEqual(jobs.map((j) => [j.id, j.disabledOnly]), [
     ['gojobs-306018', true],
     ['gojobs-306017', true],
-    ['gojobs-306016', false],
   ])
   assert.equal(jobs[0].source, '나라일터')
 })
@@ -45,7 +44,9 @@ test('띄어쓰기가 달라도 전용으로 알아보고, 합격자 발표는 �
   assert.deepEqual(buildGojobs(rows, rules, '2026-10-19'), [])
 })
 
-test('전용 표현이 없으면 제외한다', () => {
+test('전용 표현이 없으면 제외한다(우대·우선채용 포함)', () => {
+  assert.equal(isDisabledOnlyTitle('2026년 환경실무사 채용 공고(장애인우선채용)', rules), false)
+  assert.equal(isDisabledOnlyTitle('공무직근로자(시설관리_장애인) 채용 공고문', rules), true)
   assert.equal(isDisabledOnlyTitle('장애인 우대 채용', rules), false)
 })
 

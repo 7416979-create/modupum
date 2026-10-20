@@ -79,12 +79,13 @@ export const toJob = (row, rules) => ({
   source: '나라일터',
 })
 
-// 나라일터에서 '장애'로 검색했을 때 나오는 접수 중 공고를 모두 담는다.
-// 장애인만 지원할 수 있는 공고(제한경쟁·장애인전형 등)는 disabledOnly 로 따로 표시한다.
+// 나라일터에서 '장애'로 검색한 접수 중 공고 가운데 장애인 제한경쟁·제한전형(disabledOnly)만 담는다.
+// 장애인 우대·우선채용, 일반인과 경쟁하는 공고는 뺀다.
 export const buildGojobs = (rows, rules, today) =>
   rows
     .filter((r) => r.end >= today && !isNotice(r.title, rules))
     .map((r) => toJob(r, rules))
+    .filter((j) => j.disabledOnly)
 
 const norm = (s) => String(s ?? '').replace(/\s+/g, '').toLowerCase()
 
