@@ -345,11 +345,11 @@ function Jobs() {
               <details>
                 <summary>
                   <h2><AgeTag date={i.start} />{orgLabel(i.title, i.org)}</h2>
-                  <span className={`sum-tag dday${soon ? ' soon' : ''}`}>{left === 0 ? '오늘 마감' : `D-${left}`}{left > 0 && i.end ? ` · ${String(i.end).slice(5).replace('-', '.')}` : ''}</span>
+                  <span className={`sum-tag dday${soon ? ' soon' : ''}`}>{left === 0 ? '오늘 마감' : `마감 ${left}일 남음${i.end ? ` · ${String(i.end).slice(5).replace('-', '.')}` : ''}`}</span>
                 </summary>
                 <div className="detail">
                   <div className="tags">
-                    {soon && <span className="soon">{left === 0 ? '오늘 마감' : `마감 임박 D-${left}`}</span>}
+                    {soon && <span className="soon">{left === 0 ? '오늘 마감' : `마감 임박 · ${left}일 남음`}</span>}
                     <span>{i.disabledOnly ? '장애인 제한경쟁' : '장애 관련 · 자격 확인 필요'}</span>
                     <span>{i.org}</span>
                     <span>{i.orgType}</span>
