@@ -86,9 +86,9 @@ function useData(name) {
 const tipHref = (site) =>
   site?.tipUrl || (site?.tipEmail ? `mailto:${site.tipEmail}?subject=${encodeURIComponent('[모두품] 정보 제보')}` : '')
 
-function ExternalLink({ href, className, children }) {
+function ExternalLink({ href, className, onClick, children }) {
   return (
-    <a className={className} href={href} target="_blank" rel="noopener noreferrer">
+    <a className={className} href={href} target="_blank" rel="noopener noreferrer" onClick={onClick}>
       {children}
       <span className="sr"> (새 창에서 열림)</span>
     </a>
@@ -376,34 +376,42 @@ function About() {
   )
 }
 
-// 테스트 기간 동안 한 번 띄우는 설문 팝업. "다음에 할게요"를 누르면 이 브라우저에서는 다시 뜨지 않는다.
+// 테스트 기간 동안 띄우는 설문 팝업. '오늘은 닫기'는 오늘(한국 날짜)만, '다시 보지 않기'·설문 참여는 영구 숨김.
 function SurveyPopup({ url }) {
   const [open, setOpen] = useState(false)
   useEffect(() => {
     if (!url || today() > SURVEY_END) return
     try {
       if (localStorage.getItem('survey-closed')) return
+      if (localStorage.getItem('survey-closed-day') === today()) return
     } catch {
       // 저장소를 쓸 수 없으면 매번 띄운다.
     }
-    setOpen(true)
+    const t = setTimeout(() => setOpen(true), 1500)
+    return () => clearTimeout(t)
   }, [url])
   if (!open) return null
-  const close = () => {
+  const hide = (key, value) => {
     try {
-      localStorage.setItem('survey-closed', '1')
+      localStorage.setItem(key, value)
     } catch {
       // 저장 실패는 무시한다.
     }
     setOpen(false)
   }
+  const closeToday = () => hide('survey-closed-day', today())
+  const closeForever = () => hide('survey-closed', '1')
   return (
     <div className="survey-pop" role="dialog" aria-modal="false" aria-labelledby="survey-t">
       <div className="survey-box">
+        <button className="survey-close" aria-label="닫기" onClick={closeToday}>×</button>
         <h2 id="survey-t">테스트 설문 (1분)</h2>
-        <p>모두품 3개월 테스트 기간입니다. 한두 문항만 답해 주시면 큰 도움이 됩니다.</p>
-        <ExternalLink className="tip-btn" href={url}>설문 참여하기</ExternalLink>
-        <button className="survey-x" onClick={close}>다음에 할게요</button>
+        <p>한두 문항만 답해 주시면 큰 도움이 됩니다.</p>
+        <ExternalLink className="tip-btn" href={url} onClick={closeForever}>설문 참여하기</ExternalLink>
+        <div className="survey-row">
+          <button className="survey-x" onClick={closeToday}>오늘은 닫기</button>
+          <button className="survey-x" onClick={closeForever}>다시 보지 않기</button>
+        </div>
       </div>
     </div>
   )
