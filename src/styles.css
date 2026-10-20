@@ -22,6 +22,8 @@
   color: var(--card-ink);
 }
 * { box-sizing: border-box; }
+html { scroll-padding-top: 120px; scroll-padding-bottom: 180px; }
+.list:focus { outline: none; }
 html { font-size: 112.5%; }
 body {
   margin: 0;
@@ -168,11 +170,12 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .9rem; }
 .age-tag.yesterday { background: #d8f1e2; color: #00522a; }
 .survey-pop { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 50; display: flex; justify-content: center; }
 .survey-box { position: relative; width: 100%; max-width: 380px; padding: 10px 14px; border-radius: 12px; background: #fff; color: #222; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2); }
-.survey-box h2 { margin: 0 28px 2px 0; font-size: 1em; }
-.survey-box p { margin: 0 0 8px; font-size: 0.88em; }
+.survey-box h2 { margin: 0 48px 0 0; font-size: 1em; }
+.survey-box p { margin: 0 48px 2px 0; font-size: 0.9em; }
+.survey-box .tip-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px; font-weight: 700; color: #00602f; }
 .survey-close { position: absolute; top: 2px; right: 4px; min-width: 44px; min-height: 44px; border: 0; background: none; color: #555; font-size: 1.5em; line-height: 1; cursor: pointer; }
-.survey-row { display: flex; justify-content: space-between; gap: 8px; margin-top: 4px; }
-.survey-x { border: 0; background: none; color: #555; text-decoration: underline; cursor: pointer; font: inherit; padding: 10px 6px; min-height: 44px; }
+.survey-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0 4px; margin-top: 0; }
+.survey-x { border: 0; background: none; color: #555; text-decoration: underline; cursor: pointer; font: inherit; padding: 0 6px; min-height: 44px; font-size: .9rem; }
 
 /* 일자리 탭: 필터 한 줄 + 정렬 세그먼트 */
 .kinds-row { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 12px 0 12px; padding-right: 28px; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent); }

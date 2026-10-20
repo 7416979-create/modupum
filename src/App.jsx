@@ -36,7 +36,7 @@ const orgLabel = (title, org) => {
 
 const AgeTag = ({ date }) => {
   const t = ageTag(date)
-  return t ? <span className={`age-tag ${t.cls}`}>{t.text}</span> : null
+  return t ? <><span className={`age-tag ${t.cls}`}>{t.text}</span><span className="sr">, </span></> : null
 }
 
 const PAGE_SIZE = 10
@@ -47,11 +47,16 @@ function usePaged(items, resetKey = '') {
   const total = Math.max(1, Math.ceil(items.length / PAGE_SIZE))
   const cur = Math.min(page, total)
   const slice = items.slice((cur - 1) * PAGE_SIZE, cur * PAGE_SIZE)
+  const [note, setNote] = useState('')
+  useEffect(() => { setNote('') }, [resetKey, items.length])
   const go = (n) => {
     setPage(n)
+    setNote(`${n}쪽으로 이동`)
     window.scrollTo({ top: 0 })
+    // 키보드 포커스도 목록 맨 위로 옮겨 화면 밖 페이지 번호에 남지 않게 한다
+    document.querySelector('.list')?.focus({ preventScroll: true })
   }
-  return { slice, page: cur, total, go, count: items.length }
+  return { slice, page: cur, total, go, note, count: items.length }
 }
 
 function Pager({ pg }) {
@@ -68,6 +73,7 @@ function Pager({ pg }) {
       ))}
       <button onClick={() => pg.go(pg.page + 1)} disabled={pg.page === pg.total}>다음</button>
       <span className="pager-info">{pg.page} / {pg.total} 쪽 · 전체 {pg.count}건</span>
+      <span className="sr" role="status">{pg.note}</span>
     </nav>
   )
 }
@@ -86,9 +92,9 @@ function useData(name) {
 const tipHref = (site) =>
   site?.tipUrl || (site?.tipEmail ? `mailto:${site.tipEmail}?subject=${encodeURIComponent('[모두품] 정보 제보')}` : '')
 
-function ExternalLink({ href, className, onClick, children }) {
+function ExternalLink({ href, className, onClick, label, children }) {
   return (
-    <a className={className} href={href} target="_blank" rel="noopener noreferrer" onClick={onClick}>
+    <a className={className} href={href} aria-label={label ? `${label} (새 창에서 열림)` : undefined} target="_blank" rel="noopener noreferrer" onClick={onClick}>
       {children}
       <span className="sr"> (새 창에서 열림)</span>
     </a>
@@ -179,7 +185,7 @@ function Welfare() {
       <SampleNotice data={data} />
       <input className="search" type="search" placeholder="검색어를 입력하세요" value={q} onChange={(e) => setQ(e.target.value)} aria-label="복지 검색" />
       <p className="sr" role="status">{data ? `${items.length}건` : ''}</p>
-      <ul className="list">
+      <ul className="list" tabIndex={-1}>
         {pg.slice.map((i) => (
           <li key={i.id} className="item">
             <details>
@@ -190,7 +196,7 @@ function Welfare() {
               <div className="detail">
                 <div className="tags"><span>{i.category}</span><span>{i.target}</span></div>
                 <p>{i.summary}</p>
-                <ExternalLink href={i.url}>원문 보기 · 출처 {i.source}</ExternalLink>
+                <ExternalLink href={i.url} label={`${i.title} 원문 보기 · 출처 ${i.source}`}>원문 보기 · 출처 {i.source}</ExternalLink>
               </div>
             </details>
           </li>
@@ -214,7 +220,7 @@ function Apply() {
       <SampleNotice data={data} />
       <p className="sub">{data?.scope ?? ''}</p>
       <p className="apply-note">금액과 기준은 해마다, 지역마다 달라집니다. 신청 전에 원문에서 다시 확인하세요. ({data?.checkedAt ?? ''} 확인)</p>
-      <ul className="list">
+      <ul className="list" tabIndex={-1}>
         {pg.slice.map((g) => (
           <li key={g.id} className="item">
             <details>
@@ -255,7 +261,7 @@ function News() {
       <h1 className="page-h">소식</h1>
       <SampleNotice data={data} />
       <p className="sub">공식 기관이 발표한 소식만 올립니다.</p>
-      <ul className="list">
+      <ul className="list" tabIndex={-1}>
         {pg.slice.map((n) => (
           <li key={n.id} className="item">
             <details>
@@ -266,7 +272,7 @@ function News() {
               <div className="detail">
                 <div className="tags"><span>{n.source}</span><span>{n.date}</span></div>
                 <p>{n.summary}</p>
-                <ExternalLink href={n.url}>원문 보기</ExternalLink>
+                <ExternalLink href={n.url} label={`${n.title} 원문 보기`}>원문 보기</ExternalLink>
               </div>
             </details>
           </li>
@@ -336,7 +342,7 @@ function Jobs() {
           ))}
         </div>
       </div>
-      <ul className="list">
+      <ul className="list" tabIndex={-1}>
         {pg.slice.map((i) => {
           const left = daysLeft(i.end)
           const soon = left <= 3
@@ -356,7 +362,7 @@ function Jobs() {
                     <span>마감 {i.end}</span>
                     {i.source && <span>출처 {i.source}</span>}
                   </div>
-                  <ExternalLink href={i.url}>원문 보기</ExternalLink>
+                  <ExternalLink href={i.url} label={`${orgLabel(i.title, i.org)} 원문 보기`}>원문 보기</ExternalLink>
                 </div>
               </details>
             </li>
@@ -402,6 +408,7 @@ function About() {
 // 테스트 기간 동안 띄우는 설문 팝업. 서로 다른 날짜로 2번째 방문한 날부터 표시. '오늘은 닫기'는 오늘(한국 날짜)만, '다시 보지 않기'·설문 참여는 영구 숨김.
 function SurveyPopup({ url }) {
   const [open, setOpen] = useState(false)
+  const closeTodayRef = useRef(() => {})
   useEffect(() => {
     if (!url) return
     try {
@@ -422,7 +429,12 @@ function SurveyPopup({ url }) {
     const t = setTimeout(() => setOpen(true), 1500)
     return () => clearTimeout(t)
   }, [url])
-  if (!open) return null
+  useEffect(() => {
+    if (!open) return undefined
+    const onKey = (e) => { if (e.key === 'Escape') closeTodayRef.current() }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [open])
   const hide = (key, value) => {
     try {
       localStorage.setItem(key, value)
@@ -433,19 +445,25 @@ function SurveyPopup({ url }) {
   }
   const closeToday = () => hide('survey-closed-day', today())
   const closeForever = () => hide('survey-closed', '1')
+  closeTodayRef.current = closeToday
   return (
-    <div className="survey-pop" role="dialog" aria-modal="false" aria-labelledby="survey-t">
-      <div className="survey-box">
-        <button className="survey-close" aria-label="닫기" onClick={closeToday}>×</button>
-        <h2 id="survey-t">테스트 설문 (1분)</h2>
-        <p>한두 문항만 답해 주시면 큰 도움이 됩니다.</p>
-        <ExternalLink className="tip-btn" href={url} onClick={closeForever}>설문 참여하기</ExternalLink>
-        <div className="survey-row">
-          <button className="survey-x" onClick={closeToday}>오늘은 닫기</button>
-          <button className="survey-x" onClick={closeForever}>다시 보지 않기</button>
+    <>
+      <p className="sr" role="status">{open ? '화면 아래에 테스트 설문 안내가 있습니다. Esc 키로 닫을 수 있습니다.' : ''}</p>
+      {open && (
+        <div className="survey-pop" role="dialog" aria-modal="false" aria-labelledby="survey-t">
+          <div className="survey-box">
+            <button className="survey-close" aria-label="닫기" onClick={closeToday}>×</button>
+            <h2 id="survey-t">테스트 설문 (1분)</h2>
+            <p>한두 문항만 답해 주세요.</p>
+            <div className="survey-row">
+              <ExternalLink className="tip-btn" href={url} onClick={closeForever}>설문 참여하기</ExternalLink>
+              <button className="survey-x" onClick={closeToday}>오늘은 닫기</button>
+              <button className="survey-x" onClick={closeForever}>다시 보지 않기</button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   )
 }
 
