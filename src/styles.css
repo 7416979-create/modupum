@@ -1,12 +1,12 @@
 :root {
   --bg: #fbfbfd;
   --ink: #1d1d1f;
-  --muted: #6e6e73;
+  --muted: #48484d;
   --line: #d2d2d7;
-  --accent: #008542;
+  --accent: #00602f;
   --card: #f5f5f7;
   --card-ink: #1d1d1f;
-  --card-muted: #6e6e73;
+  --card-muted: #48484d;
   --card-line: #d2d2d7;
   --card-inner: #fbfbfd;
   --card-accent: #006b35;
@@ -72,7 +72,7 @@ h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -
 .page-h, section > h1.page-h { font-size: clamp(2.2rem, 6vw, 3.4rem); letter-spacing: -.035em; font-weight: 700; line-height: 1.1; margin: 44px 0 10px; text-align: left; }
 .sub, .apply-note { color: var(--muted); max-width: 620px; margin: 0 0 28px; font-size: 1rem; }
 .notice { background: var(--card); padding: 12px 18px; border-radius: 14px; font-size: .9rem; margin: 0 0 24px; }
-.search { color: var(--card-ink); width: 100%; padding: 14px 20px; border-radius: 14px; border: 0; background: var(--card); margin-bottom: 20px; font-size: 1rem; }
+.search { color: var(--card-ink); width: 100%; padding: 14px 20px; border-radius: 14px; border: 1px solid var(--muted); background: var(--card); margin-bottom: 20px; font-size: 1rem; }
 .search::placeholder { color: var(--muted); }
 .search:focus { outline: 2px solid var(--accent); }
 
@@ -88,7 +88,7 @@ h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -
 .item details > summary:hover h2 { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
 .sum-tag { flex: none; max-width: 38%; font-size: .82rem; color: var(--muted); text-align: right; }
 .sum-tag.dday { white-space: nowrap; max-width: none; font-variant-numeric: tabular-nums; }
-.sum-tag.dday.soon { color: var(--accent); font-weight: 700; }
+.sum-tag.dday.soon { color: var(--card-accent); font-weight: 700; }
 .item .detail { padding: 0 0 22px; }
 .item .detail p { color: var(--muted); margin: 8px 0 14px; max-width: 640px; }
 .item .detail a, .src-links a { font-weight: 600; color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
@@ -112,7 +112,7 @@ h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -
 .pager button.on { background: var(--accent); color: #fff; }
 .pager button:disabled { opacity: .35; cursor: default; }
 .pager-info { width: 100%; text-align: center; font-size: .82rem; color: var(--muted); margin-top: 4px; }
-.pager .pager-info { color: var(--ink); opacity: .7; --ink: inherit; }
+.pager .pager-info { color: var(--muted); }
 
 /* 접이식 보조 영역 */
 .check-guide, .more { margin-top: 28px; background: var(--card); border-radius: var(--radius); padding: 0 22px; }
@@ -155,8 +155,8 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .85rem; }
 .tags span.soon { background: var(--accent); color: #fff; font-weight: 700; }
 
 .age-tag { display: inline-block; margin-right: 6px; padding: 1px 8px; border-radius: var(--pill); font-size: 0.68em; font-weight: 600; letter-spacing: 0; vertical-align: middle; }
-.age-tag.today { background: color-mix(in srgb, #e5484d 14%, transparent); color: #d03a3f; }
-.age-tag.yesterday { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
+.age-tag.today { background: #fde4e4; color: #a8121b; }
+.age-tag.yesterday { background: #d8f1e2; color: #00522a; }
 .survey-pop { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 50; display: flex; justify-content: center; }
 .survey-box { position: relative; width: 100%; max-width: 380px; padding: 10px 14px; border-radius: 12px; background: #fff; color: #222; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2); }
 .survey-box h2 { margin: 0 28px 2px 0; font-size: 1em; }
@@ -173,7 +173,7 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .85rem; }
 .jobs-notes .sub { font-size: .82rem; color: var(--muted); margin: 0 0 4px; }
 .fresh-bar { background: color-mix(in srgb, currentColor 8%, transparent); border-radius: 12px; padding: 8px 12px; margin: 0 0 8px; font-size: .9rem; color: var(--ink); display: flex; flex-direction: column; gap: 2px; }
 .fresh-bar strong { font-weight: 700; }
-.fresh-sub { font-size: .8rem; opacity: .8; }
+.fresh-sub { font-size: .8rem; color: #3a3a3e; }
 .jobs-help summary { font-size: .82rem; color: var(--muted); cursor: pointer; margin: 2px 0 4px; }
 .seg-wrap { display: flex; justify-content: flex-end; margin: 0 0 8px; }
 .seg { display: inline-flex; }
