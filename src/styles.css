@@ -171,8 +171,8 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .85rem; }
 .kinds-row button { flex: 0 0 auto; white-space: nowrap; }
 .jobs-notes { margin: 0 0 12px; }
 .jobs-notes .sub { font-size: .82rem; color: var(--muted); margin: 0 0 4px; }
-.seg-wrap { display: flex; justify-content: flex-end; margin: 0 0 8px; }
 .jobs-help summary { font-size: .82rem; color: var(--muted); cursor: pointer; margin: 2px 0 4px; }
+.seg-wrap { display: flex; justify-content: flex-end; margin: 0 0 8px; }
 .seg { display: inline-flex; }
 .seg button { height: 32px; padding: 0 12px; font-size: .85rem; font-weight: 600; background: var(--card); color: var(--card-ink); border: 1px solid var(--muted); }
 .seg button:first-child { border-radius: var(--pill) 0 0 var(--pill); }
