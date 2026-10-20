@@ -316,8 +316,158 @@ function Jobs() {
           ))}
         </div>
       )}
+      <div className="seg-wrap">
+        <div className="seg" role="group" aria-label="정렬">
+          {['최신순', '마감임박순'].map((k) => (
+            <button key={k} className={k === sort ? 'on' : ''} aria-pressed={k === sort} onClick={() => setSort(k)}>{k}</button>
+          ))}
+        </div>
+      </div>
+      <ul className="list">
+        {pg.slice.map((i) => (
+          <li key={i.id} className="item">
+            <details>
+              <summary>
+                <h2>{i.title}</h2>
+                <span className="sum-tag">{i.category}</span>
+              </summary>
+              <div className="detail">
+                <div className="tags"><span>{i.category}</span><span>{i.target}</span></div>
+                <p>{i.summary}</p>
+                <ExternalLink href={i.url}>원문 보기 · 출처 {i.source}</ExternalLink>
+              </div>
+            </details>
+          </li>
+        ))}
+        {data && items.length === 0 && <li className="empty">표시할 항목이 없습니다.</li>}
+      </ul>
+      <Pager pg={pg} />
+      <MoreLinks kind="welfare" />
+      <TipBox />
+    </section>
+  )
+}
+
+function Apply() {
+  const data = useData('guides')
+  const items = data?.items ?? []
+  const pg = usePaged(items)
+  return (
+    <section>
+      <h1 className="page-h">신청 안내</h1>
+      <SampleNotice data={data} />
+      <p className="sub">{data?.scope ?? ''}</p>
+      <p className="apply-note">금액과 기준은 해마다, 지역마다 달라집니다. 신청 전에 원문에서 다시 확인하세요. ({data?.checkedAt ?? ''} 확인)</p>
+      <ul className="list">
+        {pg.slice.map((g) => (
+          <li key={g.id} className="item">
+            <details>
+              <summary>
+                <h2>{g.name}</h2>
+                {g.aka && <span className="sum-tag">{g.aka}</span>}
+              </summary>
+              <div className="detail">
+                <p>{g.summary}</p>
+                <dl className="facts">
+                  {g.facts.map(([k, v]) => (
+                    <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
+                  ))}
+                </dl>
+                <p className="src-links">
+                  {g.links.map((l) => (
+                    <ExternalLink key={l.url} href={l.url}>{l.label}</ExternalLink>
+                  ))}
+                </p>
+              </div>
+            </details>
+          </li>
+        ))}
+        {data && items.length === 0 && <li className="empty">표시할 항목이 없습니다.</li>}
+      </ul>
+      <Pager pg={pg} />
+      <TipBox />
+    </section>
+  )
+}
+
+function News() {
+  const data = useData('news')
+  const items = data?.items ?? []
+  const pg = usePaged(items)
+  return (
+    <section>
+      <h1 className="page-h">소식</h1>
+      <SampleNotice data={data} />
+      <p className="sub">공식 기관이 발표한 소식만 올립니다.</p>
+      <ul className="list">
+        {pg.slice.map((n) => (
+          <li key={n.id} className="item">
+            <details>
+              <summary>
+                <h2><AgeTag date={n.date} />{n.title}</h2>
+                <span className="sum-tag">{n.date}</span>
+              </summary>
+              <div className="detail">
+                <div className="tags"><span>{n.source}</span><span>{n.date}</span></div>
+                <p>{n.summary}</p>
+                <ExternalLink href={n.url}>원문 보기</ExternalLink>
+              </div>
+            </details>
+          </li>
+        ))}
+        {data && items.length === 0 && <li className="empty">표시할 소식이 없습니다.</li>}
+      </ul>
+      <Pager pg={pg} />
+      <TipBox />
+    </section>
+  )
+}
+
+function Jobs() {
+  const data = useData('jobs')
+  const [kind, setKind] = useState('전체')
+  const [sort, setSort] = useState('최신순')
+  const all = useMemo(() => {
+    const t = today()
+    const open = (data?.items ?? []).filter((i) => i.end >= t).map((i) => ({ ...i, orgType: i.orgType || '공공기관' }))
+    // 최신순: 올라온 날 내림차순, 마감임박순: 마감일 오름차순. 같으면 다른 기준으로 정한다.
+    const byStart = (x, y) => String(y.start).localeCompare(String(x.start))
+    const byEnd = (x, y) => String(x.end).localeCompare(String(y.end))
+    return [...open].sort(sort === '최신순' ? (x, y) => byStart(x, y) || byEnd(x, y) : (x, y) => byEnd(x, y) || byStart(x, y))
+  }, [data, sort])
+  // 최근 신규 안내: start 기준(접수 중 공고만). 오늘 0건이면 마지막 신규일을 보여준다.
+  const fresh = useMemo(() => {
+    const t = today()
+    const days = all.map((i) => String(i.start || '').slice(0, 10)).filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d) && d <= t)
+    if (!days.length) return null
+    const todayN = days.filter((d) => d === t).length
+    const last = days.reduce((a, b) => (a > b ? a : b))
+    const week = days.filter((d) => Math.round((Date.parse(t) - Date.parse(d)) / 86400000) <= 6).length
+    return { todayN, last: last.slice(5), lastN: days.filter((d) => d === last).length, week }
+  }, [all])
+  const kinds = useMemo(() => ['전체', ...['국가기관', '지자체', '교육청', '공공기관'].filter((k) => all.some((i) => i.orgType === k))], [all])
+  const items = useMemo(() => (kind === '전체' ? all : all.filter((i) => i.orgType === kind)), [all, kind])
+  const pg = usePaged(items, kind + sort)
+
+  return (
+    <section>
+      <h1 className="page-h">일자리</h1>
+      <SampleNotice data={data} />
+      {kinds.length > 2 && (
+        <div className="kinds kinds-row" role="group" aria-label="기관 종류">
+          {kinds.map((k) => (
+            <button key={k} className={k === kind ? 'on' : ''} aria-pressed={k === kind} onClick={() => setKind(k)}>{k}</button>
+          ))}
+        </div>
+      )}
+      <div className="seg-wrap">
+        <div className="seg" role="group" aria-label="정렬">
+          {['최신순', '마감임박순'].map((k) => (
+            <button key={k} className={k === sort ? 'on' : ''} aria-pressed={k === sort} onClick={() => setSort(k)}>{k}</button>
+          ))}
+        </div>
+      </div>
       <div className="jobs-notes">
-        <p className="sub">공공기관·국가기관·지자체의 장애 관련 채용 공고입니다. '장애인 제한경쟁'이 붙은 공고는 장애인만 지원할 수 있습니다.</p>
         {data?.updatedAt && <p className="sub">마지막 갱신 {data.updatedAt} · 접수 중 {all.length}건</p>}
         {fresh && (
           <p className="sub">
@@ -325,13 +475,10 @@ function Jobs() {
             {' · '}최근 7일 신규 {fresh.week}건
           </p>
         )}
-      </div>
-      <div className="seg-wrap">
-        <div className="seg" role="group" aria-label="정렬">
-          {['최신순', '마감임박순'].map((k) => (
-            <button key={k} className={k === sort ? 'on' : ''} aria-pressed={k === sort} onClick={() => setSort(k)}>{k}</button>
-          ))}
-        </div>
+        <details className="jobs-help">
+          <summary>안내 보기</summary>
+          <p className="sub">공공기관·국가기관·지자체의 장애 관련 채용 공고입니다. '장애인 제한경쟁'이 붙은 공고는 장애인만 지원할 수 있습니다.</p>
+        </details>
       </div>
       <ul className="list">
         {pg.slice.map((i) => {
