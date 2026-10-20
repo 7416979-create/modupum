@@ -309,25 +309,29 @@ function Jobs() {
     <section>
       <h1 className="page-h">일자리</h1>
       <SampleNotice data={data} />
-      <p className="sub">공공기관·국가기관·지자체의 장애 관련 채용 공고입니다. '장애인 제한경쟁'이 붙은 공고는 장애인만 지원할 수 있습니다.</p>
-      {data?.updatedAt && <p className="sub">마지막 갱신 {data.updatedAt} · 접수 중 {all.length}건</p>}
-      {fresh && (
-        <p className="sub">
-          {fresh.todayN > 0 ? `오늘 새 공고 ${fresh.todayN}건` : `오늘은 새 공고가 없어요 · 마지막 신규 등록 ${fresh.last}(${fresh.lastN}건)`}
-          {' · '}최근 7일 신규 {fresh.week}건
-        </p>
-      )}
       {kinds.length > 2 && (
-        <div className="kinds" role="group" aria-label="기관 종류">
+        <div className="kinds kinds-row" role="group" aria-label="기관 종류">
           {kinds.map((k) => (
             <button key={k} className={k === kind ? 'on' : ''} aria-pressed={k === kind} onClick={() => setKind(k)}>{k}</button>
           ))}
         </div>
       )}
-      <div className="kinds sorts" role="group" aria-label="정렬">
-        {['최신순', '마감임박순'].map((k) => (
-          <button key={k} className={k === sort ? 'on' : ''} aria-pressed={k === sort} onClick={() => setSort(k)}>{k}</button>
-        ))}
+      <div className="jobs-notes">
+        <p className="sub">공공기관·국가기관·지자체의 장애 관련 채용 공고입니다. '장애인 제한경쟁'이 붙은 공고는 장애인만 지원할 수 있습니다.</p>
+        {data?.updatedAt && <p className="sub">마지막 갱신 {data.updatedAt} · 접수 중 {all.length}건</p>}
+        {fresh && (
+          <p className="sub">
+            {fresh.todayN > 0 ? `오늘 새 공고 ${fresh.todayN}건` : `오늘은 새 공고가 없어요 · 마지막 신규 등록 ${fresh.last}(${fresh.lastN}건)`}
+            {' · '}최근 7일 신규 {fresh.week}건
+          </p>
+        )}
+      </div>
+      <div className="seg-wrap">
+        <div className="seg" role="group" aria-label="정렬">
+          {['최신순', '마감임박순'].map((k) => (
+            <button key={k} className={k === sort ? 'on' : ''} aria-pressed={k === sort} onClick={() => setSort(k)}>{k}</button>
+          ))}
+        </div>
       </div>
       <ul className="list">
         {pg.slice.map((i) => {

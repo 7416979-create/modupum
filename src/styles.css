@@ -164,3 +164,16 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .85rem; }
 .survey-close { position: absolute; top: 2px; right: 4px; min-width: 40px; min-height: 40px; border: 0; background: none; color: #555; font-size: 1.5em; line-height: 1; cursor: pointer; }
 .survey-row { display: flex; justify-content: space-between; gap: 8px; margin-top: 4px; }
 .survey-x { border: 0; background: none; color: #555; text-decoration: underline; cursor: pointer; font: inherit; padding: 8px 4px; }
+
+/* 일자리 탭: 필터 한 줄 + 정렬 세그먼트 */
+.kinds-row { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 12px 0 12px; padding-right: 28px; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent); }
+.kinds-row::-webkit-scrollbar { display: none; }
+.kinds-row button { flex: 0 0 auto; white-space: nowrap; }
+.jobs-notes { margin: 0 0 12px; }
+.jobs-notes .sub { font-size: .82rem; color: var(--muted); margin: 0 0 4px; }
+.seg-wrap { display: flex; justify-content: flex-end; margin: 0 0 8px; }
+.seg { display: inline-flex; }
+.seg button { height: 32px; padding: 0 12px; font-size: .85rem; font-weight: 600; background: var(--card); color: var(--card-ink); border: 1px solid var(--muted); }
+.seg button:first-child { border-radius: var(--pill) 0 0 var(--pill); }
+.seg button:last-child { border-radius: 0 var(--pill) var(--pill) 0; margin-left: -1px; }
+.seg button.on { background: var(--accent); color: #fff; border-color: var(--accent); position: relative; }
