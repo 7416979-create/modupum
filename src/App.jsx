@@ -376,16 +376,25 @@ function About() {
   )
 }
 
-// 테스트 기간 동안 띄우는 설문 팝업. '오늘은 닫기'는 오늘(한국 날짜)만, '다시 보지 않기'·설문 참여는 영구 숨김.
+// 테스트 기간 동안 띄우는 설문 팝업. 서로 다른 날짜로 2번째 방문한 날부터 표시. '오늘은 닫기'는 오늘(한국 날짜)만, '다시 보지 않기'·설문 참여는 영구 숨김.
 function SurveyPopup({ url }) {
   const [open, setOpen] = useState(false)
   useEffect(() => {
-    if (!url || today() > SURVEY_END) return
+    if (!url) return
     try {
+      // 판단 순서: 영구 숨김 -> 종료일 -> 방문일 수(서로 다른 날 2번째부터) -> 오늘 닫음
       if (localStorage.getItem('survey-closed')) return
+      if (today() > SURVEY_END) return
+      const first = localStorage.getItem('survey-first-day')
+      if (!first) {
+        localStorage.setItem('survey-first-day', today())
+        return
+      }
+      if (first === today()) return
       if (localStorage.getItem('survey-closed-day') === today()) return
     } catch {
-      // 저장소를 쓸 수 없으면 매번 띄운다.
+      // 저장소를 쓸 수 없으면 방문일 수를 알 수 없으므로 띄우지 않는다(첫 방문 보호).
+      return
     }
     const t = setTimeout(() => setOpen(true), 1500)
     return () => clearTimeout(t)
