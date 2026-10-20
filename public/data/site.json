@@ -1,5 +1,6 @@
 {
   "tipUrl": "",
   "tipEmail": "",
-  "feedbackUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfiS8CsSERsHZAi6MB4vykEdbg7obIBHmCVdTPA6gj995Rw5A/viewform"
+  "feedbackUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfiS8CsSERsHZAi6MB4vykEdbg7obIBHmCVdTPA6gj995Rw5A/viewform",
+  "analytics": { "goatcounter": "" }
 }

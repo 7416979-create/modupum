@@ -467,6 +467,34 @@ function SurveyPopup({ url }) {
   )
 }
 
+// 방문 수 익명 집계(GoatCounter). site.json 의 analytics.goatcounter 코드가 비어 있으면 아무것도 하지 않는다.
+function useAnalytics(code, tab) {
+  const on = typeof code === 'string' && /^[a-z0-9-]+$/i.test(code) && typeof window !== 'undefined' &&
+    !['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname) && navigator.doNotTrack !== '1'
+  const tabRef = useRef(tab)
+  const ready = useRef(false)
+  tabRef.current = tab
+  const count = () => {
+    try { window.goatcounter?.count?.({ path: `/${tabRef.current}` }) } catch { /* 집계 실패는 무시 */ }
+  }
+  useEffect(() => {
+    if (!on) return undefined
+    try {
+      window.goatcounter = { no_onload: true }
+      const s = document.createElement('script')
+      s.async = true
+      s.dataset.goatcounter = `https://${code}.goatcounter.com/count`
+      s.src = 'https://gc.zgo.at/count.js'
+      s.onload = () => { ready.current = true; count() }
+      s.onerror = () => {}
+      document.head.appendChild(s)
+    } catch { /* 무시 */ }
+    return undefined
+  }, [on, code])
+  useEffect(() => { if (on && ready.current) count() }, [tab]) // eslint-disable-line react-hooks/exhaustive-deps
+  return on
+}
+
 const readHash = () => {
   const h = window.location.hash.replace('#/', '').replace('#', '')
   return ROUTES.includes(h) ? h : 'home'
@@ -475,6 +503,7 @@ const readHash = () => {
 export default function App() {
   const [tab, setTabState] = useState(readHash)
   const site = useData('site')
+  const counting = useAnalytics(site?.analytics?.goatcounter, tab)
   const mainRef = useRef(null)
   const first = useRef(true)
 
@@ -529,6 +558,7 @@ export default function App() {
           <button className="foot-link" onClick={() => setTab('about')}>이용 안내</button>
           {site?.feedbackUrl && <ExternalLink className="foot-link" href={site.feedbackUrl}>의견 보내기</ExternalLink>}
         </p>
+        {counting && <p>방문 수만 익명으로 집계합니다(쿠키·개인정보 수집 없음).</p>}
       </footer>
     </>
   )
