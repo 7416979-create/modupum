@@ -7,7 +7,7 @@
 - `public/data/*.json` 화면이 읽는 데이터 (자동 수집이 갱신)
 - `public/brand/` 로고와 아이콘, `showcase.html`(브랜드 예시), `ideas.html`(로고 아이디어)
 - `scripts/collect.mjs` 공공 API에서 데이터를 받아 JSON으로 저장
-- `.github/workflows/update-and-deploy.yml` 매일 한국시간 10시·14시·18시 갱신과 배포
+- `.github/workflows/update-and-deploy.yml` 하루 3번(한국시간 오전 10시·오후 2시·6시 전후, GitHub 스케줄 특성상 지연될 수 있음) 갱신과 배포
 
 ## 개발
 ```bash
