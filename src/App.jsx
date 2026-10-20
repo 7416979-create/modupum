@@ -291,6 +291,16 @@ function Jobs() {
     const byEnd = (x, y) => String(x.end).localeCompare(String(y.end))
     return [...open].sort(sort === '최신순' ? (x, y) => byStart(x, y) || byEnd(x, y) : (x, y) => byEnd(x, y) || byStart(x, y))
   }, [data, sort])
+  // 최근 신규 안내: start 기준(접수 중 공고만). 오늘 0건이면 마지막 신규일을 보여준다.
+  const fresh = useMemo(() => {
+    const t = today()
+    const days = all.map((i) => String(i.start || '').slice(0, 10)).filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d) && d <= t)
+    if (!days.length) return null
+    const todayN = days.filter((d) => d === t).length
+    const last = days.reduce((a, b) => (a > b ? a : b))
+    const week = days.filter((d) => Math.round((Date.parse(t) - Date.parse(d)) / 86400000) <= 6).length
+    return { todayN, last: last.slice(5), lastN: days.filter((d) => d === last).length, week }
+  }, [all])
   const kinds = useMemo(() => ['전체', ...['국가기관', '지자체', '교육청', '공공기관'].filter((k) => all.some((i) => i.orgType === k))], [all])
   const items = useMemo(() => (kind === '전체' ? all : all.filter((i) => i.orgType === kind)), [all, kind])
   const pg = usePaged(items, kind + sort)
@@ -301,6 +311,12 @@ function Jobs() {
       <SampleNotice data={data} />
       <p className="sub">공공기관·국가기관·지자체의 장애 관련 채용 공고입니다. '장애인 제한경쟁'이 붙은 공고는 장애인만 지원할 수 있습니다.</p>
       {data?.updatedAt && <p className="sub">마지막 갱신 {data.updatedAt} · 접수 중 {all.length}건</p>}
+      {fresh && (
+        <p className="sub">
+          {fresh.todayN > 0 ? `오늘 새 공고 ${fresh.todayN}건` : `오늘은 새 공고가 없어요 · 마지막 신규 등록 ${fresh.last}(${fresh.lastN}건)`}
+          {' · '}최근 7일 신규 {fresh.week}건
+        </p>
+      )}
       {kinds.length > 2 && (
         <div className="kinds" role="group" aria-label="기관 종류">
           {kinds.map((k) => (
