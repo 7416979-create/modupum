@@ -182,7 +182,7 @@ function Welfare() {
     const k = q.trim()
     const list = (data?.items ?? [])
       .filter((i) => !k || `${i.title}${i.summary}${i.category}${i.target}`.includes(k))
-      .map((i) => ({ ...i, _period: periodOf(t, i, ovr?.items?.[i.id]), _new: isNew(t, i.firstSeen), _region: needsRegion(i) }))
+      .map((i) => ({ ...i, _period: periodOf(t, i, ovr?.items?.[i.id]), _new: isNew(t, i.firstSeen), _region: needsRegion(i) || ovr?.items?.[i.id]?.region === true }))
     // 마감 항목은 목록 아래로(그 안의 순서는 그대로)
     return [...list.filter((i) => i._period !== 'closed'), ...list.filter((i) => i._period === 'closed')]
   }, [data, ovr, q])

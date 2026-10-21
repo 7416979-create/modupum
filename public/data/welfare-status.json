@@ -5,6 +5,12 @@
       "applyStart": "2026-06-15",
       "applyEnd": "2026-12-31",
       "checkedAt": "2026-10-21"
+    },
+    "WLF00003173": {
+      "region": true,
+      "note": "2026년분 전국 동시 신청은 2025-11-10~11-28로 종료. 이후 지역별로 개인이용권 신청 가능 지역이 따로 열려(공식 누리집 신청 가능 지역 조회) 지역별 상이. 단일 마감일 미기재",
+      "sourceUrl": "https://dvoucher.kspo.or.kr/voucher/voucherSelectArea.do?menuNo=800003&topMenuNo=800001",
+      "checkedAt": "2026-10-21"
     }
   }
 }
