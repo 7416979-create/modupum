@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { isNew, periodOf, needsRegion } from './status'
+import { isNew, periodOf, needsRegion, newestNew, showTabNew } from './status'
 
 const TABS = [
   { id: 'home', label: '홈' },
@@ -510,10 +510,35 @@ const readHash = () => {
   return ROUTES.includes(h) ? h : 'home'
 }
 
+const SEEN_KEY = 'tab-seen-'
+const readSeen = (id) => { try { return localStorage.getItem(SEEN_KEY + id) || '' } catch { return '' } }
+
+// 탭별 최신 새 글 날짜(복지=firstSeen, 일자리=start, 소식=date). 열람하면 그 날짜까지 본 것으로 저장한다.
+function useTabNew(tab) {
+  const welfare = useData('welfare')
+  const jobs = useData('jobs')
+  const news = useData('news')
+  const [seen, setSeen] = useState(() => ({ welfare: readSeen('welfare'), jobs: readSeen('jobs'), news: readSeen('news') }))
+  const t = today()
+  const newest = {
+    welfare: newestNew(t, (welfare?.items ?? []).map((i) => i.firstSeen)),
+    jobs: newestNew(t, (jobs?.items ?? []).map((i) => i.start)),
+    news: newestNew(t, (news?.items ?? []).map((i) => i.date)),
+  }
+  const cur = newest[tab] || ''
+  useEffect(() => {
+    if (!cur) return
+    try { localStorage.setItem(SEEN_KEY + tab, cur) } catch { /* 저장 실패 시 배지는 계속 표시 */ }
+    setSeen((s) => ({ ...s, [tab]: cur }))
+  }, [tab, cur])
+  return (id) => (id in newest && id !== tab ? showTabNew(newest[id], seen[id]) : false)
+}
+
 export default function App() {
   const [tab, setTabState] = useState(readHash)
   const site = useData('site')
   const counting = useAnalytics(site?.analytics?.goatcounter, tab)
+  const hasNew = useTabNew(tab)
   const mainRef = useRef(null)
   const first = useRef(true)
 
@@ -548,7 +573,7 @@ export default function App() {
           </button>
           <nav aria-label="주 메뉴">
             {TABS.map((t) => (
-              <button key={t.id} className={tab === t.id ? 'on' : ''} aria-current={tab === t.id ? 'page' : undefined} onClick={() => setTab(t.id)}>{t.label}</button>
+              <button key={t.id} className={tab === t.id ? 'on' : ''} aria-current={tab === t.id ? 'page' : undefined} onClick={() => setTab(t.id)}>{t.label}{hasNew(t.id) && <><span className="tab-new" aria-hidden="true">NEW</span><span className="sr">, 새 글 있음</span></>}</button>
             ))}
           </nav>
         </div>

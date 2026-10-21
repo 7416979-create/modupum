@@ -18,6 +18,11 @@ export const isNew = (today, ...dates) =>
     return age >= 0 && age <= NEW_DAYS
   })
 
+// 탭 NEW 배지: 새 항목(isNew) 중 가장 최근 날짜. 없으면 ''. seen(마지막 확인 날짜)보다 새로울 때만 배지를 보인다.
+export const newestNew = (today, dates) =>
+  (dates || []).filter((d) => isNew(today, d)).map((d) => String(d).slice(0, 10)).sort().pop() || ''
+export const showTabNew = (newest, seen) => !!newest && !(YMD.test(String(seen || '')) && seen >= newest)
+
 // 본문에서 신청 종료일을 보수적으로 읽는다: 연도가 있는 날짜 + '까지' 또는 '~' 바로 뒤에서만.
 const D = String.raw`(\d{4})\s*[.\-년]\s*(\d{1,2})\s*[.\-월]\s*(\d{1,2})`
 export const parseEnd = (text) => {

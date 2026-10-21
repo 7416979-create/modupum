@@ -26,3 +26,13 @@ test('firstSeen: 첫 도입엔 안 찍고 이후 신규만 찍는다', () => {
   const out = stampFirstSeen([{ id: 'a' }, { id: 'b', firstSeen: 'X' }], [{ id: 'a' }, { id: 'b' }, { id: 'c' }], 'D')
   assert.deepEqual(out, [{ id: 'a' }, { id: 'b', firstSeen: 'X' }, { id: 'c', firstSeen: 'D' }])
 })
+
+import { newestNew, showTabNew } from '../src/status.js'
+test('tab NEW: newest new date and seen logic', () => {
+  assert.equal(newestNew('2026-10-21', ['2026-10-01', '2026-10-19', '2026-10-21', '']), '2026-10-21')
+  assert.equal(newestNew('2026-10-21', ['2026-10-01']), '')
+  assert.equal(showTabNew('2026-10-21', ''), true)
+  assert.equal(showTabNew('2026-10-21', '2026-10-20'), true)
+  assert.equal(showTabNew('2026-10-21', '2026-10-21'), false)
+  assert.equal(showTabNew('', ''), false)
+})
