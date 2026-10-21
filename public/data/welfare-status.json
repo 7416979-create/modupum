@@ -1,0 +1,1 @@
+{"_설명":"복지 항목별 신청기간 수동 보정. 키=복지 id, 값={applyStart,applyEnd(YYYY-MM-DD),ongoing(true=상시),checkedAt}. 확인된 것만 넣는다.","items":{}}

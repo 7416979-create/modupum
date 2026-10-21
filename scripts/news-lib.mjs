@@ -4,9 +4,9 @@ export const NEWS_KEYWORDS = ['장애', '활동지원', '발달', '희귀질환'
 export const NEWS_SOURCE = '보건복지부 보도자료'
 // 수집 출처 목록(추가 시 여기에 한 줄). id 는 출처별 접두+글 번호, 링크는 정규화한 원문 주소.
 export const SOURCES = [
-  { name: NEWS_SOURCE, rss: NEWS_RSS, prefix: 'mohw', idRe: /list_no=(d+)/, link: (no) => `https://www.mohw.go.kr/board.es?mid=a10503000000&bid=0027&act=view&list_no=${no}` },
-  { name: '고용노동부 정책자료', rss: 'https://www.moel.go.kr/rss/policy.do', prefix: 'moel-policy', idRe: /bbs_seq=(d+)/, link: (no) => `https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=${no}` },
-  { name: '고용노동부 공지', rss: 'https://www.moel.go.kr/rss/notice.do', prefix: 'moel-notice', idRe: /bbs_seq=(d+)/, link: (no) => `https://www.moel.go.kr/news/notice/noticeView.do?bbs_seq=${no}` },
+  { name: NEWS_SOURCE, rss: NEWS_RSS, prefix: 'mohw', idRe: /list_no=(\d+)/, link: (no) => `https://www.mohw.go.kr/board.es?mid=a10503000000&bid=0027&act=view&list_no=${no}` },
+  { name: '고용노동부 정책자료', rss: 'https://www.moel.go.kr/rss/policy.do', prefix: 'moel-policy', idRe: /bbs_seq=(\d+)/, link: (no) => `https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=${no}` },
+  { name: '고용노동부 공지', rss: 'https://www.moel.go.kr/rss/notice.do', prefix: 'moel-notice', idRe: /bbs_seq=(\d+)/, link: (no) => `https://www.moel.go.kr/news/notice/noticeView.do?bbs_seq=${no}` },
 ]
 export const MAX_NEWS = 200
 
@@ -33,7 +33,7 @@ export const parseRss = (xml, src = SOURCES[0]) =>
       desc: field(b, 'description'),
       url: no ? src.link(no) : '',
       source: src.name,
-      date: /^d{4}-d{2}-d{2}$/.test(dc) ? dc : Number.isNaN(t) ? '' : new Date(t + 9 * 3600000).toISOString().slice(0, 10),
+      date: /^\d{4}-\d{2}-\d{2}$/.test(dc) ? dc : Number.isNaN(t) ? '' : new Date(t + 9 * 3600000).toISOString().slice(0, 10),
     }
   })
 

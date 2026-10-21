@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { isNew, periodOf, needsRegion } from './status'
 
 const TABS = [
   { id: 'home', label: '홈' },
@@ -17,13 +18,6 @@ const daysLeft = (end) => Math.round((Date.parse(end) - Date.parse(today())) / 8
 // 테스트 기간(3개월) 설문 마감일. 이 날짜 이후에는 팝업을 띄우지 않는다.
 const SURVEY_END = '2027-01-19'
 
-// 올라온 날(한국 날짜)이 오늘이면 '오늘', 어제면 '어제' 표시를 붙이고 그 이후에는 없앤다.
-const ageTag = (d) => {
-  if (!d) return null
-  const age = Math.round((Date.parse(today()) - Date.parse(String(d).slice(0, 10))) / 86400000)
-  return age === 0 ? { cls: 'today', text: '오늘' } : age === 1 ? { cls: 'yesterday', text: '어제' } : null
-}
-
 // 제목에 기관명이 없으면 '[기관명] 제목'으로 보여 준다(기관명은 짧게)
 const orgLabel = (title, org) => {
   const t = (title || '').replace(/\s/g, '')
@@ -34,9 +28,19 @@ const orgLabel = (title, org) => {
   return `[${rest[0].replace(/^학교법인/, '')}] ${title}`
 }
 
-const AgeTag = ({ date }) => {
-  const t = ageTag(date)
-  return t ? <><span className={`age-tag ${t.cls}`}>{t.text}</span><span className="sr">, </span></> : null
+const PERIOD_LABEL = { open: '진행중', closed: '마감', unknown: '확인 필요', upcoming: '접수 예정' }
+
+// 상태 배지: 색에만 의존하지 않도록 항상 글자 라벨을 쓴다. 스크린리더용 쉼표로 제목과 구분한다.
+function Badges({ isNewItem, period, region }) {
+  if (!isNewItem && !period && !region) return null
+  return (
+    <>
+      {isNewItem && <span className="st-badge st-new">NEW</span>}
+      {period && <span className={`st-badge st-${period}`}>{PERIOD_LABEL[period]}</span>}
+      {region && <span className="st-badge st-region">지역 확인 필요</span>}
+      <span className="sr">, </span>
+    </>
+  )
 }
 
 const PAGE_SIZE = 10
@@ -171,12 +175,17 @@ function MoreLinks({ kind }) {
 
 function Welfare() {
   const data = useData('welfare')
+  const ovr = useData('welfare-status')
   const [q, setQ] = useState('')
   const items = useMemo(() => {
-    const list = data?.items ?? []
+    const t = today()
     const k = q.trim()
-    return k ? list.filter((i) => `${i.title}${i.summary}${i.category}${i.target}`.includes(k)) : list
-  }, [data, q])
+    const list = (data?.items ?? [])
+      .filter((i) => !k || `${i.title}${i.summary}${i.category}${i.target}`.includes(k))
+      .map((i) => ({ ...i, _period: periodOf(t, i, ovr?.items?.[i.id]), _new: isNew(t, i.firstSeen), _region: needsRegion(i) }))
+    // 마감 항목은 목록 아래로(그 안의 순서는 그대로)
+    return [...list.filter((i) => i._period !== 'closed'), ...list.filter((i) => i._period === 'closed')]
+  }, [data, ovr, q])
   const pg = usePaged(items, q)
 
   return (
@@ -187,10 +196,10 @@ function Welfare() {
       <p className="sr" role="status">{data ? `${items.length}건` : ''}</p>
       <ul className="list" tabIndex={-1}>
         {pg.slice.map((i) => (
-          <li key={i.id} className="item">
+          <li key={i.id} className={`item${i._period === 'closed' ? ' closed' : ''}`}>
             <details>
               <summary>
-                <h2>{i.title}</h2>
+                <h2><Badges isNewItem={i._new} period={i._period} region={i._region} />{i.title}</h2>
                 <span className="sum-tag">{i.category}</span>
               </summary>
               <div className="detail">
@@ -203,6 +212,7 @@ function Welfare() {
         ))}
         {data && items.length === 0 && <li className="empty">표시할 항목이 없습니다.</li>}
       </ul>
+      <p className="sub status-note">신청기간을 확인하지 못한 항목은 '확인 필요'로 표시합니다. 지역 확인 필요 항목은 거주 지역에 따라 대상·지원이 다를 수 있습니다.</p>
       <Pager pg={pg} />
       <MoreLinks kind="welfare" />
       <TipBox />
@@ -266,7 +276,7 @@ function News() {
           <li key={n.id} className="item">
             <details>
               <summary>
-                <h2><AgeTag date={n.date} />{n.title}</h2>
+                <h2><Badges isNewItem={isNew(today(), n.date)} />{n.title}</h2>
                 <span className="sum-tag">{n.date}</span>
               </summary>
               <div className="detail">
@@ -350,7 +360,7 @@ function Jobs() {
             <li key={i.id} className="item">
               <details>
                 <summary>
-                  <h2><AgeTag date={i.start} />{orgLabel(i.title, i.org)}</h2>
+                  <h2><Badges isNewItem={isNew(today(), i.start)} period={periodOf(today(), { end: i.end })} region={needsRegion(i, 'jobs')} />{orgLabel(i.title, i.org)}</h2>
                   <span className={`sum-tag dday${soon ? ' soon' : ''}`}>{left === 0 ? '오늘 마감' : `마감 ${left}일 남음${i.end ? ` · ${String(i.end).slice(5).replace('-', '.')}` : ''}`}</span>
                 </summary>
                 <div className="detail">

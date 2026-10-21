@@ -6,7 +6,7 @@ import { readFile, writeFile } from 'node:fs/promises'
 import { buildJobs, listUrl, rowsOf } from './jobs-lib.mjs'
 import { GOJOBS_LIST, parseList, buildGojobs, mergeJobs } from './gojobs-lib.mjs'
 import { validateJobs, validateWelfare, isAbnormalDrop } from './validate-lib.mjs'
-import { listUrl as welfareListUrl, parseList as parseWelfareList, toWelfare } from './welfare-lib.mjs'
+import { listUrl as welfareListUrl, parseList as parseWelfareList, toWelfare, stampFirstSeen } from './welfare-lib.mjs'
 
 const key = process.env.DATA_GO_KR_KEY
 
@@ -129,10 +129,10 @@ async function collectWelfare() {
     checked.errors.forEach((e) => console.error(`[검수:welfare] 오류 - ${e}`))
     throw new Error(`검수 실패(${checked.errors.length}건): 기존 welfare.json 을 유지합니다`)
   }
-  const items = checked.items
   const welfareUrl = new URL('../public/data/welfare.json', import.meta.url)
   const prev = JSON.parse(await readFile(welfareUrl, 'utf8').catch(() => '{}'))
   const prevCount = Array.isArray(prev.items) ? prev.items.length : 0
+  const items = stampFirstSeen(prev.items, checked.items, today)
   if (isAbnormalDrop(prevCount, items.length)) {
     console.warn(`[검수:welfare] 경고 - 건수 급감(${prevCount}건 → ${items.length}건). 기존 welfare.json 을 유지합니다`)
     return

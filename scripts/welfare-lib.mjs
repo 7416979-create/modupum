@@ -56,3 +56,14 @@ export const listUrl = (key, pageNo, numOfRows = 100) =>
   'https://apis.data.go.kr/B554287/NationalWelfareInformationsV001/NationalWelfarelistV001' +
   `?serviceKey=${serviceKeyParam(key)}&callTp=L&pageNo=${pageNo}&numOfRows=${numOfRows}` +
   `&srchKeyCode=003&searchWrd=${encodeURIComponent('장애인')}`
+
+// 최초 수집일(firstSeen) 기록: 이전 목록에 있던 항목은 이전 값을 그대로 이어받고(없으면 비워 둠 → NEW 아님),
+// 이전 목록이 있는데 새로 나타난 항목만 오늘 날짜를 찍는다. 이전 목록이 비어 있으면(첫 도입) 아무도 찍지 않는다.
+export const stampFirstSeen = (prevItems, items, today) => {
+  const prev = new Map((Array.isArray(prevItems) ? prevItems : []).map((p) => [p.id, p]))
+  return items.map((it) => {
+    const old = prev.get(it.id)
+    if (old) return old.firstSeen ? { ...it, firstSeen: old.firstSeen } : it
+    return prev.size > 0 ? { ...it, firstSeen: today } : it
+  })
+}

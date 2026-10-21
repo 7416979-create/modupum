@@ -165,9 +165,14 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .9rem; }
 .kinds button.on { border-color: var(--accent); }
 .tags span.soon { background: var(--accent); color: #fff; font-weight: 700; }
 
-.age-tag { display: inline-block; margin-right: 6px; padding: 0 10px; border-radius: var(--pill); font-size: .9rem; font-weight: 700; line-height: 1.5; letter-spacing: 0; vertical-align: middle; }
-.age-tag.today { background: #fde4e4; color: #a8121b; }
-.age-tag.yesterday { background: #d8f1e2; color: #00522a; }
+.st-badge { display: inline-block; margin-right: 6px; padding: 0 10px; border-radius: var(--pill); font-size: .9rem; font-weight: 700; line-height: 1.5; letter-spacing: 0; vertical-align: middle; border: 1px solid transparent; }
+.st-new { background: #fde4e4; color: #a8121b; }
+.st-open { background: #d8f1e2; color: #00522a; }
+.st-closed { background: #e4e4e8; color: #3a3a3f; border-color: #8a8a90; }
+.st-unknown, .st-upcoming { background: #fff; color: #3a3a3f; border-color: #8a8a90; }
+.st-region { background: #fff3d6; color: #6b4200; }
+.item.closed h2 { color: var(--muted); }
+.status-note { margin-top: 16px; font-size: .9rem; }
 .survey-pop { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 50; display: flex; justify-content: center; }
 .survey-box { position: relative; width: 100%; max-width: 380px; padding: 10px 14px; border-radius: 12px; background: #fff; color: #222; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2); }
 .survey-box h2 { margin: 0 48px 0 0; font-size: 1em; }
