@@ -36,3 +36,19 @@ test('tab NEW: newest new date and seen logic', () => {
   assert.equal(showTabNew('2026-10-21', '2026-10-21'), false)
   assert.equal(showTabNew('', ''), false)
 })
+
+import { criteriaOf, unknownLabel } from '../src/status.js'
+test('신청기간 불명 문구: 추가 자격기준 유무', () => {
+  assert.equal(unknownLabel({ target: '장애인', title: '장애인 이동 지원', summary: '이동 편의를 돕습니다.' }), '신청기간 확인 필요')
+  assert.equal(unknownLabel({ target: '장애인,저소득', summary: '' }), '신청기간 및 자격기준 확인 필요')
+  assert.equal(unknownLabel({ target: '장애인', summary: '소득 기준 이하 가구' }), '신청기간 및 자격기준 확인 필요')
+  assert.equal(criteriaOf({ target: '', summary: '' }), 'unknown')
+  assert.equal(unknownLabel({}), '신청기간 및 자격기준 확인 필요')
+})
+
+import { unknownShort } from '../src/status.js'
+test('짧은 라벨', () => {
+  assert.equal(unknownShort({ target: '장애인', summary: '이동 지원' }), '기간 확인')
+  assert.equal(unknownShort({ target: '장애인,저소득' }), '기간·자격 확인')
+  assert.equal(unknownShort({}), '기간·자격 확인')
+})

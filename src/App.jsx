@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { isNew, periodOf, needsRegion, newestNew, showTabNew } from './status'
+import { isNew, periodOf, needsRegion, unknownLabel, unknownShort, UNKNOWN_PERIOD_LABEL, newestNew, showTabNew } from './status'
 
 const TABS = [
   { id: 'home', label: '홈' },
@@ -28,15 +28,16 @@ const orgLabel = (title, org) => {
   return `[${rest[0].replace(/^학교법인/, '')}] ${title}`
 }
 
-const PERIOD_LABEL = { open: '진행중', closed: '마감', unknown: '신청기간 확인 필요', upcoming: '접수 예정' }
+const PERIOD_LABEL = { open: '진행중', closed: '마감', unknown: UNKNOWN_PERIOD_LABEL, upcoming: '접수 예정' }
 
-// 상태 배지: 색에만 의존하지 않도록 항상 글자 라벨을 쓴다. 스크린리더용 쉼표로 제목과 구분한다.
-function Badges({ period, region }) {
+// 상태 배지: 화면에는 짧은 글자 라벨(색에만 의존하지 않음), 스크린리더·마우스 오버에는 전체 문구. 카드당 기간 배지 하나 + 지역 보조 하나.
+function Badges({ period, region, full, short }) {
   if (!period && !region) return null
+  const pFull = full || PERIOD_LABEL[period]
   return (
     <>
-      {period && <span className={`st-badge st-${period}`}>{PERIOD_LABEL[period]}</span>}
-      {region && <span className="st-badge st-region">지역 확인 필요</span>}
+      {period && <><span className={`st-badge st-${period}`} title={pFull} aria-hidden="true">{short || PERIOD_LABEL[period]}</span><span className="sr">{pFull}</span></>}
+      {region && <><span className="st-badge st-region" title="지역 확인 필요" aria-hidden="true">지역 확인</span><span className="sr">{period ? ', ' : ''}지역 확인 필요</span></>}
       <span className="sr">, </span>
     </>
   )
@@ -201,7 +202,7 @@ function Welfare() {
           <li key={i.id} className={`item${i._period === 'closed' ? ' closed' : ''}`}>
             <details>
               <summary>
-                <h2><Badges period={i._period} region={i._region} />{i.title}<NewMark on={i._new} /></h2>
+                <h2><Badges period={i._period} region={i._region} full={i._period === 'unknown' ? unknownLabel(i) : ''} short={i._period === 'unknown' ? unknownShort(i) : ''} />{i.title}<NewMark on={i._new} /></h2>
                 <span className="sum-tag">{i.category}</span>
               </summary>
               <div className="detail">
