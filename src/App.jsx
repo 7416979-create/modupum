@@ -28,7 +28,7 @@ const orgLabel = (title, org) => {
   return `[${rest[0].replace(/^학교법인/, '')}] ${title}`
 }
 
-const PERIOD_LABEL = { open: '진행중', closed: '마감', unknown: '확인 필요', upcoming: '접수 예정' }
+const PERIOD_LABEL = { open: '진행중', closed: '마감', unknown: '자격요건 확인 필요', upcoming: '접수 예정' }
 
 // 상태 배지: 색에만 의존하지 않도록 항상 글자 라벨을 쓴다. 스크린리더용 쉼표로 제목과 구분한다.
 function Badges({ period, region }) {
@@ -515,18 +515,19 @@ const readHash = () => {
 const SEEN_KEY = 'tab-seen-'
 const readSeen = (id) => { try { return localStorage.getItem(SEEN_KEY + id) || '' } catch { return '' } }
 
-// 탭별 최신 새 글 날짜(복지=firstSeen, 일자리=start, 소식=date). 열람하면 그 날짜까지 본 것으로 저장한다.
+// 탭별 최신 새 글 날짜(복지=firstSeen, 일자리=start, 소식=date, 홈=세 탭 중 최신, 신청=날짜 데이터 없어 제외). 열람하면 그 날짜까지 본 것으로 저장한다.
 function useTabNew(tab) {
   const welfare = useData('welfare')
   const jobs = useData('jobs')
   const news = useData('news')
-  const [seen, setSeen] = useState(() => ({ welfare: readSeen('welfare'), jobs: readSeen('jobs'), news: readSeen('news') }))
+  const [seen, setSeen] = useState(() => ({ home: readSeen('home'), welfare: readSeen('welfare'), jobs: readSeen('jobs'), news: readSeen('news') }))
   const t = today()
   const newest = {
     welfare: newestNew(t, (welfare?.items ?? []).map((i) => i.firstSeen)),
     jobs: newestNew(t, (jobs?.items ?? []).map((i) => i.start)),
     news: newestNew(t, (news?.items ?? []).map((i) => i.date)),
   }
+  newest.home = [newest.welfare, newest.jobs, newest.news].sort().pop()
   const cur = newest[tab] || ''
   useEffect(() => {
     if (!cur) return
