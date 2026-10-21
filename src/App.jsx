@@ -31,17 +31,19 @@ const orgLabel = (title, org) => {
 const PERIOD_LABEL = { open: '진행중', closed: '마감', unknown: '확인 필요', upcoming: '접수 예정' }
 
 // 상태 배지: 색에만 의존하지 않도록 항상 글자 라벨을 쓴다. 스크린리더용 쉼표로 제목과 구분한다.
-function Badges({ isNewItem, period, region }) {
-  if (!isNewItem && !period && !region) return null
+function Badges({ period, region }) {
+  if (!period && !region) return null
   return (
     <>
-      {isNewItem && <span className="st-badge st-new">NEW</span>}
       {period && <span className={`st-badge st-${period}`}>{PERIOD_LABEL[period]}</span>}
       {region && <span className="st-badge st-region">지역 확인 필요</span>}
       <span className="sr">, </span>
     </>
   )
 }
+
+// NEW: 제목 텍스트 바로 뒤에 inline. 스크린리더는 '제목, 새 글' 순으로 읽는다.
+const NewMark = ({ on }) => on ? <><span className="st-badge st-new st-after" aria-hidden="true">NEW</span><span className="sr">, 새 글</span></> : null
 
 const PAGE_SIZE = 10
 
@@ -199,7 +201,7 @@ function Welfare() {
           <li key={i.id} className={`item${i._period === 'closed' ? ' closed' : ''}`}>
             <details>
               <summary>
-                <h2><Badges isNewItem={i._new} period={i._period} region={i._region} />{i.title}</h2>
+                <h2><Badges period={i._period} region={i._region} />{i.title}<NewMark on={i._new} /></h2>
                 <span className="sum-tag">{i.category}</span>
               </summary>
               <div className="detail">
@@ -276,7 +278,7 @@ function News() {
           <li key={n.id} className="item">
             <details>
               <summary>
-                <h2><Badges isNewItem={isNew(today(), n.date)} />{n.title}</h2>
+                <h2>{n.title}<NewMark on={isNew(today(), n.date)} /></h2>
                 <span className="sum-tag">{n.date}</span>
               </summary>
               <div className="detail">
@@ -360,7 +362,7 @@ function Jobs() {
             <li key={i.id} className="item">
               <details>
                 <summary>
-                  <h2><Badges isNewItem={isNew(today(), i.start)} period={periodOf(today(), { end: i.end })} region={needsRegion(i, 'jobs')} />{orgLabel(i.title, i.org)}</h2>
+                  <h2><Badges period={periodOf(today(), { end: i.end })} region={needsRegion(i, 'jobs')} />{orgLabel(i.title, i.org)}<NewMark on={isNew(today(), i.start)} /></h2>
                   <span className={`sum-tag dday${soon ? ' soon' : ''}`}>{left === 0 ? '오늘 마감' : `마감 ${left}일 남음${i.end ? ` · ${String(i.end).slice(5).replace('-', '.')}` : ''}`}</span>
                 </summary>
                 <div className="detail">
