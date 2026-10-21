@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { isNew, periodOf, needsRegion, unknownLabel, unknownShort, UNKNOWN_PERIOD_LABEL, newestNew, showTabNew } from './status'
+import { isNew, periodOf, needsRegion, unknownLabel, UNKNOWN_PERIOD_LABEL, newestNew, showTabNew } from './status'
 
 const TABS = [
   { id: 'home', label: '홈' },
@@ -32,6 +32,7 @@ const PERIOD_LABEL = { open: '진행중', closed: '마감', unknown: UNKNOWN_PER
 
 // 상태 배지: 화면에는 짧은 글자 라벨(색에만 의존하지 않음), 스크린리더·마우스 오버에는 전체 문구. 카드당 기간 배지 하나 + 지역 보조 하나.
 function Badges({ period, region, full, short }) {
+  if (period === 'unknown') period = ''
   if (!period && !region) return null
   const pFull = full || PERIOD_LABEL[period]
   return (
@@ -202,10 +203,13 @@ function Welfare() {
           <li key={i.id} className={`item${i._period === 'closed' ? ' closed' : ''}`}>
             <details>
               <summary>
-                <h2><Badges period={i._period} region={i._region} full={i._period === 'unknown' ? unknownLabel(i) : ''} short={i._period === 'unknown' ? unknownShort(i) : ''} />{i.title}<NewMark on={i._new} /></h2>
+                <h2><Badges period={i._period} region={i._region} />{i.title}<NewMark on={i._new} /></h2>
                 <span className="sum-tag">{i.category}</span>
               </summary>
               <div className="detail">
+                {i._period === 'unknown' && (
+                  <p className="period-note"><strong>{unknownLabel(i)}</strong> 신청 전 공식 기관에서 {unknownLabel(i) === UNKNOWN_PERIOD_LABEL ? '신청기간을' : '신청기간과 자격을'} 확인하세요.</p>
+                )}
                 <div className="tags"><span>{i.category}</span><span>{i.target}</span></div>
                 <p>{i.summary}</p>
                 <ExternalLink href={i.url} label={`${i.title} 원문 보기 · 출처 ${i.source}`}>원문 보기 · 출처 {i.source}</ExternalLink>
@@ -215,7 +219,7 @@ function Welfare() {
         ))}
         {data && items.length === 0 && <li className="empty">표시할 항목이 없습니다.</li>}
       </ul>
-      <p className="sub status-note">신청기간을 확인하지 못한 항목은 '확인 필요'로 표시합니다. 지역 확인 필요 항목은 거주 지역에 따라 대상·지원이 다를 수 있습니다.</p>
+      <p className="sub status-note">신청기간을 확인하지 못한 항목은 카드를 열면 '확인 필요' 안내가 나옵니다. 지역 확인 필요 항목은 거주 지역에 따라 대상·지원이 다를 수 있습니다.</p>
       <Pager pg={pg} />
       <MoreLinks kind="welfare" />
       <TipBox />

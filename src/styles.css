@@ -93,6 +93,7 @@ h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -
 .sum-tag.dday.soon { background: var(--accent); color: #fff; font-weight: 700; padding: 2px 12px; border-radius: var(--pill); }
 .item .detail { padding: 0 0 22px; }
 .item .detail p { color: var(--muted); margin: 8px 0 14px; max-width: 640px; }
+.item .detail p.period-note { color: var(--ink); padding: 8px 12px; border-left: 4px solid var(--muted); background: color-mix(in srgb, var(--ink) 6%, transparent); border-radius: 8px; }
 .item .detail a, .src-links a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .tags { display: flex; gap: 6px; flex-wrap: wrap; }
 .tags span { font-size: .9rem; padding: 3px 12px; background: var(--bg); border-radius: var(--pill); color: var(--muted); }
