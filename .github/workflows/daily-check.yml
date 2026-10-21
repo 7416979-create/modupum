@@ -1,0 +1,63 @@
+name: daily-check
+
+on:
+  schedule:
+    # 한국시간 10:07 = UTC 01:07
+    - cron: '7 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+# 점검끼리 겹치지 않게. 수집 워크플로(group: pages)와는 push 시 pull --rebase 로 충돌을 피한다.
+concurrency:
+  group: daily-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 100
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run daily check
+        id: check
+        run: node scripts/daily-check.mjs
+        continue-on-error: true
+        env:
+          DAILY_CHECK_REPORT: '1'
+      - name: Commit log
+        run: |
+          git config user.name "modupum-bot"
+          git config user.email "modupum-bot@users.noreply.github.com"
+          git add logs/daily-check.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: daily check log"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push && exit 0
+            sleep $((i * 5))
+          done
+          echo "::warning::로그 푸시 실패"
+      - name: Open issue on failure
+        if: steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TODAY=$(TZ=Asia/Seoul date +%F)
+          TITLE="[점검 이상] ${TODAY}"
+          gh label create daily-check --color d93f0b --description "일일 점검 이상" 2>/dev/null || true
+          EXISTING=$(gh issue list --state all --label daily-check --search "\"$TITLE\" in:title" --json title --jq "[.[] | select(.title==\"$TITLE\")] | length")
+          if [ "$EXISTING" != "0" ]; then
+            echo "오늘 이슈가 이미 있음, 생성 생략"
+          else
+            { cat "$RUNNER_TEMP/daily-check-report.md"; echo; echo "실행: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"; } > "$RUNNER_TEMP/body.md"
+            gh issue create --title "$TITLE" --label daily-check --body-file "$RUNNER_TEMP/body.md"
+          fi
+      - name: Fail job if check failed
+        if: steps.check.outcome == 'failure'
+        run: exit 1
