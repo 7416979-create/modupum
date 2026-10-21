@@ -35,6 +35,10 @@ jobs:
         run: node scripts/collect.mjs
         env:
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+      - name: Collect policy news (보건복지부 보도자료 RSS, 키 불필요)
+        # 실패·이상 시 기존 news.json 을 유지한다.
+        continue-on-error: true
+        run: node scripts/collect-news.mjs
       - name: Validate data (검수 실패 시 저장·배포 중단)
         run: node scripts/validate-jobs.mjs --fix
       - name: Save data changes
