@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-21 11:18",
+  "updatedAt": "2026-10-21 11:23",
   "items": [
     {
       "id": "gojobs-305736",
@@ -442,6 +442,19 @@
       "end": "2026-11-02",
       "url": "https://kodit2.saramin.co.kr",
       "disabledOnly": true
+    },
+    {
+      "id": "gojobs-306290",
+      "title": "국립국악원 공무직 (장애인 제한경쟁_홍보원)채용 공고문",
+      "org": "문화체육관광부 국립국악원",
+      "region": "",
+      "hires": null,
+      "start": "2026-10-21",
+      "end": "2026-11-03",
+      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EA%B5%AD%EB%A6%BD%EA%B5%AD%EC%95%85%EC%9B%90%20%EA%B3%B5%EB%AC%B4%EC%A7%81%20(%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%EA%B2%BD%EC%9F%81_%ED%99%8D%EB%B3%B4%EC%9B%90)%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0%EB%AC%B8",
+      "disabledOnly": true,
+      "orgType": "국가기관",
+      "source": "나라일터"
     },
     {
       "id": "gojobs-305072",
