@@ -2,6 +2,12 @@
 export const NEWS_RSS = 'https://www.mohw.go.kr/rss/board.es?mid=a10503000000&bid=0027'
 export const NEWS_KEYWORDS = ['장애', '활동지원', '발달', '희귀질환', '보조기기', '재활', '바우처', '개인예산']
 export const NEWS_SOURCE = '보건복지부 보도자료'
+// 수집 출처 목록(추가 시 여기에 한 줄). id 는 출처별 접두+글 번호, 링크는 정규화한 원문 주소.
+export const SOURCES = [
+  { name: NEWS_SOURCE, rss: NEWS_RSS, prefix: 'mohw', idRe: /list_no=(d+)/, link: (no) => `https://www.mohw.go.kr/board.es?mid=a10503000000&bid=0027&act=view&list_no=${no}` },
+  { name: '고용노동부 정책자료', rss: 'https://www.moel.go.kr/rss/policy.do', prefix: 'moel-policy', idRe: /bbs_seq=(d+)/, link: (no) => `https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=${no}` },
+  { name: '고용노동부 공지', rss: 'https://www.moel.go.kr/rss/notice.do', prefix: 'moel-notice', idRe: /bbs_seq=(d+)/, link: (no) => `https://www.moel.go.kr/news/notice/noticeView.do?bbs_seq=${no}` },
+]
 export const MAX_NEWS = 200
 
 const ENT = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', middot: '·', lsquo: '‘', rsquo: '’', ldquo: '“', rdquo: '”', rarr: '→', hellip: '…' }
@@ -15,17 +21,19 @@ const field = (block, tag) => {
   return decode(m[1].replace(/^\s*<!\[CDATA\[/, '').replace(/\]\]>\s*$/, '')).replace(/\s+/g, ' ').trim()
 }
 
-export const parseRss = (xml) =>
+export const parseRss = (xml, src = SOURCES[0]) =>
   String(xml).split('<item>').slice(1).map((b) => {
-    const url = field(b, 'link')
-    const no = url.match(/list_no=(\d+)/)?.[1]
+    const no = field(b, 'link').match(src.idRe)?.[1]
+    // 복지부는 pubDate(GMT), 고용노동부는 dc:date(한국시간 'YYYY-MM-DD HH:MM:SS')
+    const dc = field(b, 'dc:date').slice(0, 10)
     const t = Date.parse(field(b, 'pubDate'))
     return {
-      id: no ? `mohw-${no}` : '',
+      id: no ? `${src.prefix}-${no}` : '',
       title: field(b, 'title'),
       desc: field(b, 'description'),
-      url: no ? `https://www.mohw.go.kr/board.es?mid=a10503000000&bid=0027&act=view&list_no=${no}` : '',
-      date: Number.isNaN(t) ? '' : new Date(t + 9 * 3600000).toISOString().slice(0, 10),
+      url: no ? src.link(no) : '',
+      source: src.name,
+      date: /^d{4}-d{2}-d{2}$/.test(dc) ? dc : Number.isNaN(t) ? '' : new Date(t + 9 * 3600000).toISOString().slice(0, 10),
     }
   })
 
@@ -41,7 +49,7 @@ export const shortSummary = (r) => {
   return s.length > 140 ? `${s.slice(0, 139)}…` : s
 }
 
-export const toNews = (r) => ({ id: r.id, title: r.title, summary: shortSummary(r), source: NEWS_SOURCE, date: r.date, url: r.url })
+export const toNews = (r) => ({ id: r.id, title: r.title, summary: shortSummary(r), source: r.source || NEWS_SOURCE, date: r.date, url: r.url })
 
 // 기존 목록과 합친다: id·원문 URL 중복 제거, 최신순, 상한.
 export const mergeNews = (prev, fresh) => {

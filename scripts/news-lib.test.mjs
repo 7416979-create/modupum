@@ -22,3 +22,13 @@ test('합치기: 중복 제거·최신순', () => {
   const b = { id: 'b', url: 'u2', date: '2026-10-05' }
   assert.deepEqual(mergeNews([a], [b, { ...a }]).map((x) => x.id), ['b', 'a'])
 })
+
+test('고용노동부 RSS 파싱(dc:date)', async () => {
+  const { SOURCES } = await import('./news-lib.mjs')
+  const x = `<item><title><![CDATA[장애인 고용 지원 안내]]></title><link>https://www.moel.go.kr/news/notice/noticeView.do?bbs_seq=20261000655</link><description><![CDATA[장애인 고용 지원 안내]]></description><dc:date>2026-10-19 14:59:59</dc:date></item>`
+  const [r] = parseRss(x, SOURCES[2])
+  assert.equal(r.id, 'moel-notice-20261000655')
+  assert.equal(r.date, '2026-10-19')
+  assert.ok(isRelevant(r))
+  assert.equal(toNews(r).source, '고용노동부 공지')
+})
