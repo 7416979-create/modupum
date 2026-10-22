@@ -1,59 +1,7 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-21 18:16",
+  "updatedAt": "2026-10-22 10:18",
   "items": [
-    {
-      "id": "gojobs-305736",
-      "title": "국립국악원 국악연구실 기간제 근로자(휴직대체, 장애인제한 경쟁) 채용",
-      "org": "문화체육관광부 국립국악원",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-14",
-      "end": "2026-10-21",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EA%B5%AD%EB%A6%BD%EA%B5%AD%EC%95%85%EC%9B%90%20%EA%B5%AD%EC%95%85%EC%97%B0%EA%B5%AC%EC%8B%A4%20%EA%B8%B0%EA%B0%84%EC%A0%9C%20%EA%B7%BC%EB%A1%9C%EC%9E%90(%ED%9C%B4%EC%A7%81%EB%8C%80%EC%B2%B4%2C%20%EC%9E%A5%EC%95%A0%EC%9D%B8%EC%A0%9C%ED%95%9C%20%EA%B2%BD%EC%9F%81)%20%EC%B1%84%EC%9A%A9",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터"
-    },
-    {
-      "id": "gojobs-305585",
-      "title": "[충청지방데이터청] 2027년 공무직근로자(통계조사관) 장애인 제한 경쟁채용 공고",
-      "org": "국가데이터처 충청지방데이터청",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-13",
-      "end": "2026-10-21",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%5B%EC%B6%A9%EC%B2%AD%EC%A7%80%EB%B0%A9%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%B2%AD%5D%202027%EB%85%84%20%EA%B3%B5%EB%AC%B4%EC%A7%81%EA%B7%BC%EB%A1%9C%EC%9E%90(%ED%86%B5%EA%B3%84%EC%A1%B0%EC%82%AC%EA%B4%80)%20%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%20%EA%B2%BD%EC%9F%81%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터"
-    },
-    {
-      "id": "gojobs-305566",
-      "title": "국립아시아문화전당 기획운영과 공무직 및 기간제근로자(고객지원) 채용 공고(일반 및 장애인 제한경쟁)",
-      "org": "문화체육관광부 국립아시아문화전당",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-13",
-      "end": "2026-10-21",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EA%B5%AD%EB%A6%BD%EC%95%84%EC%8B%9C%EC%95%84%EB%AC%B8%ED%99%94%EC%A0%84%EB%8B%B9%20%EA%B8%B0%ED%9A%8D%EC%9A%B4%EC%98%81%EA%B3%BC%20%EA%B3%B5%EB%AC%B4%EC%A7%81%20%EB%B0%8F%20%EA%B8%B0%EA%B0%84%EC%A0%9C%EA%B7%BC%EB%A1%9C%EC%9E%90(%EA%B3%A0%EA%B0%9D%EC%A7%80%EC%9B%90)%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0(%EC%9D%BC%EB%B0%98%20%EB%B0%8F%20%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%EA%B2%BD%EC%9F%81)",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터"
-    },
-    {
-      "id": "gojobs-305207",
-      "title": "(동남청_울산) 공무직 근로자 장애인 제한 공개경쟁 채용 공고",
-      "org": "국가데이터처 동남지방데이터청",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-07",
-      "end": "2026-10-21",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=(%EB%8F%99%EB%82%A8%EC%B2%AD_%EC%9A%B8%EC%82%B0)%20%EA%B3%B5%EB%AC%B4%EC%A7%81%20%EA%B7%BC%EB%A1%9C%EC%9E%90%20%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%20%EA%B3%B5%EA%B0%9C%EA%B2%BD%EC%9F%81%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터"
-    },
     {
       "id": "306073",
       "title": "2026년 한국폴리텍대학 영주캠퍼스 체험형 청년인턴(장애) 채용",
@@ -479,6 +427,19 @@
       "end": "2026-11-04",
       "url": "https://recruit.krihs.re.kr/ext/rec/rec_5010.do?ANNC_NO=26102101&SUPT_FLD_CD=0&DEG=0",
       "disabledOnly": true
+    },
+    {
+      "id": "gojobs-306366",
+      "title": "2026년 농촌진흥청 일반직공무원(전산주사보, 농업서기) 경력경쟁채용시험 공고(장애인구분모집)",
+      "org": "농촌진흥청",
+      "region": "",
+      "hires": null,
+      "start": "2026-10-22",
+      "end": "2026-11-12",
+      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=2026%EB%85%84%20%EB%86%8D%EC%B4%8C%EC%A7%84%ED%9D%A5%EC%B2%AD%20%EC%9D%BC%EB%B0%98%EC%A7%81%EA%B3%B5%EB%AC%B4%EC%9B%90(%EC%A0%84%EC%82%B0%EC%A3%BC%EC%82%AC%EB%B3%B4%2C%20%EB%86%8D%EC%97%85%EC%84%9C%EA%B8%B0)%20%EA%B2%BD%EB%A0%A5%EA%B2%BD%EC%9F%81%EC%B1%84%EC%9A%A9%EC%8B%9C%ED%97%98%20%EA%B3%B5%EA%B3%A0(%EC%9E%A5%EC%95%A0%EC%9D%B8%EA%B5%AC%EB%B6%84%EB%AA%A8%EC%A7%91)",
+      "disabledOnly": true,
+      "orgType": "국가기관",
+      "source": "나라일터"
     },
     {
       "id": "gojobs-305072",
