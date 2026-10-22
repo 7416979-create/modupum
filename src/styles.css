@@ -95,6 +95,11 @@ h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -
 .item .detail p { color: var(--muted); margin: 8px 0 14px; max-width: 640px; }
 .item .detail p.period-note { color: var(--ink); padding: 8px 12px; border-left: 4px solid var(--muted); background: color-mix(in srgb, var(--ink) 6%, transparent); border-radius: 8px; }
 .item .detail a, .src-links a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.item .detail .job-summary { margin: 12px 0 8px; max-width: 640px; }
+.item .detail .job-summary div { display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent); }
+.item .detail .job-summary dt { flex: 0 0 8.5em; font-weight: 700; color: var(--ink); }
+.item .detail .job-summary dd { margin: 0; color: var(--ink); }
+@media (max-width: 480px) { .item .detail .job-summary div { flex-direction: column; gap: 2px; } }
 .tags { display: flex; gap: 6px; flex-wrap: wrap; }
 .tags span { font-size: .9rem; padding: 3px 12px; background: var(--bg); border-radius: var(--pill); color: var(--muted); }
 .empty { text-align: center; color: var(--muted); padding: 48px 0; }

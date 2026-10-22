@@ -5,6 +5,8 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { buildJobs, listUrl, rowsOf } from './jobs-lib.mjs'
 import { GOJOBS_LIST, parseList, buildGojobs, mergeJobs } from './gojobs-lib.mjs'
+import { isKead } from './kead-lib.mjs'
+import { loadHolidays, jobCollectDecision, isForced } from './workday-lib.mjs'
 import { validateJobs, validateWelfare, isAbnormalDrop } from './validate-lib.mjs'
 import { listUrl as welfareListUrl, parseList as parseWelfareList, toWelfare, stampFirstSeen } from './welfare-lib.mjs'
 
@@ -97,17 +99,29 @@ async function collectJobs() {
   } catch (e) {
     console.error(`나라일터 수집 실패(공공기관 공고만 저장): ${e.message}`)
   }
+  // KEAD 공고는 별도 단계(collect-kead.mjs)가 채운다. 여기서 지워지지 않게 이전 분 가운데 마감 전인 것을 이어 둔다.
+  const prevJobs = JSON.parse(await readFile(new URL('../public/data/jobs.json', import.meta.url), 'utf8').catch(() => '{}'))
+  const keepKead = (Array.isArray(prevJobs.items) ? prevJobs.items : []).filter((j) => isKead(j) && j.end >= today)
+  items = [...items, ...keepKead].sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0))
   const out = { sample: false, updatedAt: kstNow.toISOString().slice(0, 16).replace('T', ' '), items }
   await writeFile(new URL('../public/data/jobs.json', import.meta.url), `${JSON.stringify(out, null, 2)}\n`)
   console.log(`일자리: 전체 ${all.length}건 중 ${items.length}건 저장`)
 }
 
 let failed = false
-try {
-  await collectJobs()
-} catch (e) {
-  failed = true
-  console.error(`일자리 수집 실패: ${e.message}`)
+// 일자리는 평일(KST)에만 수집한다. 주말·공휴일에는 건너뛰고 기존 jobs.json 을 그대로 둔다(FORCE_COLLECT=1 이면 항상 수집).
+// 복지 수집은 이 판정과 무관하게 계속한다.
+const decision = jobCollectDecision(today, await loadHolidays(), { force: isForced() })
+if (decision.collect) {
+  console.log(`일자리 수집: ${today} ${decision.reason}`)
+  try {
+    await collectJobs()
+  } catch (e) {
+    failed = true
+    console.error(`일자리 수집 실패: ${e.message}`)
+  }
+} else {
+  console.log(`일자리 수집 건너뜀: ${today} ${decision.reason}. 기존 jobs.json 을 유지합니다`)
 }
 
 async function collectWelfare() {

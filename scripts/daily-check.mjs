@@ -7,6 +7,7 @@ import { readFile, writeFile, mkdir, appendFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+import { loadHolidays, jobCollectDecision } from './workday-lib.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const SITE = (process.env.DAILY_CHECK_SITE || 'https://modupum.kr').replace(/\/$/, '')
@@ -49,7 +50,10 @@ try {
     const [hash, iso] = out.split(' ')
     const hours = (Date.now() - Date.parse(iso)) / 3600000
     evidence.push(`최근 수집 커밋 ${hash} ${hours.toFixed(1)}시간 전`)
-    if (hours >= STALE_HOURS) issues.push(`자동 수집 커밋이 ${hours.toFixed(1)}시간째 없음(기준 ${STALE_HOURS}시간): ${hash} ${iso}`)
+    // 주말·공휴일에는 일자리 수집을 쉬므로 오래된 수집 커밋만으로는 이상으로 보지 않는다(복지·소식 변화가 없으면 커밋도 없다).
+    const dayOff = !jobCollectDecision(today, await loadHolidays()).collect
+    if (hours >= STALE_HOURS && dayOff) notes.push(`일자리 수집 휴무일(주말·공휴일)이라 수집 커밋 ${hours.toFixed(1)}시간 경과는 이상으로 보지 않음`)
+    else if (hours >= STALE_HOURS) issues.push(`자동 수집 커밋이 ${hours.toFixed(1)}시간째 없음(기준 ${STALE_HOURS}시간): ${hash} ${iso}`)
   }
 } catch (e) {
   issues.push(`커밋 이력 확인 실패: ${e.message.split('\n')[0]}`)

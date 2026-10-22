@@ -349,7 +349,7 @@ function Jobs() {
         {data?.updatedAt && <p className="sub">마지막 갱신 {data.updatedAt} · 접수 중 {all.length}건</p>}
         <details className="jobs-help">
           <summary>안내 보기</summary>
-          <p className="sub">공공기관·국가기관·지자체의 장애 관련 채용 공고입니다. '장애인 제한경쟁'이 붙은 공고는 장애인만 지원할 수 있습니다.</p>
+          <p className="sub">공공기관·국가기관·지자체의 장애 관련 채용 공고입니다. '장애인 제한경쟁'이 붙은 공고는 장애인만 지원할 수 있습니다. 출처가 한국장애인고용공단(KEAD)인 공고는 장애인 전용인지 알 수 없는 경우가 있어, 카드를 열면 안내문과 본문 요약이 나옵니다.</p>
         </details>
       </div>
       <div className="seg-wrap">
@@ -371,15 +371,29 @@ function Jobs() {
                   <span className={`sum-tag dday${soon ? ' soon' : ''}`}>{left === 0 ? '오늘 마감' : `마감 ${left}일 남음${i.end ? ` · ${String(i.end).slice(5).replace('-', '.')}` : ''}`}</span>
                 </summary>
                 <div className="detail">
+                  {i.eligibilityNote && (
+                    <p className="period-note"><strong>{i.eligibilityNote}</strong> 이 공고가 장애인만 지원할 수 있는지는 제목만으로 알 수 없습니다. 지원 전에 원문 공고에서 자격을 확인하세요.</p>
+                  )}
+                  {(i.notes ?? []).map((n) => (
+                    <p key={n} className="period-note"><strong>확인 필요</strong> {n}</p>
+                  ))}
                   <div className="tags">
                     {soon && <span className="soon">{left === 0 ? '오늘 마감' : `마감 임박 · ${left}일 남음`}</span>}
                     <span>{i.disabledOnly ? '장애인 제한경쟁' : '장애 관련 · 자격 확인 필요'}</span>
                     <span>{i.org}</span>
                     <span>{i.orgType}</span>
                     <span>마감 {i.end}</span>
-                    {i.source && <span>출처 {i.source}</span>}
+                    {i.source && <span>출처 {i.sourceLabel || i.source}</span>}
                   </div>
-                  <ExternalLink href={i.url} label={`${orgLabel(i.title, i.org)} 원문 보기`}>원문 보기</ExternalLink>
+                  {i.summary && (
+                    <dl className="job-summary" aria-label="공고 본문 요약">
+                      <div><dt>채용 인원</dt><dd>{i.summary.채용인원}</dd></div>
+                      <div><dt>고용 형태</dt><dd>{i.summary.고용형태}</dd></div>
+                      <div><dt>접수 방법</dt><dd>{i.summary.접수방법}</dd></div>
+                      <div><dt>장애인 관련 문구</dt><dd>{(i.summary.장애인관련 ?? []).join(' / ')}</dd></div>
+                    </dl>
+                  )}
+                  <ExternalLink href={i.url} label={`${orgLabel(i.title, i.org)} 원문 보기${i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}`}>원문 보기{i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}</ExternalLink>
                 </div>
               </details>
             </li>

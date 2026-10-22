@@ -41,7 +41,12 @@ export const validateJobs = (items, { today, rules = {} }) => {
     for (const f of ['id', 'title', 'org', 'end', 'url']) {
       if (!j?.[f] || typeof j[f] !== 'string') errors.push(`${tag}: 필수 항목 ${f} 없음`)
     }
-    if (j.disabledOnly !== true) errors.push(`${tag}: disabledOnly 가 true 가 아님`)
+    // KEAD(한국장애인고용공단) 공고는 장애인 전용인지 단정하지 않으므로 disabledOnly·제목의 '장애' 검사를 하지 않는다.
+    const kead = j.source === 'KEAD'
+    if (kead) {
+      if (typeof j.disabledOnly !== 'boolean') errors.push(`${tag}: disabledOnly 가 true/false 가 아님`)
+      if (j.disabledOnly !== true && !j.eligibilityNote) errors.push(`${tag}: 장애인 전용이 아닌 KEAD 공고에 지원 가능 여부 안내문(eligibilityNote)이 없음`)
+    } else if (j.disabledOnly !== true) errors.push(`${tag}: disabledOnly 가 true 가 아님`)
     for (const f of ['start', 'end']) {
       if (j[f] && !validDate(j[f])) errors.push(`${tag}: ${f} 날짜 형식 오류(${j[f]})`)
     }
@@ -49,9 +54,9 @@ export const validateJobs = (items, { today, rules = {} }) => {
       errors.push(`${tag}: 시작일이 마감일보다 늦음`)
     }
     const t = String(j.title ?? '')
-    const hit = titleExclude.find((w) => t.includes(w))
+    const hit = kead ? undefined : titleExclude.find((w) => t.includes(w))
     if (hit) errors.push(`${tag}: 제목에 제외 표현 '${hit}'`)
-    if (t && !t.includes('장애')) errors.push(`${tag}: 제목에 '장애' 없음`)
+    if (t && !kead && !t.includes('장애')) errors.push(`${tag}: 제목에 '장애' 없음`)
   }
   return { items: cur, fixes, errors }
 }

@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-22 14:14",
+  "updatedAt": "2026-10-22 17:01",
   "items": [
     {
       "id": "306073",
@@ -167,6 +167,58 @@
       "source": "나라일터"
     },
     {
+      "id": "kead-217035",
+      "title": "[인천환경공단] 2026년 체험형 인턴 공개경쟁채용 공고",
+      "org": "한국장애인고용공단",
+      "region": "인천광역시 연수구",
+      "hires": 5,
+      "start": "2026-10-21",
+      "end": "2026-10-23",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217035&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "5 명",
+        "고용형태": "확인 안 됨",
+        "접수방법": "기간 내 등기우편만 가능 ( 채용공고문 확인필 )",
+        "장애인관련": [
+          "확인 안 됨"
+        ]
+      },
+      "notes": [
+        "접수 마감일이 목록(2026-10-22)과 본문(2026-10-23)에서 다릅니다. 본문 기준으로 표시했으니 원문에서 꼭 확인하세요."
+      ],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
+    },
+    {
+      "id": "kead-216969",
+      "title": "[서울북부지사] 인수중학교 청소직원 모집 안내(채용시마감)",
+      "org": "한국장애인고용공단",
+      "region": "서울특별시 강북구",
+      "hires": null,
+      "start": "2026-10-19",
+      "end": "2026-10-24",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216969&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "확인 안 됨",
+        "고용형태": "확인 안 됨",
+        "접수방법": "확인 안 됨",
+        "장애인관련": [
+          "확인 안 됨"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
+    },
+    {
       "id": "305917",
       "title": "한전KDN(주) 목포지사 AMI분야 비정규직(장애인) 모집공고(재공고)",
       "org": "한전KDN",
@@ -215,6 +267,33 @@
       "source": "나라일터"
     },
     {
+      "id": "kead-216959",
+      "title": "[서울동부지사] 공무원연금공단 장애인턴 채용 공고(~10.26)",
+      "org": "공무원연금공단",
+      "region": "서울특별시 강남구",
+      "hires": null,
+      "start": "2026-10-19",
+      "end": "2026-10-26",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216959&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "확인 안 됨",
+        "고용형태": "계약직('26.11.12~27.5.20(약 7개월))",
+        "접수방법": "10.26(월)까지 이메일(주소는 원문 참조)로 이메일 지원",
+        "장애인관련": [
+          "개인정보 동의서, 입사지원서, 자기소개서, 장애인증명서, 중증장애인확인서(장고법상 중증만 해당)",
+          "메일제목 및 파일명: 청년인턴(장애) 응시원서(성명:ㅇㅇㅇ)"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
+    },
+    {
       "id": "305971",
       "title": "[제2026-118호] 2026년도 제9차 강원특별자치도장애아동·발달장애인지원센터 체험형 청년인턴(장애인 제한경쟁) 채용 공고",
       "org": "한국장애인개발원",
@@ -237,6 +316,32 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터"
+    },
+    {
+      "id": "kead-217026",
+      "title": "[서울동부지사] 서울농수산식품공사 발달장애예술인(청년인턴) 채용",
+      "org": "한국장애인고용공단",
+      "region": "서울특별시 송파구",
+      "hires": 1,
+      "start": "2026-10-21",
+      "end": "2026-10-27",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217026&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "1명",
+        "고용형태": "본문에 체험형·인턴 표현이 있음",
+        "접수방법": "확인 안 됨",
+        "장애인관련": [
+          "서울농수산식품공사 하반기 체험형 발달장애예술인 청년 인턴을 채용 합니다.",
+          "발달장애예술 분야 ( 청년 인턴 )",
+          "* 입사지원 양식, 개인정보 제공 동의서, 중증장애인확인서, 포트폴리오3매 이내 등 서류를 갖춰 제출"
+        ]
+      },
+      "notes": [],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
     },
     {
       "id": "305988",
@@ -285,6 +390,111 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터"
+    },
+    {
+      "id": "kead-217043",
+      "title": "[대전지역본부] 한국수자원공사 사회형평(장애인) 체험형 인턴 2차 채용(재택근무, ~26.10.28.수 14시까지)",
+      "org": "한국장애인고용공단",
+      "region": "대전광역시 대덕구",
+      "hires": 40,
+      "start": "2026-10-21",
+      "end": "2026-10-28",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217043&menuId=MENU2201",
+      "disabledOnly": true,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "40명",
+        "고용형태": "기간의 정함이 있는 근로계약(26.11.11.~27.5.10.)",
+        "접수방법": "온라인 접수(https://kwater.recruit-zone.co.kr/)",
+        "장애인관련": [
+          "[한국수자원공사 2026년 사회형평(장애인) 체험형 인턴(2차) 채용]",
+          "9. 기타(지원자격 등): 등록장애인, 만 18세 이상인 자, 자택에서 컴퓨터 활용 원격근무 가능자"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ],
+      "eligibilityNote": ""
+    },
+    {
+      "id": "kead-217005",
+      "title": "[대전지역본부] 2026년 제5차 한국기상산업기술원 공개 채용(~26.10.28. 18시까지)",
+      "org": "한국장애인고용공단",
+      "region": "대전광역시 동구",
+      "hires": 1,
+      "start": "2026-09-29",
+      "end": "2026-10-28",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217005&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "1명",
+        "고용형태": "임용일로부터 만60세까지 근무",
+        "접수방법": "온라인지원 (https://kmiti.recroitlab.co.kr)",
+        "장애인관련": [
+          "9. 기타(지원자격 등): 등록장애인, 임용 예정일부터 근무가능한 자 등(정년 만 60세)"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
+    },
+    {
+      "id": "kead-216947",
+      "title": "[조달청] 공무직근로자 공개경쟁채용(장애인 전형-시설관리 직무) 공고(장애인만, ~10/28)",
+      "org": "한국장애인고용공단",
+      "region": "서울특별시 서초구",
+      "hires": null,
+      "start": "2026-10-16",
+      "end": "2026-10-28",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216947&menuId=MENU2201",
+      "disabledOnly": true,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "확인 안 됨",
+        "고용형태": "본문에 공무직 표현이 있음",
+        "접수방법": "확인 안 됨",
+        "장애인관련": [
+          "[조달청] 공무직근로자 공개경쟁채용(장애인 전형-시설관리 직무) 공고 (장애인만, ~10/28)"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ],
+      "eligibilityNote": ""
+    },
+    {
+      "id": "kead-216946",
+      "title": "[조달청] 공무직근로자 공개경쟁채용(장애인 전형) 공고(장애인만, ~10/28)",
+      "org": "한국장애인고용공단",
+      "region": "서울특별시 서초구",
+      "hires": null,
+      "start": "2026-10-16",
+      "end": "2026-10-28",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216946&menuId=MENU2201",
+      "disabledOnly": true,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "확인 안 됨",
+        "고용형태": "본문에 공무직 표현이 있음",
+        "접수방법": "확인 안 됨",
+        "장애인관련": [
+          "[조달청] 공무직근로자 공개경쟁채용(장애인 전형) 공고 (장애인만, ~10/28)"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ],
+      "eligibilityNote": ""
     },
     {
       "id": "306014",
@@ -394,6 +604,110 @@
       "source": "나라일터"
     },
     {
+      "id": "kead-217008",
+      "title": "[서울지역본부] [선린인터넷고등학교(서울 용산구 소재)] 학교청소원 모집안내",
+      "org": "한국장애인고용공단",
+      "region": "서울특별시 용산구",
+      "hires": 1,
+      "start": "2026-10-20",
+      "end": "2026-10-30",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217008&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "1 명",
+        "고용형태": "본문에 무기계약직·무기계약·계약직·기간제 표현이 있음",
+        "접수방법": "확인 안 됨",
+        "장애인관련": [
+          "확인 안 됨"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
+    },
+    {
+      "id": "kead-216973",
+      "title": "[광주보훈요양원]2026년 제3차 중증장애인 체험형 청년인턴(단시간_일4시간)채용공고",
+      "org": "한국장애인고용공단",
+      "region": "전남광주통합특별시 광산구",
+      "hires": 3,
+      "start": "2026-10-19",
+      "end": "2026-10-30",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216973&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "3 명",
+        "고용형태": "본문에 정규직·계약직·단시간·체험형·인턴 표현이 있음",
+        "접수방법": "이메일 제출(이메일(주소는 원문 참조))후 전화 연락(062-448-1123)",
+        "장애인관련": [
+          "한국보훈복지의료공단 광주보훈요양원 2026년 제3차 중증장애인 청년인턴(체험형_단시간) 채용계획을 다음과 같이 공고합니다 .",
+          "채용분야 : 체험형 청년인턴(계약직)만15세이상 ~ 만34세이하 중증장애인만 지원가능",
+          "제출서류: 입사지원서,자기소개서(붙임파일 참조),장애인증명서"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
+    },
+    {
+      "id": "kead-217045",
+      "title": "[서울남부지사] 가산중학교 미화직(오후) 채용",
+      "org": "한국장애인고용공단",
+      "region": "서울특별시 금천구",
+      "hires": 1,
+      "start": "2026-10-21",
+      "end": "2026-10-31",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217045&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "1명",
+        "고용형태": "계약직(9개월)",
+        "접수방법": "첨부파일 양식을 이메일 이메일(주소는 원문 참조)로 제출",
+        "장애인관련": [
+          "확인 안 됨"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
+    },
+    {
+      "id": "kead-217000",
+      "title": "[강원지사] 2군단 사령부 춘천, 화천, 철원 조리원 등 6개 직렬 총 32명 채용 (~ 10.31. 접수 마감)",
+      "org": "제2군단 사령부",
+      "region": "강원특별자치도 춘천시",
+      "hires": null,
+      "start": "2026-10-20",
+      "end": "2026-10-31",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217000&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "확인 안 됨",
+        "고용형태": "본문에 기간제·공무직 표현이 있음",
+        "접수방법": "확인 안 됨",
+        "장애인관련": [
+          "[장애인 병행 채용]"
+        ]
+      },
+      "notes": [],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
+    },
+    {
       "id": "306061",
       "title": "(보훈 및 장애인 제한경쟁) 육아휴직자 대체 시간선택제 일자리 채용",
       "org": "신용보증기금",
@@ -403,6 +717,58 @@
       "end": "2026-11-02",
       "url": "https://kodit2.saramin.co.kr",
       "disabledOnly": true
+    },
+    {
+      "id": "kead-216995",
+      "title": "[인천공항운영서비스] (2026-4)직원 채용 공고 안내 (공개 제한경쟁채용)",
+      "org": "한국장애인고용공단",
+      "region": "인천광역시 연수구",
+      "hires": null,
+      "start": "2026-10-19",
+      "end": "2026-11-02",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216995&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "확인 안 됨",
+        "고용형태": "확인 안 됨",
+        "접수방법": "확인 안 됨",
+        "장애인관련": [
+          "확인 안 됨"
+        ]
+      },
+      "notes": [
+        "접수 마감일이 목록(2026-11-01)과 본문(2026-11-02)에서 다릅니다. 본문 기준으로 표시했으니 원문에서 꼭 확인하세요."
+      ],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
+    },
+    {
+      "id": "kead-216962",
+      "title": "[강원지사] 춘천시, 강원특별자치도혈액원 운전원 1명 채용(~ 11.2. 10:00 접수마감)",
+      "org": "대한적십자사 강원특별자치도혈액원",
+      "region": "강원특별자치도 춘천시",
+      "hires": 1,
+      "start": "2026-10-19",
+      "end": "2026-11-02",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216962&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "1명(1종 대형 면허 소지자)",
+        "고용형태": "1년 계약직(26. 11. 25. ~ 27. 11. 24.)",
+        "접수방법": "자사 입사지원서 양식 등 작성하여 이메일 접수(접수처: 이메일(주소는 원문 참조))",
+        "장애인관련": [
+          "[장애인만 채용]"
+        ]
+      },
+      "notes": [
+        "접수 마감일이 목록(2026-11-03)과 본문(2026-11-02)에서 다릅니다. 본문 기준으로 표시했으니 원문에서 꼭 확인하세요."
+      ],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
     },
     {
       "id": "gojobs-306290",
@@ -418,6 +784,30 @@
       "source": "나라일터"
     },
     {
+      "id": "kead-217083",
+      "title": "[경기지역본부] 수원시청소년청년재단 2026년 제7회 계약직 채용 공고",
+      "org": "한국장애인고용공단",
+      "region": "경기도 수원시",
+      "hires": null,
+      "start": "2026-10-22",
+      "end": "2026-11-03",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217083&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "총11명",
+        "고용형태": "본문에 계약직 표현이 있음",
+        "접수방법": "이메일 접수(이메일(주소는 원문 참조))",
+        "장애인관련": [
+          "[장애인지원자응시가능]"
+        ]
+      },
+      "notes": [],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
+    },
+    {
       "id": "306206",
       "title": "국토연구원 2026년 제4차 청년인턴 공개채용(장애인·보훈제한경쟁, 일반경쟁)",
       "org": "국토연구원",
@@ -429,6 +819,32 @@
       "disabledOnly": true
     },
     {
+      "id": "kead-217037",
+      "title": "[인천환경공단] 2026년 3차 일반직 및 공무직 공개경쟁채용 공고",
+      "org": "한국장애인고용공단",
+      "region": "인천광역시 연수구",
+      "hires": null,
+      "start": "2026-10-21",
+      "end": "2026-11-04",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217037&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "확인 안 됨",
+        "고용형태": "확인 안 됨",
+        "접수방법": "기간 내 온라인접수만 가능 ( 채용공고문 확인필 )",
+        "장애인관련": [
+          "확인 안 됨"
+        ]
+      },
+      "notes": [
+        "접수 마감일이 목록(2026-11-03)과 본문(2026-11-04)에서 다릅니다. 본문 기준으로 표시했으니 원문에서 꼭 확인하세요."
+      ],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
+    },
+    {
       "id": "306244",
       "title": "2026년 하반기 신입직원(전산직 및 장애·보훈) 채용 공고",
       "org": "공무원연금공단",
@@ -438,6 +854,82 @@
       "end": "2026-11-05",
       "url": "https://www.geps.or.kr/notiCommunication_info_incruit/43491?curPage=1",
       "disabledOnly": true
+    },
+    {
+      "id": "kead-217086",
+      "title": "[서울남부지사] 2026년 한국해외인프라도시개발지원공사 중증장애인 사무보조 채용공고(~11.5. 16시)",
+      "org": "한국해외인프라도시개발지원공사",
+      "region": "서울특별시 영등포구",
+      "hires": 3,
+      "start": "2026-10-22",
+      "end": "2026-11-05",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217086&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "3명",
+        "고용형태": "본문에 시간제 표현이 있음",
+        "접수방법": "이메일 제출, 이메일(주소는 원문 참조)로 보내주시기 바랍니다.",
+        "장애인관련": [
+          "｢장애인고용촉진 및 직업재활법 시행령｣ 제4조의 중증장애인에 해당하는 자"
+        ]
+      },
+      "notes": [],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
+    },
+    {
+      "id": "kead-216955",
+      "title": "[서울동부지사] 대한무역투자진흥공사 장애인 체험형 청년 인턴 채용(~11/8)",
+      "org": "한국장애인고용공단",
+      "region": "서울특별시 서초구",
+      "hires": 0,
+      "start": "2026-10-19",
+      "end": "2026-11-08",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216955&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "00 명 내외",
+        "고용형태": "계약직 (6 개월이내 / 배치되는팀별로 상이 )",
+        "접수방법": "이메일 지원",
+        "장애인관련": [
+          "[대한무역투자진흥공사] 장애인 체험형 청년 인턴 채용(~11/8)",
+          "장애인복지법에 따른 등록장애인만 지원 가능",
+          "* 지원서에 장애유형과 중 / 경증 여부 기재 필수"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
+    },
+    {
+      "id": "kead-216999",
+      "title": "[서울북부지사] 서울교통공사 하반기 신입사원 공개채용 공고(11.03. 10:00~11.09. 18:00)",
+      "org": "한국장애인고용공단",
+      "region": "서울특별시 광진구",
+      "hires": null,
+      "start": "2026-10-20",
+      "end": "2026-11-09",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216999&menuId=MENU2201",
+      "disabledOnly": false,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "확인 안 됨",
+        "고용형태": "채용형 인턴",
+        "접수방법": "인터넷 접수(https://seoulmetro.incruit.com)",
+        "장애인관련": [
+          "확인 안 됨"
+        ]
+      },
+      "notes": [],
+      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
     },
     {
       "id": "gojobs-306366",
