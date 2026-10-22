@@ -7,6 +7,7 @@ export const SOURCES = [
   { name: NEWS_SOURCE, rss: NEWS_RSS, prefix: 'mohw', idRe: /list_no=(\d+)/, link: (no) => `https://www.mohw.go.kr/board.es?mid=a10503000000&bid=0027&act=view&list_no=${no}` },
   { name: '고용노동부 정책자료', rss: 'https://www.moel.go.kr/rss/policy.do', prefix: 'moel-policy', idRe: /bbs_seq=(\d+)/, link: (no) => `https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=${no}` },
   { name: '고용노동부 공지', rss: 'https://www.moel.go.kr/rss/notice.do', prefix: 'moel-notice', idRe: /bbs_seq=(\d+)/, link: (no) => `https://www.moel.go.kr/news/notice/noticeView.do?bbs_seq=${no}` },
+  { name: '보건복지부 공고', rss: 'https://www.mohw.go.kr/rss/board.es?mid=a10501010000&bid=0003&cg_code=C01', prefix: 'mohw-notice', idRe: /list_no=(\d+)/, link: (no) => `https://www.mohw.go.kr/board.es?mid=a10501010000&bid=0003&act=view&list_no=${no}` },
 ]
 export const MAX_NEWS = 200
 
