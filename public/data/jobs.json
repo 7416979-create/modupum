@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-22 10:18",
+  "updatedAt": "2026-10-22 14:14",
   "items": [
     {
       "id": "306073",
@@ -426,6 +426,17 @@
       "start": "2026-10-21",
       "end": "2026-11-04",
       "url": "https://recruit.krihs.re.kr/ext/rec/rec_5010.do?ANNC_NO=26102101&SUPT_FLD_CD=0&DEG=0",
+      "disabledOnly": true
+    },
+    {
+      "id": "306244",
+      "title": "2026년 하반기 신입직원(전산직 및 장애·보훈) 채용 공고",
+      "org": "공무원연금공단",
+      "region": "서울,부산,대구,세종,전남광주,제주",
+      "hires": 15,
+      "start": "2026-10-22",
+      "end": "2026-11-05",
+      "url": "https://www.geps.or.kr/notiCommunication_info_incruit/43491?curPage=1",
       "disabledOnly": true
     },
     {
