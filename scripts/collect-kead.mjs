@@ -80,7 +80,9 @@ async function main() {
 
   const r = mergeKead(existing, jobs, today)
   if (r.duplicates.length) console.log(`KEAD: 이미 있는 공고와 겹쳐 제외 ${r.duplicates.join(', ')}`)
-  const out = { ...data, updatedAt: kstNow.toISOString().slice(0, 16).replace('T', ' '), items: r.items }
+  // keadCheckedAt: KEAD 목록을 실제로 읽어 합친 시각(성공했을 때만 바뀐다). 서버에서 KEAD 수집이 되는지 배포된 jobs.json 으로 확인하는 데 쓴다.
+  const stamp = kstNow.toISOString().slice(0, 16).replace('T', ' ')
+  const out = { ...data, updatedAt: stamp, keadCheckedAt: stamp, items: r.items }
   await writeFile(jobsUrl, `${JSON.stringify(out, null, 2)}\n`)
   console.log(`KEAD(${KEAD_SOURCE_LABEL}): 새로 본문 읽음 ${detail}건, 저장 ${r.added}건 추가`)
 }

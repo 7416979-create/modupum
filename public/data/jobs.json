@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-22 17:06",
+  "updatedAt": "2026-10-22 17:07",
   "items": [
     {
       "id": "306073",
@@ -981,5 +981,6 @@
       "url": "https://kotra.applyin.co.kr/jobs/22547",
       "disabledOnly": true
     }
-  ]
+  ],
+  "keadCheckedAt": "2026-10-22 17:07"
 }
