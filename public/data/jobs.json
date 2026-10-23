@@ -1,121 +1,7 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-22 23:06",
+  "updatedAt": "2026-10-23 10:22",
   "items": [
-    {
-      "id": "306073",
-      "title": "2026년 한국폴리텍대학 영주캠퍼스 체험형 청년인턴(장애) 채용",
-      "org": "학교법인한국폴리텍",
-      "region": "경북",
-      "hires": 1,
-      "start": "2026-10-15",
-      "end": "2026-10-22",
-      "url": "https://www.kopo.ac.kr/yeongju/board.do?menu=6234&mode=view&post=787219",
-      "disabledOnly": true
-    },
-    {
-      "id": "305921",
-      "title": "한국농촌경제연구원 2026년 제9차(재공모) 청년인턴(장애인 제한경쟁) 채용 공고",
-      "org": "한국농촌경제연구원",
-      "region": "전남광주",
-      "hires": 1,
-      "start": "2026-10-12",
-      "end": "2026-10-22",
-      "url": "https://www.krei.re.kr/krei/page/69?cmd=view&pst=505791&pageIndex=1",
-      "disabledOnly": true
-    },
-    {
-      "id": "305886",
-      "title": "분당서울대학교병원 신입(업무지원직 장애인) 직원 채용 공고",
-      "org": "분당서울대학교병원",
-      "region": "경기",
-      "hires": 3,
-      "start": "2026-10-13",
-      "end": "2026-10-22",
-      "url": "https://snubh.recruiter.co.kr",
-      "disabledOnly": true
-    },
-    {
-      "id": "305860",
-      "title": "2026년 4분기 1차 KDI 청년인턴 채용 공고(장애인 제한경쟁)",
-      "org": "한국개발연구원",
-      "region": "세종",
-      "hires": 1,
-      "start": "2026-10-08",
-      "end": "2026-10-22",
-      "url": "https://www.kdi.re.kr/share/recruitView?rec_no=306&pg=1&rec_type=",
-      "disabledOnly": true
-    },
-    {
-      "id": "305849",
-      "title": "[한국수자원공사] 금강경영처 사회형평적 인재 단기계약근로자(생활지원서비스) 채용 공고(장애인 제한채용)",
-      "org": "한국수자원공사",
-      "region": "전북",
-      "hires": 2,
-      "start": "2026-10-08",
-      "end": "2026-10-22",
-      "url": "https://k-water.recruiter.co.kr/",
-      "disabledOnly": true
-    },
-    {
-      "id": "305848",
-      "title": "[한국수자원공사] 금강유역본부 사회형평적 인재 단기계약근로자(사무관리_서무보조) 채용 공고(장애인 제한채용)",
-      "org": "한국수자원공사",
-      "region": "전북",
-      "hires": 2,
-      "start": "2026-10-08",
-      "end": "2026-10-22",
-      "url": "https://k-water.recruiter.co.kr/",
-      "disabledOnly": true
-    },
-    {
-      "id": "305833",
-      "title": "[제2026-117호]2026년도 제6차 경상남도장애아동·발달장애인지원센터(장애아동지원팀) 체험형 청년인턴(장애인 제한경쟁)채용 공고",
-      "org": "한국장애인개발원",
-      "region": "경남",
-      "hires": 1,
-      "start": "2026-10-08",
-      "end": "2026-10-22",
-      "url": "https://koddicpdd.fairyhr.com",
-      "disabledOnly": true
-    },
-    {
-      "id": "305819",
-      "title": "한전KDN(주) 진주지사 AMI 분야 비정규직(장애인) 모집공고{재공고}",
-      "org": "한전KDN",
-      "region": "경남",
-      "hires": 1,
-      "start": "2026-10-08",
-      "end": "2026-10-22",
-      "url": "없음.",
-      "disabledOnly": true
-    },
-    {
-      "id": "gojobs-305574",
-      "title": "국립아시아문화전당 전시기획과 공무직(사무원) 채용 공고(일반 및 장애인 제한경쟁)",
-      "org": "문화체육관광부 국립아시아문화전당",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-13",
-      "end": "2026-10-22",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EA%B5%AD%EB%A6%BD%EC%95%84%EC%8B%9C%EC%95%84%EB%AC%B8%ED%99%94%EC%A0%84%EB%8B%B9%20%EC%A0%84%EC%8B%9C%EA%B8%B0%ED%9A%8D%EA%B3%BC%20%EA%B3%B5%EB%AC%B4%EC%A7%81(%EC%82%AC%EB%AC%B4%EC%9B%90)%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0(%EC%9D%BC%EB%B0%98%20%EB%B0%8F%20%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%EA%B2%BD%EC%9F%81)",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터"
-    },
-    {
-      "id": "gojobs-305470",
-      "title": "조달청 공무직근로자(조리) 공개경쟁 채용시험(장애인전형) 안내",
-      "org": "조달청",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-12",
-      "end": "2026-10-22",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EC%A1%B0%EB%8B%AC%EC%B2%AD%20%EA%B3%B5%EB%AC%B4%EC%A7%81%EA%B7%BC%EB%A1%9C%EC%9E%90(%EC%A1%B0%EB%A6%AC)%20%EA%B3%B5%EA%B0%9C%EA%B2%BD%EC%9F%81%20%EC%B1%84%EC%9A%A9%EC%8B%9C%ED%97%98(%EC%9E%A5%EC%95%A0%EC%9D%B8%EC%A0%84%ED%98%95)%20%EC%95%88%EB%82%B4",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터"
-    },
     {
       "id": "305908",
       "title": "임시직(장애) 채용공고[261012]",
@@ -165,32 +51,6 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터"
-    },
-    {
-      "id": "kead-217035",
-      "title": "[인천환경공단] 2026년 체험형 인턴 공개경쟁채용 공고",
-      "org": "한국장애인고용공단",
-      "region": "인천광역시 연수구",
-      "hires": 5,
-      "start": "2026-10-21",
-      "end": "2026-10-23",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217035&menuId=MENU2201",
-      "disabledOnly": false,
-      "orgType": "공공기관",
-      "source": "KEAD",
-      "sourceLabel": "한국장애인고용공단(KEAD)",
-      "summary": {
-        "채용인원": "5 명",
-        "고용형태": "확인 안 됨",
-        "접수방법": "기간 내 등기우편만 가능 ( 채용공고문 확인필 )",
-        "장애인관련": [
-          "확인 안 됨"
-        ]
-      },
-      "notes": [
-        "접수 마감일이 목록(2026-10-22)과 본문(2026-10-23)에서 다릅니다. 본문 기준으로 표시했으니 원문에서 꼭 확인하세요."
-      ],
-      "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
     },
     {
       "id": "kead-216969",
@@ -316,6 +176,19 @@
       "end": "2026-10-27",
       "url": "https://koddicpdd.fairyhr.com",
       "disabledOnly": true
+    },
+    {
+      "id": "gojobs-306508",
+      "title": "국립현대미술관 행정지원과 공무직 근로자 채용(장애인 제한경쟁) 공고",
+      "org": "문화체육관광부 국립현대미술관 기획운영단",
+      "region": "",
+      "hires": null,
+      "start": "2026-10-23",
+      "end": "2026-10-27",
+      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EA%B5%AD%EB%A6%BD%ED%98%84%EB%8C%80%EB%AF%B8%EC%88%A0%EA%B4%80%20%ED%96%89%EC%A0%95%EC%A7%80%EC%9B%90%EA%B3%BC%20%EA%B3%B5%EB%AC%B4%EC%A7%81%20%EA%B7%BC%EB%A1%9C%EC%9E%90%20%EC%B1%84%EC%9A%A9(%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%EA%B2%BD%EC%9F%81)%20%EA%B3%B5%EA%B3%A0",
+      "disabledOnly": true,
+      "orgType": "국가기관",
+      "source": "나라일터"
     },
     {
       "id": "gojobs-305908",
@@ -893,6 +766,17 @@
       "eligibilityNote": "장애인 지원 가능 여부는 공고 확인"
     },
     {
+      "id": "306235",
+      "title": "[제2026-121호] 2026년도 제5차 전남광주통합특별시광주장애아동·발달장애인지원센터 (장애아동지원팀)체험형 청년인턴(장애인 제한경쟁) 채용 공고",
+      "org": "한국장애인개발원",
+      "region": "전남광주",
+      "hires": 1,
+      "start": "2026-10-23",
+      "end": "2026-11-06",
+      "url": "https://koddicpdd.fairyhr.com",
+      "disabledOnly": true
+    },
+    {
       "id": "kead-216955",
       "title": "[서울동부지사] 대한무역투자진흥공사 장애인 체험형 청년 인턴 채용(~11/8)",
       "org": "한국장애인고용공단",
@@ -982,5 +866,5 @@
       "disabledOnly": true
     }
   ],
-  "keadCheckedAt": "2026-10-22 23:06"
+  "keadCheckedAt": "2026-10-23 10:22"
 }
