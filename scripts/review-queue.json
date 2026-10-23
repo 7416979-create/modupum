@@ -138,8 +138,12 @@
       "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217005&menuId=MENU2201",
       "end": "2026-10-28",
       "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-23T02:31:50.589Z"
+      "status": "hidden",
+      "addedAt": "2026-10-23T02:31:50.589Z",
+      "verdict": "불가",
+      "judge": "manual",
+      "judgedAt": "2026-10-23T03:00:04.113Z",
+      "note": "사람 결정 2026-10-23: 장애인 전용 아님, 노출 제외"
     },
     {
       "id": "kead-217000",
@@ -148,8 +152,12 @@
       "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217000&menuId=MENU2201",
       "end": "2026-10-31",
       "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-23T02:31:50.589Z"
+      "status": "hidden",
+      "addedAt": "2026-10-23T02:31:50.589Z",
+      "verdict": "불가",
+      "judge": "manual",
+      "judgedAt": "2026-10-23T03:00:04.113Z",
+      "note": "사람 결정 2026-10-23: 장애인 전용 아님, 노출 제외"
     },
     {
       "id": "kead-216999",
