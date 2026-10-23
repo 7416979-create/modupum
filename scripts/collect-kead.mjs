@@ -4,6 +4,7 @@
 
 import { readFile, writeFile } from 'node:fs/promises'
 import { loadHolidays, jobCollectDecision, isForced } from './workday-lib.mjs'
+import { enqueueSave } from './review-lib.mjs'
 import { listUrl, viewUrl, parseList, bodyLines, viewTitle, buildJob, mergeKead, isKead, KEAD_SOURCE_LABEL } from './kead-lib.mjs'
 
 const UA = 'modupum-bot (+https://modupum.kr)'
@@ -78,6 +79,13 @@ async function main() {
     jobs.push(job)
   }
 
+  // 애매한 공고(장애인 대상 제목 명시 없음)는 판정 대기열에 적는다. 노출은 review-run 이 확실로 판정한 것만 한다.
+  try {
+    const queued = await enqueueSave(jobs, today, rules)
+    if (queued) console.log(`KEAD: 판정 대기열에 ${queued}건 추가`)
+  } catch (e) {
+    console.error(`KEAD 대기열 기록 실패(무시하고 계속): ${e.message}`)
+  }
   const r = mergeKead(existing, jobs, today)
   if (r.duplicates.length) console.log(`KEAD: 이미 있는 공고와 겹쳐 제외 ${r.duplicates.join(', ')}`)
   // keadCheckedAt: KEAD 목록을 실제로 읽어 합친 시각(성공했을 때만 바뀐다). 서버에서 KEAD 수집이 되는지 배포된 jobs.json 으로 확인하는 데 쓴다.

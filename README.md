@@ -14,6 +14,7 @@
 npm install
 npm run dev
 ```
+애매한 채용 공고 판정: `GEMINI_API_KEY=... node scripts/review-run.mjs` (대기열이 있고 하루가 지났을 때만 Gemini 1회 호출, 최대 20건. 2차 Haiku 결과 적용은 `node scripts/review-run.mjs --haiku 판정.json`)
 
 ## 비밀값
 공공데이터포털 서비스키는 코드나 파일에 쓰지 않습니다. GitHub 저장소의

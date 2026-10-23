@@ -4,7 +4,8 @@
 
 import { readFile, writeFile } from 'node:fs/promises'
 import { buildJobs, listUrl, rowsOf } from './jobs-lib.mjs'
-import { GOJOBS_LIST, parseList, buildGojobs, mergeJobs } from './gojobs-lib.mjs'
+import { GOJOBS_LIST, parseList, buildGojobs, mergeJobs, toJob } from './gojobs-lib.mjs'
+import { enqueueSave } from './review-lib.mjs'
 import { isKead } from './kead-lib.mjs'
 import { loadHolidays, jobCollectDecision, isForced } from './workday-lib.mjs'
 import { validateJobs, validateWelfare, isAbnormalDrop } from './validate-lib.mjs'
@@ -74,6 +75,13 @@ async function collectGojobs() {
     await new Promise((r) => setTimeout(r, 3000))
   }
   if (rows.length === 0) throw new Error('받은 공고가 없습니다')
+  // 장애인 대상 표시가 제목에 없는 접수 중 공고는 판정 대기열에 적는다(노출은 review-run 이 확실로 판정한 것만).
+  try {
+    const queued = await enqueueSave(rows.map((r) => toJob(r, rules)), today, rules)
+    if (queued) console.log(`나라일터: 판정 대기열에 ${queued}건 추가`)
+  } catch (e) {
+    console.error(`나라일터 대기열 기록 실패(무시하고 계속): ${e.message}`)
+  }
   return buildGojobs(rows, rules, today)
 }
 

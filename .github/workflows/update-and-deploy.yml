@@ -53,13 +53,19 @@ jobs:
         # 실패·차단 시 기존 jobs.json 을 그대로 두고 로그에 남긴다.
         continue-on-error: true
         run: node scripts/collect-kead.mjs
+      - name: Review ambiguous jobs (Gemini 묶음 판정, 하루 1회 주기 · 키 없으면 건너뜀)
+        # 대기열이 비었거나 주기가 안 됐으면 호출하지 않는다. 실패하면 대기 항목은 2차(Haiku)로 남는다.
+        continue-on-error: true
+        run: node scripts/review-run.mjs
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       - name: Validate data (검수 실패 시 저장·배포 중단)
         run: node scripts/validate-jobs.mjs --fix
       - name: Save data changes
         run: |
           git config user.name "modupum-bot"
           git config user.email "modupum-bot@users.noreply.github.com"
-          git add public/data
+          git add public/data scripts/review-queue.json
           git diff --cached --quiet || git commit -m "data: auto update"
           git push || true
       - run: npm run build

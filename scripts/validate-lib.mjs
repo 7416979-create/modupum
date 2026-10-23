@@ -65,7 +65,8 @@ export const validateJobs = (items, { today, rules = {} }) => {
     const t = String(j.title ?? '')
     const hit = kead ? undefined : titleExclude.find((w) => t.includes(w))
     if (hit) errors.push(`${tag}: 제목에 제외 표현 '${hit}'`)
-    if (t && !kead && !t.includes('장애')) errors.push(`${tag}: 제목에 '장애' 없음`)
+    // 대기열에서 원문 근거로 확정된 공고(reviewed)는 제목에 '장애'가 없을 수 있으므로 이 검사에서 뺀다.
+    if (t && !kead && !j.reviewed && !t.includes('장애')) errors.push(`${tag}: 제목에 '장애' 없음`)
   }
   return { items: cur, fixes, errors }
 }
