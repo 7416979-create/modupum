@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { parseList, buildGojobs, mergeJobs, searchUrl, isDisabledOnlyTitle } from './gojobs-lib.mjs'
+import { parseList, buildGojobs, mergeJobs, searchUrl, isDisabledOnlyTitle, isNotice } from './gojobs-lib.mjs'
 
 const rules = JSON.parse(readFileSync(new URL('./keywords.json', import.meta.url), 'utf8'))
 
@@ -42,6 +42,13 @@ test('띄어쓰기가 달라도 전용으로 알아보고, 합격자 발표는 �
   assert.equal(isDisabledOnlyTitle('공무직 근로자(행정실무원 장애인구분) 면접전형 합격자 및 안내', rules), true)
   const rows = [{ code: '020', sn: '1', title: '공무직(장애인구분) 면접전형 합격자 발표', org: 'x', start: '', end: '2026-12-01' }]
   assert.deepEqual(buildGojobs(rows, rules, '2026-10-19'), [])
+})
+
+test('서류전형 결과 공고는 공고 제목에 있어도 뺀다', () => {
+  const rows = [{ code: '020', sn: '306470', title: '국립현대미술관 행정지원과 공무직 근로자 채용(장애인 제한경쟁) 서류전형 결과 공고', org: '국립현대미술관', start: '', end: '2026-10-26' }]
+  assert.deepEqual(buildGojobs(rows, rules, '2026-10-23'), [])
+  assert.equal(isNotice('최종합격자 발표(장애인 제한경쟁)', rules), true)
+  assert.equal(isNotice('국립현대미술관 공무직 근로자 채용(장애인 제한경쟁) 공고', rules), false)
 })
 
 test('전용 표현이 없으면 제외한다(우대·우선채용 포함)', () => {

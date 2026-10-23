@@ -1,5 +1,6 @@
 // 올리기 직전 검수. 자동으로 고칠 수 있는 것(중복·마감 지남)은 지우고 기록하며, 나머지 위반은 오류로 돌려준다.
 import { dedupeJobs } from './dedupe-lib.mjs'
+import { isNotice } from './gojobs-lib.mjs'
 
 const YMD = /^\d{4}-\d{2}-\d{2}$/
 const validDate = (s) => YMD.test(s) && !Number.isNaN(Date.parse(s)) && new Date(s).toISOString().slice(0, 10) === s
@@ -26,6 +27,10 @@ export const validateJobs = (items, { today, rules = {} }) => {
   cur = cur.filter((j) => {
     if (validDate(j?.end) && j.end < today) {
       fixes.push(`마감 지남 제거: ${j.id} (${j.end})`)
+      return false
+    }
+    if (j?.source === '나라일터' && isNotice(j.title, rules)) {
+      fixes.push(`나라일터 결과·합격자 공고 제거: ${j.id} (${j.title})`)
       return false
     }
     return true
