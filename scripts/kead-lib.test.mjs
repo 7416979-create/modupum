@@ -48,12 +48,11 @@ test('마감일이 목록과 본문이 다르면 본문 우선 + 안내문', () 
   assert.equal(job.url, viewUrl('217086'))
   assert.equal(job.org, '한국해외인프라도시개발지원공사')
 })
-test('장애인 전용이 분명하지 않으면 단정하지 않고 안내문을 붙인다', () => {
+test('장애인 전용이 분명하지 않으면 disabledOnly 가 false 이고 안내문은 붙이지 않는다', () => {
   const [a, b] = parseList(html)
   assert.equal(buildJob(a, [], rules).disabledOnly, false)
-  assert.equal(buildJob(a, [], rules).eligibilityNote, '장애인 지원 가능 여부는 공고 확인')
+  assert.equal(buildJob(a, [], rules).eligibilityNote, undefined)
   assert.equal(buildJob(b, [], rules).disabledOnly, true)
-  assert.equal(buildJob(b, [], rules).eligibilityNote, '')
 })
 test('합칠 때 마감 지난 것·이미 있는 공고는 넣지 않고 이전 KEAD 분은 바꾼다', () => {
   const [a] = parseList(html)

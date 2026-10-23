@@ -69,9 +69,18 @@ test('검수: 필수 항목·날짜 형식·disabledOnly·제외 표현은 오�
     { today, rules },
   )
   const text = r.errors.join('\n')
-  for (const k of ['n: 필수 항목 org', 'd: end 날짜 형식', 'o: disabledOnly', "p: 제목에 제외 표현 '우대'", "q: 제목에 제외 표현 '우선채용'", "r: 제목에 제외 표현 '포함'"]) {
+  for (const k of ['n: 필수 항목 org', 'd: end 날짜 형식', "p: 제목에 제외 표현 '우대'", "q: 제목에 제외 표현 '우선채용'", "r: 제목에 제외 표현 '포함'"]) {
     assert.ok(text.includes(k), k)
   }
+  assert.ok(r.fixes.some((f) => f.includes('장애인 대상 명시 없음 제거: o')))
+  assert.ok(!r.items.some((j) => j.id === 'o'))
+})
+
+test('검수: 장애인 대상이 명시되지 않은 공고는 자동으로 뺀다', () => {
+  const r = validateJobs([job({ id: 'k', source: 'KEAD', disabledOnly: false, title: '일반 공개채용' })], { today, rules })
+  assert.deepEqual(r.items, [])
+  assert.equal(r.fixes.length, 1)
+  assert.deepEqual(r.errors, [])
 })
 
 test('건수 급감 판정', () => {

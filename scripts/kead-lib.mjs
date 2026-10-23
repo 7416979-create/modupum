@@ -172,7 +172,6 @@ export const buildJob = (row, lines, rules) => {
     sourceLabel: KEAD_SOURCE_LABEL,
     summary: s.summary,
     notes,
-    eligibilityNote: disabledOnly ? '' : '장애인 지원 가능 여부는 공고 확인',
   }
 }
 
@@ -192,7 +191,8 @@ export const duplicatesOf = (job, existing) => {
 // 기존 목록에서 이전 KEAD 분을 빼고 새 KEAD 공고를 합친다. 마감 지난 것·이미 있는 공고와 겹치는 것은 넣지 않는다.
 export const mergeKead = (existing, keadJobs, today) => {
   const base = existing.filter((j) => !isKead(j))
-  const fresh = keadJobs.filter((j) => j.end && j.end >= today)
+  // 장애인 대상이 제목에 명시된 공고만 담는다(명시 없음은 노출하지 않는다).
+  const fresh = keadJobs.filter((j) => j.end && j.end >= today && j.disabledOnly === true)
   const dupes = fresh.filter((j) => duplicatesOf(j, base))
   const add = fresh.filter((j) => !dupes.includes(j))
   const merged = dedupeJobs([...base, ...add]).items.sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0))

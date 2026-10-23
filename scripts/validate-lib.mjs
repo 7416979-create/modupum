@@ -33,6 +33,11 @@ export const validateJobs = (items, { today, rules = {} }) => {
       fixes.push(`나라일터 결과·합격자 공고 제거: ${j.id} (${j.title})`)
       return false
     }
+    // 장애인 대상이 제목에 명시되지 않은 공고(disabledOnly 가 true 가 아님)는 자격이 불분명하므로 노출하지 않고 뺀다.
+    if (j?.disabledOnly !== true) {
+      fixes.push(`장애인 대상 명시 없음 제거: ${j.id} (${j.title})`)
+      return false
+    }
     return true
   })
   const d = dedupeJobs(cur.filter((j) => j && typeof j === 'object'))
@@ -50,7 +55,6 @@ export const validateJobs = (items, { today, rules = {} }) => {
     const kead = j.source === 'KEAD'
     if (kead) {
       if (typeof j.disabledOnly !== 'boolean') errors.push(`${tag}: disabledOnly 가 true/false 가 아님`)
-      if (j.disabledOnly !== true && !j.eligibilityNote) errors.push(`${tag}: 장애인 전용이 아닌 KEAD 공고에 지원 가능 여부 안내문(eligibilityNote)이 없음`)
     } else if (j.disabledOnly !== true) errors.push(`${tag}: disabledOnly 가 true 가 아님`)
     for (const f of ['start', 'end']) {
       if (j[f] && !validDate(j[f])) errors.push(`${tag}: ${f} 날짜 형식 오류(${j[f]})`)
