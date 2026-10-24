@@ -10,6 +10,7 @@
   --card-line: #d2d2d7;
   --card-inner: #fbfbfd;
   --card-accent: #006b35;
+  --tint: #e6f4ea;
   --radius: 20px;
   --pill: 999px;
 }
@@ -21,6 +22,9 @@
   --bg: var(--card-inner);
   color: var(--card-ink);
 }
+/* 색 후보: 주소 뒤에 ?theme=sage 또는 ?theme=emerald 를 붙이면 미리 볼 수 있다 */
+:root[data-theme="sage"] { --accent: #5d8a66; --card-accent: #3e5c44; --tint: #f0f4f0; --card: #f7f8f6; }
+:root[data-theme="emerald"] { --accent: #10b981; --card-accent: #047857; --tint: #ecfdf5; --card: #f9fafb; }
 * { box-sizing: border-box; }
 html { scroll-padding-top: 120px; scroll-padding-bottom: 180px; }
 .list:focus { outline: none; }
@@ -56,7 +60,7 @@ nav button.on { color: var(--ink); background: color-mix(in srgb, var(--ink) 12%
 main { max-width: 980px; margin: 0 auto; padding: 8px 22px 96px; }
 
 /* 첫 화면 */
-.hero { text-align: center; padding: 64px 0 24px; background: radial-gradient(ellipse 70% 100% at 50% 0%, #e6f4ea 0%, rgba(230,244,234,0) 100%); }
+.hero { text-align: center; padding: 64px 0 24px; background: radial-gradient(ellipse 70% 100% at 50% 0%, var(--tint) 0%, transparent 100%); }
 .hero-mark { display: block; margin: 0 auto 28px; }
 h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -.035em; font-weight: 700; margin: 0 0 18px; }
 .lead { color: var(--muted); font-size: 1.2rem; margin: 0 auto 48px; max-width: 480px; }
