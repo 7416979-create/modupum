@@ -102,16 +102,6 @@
       "addedAt": "2026-10-23T02:31:50.589Z"
     },
     {
-      "id": "kead-217032",
-      "title": "[경기북부지사] 국립암센터 병원업무 보조 직원 및 예술작품 화가 직원 채용(7명)",
-      "org": "국립암센터",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217032&menuId=MENU2201",
-      "end": "2026-10-23",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-23T02:31:50.589Z"
-    },
-    {
       "id": "kead-217026",
       "title": "[서울동부지사] 서울농수산식품공사 발달장애예술인(청년인턴) 채용",
       "org": "한국장애인고용공단",
@@ -190,16 +180,6 @@
       "addedAt": "2026-10-23T02:31:50.589Z"
     },
     {
-      "id": "kead-216969",
-      "title": "[서울북부지사] 인수중학교 청소직원 모집 안내(채용시마감)",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216969&menuId=MENU2201",
-      "end": "2026-10-24",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-23T02:31:50.589Z"
-    },
-    {
       "id": "kead-216962",
       "title": "[강원지사] 춘천시, 강원특별자치도혈액원 운전원 1명 채용(~ 11.2. 10:00 접수마감)",
       "org": "대한적십자사 강원특별자치도혈액원",
@@ -228,6 +208,36 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-10-23T02:31:50.589Z"
+    },
+    {
+      "id": "gojobs-306640",
+      "title": "2026년 제1회 의정부지방공소청 장애인 공무직근로자(사무원) 경력경쟁채용 시행계획 공고",
+      "org": "공소청 서울광역공소청 의정부지방공소청",
+      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=2026%EB%85%84%20%EC%A0%9C1%ED%9A%8C%20%EC%9D%98%EC%A0%95%EB%B6%80%EC%A7%80%EB%B0%A9%EA%B3%B5%EC%86%8C%EC%B2%AD%20%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EA%B3%B5%EB%AC%B4%EC%A7%81%EA%B7%BC%EB%A1%9C%EC%9E%90(%EC%82%AC%EB%AC%B4%EC%9B%90)%20%EA%B2%BD%EB%A0%A5%EA%B2%BD%EC%9F%81%EC%B1%84%EC%9A%A9%20%EC%8B%9C%ED%96%89%EA%B3%84%ED%9A%8D%20%EA%B3%B5%EA%B3%A0",
+      "end": "2026-11-02",
+      "source": "나라일터",
+      "status": "pending",
+      "addedAt": "2026-10-26T01:29:22.590Z"
+    },
+    {
+      "id": "kead-217127",
+      "title": "[서울지역본부] 한국언론진흥재단 체험형 청년인턴 2명 모집(~11/9)",
+      "org": "한국언론진흥재단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217127&menuId=MENU2201",
+      "end": "2026-11-09",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-26T01:31:56.147Z"
+    },
+    {
+      "id": "kead-217121",
+      "title": "[경기동부지사] 용인시장애인자립생활센터 권리중심형 일자리 추가 모집",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217121&menuId=MENU2201",
+      "end": "2026-10-30",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-26T01:31:56.147Z"
     }
   ]
 }
