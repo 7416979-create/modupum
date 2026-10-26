@@ -117,6 +117,32 @@ h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -
   .item details > summary::after { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
 }
 
+/* 복지 목록: 흰 배경, 라인 리스트 + 아코디언 (카드 박스·그림자 없음) */
+.list-w { background: #fff; padding: 0; border-radius: 0; color: #1d1d1f; }
+.item-w { border-bottom: 1px solid #8a8a90; }
+.item-w:last-child { border-bottom: 0; }
+.w-h { margin: 0; font-size: 1em; font-weight: 600; }
+.w-head { display: grid; grid-template-columns: minmax(0, 1fr) 44px; column-gap: 12px; row-gap: 10px; width: 100%; min-height: 44px; padding: 24px 0; text-align: left; color: #1d1d1f; background: none; border: 0; cursor: pointer; }
+.w-tags { grid-column: 1; grid-row: 1; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.w-tag { display: inline-block; padding: 2px 12px; border-radius: 999px; border: 1px solid #6b6b72; background: #fff; color: #1d1d1f; font-size: 1rem; font-weight: 600; line-height: 1.6; }
+.w-tags .st-badge { margin-right: 0; font-size: 1rem; }
+.w-title { grid-column: 1; grid-row: 2; font-size: 1.25rem; font-weight: 600; line-height: 1.45; letter-spacing: -.01em; overflow-wrap: anywhere; }
+.w-sum { grid-column: 1; grid-row: 3; font-size: 1rem; line-height: 1.65; color: #3a3a3f; overflow-wrap: anywhere; }
+.w-arrow { grid-column: 2; grid-row: 1 / span 3; align-self: center; justify-self: center; width: 12px; height: 12px; border-right: 3px solid #1d1d1f; border-bottom: 3px solid #1d1d1f; transform: rotate(45deg); transition: transform .3s ease; }
+.w-head[aria-expanded="true"] .w-arrow { transform: rotate(-135deg); }
+.w-head:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+.w-panel { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .3s ease, visibility .3s; }
+.w-panel.open { grid-template-rows: 1fr; visibility: visible; }
+.w-panel > div { overflow: hidden; min-height: 0; }
+.w-body { padding: 0 0 24px; }
+.w-body p { margin: 0 0 12px; font-size: 1rem; line-height: 1.65; color: #3a3a3f; max-width: 640px; }
+.w-body p strong { color: #1d1d1f; font-weight: 600; margin-right: 6px; }
+.w-body p.period-note { color: #1d1d1f; padding: 8px 12px; border-left: 4px solid #6b6b72; background: #f0f0f3; border-radius: 8px; }
+.w-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 1rem; font-weight: 600; color: #0b57d0; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+@media (prefers-reduced-motion: reduce) { .w-panel, .w-arrow { transition: none; } }
+.item-w.closed .w-head { color: #48484d; }
+.item-w.closed .w-title { color: #48484d; }
+
 /* 신청 안내 */
 .facts { margin: 12px 0 4px; max-width: 700px; }
 .facts > div { display: grid; grid-template-columns: 88px 1fr; gap: 14px; padding: 10px 0; border-top: 1px solid var(--line); }
