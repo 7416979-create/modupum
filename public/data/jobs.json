@@ -1,55 +1,7 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-26 22:42",
+  "updatedAt": "2026-10-27 10:25",
   "items": [
-    {
-      "id": "305917",
-      "title": "한전KDN(주) 목포지사 AMI분야 비정규직(장애인) 모집공고(재공고)",
-      "org": "한전KDN",
-      "region": "전남광주",
-      "hires": 3,
-      "start": "2026-10-13",
-      "end": "2026-10-26",
-      "url": ",",
-      "disabledOnly": true
-    },
-    {
-      "id": "305889",
-      "title": "[한국수자원공사] 부산권지사 단기계약근로자(서무보조) 채용 공고(장애인제한채용)",
-      "org": "한국수자원공사",
-      "region": "부산",
-      "hires": 2,
-      "start": "2026-10-12",
-      "end": "2026-10-26",
-      "url": "https://k-water.recruiter.co.kr/",
-      "disabledOnly": true
-    },
-    {
-      "id": "gojobs-305681",
-      "title": "(변경) 경기지방고용노동청 공무직 근로자(고용평등상담지원관) 장애인 전형 채용 변경 공고",
-      "org": "고용노동부 경기지방고용노동청",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-14",
-      "end": "2026-10-26",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=(%EB%B3%80%EA%B2%BD)%20%EA%B2%BD%EA%B8%B0%EC%A7%80%EB%B0%A9%EA%B3%A0%EC%9A%A9%EB%85%B8%EB%8F%99%EC%B2%AD%20%EA%B3%B5%EB%AC%B4%EC%A7%81%20%EA%B7%BC%EB%A1%9C%EC%9E%90(%EA%B3%A0%EC%9A%A9%ED%8F%89%EB%93%B1%EC%83%81%EB%8B%B4%EC%A7%80%EC%9B%90%EA%B4%80)%20%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%84%ED%98%95%20%EC%B1%84%EC%9A%A9%20%EB%B3%80%EA%B2%BD%20%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터"
-    },
-    {
-      "id": "gojobs-305448",
-      "title": "경기지방고용노동청 공무직 근로자(고용평등상담지원관) 장애인 전형 채용 재공고",
-      "org": "고용노동부 경기지방고용노동청",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-12",
-      "end": "2026-10-26",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EA%B2%BD%EA%B8%B0%EC%A7%80%EB%B0%A9%EA%B3%A0%EC%9A%A9%EB%85%B8%EB%8F%99%EC%B2%AD%20%EA%B3%B5%EB%AC%B4%EC%A7%81%20%EA%B7%BC%EB%A1%9C%EC%9E%90(%EA%B3%A0%EC%9A%A9%ED%8F%89%EB%93%B1%EC%83%81%EB%8B%B4%EC%A7%80%EC%9B%90%EA%B4%80)%20%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%84%ED%98%95%20%EC%B1%84%EC%9A%A9%20%EC%9E%AC%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터"
-    },
     {
       "id": "305971",
       "title": "[제2026-118호] 2026년도 제9차 강원특별자치도장애아동·발달장애인지원센터 체험형 청년인턴(장애인 제한경쟁) 채용 공고",
@@ -353,6 +305,19 @@
       "disabledOnly": true
     },
     {
+      "id": "gojobs-306749",
+      "title": "충남대학교 대학회계직원(계약직) 장애인 제한경쟁 채용 공고[기간제계약직 미화]",
+      "org": "충남대학교",
+      "region": "",
+      "hires": null,
+      "start": "2026-10-27",
+      "end": "2026-11-06",
+      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EC%B6%A9%EB%82%A8%EB%8C%80%ED%95%99%EA%B5%90%20%EB%8C%80%ED%95%99%ED%9A%8C%EA%B3%84%EC%A7%81%EC%9B%90(%EA%B3%84%EC%95%BD%EC%A7%81)%20%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%EA%B2%BD%EC%9F%81%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0%5B%EA%B8%B0%EA%B0%84%EC%A0%9C%EA%B3%84%EC%95%BD%EC%A7%81%20%EB%AF%B8%ED%99%94%5D",
+      "disabledOnly": true,
+      "orgType": "국가기관",
+      "source": "나라일터"
+    },
+    {
       "id": "gojobs-306714",
       "title": "2026년 제8회 안양시 지방임기제공무원 임용시험 시행계획 공고(건축구조, 공동주택관리, 도시재생, 치매안심센터 간호사, 영상 기획·촬영·편집, 지하수검침원, 체납차량 번호판 영치 및 공매, [장애인전형]행정업무지원)",
       "org": "경기도 안양시",
@@ -403,5 +368,5 @@
       "disabledOnly": true
     }
   ],
-  "keadCheckedAt": "2026-10-26 22:42"
+  "keadCheckedAt": "2026-10-27 10:25"
 }

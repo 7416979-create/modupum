@@ -22,16 +22,6 @@
       "addedAt": "2026-10-23T02:29:42.064Z"
     },
     {
-      "id": "gojobs-306100",
-      "title": "2026년 태종대중학교 당직전담사 채용 공고(장애인우선채용)",
-      "org": "부산광역시교육청 부산광역시교육청학교행정지원본부 학교채용지원팀",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=2026%EB%85%84%20%ED%83%9C%EC%A2%85%EB%8C%80%EC%A4%91%ED%95%99%EA%B5%90%20%EB%8B%B9%EC%A7%81%EC%A0%84%EB%8B%B4%EC%82%AC%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0(%EC%9E%A5%EC%95%A0%EC%9D%B8%EC%9A%B0%EC%84%A0%EC%B1%84%EC%9A%A9)",
-      "end": "2026-10-26",
-      "source": "나라일터",
-      "status": "pending",
-      "addedAt": "2026-10-23T02:29:42.064Z"
-    },
-    {
       "id": "gojobs-305983",
       "title": "[정정] 2026년도 제1차 직원(일반정규직, 실무직(보훈제한경쟁 포함), 조사직, 기간제 근로자, 체험형 청년인턴(장애인 제한경쟁채용 포함) 채용 공고",
       "org": "한국수산자원공단",
@@ -190,16 +180,6 @@
       "addedAt": "2026-10-23T02:31:50.589Z"
     },
     {
-      "id": "kead-216959",
-      "title": "[서울동부지사] 공무원연금공단 장애인턴 채용 공고(~10.26)",
-      "org": "공무원연금공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216959&menuId=MENU2201",
-      "end": "2026-10-26",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-23T02:31:50.589Z"
-    },
-    {
       "id": "kead-216955",
       "title": "[서울동부지사] 대한무역투자진흥공사 장애인 체험형 청년 인턴 채용(~11/8)",
       "org": "한국장애인고용공단",
@@ -248,6 +228,16 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-10-26T05:19:31.709Z"
+    },
+    {
+      "id": "kead-217153",
+      "title": "[서울지역본부] 한국은행 인사경영국 사무보조원 채용 안내 1명 ~10.30.(금) 17:00★ 급구",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217153&menuId=MENU2201",
+      "end": "2026-10-30",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-27T01:27:18.665Z"
     }
   ]
 }
