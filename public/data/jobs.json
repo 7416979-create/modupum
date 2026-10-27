@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-27 14:15",
+  "updatedAt": "2026-10-27 18:21",
   "items": [
     {
       "id": "305971",
@@ -294,6 +294,19 @@
       "disabledOnly": true
     },
     {
+      "id": "gojobs-306792",
+      "title": "조달청 공무직근로자(미화) 공개경쟁 채용시험(장애인전형) 재안내",
+      "org": "조달청",
+      "region": "",
+      "hires": null,
+      "start": "2026-10-27",
+      "end": "2026-11-05",
+      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EC%A1%B0%EB%8B%AC%EC%B2%AD%20%EA%B3%B5%EB%AC%B4%EC%A7%81%EA%B7%BC%EB%A1%9C%EC%9E%90(%EB%AF%B8%ED%99%94)%20%EA%B3%B5%EA%B0%9C%EA%B2%BD%EC%9F%81%20%EC%B1%84%EC%9A%A9%EC%8B%9C%ED%97%98(%EC%9E%A5%EC%95%A0%EC%9D%B8%EC%A0%84%ED%98%95)%20%EC%9E%AC%EC%95%88%EB%82%B4",
+      "disabledOnly": true,
+      "orgType": "국가기관",
+      "source": "나라일터"
+    },
+    {
       "id": "306235",
       "title": "[제2026-121호] 2026년도 제5차 전남광주통합특별시광주장애아동·발달장애인지원센터 (장애아동지원팀)체험형 청년인턴(장애인 제한경쟁) 채용 공고",
       "org": "한국장애인개발원",
@@ -329,6 +342,31 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터"
+    },
+    {
+      "id": "kead-217175",
+      "title": "[경기서부지사] 안양시청 행정업무지원(장애인전형) 모집",
+      "org": "한국장애인고용공단",
+      "region": "경기도 안양시",
+      "hires": 1,
+      "start": "2026-10-27",
+      "end": "2026-11-10",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217175&menuId=MENU2201",
+      "disabledOnly": true,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "1명",
+        "고용형태": "계약직 1년",
+        "접수방법": "우편 또는 방문",
+        "장애인관련": [
+          "확인 안 됨"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ]
     },
     {
       "id": "gojobs-306366",
@@ -368,5 +406,5 @@
       "disabledOnly": true
     }
   ],
-  "keadCheckedAt": "2026-10-27 14:15"
+  "keadCheckedAt": "2026-10-27 18:21"
 }

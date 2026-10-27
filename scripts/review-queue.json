@@ -238,6 +238,16 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-10-27T01:27:18.665Z"
+    },
+    {
+      "id": "kead-217160",
+      "title": "[경기북부지사] 의정부지방공소청 장애인 공무직근로자(사무원) 경력경쟁채용",
+      "org": "의정부지방공소청 장애인 공무직근로자",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217160&menuId=MENU2201",
+      "end": "2026-11-02",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-27T09:23:44.457Z"
     }
   ]
 }
