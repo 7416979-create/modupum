@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-28 12:15",
+  "updatedAt": "2026-10-28 14:21",
   "items": [
     {
       "id": "305988",
@@ -331,6 +331,19 @@
       ]
     },
     {
+      "id": "gojobs-306903",
+      "title": "2026년도 제6회 광주시 임기제공무원 채용시험 제공고[읍면동 민원행정 및 사무관리(장애인 구분모집)]",
+      "org": "경기도 광주시",
+      "region": "",
+      "hires": null,
+      "start": "2026-10-28",
+      "end": "2026-11-11",
+      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=2026%EB%85%84%EB%8F%84%20%EC%A0%9C6%ED%9A%8C%20%EA%B4%91%EC%A3%BC%EC%8B%9C%20%EC%9E%84%EA%B8%B0%EC%A0%9C%EA%B3%B5%EB%AC%B4%EC%9B%90%20%EC%B1%84%EC%9A%A9%EC%8B%9C%ED%97%98%20%EC%A0%9C%EA%B3%B5%EA%B3%A0%5B%EC%9D%8D%EB%A9%B4%EB%8F%99%20%EB%AF%BC%EC%9B%90%ED%96%89%EC%A0%95%20%EB%B0%8F%20%EC%82%AC%EB%AC%B4%EA%B4%80%EB%A6%AC(%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EA%B5%AC%EB%B6%84%EB%AA%A8%EC%A7%91)%5D",
+      "disabledOnly": true,
+      "orgType": "지자체",
+      "source": "나라일터"
+    },
+    {
       "id": "gojobs-306366",
       "title": "2026년 농촌진흥청 일반직공무원(전산주사보, 농업서기) 경력경쟁채용시험 공고(장애인구분모집)",
       "org": "농촌진흥청",
@@ -368,5 +381,5 @@
       "disabledOnly": true
     }
   ],
-  "keadCheckedAt": "2026-10-28 12:15"
+  "keadCheckedAt": "2026-10-28 14:21"
 }
