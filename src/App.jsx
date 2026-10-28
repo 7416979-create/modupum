@@ -457,13 +457,15 @@ function Jobs() {
                   {(i.notes ?? []).map((n) => (
                     <p key={n} className="period-note"><strong>참고</strong> {n}</p>
                   ))}
-                  <div className="tags">
-                    {soon && <span className="soon">{left === 0 ? '오늘 마감' : `마감 임박 · ${left}일 남음`}</span>}
-                    <span>{i.org}</span>
-                    <span>{i.orgType}</span>
-                    <span>마감 {i.end}</span>
-                    {i.source && <span>출처 {i.sourceLabel || i.source}</span>}
-                  </div>
+                  {!i.easy && (
+                    <div className="tags">
+                      {soon && <span className="soon">{left === 0 ? '오늘 마감' : `마감 임박 · ${left}일 남음`}</span>}
+                      <span>{i.org}</span>
+                      <span>{i.orgType}</span>
+                      <span>마감 {i.end}</span>
+                      {i.source && <span>출처 {i.sourceLabel || i.source}</span>}
+                    </div>
+                  )}
                   {i.summary && i.verified === true && !i.easy && (
                     <dl className="job-summary" aria-label="공고 본문 요약">
                       <div><dt>채용 인원</dt><dd>{infoOr(i.summary.채용인원)}</dd></div>
