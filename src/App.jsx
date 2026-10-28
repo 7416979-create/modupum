@@ -114,14 +114,18 @@ function SampleNotice({ data }) {
   return <p className="notice">지금은 샘플 화면입니다. 공공 데이터가 연결되면 실제 정보로 바뀝니다.</p>
 }
 
+// 원문에 없는 칸은 이 문구로 통일한다(요약 형식 버전 11).
+const NO_INFO = '공고에 안 나와 있어요. 📞 문의에 물어보세요.'
+const infoOr = (v) => (v && v !== '확인 안 됨' ? v : NO_INFO)
+
 // 궁금해요: 공고 핵심 칸을 크게 보여주고 소리로 읽어 준다. 전화번호가 있을 때만 전화 버튼을 보인다.
 function AskHelp({ item }) {
   const [open, setOpen] = useState(false)
   const facts = [
-    ['기관', item.org || '공고에 표기 없음'],
-    ['마감', item.end ? `${item.end}까지` : '공고에 표기 없음'],
-    ['채용 인원', item.summary?.채용인원 || '공고에 표기 없음'],
-    ['고용 형태', item.summary?.고용형태 || '공고에 표기 없음'],
+    ['기관', infoOr(item.org)],
+    ['마감', item.end ? `${item.end}까지` : NO_INFO],
+    ['채용 인원', infoOr(item.summary?.채용인원)],
+    ['고용 형태', infoOr(item.summary?.고용형태)],
   ]
   const readAloud = () => {
     try {
@@ -428,7 +432,7 @@ function Jobs() {
                 </summary>
                 <div className="detail">
                   {(i.notes ?? []).map((n) => (
-                    <p key={n} className="period-note"><strong>확인 필요</strong> {n}</p>
+                    <p key={n} className="period-note"><strong>참고</strong> {n}</p>
                   ))}
                   <div className="tags">
                     {soon && <span className="soon">{left === 0 ? '오늘 마감' : `마감 임박 · ${left}일 남음`}</span>}
@@ -439,10 +443,10 @@ function Jobs() {
                   </div>
                   {i.summary && (
                     <dl className="job-summary" aria-label="공고 본문 요약">
-                      <div><dt>채용 인원</dt><dd>{i.summary.채용인원}</dd></div>
-                      <div><dt>고용 형태</dt><dd>{i.summary.고용형태}</dd></div>
-                      <div><dt>접수 방법</dt><dd>{i.summary.접수방법}</dd></div>
-                      <div><dt>장애인 관련 문구</dt><dd>{(i.summary.장애인관련 ?? []).join(' / ')}</dd></div>
+                      <div><dt>채용 인원</dt><dd>{infoOr(i.summary.채용인원)}</dd></div>
+                      <div><dt>고용 형태</dt><dd>{infoOr(i.summary.고용형태)}</dd></div>
+                      <div><dt>어떻게 지원해요</dt><dd>{infoOr(i.summary.접수방법)}</dd></div>
+                      <div><dt>장애인 관련 문구</dt><dd>{infoOr((i.summary.장애인관련 ?? []).join(' / '))}</dd></div>
                     </dl>
                   )}
                   <ExternalLink href={i.url} label={`${orgLabel(i.title, i.org)} 원문 보기${i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}`}>원문 보기{i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}</ExternalLink>
@@ -455,6 +459,15 @@ function Jobs() {
         {data && items.length === 0 && <li className="empty">현재 접수 중인 공고가 없습니다.</li>}
       </ul>
       <Pager pg={pg} />
+      <details className="check-guide">
+        <summary>어려운 말 풀이</summary>
+        <ul>
+          <li>계약직: 정해진 기간만 일해요.</li>
+          <li>정규직: 기간 없이 계속 일해요.</li>
+          <li>시보(6개월): 정규직이 되기 전 시험 기간이에요.</li>
+          <li>제한경쟁: 장애인만 지원할 수 있어요.</li>
+        </ul>
+      </details>
       <details className="check-guide">
         <summary>지원하기 전에 공고에서 확인할 것</summary>
         <ul>
