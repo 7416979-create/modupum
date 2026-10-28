@@ -117,6 +117,8 @@ function SampleNotice({ data }) {
 // 원문에 없는 칸은 이 문구로 통일한다(요약 형식 버전 11).
 const NO_INFO = '공고에 안 나와 있어요. 📞 문의에 물어보세요.'
 const infoOr = (v) => (v && v !== '확인 안 됨' ? v : NO_INFO)
+// 원문 대조가 끝나지 않은 공고는 요약을 숨기고 이 배지만 보인다(item.verified === true 일 때만 요약 공개).
+const PENDING = '쉬운 설명 준비 중이에요'
 
 // 궁금해요: 공고 핵심 칸을 크게 보여주고 소리로 읽어 준다. 전화번호가 있을 때만 전화 버튼을 보인다.
 function AskHelp({ item }) {
@@ -124,8 +126,8 @@ function AskHelp({ item }) {
   const facts = [
     ['기관', infoOr(item.org)],
     ['마감', item.end ? `${item.end}까지` : NO_INFO],
-    ['채용 인원', infoOr(item.summary?.채용인원)],
-    ['고용 형태', infoOr(item.summary?.고용형태)],
+    ['채용 인원', item.verified === true ? infoOr(item.summary?.채용인원) : PENDING],
+    ['고용 형태', item.verified === true ? infoOr(item.summary?.고용형태) : PENDING],
   ]
   const readAloud = () => {
     try {
@@ -431,6 +433,11 @@ function Jobs() {
                   <span className={`sum-tag dday${soon ? ' soon' : ''}`}>{left === 0 ? '오늘 마감' : `마감 ${left}일 남음${i.end ? ` · ${String(i.end).slice(5).replace('-', '.')}` : ''}`}</span>
                 </summary>
                 <div className="detail">
+                  <dl className="job-brief" aria-label="한눈에 보기">
+                    <div><dt>언제까지</dt><dd>{i.end ? `${i.end}까지 (${left === 0 ? '오늘' : `${left}일 남음`})` : NO_INFO}</dd></div>
+                    <div><dt>고용 형태</dt><dd>{i.verified === true ? infoOr(i.summary?.고용형태) : PENDING}</dd></div>
+                    <div><dt>어디서</dt><dd>{[i.org, i.region].filter(Boolean).join(' · ') || NO_INFO}</dd></div>
+                  </dl>
                   {(i.notes ?? []).map((n) => (
                     <p key={n} className="period-note"><strong>참고</strong> {n}</p>
                   ))}
@@ -441,7 +448,7 @@ function Jobs() {
                     <span>마감 {i.end}</span>
                     {i.source && <span>출처 {i.sourceLabel || i.source}</span>}
                   </div>
-                  {i.summary && (
+                  {i.summary && i.verified === true && (
                     <dl className="job-summary" aria-label="공고 본문 요약">
                       <div><dt>채용 인원</dt><dd>{infoOr(i.summary.채용인원)}</dd></div>
                       <div><dt>고용 형태</dt><dd>{infoOr(i.summary.고용형태)}</dd></div>
