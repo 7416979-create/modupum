@@ -423,13 +423,22 @@ function Jobs() {
                 <summary>
                   <h2><Badges period={periodOf(today(), { end: i.end })} region={needsRegion(i, 'jobs')} />{orgLabel(i.title, i.org)}<NewMark on={isNew(today(), i.start)} /></h2>
                   <span className={`sum-tag dday${soon ? ' soon' : ''}`}>{left === 0 ? '오늘 마감' : `마감 ${left}일 남음${i.end ? ` · ${String(i.end).slice(5).replace('-', '.')}` : ''}`}</span>
+                  {i.easy && (
+                    <span className="brief-top" aria-label="한눈에 보기">
+                      <span><b>언제까지</b> {i.easy.언제까지}</span>
+                      <span><b>무슨 일 · 고용 형태</b> {i.easy.무슨일고용}</span>
+                      <span><b>어디서</b> {i.easy.어디서 ?? NO_INFO}</span>
+                    </span>
+                  )}
                 </summary>
                 <div className="detail">
-                  <dl className="job-brief" aria-label="한눈에 보기">
-                    <div><dt>언제까지</dt><dd>{i.easy ? i.easy.언제까지 : i.end ? `${i.end}까지 (${left === 0 ? '오늘' : `${left}일 남음`})` : NO_INFO}</dd></div>
-                    <div><dt>무슨 일 · 고용 형태</dt><dd>{i.easy ? i.easy.무슨일고용 : i.verified === true ? infoOr(i.summary?.고용형태) : PENDING}</dd></div>
-                    <div><dt>어디서</dt><dd>{i.easy ? i.easy.어디서 ?? NO_INFO : [i.org, i.region].filter(Boolean).join(' · ') || NO_INFO}</dd></div>
-                  </dl>
+                  {!i.easy && (
+                    <dl className="job-brief" aria-label="한눈에 보기">
+                      <div><dt>언제까지</dt><dd>{i.end ? `${i.end}까지 (${left === 0 ? '오늘' : `${left}일 남음`})` : NO_INFO}</dd></div>
+                      <div><dt>무슨 일 · 고용 형태</dt><dd>{i.verified === true ? infoOr(i.summary?.고용형태) : PENDING}</dd></div>
+                      <div><dt>어디서</dt><dd>{[i.org, i.region].filter(Boolean).join(' · ') || NO_INFO}</dd></div>
+                    </dl>
+                  )}
                   {i.easy && (
                     <details className="easy-detail">
                       <summary>자세히 보기</summary>

@@ -247,6 +247,10 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .9rem; }
 .job-brief { display: grid; gap: 10px; margin: 0 0 12px; padding: 12px 16px; border-radius: 10px; background: #f3f3f0; }
 .job-brief dt { font-size: 0.9rem; color: #50505a; font-weight: 700; }
 .job-brief dd { margin: 2px 0 0; font-size: 1.05rem; }
+/* 목록 카드 맨 위 3줄: 펼치지 않아도 보인다 */
+.brief-top { display: grid; gap: 4px; margin-top: 8px; font-size: 1rem; font-weight: 500; color: #26262a; }
+.brief-top > span { display: block; }
+.brief-top b { color: #50505a; font-weight: 700; margin-right: 6px; }
 
 /* 궁금해요: 버튼은 손가락 크기 이상, 펼친 칸은 글자 크게 */
 .ask-box { display: grid; gap: 12px; }
