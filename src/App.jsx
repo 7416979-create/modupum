@@ -426,10 +426,25 @@ function Jobs() {
                 </summary>
                 <div className="detail">
                   <dl className="job-brief" aria-label="한눈에 보기">
-                    <div><dt>언제까지</dt><dd>{i.end ? `${i.end}까지 (${left === 0 ? '오늘' : `${left}일 남음`})` : NO_INFO}</dd></div>
-                    <div><dt>고용 형태</dt><dd>{i.verified === true ? infoOr(i.summary?.고용형태) : PENDING}</dd></div>
-                    <div><dt>어디서</dt><dd>{[i.org, i.region].filter(Boolean).join(' · ') || NO_INFO}</dd></div>
+                    <div><dt>언제까지</dt><dd>{i.easy ? i.easy.언제까지 : i.end ? `${i.end}까지 (${left === 0 ? '오늘' : `${left}일 남음`})` : NO_INFO}</dd></div>
+                    <div><dt>무슨 일 · 고용 형태</dt><dd>{i.easy ? i.easy.무슨일고용 : i.verified === true ? infoOr(i.summary?.고용형태) : PENDING}</dd></div>
+                    <div><dt>어디서</dt><dd>{i.easy ? i.easy.어디서 ?? NO_INFO : [i.org, i.region].filter(Boolean).join(' · ') || NO_INFO}</dd></div>
                   </dl>
+                  {i.easy && (
+                    <details className="easy-detail">
+                      <summary>자세히 보기</summary>
+                      <dl className="job-brief">
+                        <div><dt>누가 지원할 수 있어요</dt><dd><ul>{i.easy.누가.map((t) => <li key={t}>{t}</li>)}</ul></dd></div>
+                        <div><dt>몇 명</dt><dd>{i.easy.몇명}</dd></div>
+                        <div><dt>무슨 일</dt><dd>{i.easy.무슨일}</dd></div>
+                        <div><dt>일하는 시간</dt><dd>{i.easy.일하는시간}</dd></div>
+                        <div><dt>급여</dt><dd>{i.easy.급여}</dd></div>
+                        <div><dt>어떻게 지원해요</dt><dd>{i.easy.접수}</dd></div>
+                        {i.easy.연장 && <div><dt>계약 기간 연장</dt><dd>{i.easy.연장}</dd></div>}
+                        <div><dt>문의</dt><dd>{i.easy.문의}</dd></div>
+                      </dl>
+                    </details>
+                  )}
                   {(i.notes ?? []).map((n) => (
                     <p key={n} className="period-note"><strong>참고</strong> {n}</p>
                   ))}
@@ -440,7 +455,7 @@ function Jobs() {
                     <span>마감 {i.end}</span>
                     {i.source && <span>출처 {i.sourceLabel || i.source}</span>}
                   </div>
-                  {i.summary && i.verified === true && (
+                  {i.summary && i.verified === true && !i.easy && (
                     <dl className="job-summary" aria-label="공고 본문 요약">
                       <div><dt>채용 인원</dt><dd>{infoOr(i.summary.채용인원)}</dd></div>
                       <div><dt>고용 형태</dt><dd>{infoOr(i.summary.고용형태)}</dd></div>
