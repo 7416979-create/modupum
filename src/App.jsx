@@ -118,10 +118,10 @@ function SampleNotice({ data }) {
 function AskHelp({ item }) {
   const [open, setOpen] = useState(false)
   const facts = [
-    ['기관', item.org || '확인 필요'],
-    ['마감', item.end ? `${item.end}까지` : '확인 필요'],
-    ['채용 인원', item.summary?.채용인원 || '확인 필요'],
-    ['고용 형태', item.summary?.고용형태 || '확인 필요'],
+    ['기관', item.org || '공고에 표기 없음'],
+    ['마감', item.end ? `${item.end}까지` : '공고에 표기 없음'],
+    ['채용 인원', item.summary?.채용인원 || '공고에 표기 없음'],
+    ['고용 형태', item.summary?.고용형태 || '공고에 표기 없음'],
   ]
   const readAloud = () => {
     try {
