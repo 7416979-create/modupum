@@ -99,14 +99,8 @@ async function collectJobs() {
   }
   if (all.length === 0) throw new Error('받은 공고가 없습니다')
   const apiItems = buildJobs(all, rules, today)
+  // 나라일터 공고는 2026-10-28 수집 중단: 직접 열리는 원문 주소가 없어 사용자가 찾을 수 없었다. collectGojobs 는 남겨 두고 호출만 막는다.
   let items = apiItems
-  try {
-    const extra = await collectGojobs()
-    items = mergeJobs(apiItems, extra)
-    console.log(`나라일터: ${extra.length}건 중 새로 추가 ${items.length - apiItems.length}건`)
-  } catch (e) {
-    console.error(`나라일터 수집 실패(공공기관 공고만 저장): ${e.message}`)
-  }
   // KEAD 공고는 별도 단계(collect-kead.mjs)가 채운다. 여기서 지워지지 않게 이전 분 가운데 마감 전인 것을 이어 둔다.
   const prevJobs = JSON.parse(await readFile(new URL('../public/data/jobs.json', import.meta.url), 'utf8').catch(() => '{}'))
   const keepKead = (Array.isArray(prevJobs.items) ? prevJobs.items : []).filter((j) => isKead(j) && j.end >= today)
