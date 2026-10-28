@@ -120,7 +120,6 @@ function AskHelp({ item }) {
   const facts = [
     ['기관', item.org || '확인 필요'],
     ['마감', item.end ? `${item.end}까지` : '확인 필요'],
-    ['대상', item.disabledOnly ? '장애인 대상 명시' : '장애인 대상 미명시, 원문 확인'],
     ['채용 인원', item.summary?.채용인원 || '확인 필요'],
     ['고용 형태', item.summary?.고용형태 || '확인 필요'],
   ]
@@ -371,15 +370,15 @@ function Jobs() {
     const byEnd = (x, y) => String(x.end).localeCompare(String(y.end))
     return [...open].sort(sort === '최신순' ? (x, y) => byStart(x, y) || byEnd(x, y) : (x, y) => byEnd(x, y) || byStart(x, y))
   }, [data, sort])
-  // 최근 신규 안내: start 기준(접수 중 공고만). 오늘 0건이면 마지막 신규일을 보여준다.
+  // 최근 신규 안내: start 기준(접수 중 공고만). NEW 배지와 같은 기준(NEW_DAYS)으로 센다. 0건이면 마지막 신규일을 보여준다.
   const fresh = useMemo(() => {
     const t = today()
     const days = all.map((i) => String(i.start || '').slice(0, 10)).filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d) && d <= t)
     if (!days.length) return null
-    const todayN = days.filter((d) => d === t).length
+    const newN = all.filter((i) => isNew(t, i.start)).length
     const last = days.reduce((a, b) => (a > b ? a : b))
     const week = days.filter((d) => Math.round((Date.parse(t) - Date.parse(d)) / 86400000) <= 6).length
-    return { todayN, last: last.slice(5), lastN: days.filter((d) => d === last).length, week }
+    return { newN, last: last.slice(5), lastN: days.filter((d) => d === last).length, week }
   }, [all])
   const kinds = useMemo(() => ['전체', ...['국가기관', '지자체', '교육청', '공공기관'].filter((k) => all.some((i) => i.orgType === k))], [all])
   const items = useMemo(() => (kind === '전체' ? all : all.filter((i) => i.orgType === kind)), [all, kind])
@@ -399,8 +398,8 @@ function Jobs() {
       <div className="jobs-notes">
         {fresh && (
           <div className="fresh-bar" role="status">
-            <strong>{fresh.todayN > 0 ? `오늘 새 공고 ${fresh.todayN}건!` : '오늘은 새 공고가 없어요!'}</strong>
-            <span className="fresh-sub">{fresh.todayN > 0 ? '' : `마지막 신규 등록 ${fresh.last}(${fresh.lastN}건) · `}최근 7일 신규 {fresh.week}건</span>
+            <strong>{fresh.newN > 0 ? `새 공고(NEW) ${fresh.newN}건!` : '지금 새 공고(NEW)가 없어요!'}</strong>
+            <span className="fresh-sub">{fresh.newN > 0 ? '' : `마지막 신규 등록 ${fresh.last}(${fresh.lastN}건) · `}최근 7일 신규 {fresh.week}건</span>
           </div>
         )}
         {data?.updatedAt && <p className="sub">마지막 갱신 {data.updatedAt} · 접수 중 {all.length}건</p>}
@@ -433,7 +432,6 @@ function Jobs() {
                   ))}
                   <div className="tags">
                     {soon && <span className="soon">{left === 0 ? '오늘 마감' : `마감 임박 · ${left}일 남음`}</span>}
-                    <span>{i.disabledOnly ? '장애인 대상 명시' : '장애인 대상 미명시'}</span>
                     <span>{i.org}</span>
                     <span>{i.orgType}</span>
                     <span>마감 {i.end}</span>
