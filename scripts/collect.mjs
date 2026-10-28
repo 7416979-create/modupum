@@ -104,6 +104,9 @@ async function collectJobs() {
   // KEAD 공고는 별도 단계(collect-kead.mjs)가 채운다. 여기서 지워지지 않게 이전 분 가운데 마감 전인 것을 이어 둔다.
   const prevJobs = JSON.parse(await readFile(new URL('../public/data/jobs.json', import.meta.url), 'utf8').catch(() => '{}'))
   const keepKead = (Array.isArray(prevJobs.items) ? prevJobs.items : []).filter((j) => isKead(j) && j.end >= today)
+  // 사람이 검증한 요약(verified, easy)은 수집 때마다 지워지지 않게 이전 값을 id 기준으로 옮긴다.
+  const prevById = new Map((Array.isArray(prevJobs.items) ? prevJobs.items : []).filter((j) => j.verified === true).map((j) => [j.id, j]))
+  items = items.map((j) => (prevById.has(j.id) ? { ...j, verified: true, easy: prevById.get(j.id).easy } : j))
   items = [...items, ...keepKead].sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0))
   const out = { sample: false, updatedAt: kstNow.toISOString().slice(0, 16).replace('T', ' '), items }
   await writeFile(new URL('../public/data/jobs.json', import.meta.url), `${JSON.stringify(out, null, 2)}\n`)
