@@ -406,7 +406,17 @@ function Jobs() {
                       <div><dt>장애인 관련 문구</dt><dd>{(i.summary.장애인관련 ?? []).join(' / ')}</dd></div>
                     </dl>
                   )}
-                  <ExternalLink href={i.url} label={`${orgLabel(i.title, i.org)} 원문 보기${i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}`}>원문 보기{i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}</ExternalLink>
+                  {i.source === '나라일터' ? (
+                    <div className="gojobs-guide">
+                      <p>나라일터는 공고마다 바로 가는 주소가 없어요. 아래 [제목 복사]를 누른 뒤 나라일터 검색창에 붙여 넣으세요.</p>
+                      <div className="gojobs-actions">
+                        <button type="button" className="tip-btn" onClick={() => navigator.clipboard?.writeText(i.title).catch(() => {})}>제목 복사</button>
+                        <a className="tip-btn" href="https://www.gojobs.go.kr/" target="_blank" rel="noopener noreferrer">나라일터에서 찾아보기</a>
+                      </div>
+                    </div>
+                  ) : (
+                    <ExternalLink href={i.url} label={`${orgLabel(i.title, i.org)} 원문 보기${i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}`}>원문 보기{i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}</ExternalLink>
+                  )}
                 </div>
               </details>
             </li>

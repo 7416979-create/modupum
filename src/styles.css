@@ -237,3 +237,8 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .9rem; }
 .seg button:first-child { border-radius: var(--pill) 0 0 var(--pill); }
 .seg button:last-child { border-radius: 0 var(--pill) var(--pill) 0; margin-left: -2px; }
 .seg button.on { background: var(--accent); color: #fff; border-color: var(--accent); position: relative; }
+
+/* 나라일터 공고: 직접 주소가 없어서 제목 복사 안내 */
+.gojobs-guide { display: grid; gap: 12px; }
+.gojobs-guide p { margin: 0; }
+.gojobs-actions { display: flex; flex-wrap: wrap; gap: 12px; }
