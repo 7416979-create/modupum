@@ -141,7 +141,7 @@ function AskHelp({ item }) {
   return (
     <div className="ask-box">
       <button type="button" className="ask-btn" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
-        궁금해요
+        자세히보기
       </button>
       {open && (
         <div className="ask-panel">
