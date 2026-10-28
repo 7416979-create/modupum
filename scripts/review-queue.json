@@ -92,16 +92,6 @@
       "addedAt": "2026-10-23T02:31:50.589Z"
     },
     {
-      "id": "kead-217026",
-      "title": "[서울동부지사] 서울농수산식품공사 발달장애예술인(청년인턴) 채용",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217026&menuId=MENU2201",
-      "end": "2026-10-27",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-23T02:31:50.589Z"
-    },
-    {
       "id": "kead-217008",
       "title": "[서울지역본부] [선린인터넷고등학교(서울 용산구 소재)] 학교청소원 모집안내",
       "org": "한국장애인고용공단",
@@ -248,6 +238,16 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-10-27T09:23:44.457Z"
+    },
+    {
+      "id": "kead-217188",
+      "title": "[장애인채용] 2026년 농촌진흥청 일반직공무원 경력경쟁채용시험 공고",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217188&menuId=MENU2201",
+      "end": "2026-11-12",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-28T01:40:34.922Z"
     }
   ]
 }

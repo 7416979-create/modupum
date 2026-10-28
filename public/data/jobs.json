@@ -1,44 +1,7 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-27 18:21",
+  "updatedAt": "2026-10-28 10:38",
   "items": [
-    {
-      "id": "305971",
-      "title": "[제2026-118호] 2026년도 제9차 강원특별자치도장애아동·발달장애인지원센터 체험형 청년인턴(장애인 제한경쟁) 채용 공고",
-      "org": "한국장애인개발원",
-      "region": "강원",
-      "hires": 1,
-      "start": "2026-10-13",
-      "end": "2026-10-27",
-      "url": "https://koddicpdd.fairyhr.com",
-      "disabledOnly": true
-    },
-    {
-      "id": "gojobs-306508",
-      "title": "국립현대미술관 행정지원과 공무직 근로자 채용(장애인 제한경쟁) 공고",
-      "org": "문화체육관광부 국립현대미술관 기획운영단",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-23",
-      "end": "2026-10-27",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%EA%B5%AD%EB%A6%BD%ED%98%84%EB%8C%80%EB%AF%B8%EC%88%A0%EA%B4%80%20%ED%96%89%EC%A0%95%EC%A7%80%EC%9B%90%EA%B3%BC%20%EA%B3%B5%EB%AC%B4%EC%A7%81%20%EA%B7%BC%EB%A1%9C%EC%9E%90%20%EC%B1%84%EC%9A%A9(%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%EA%B2%BD%EC%9F%81)%20%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터"
-    },
-    {
-      "id": "gojobs-305908",
-      "title": "(장애인 제한경쟁) 2026년 국립마산병원 공무직근로자(시설관리원) 채용 공고",
-      "org": "질병관리청 국립마산병원",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-16",
-      "end": "2026-10-27",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=(%EC%9E%A5%EC%95%A0%EC%9D%B8%20%EC%A0%9C%ED%95%9C%EA%B2%BD%EC%9F%81)%202026%EB%85%84%20%EA%B5%AD%EB%A6%BD%EB%A7%88%EC%82%B0%EB%B3%91%EC%9B%90%20%EA%B3%B5%EB%AC%B4%EC%A7%81%EA%B7%BC%EB%A1%9C%EC%9E%90(%EC%8B%9C%EC%84%A4%EA%B4%80%EB%A6%AC%EC%9B%90)%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터"
-    },
     {
       "id": "305988",
       "title": "[한국조세재정연구원] 행정직(전문원) 신규인력채용_장애인제한경쟁",
@@ -406,5 +369,5 @@
       "disabledOnly": true
     }
   ],
-  "keadCheckedAt": "2026-10-27 18:21"
+  "keadCheckedAt": "2026-10-28 10:38"
 }
