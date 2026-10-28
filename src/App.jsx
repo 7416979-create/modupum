@@ -120,7 +120,7 @@ const infoOr = (v) => (v && v !== '확인 안 됨' ? v : NO_INFO)
 // 원문 대조가 끝나지 않은 공고는 요약을 숨기고 이 배지만 보인다(item.verified === true 일 때만 요약 공개).
 const PENDING = '쉬운 설명 준비 중이에요'
 
-// 궁금해요: 공고 핵심 칸을 크게 보여주고 소리로 읽어 준다. 전화번호가 있을 때만 전화 버튼을 보인다.
+// 자세히보기: 공고 핵심 칸을 크게 보여준다. 전화번호가 있을 때만 전화 버튼을 보인다.
 function AskHelp({ item }) {
   const [open, setOpen] = useState(false)
   const facts = [
@@ -129,15 +129,6 @@ function AskHelp({ item }) {
     ['채용 인원', item.verified === true ? infoOr(item.summary?.채용인원) : PENDING],
     ['고용 형태', item.verified === true ? infoOr(item.summary?.고용형태) : PENDING],
   ]
-  const readAloud = () => {
-    try {
-      const text = facts.map(([k, v]) => `${k}, ${v}`).join('. ')
-      window.speechSynthesis?.cancel()
-      window.speechSynthesis?.speak(new SpeechSynthesisUtterance(text))
-    } catch {
-      // 음성을 쓸 수 없는 기기는 그냥 넘어간다
-    }
-  }
   return (
     <div className="ask-box">
       <button type="button" className="ask-btn" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
@@ -150,10 +141,11 @@ function AskHelp({ item }) {
               <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
             ))}
           </dl>
-          <div className="ask-actions">
-            <button type="button" className="ask-btn" onClick={readAloud}>읽어주기</button>
-            {item.phone && <a className="ask-btn" href={`tel:${item.phone}`}>전화하기 {item.phone}</a>}
-          </div>
+          {item.phone && (
+            <div className="ask-actions">
+              <a className="ask-btn" href={`tel:${item.phone}`}>전화하기 {item.phone}</a>
+            </div>
+          )}
         </div>
       )}
     </div>
