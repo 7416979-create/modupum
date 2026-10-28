@@ -242,3 +242,14 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .9rem; }
 .gojobs-guide { display: grid; gap: 12px; }
 .gojobs-guide p { margin: 0; }
 .gojobs-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* 궁금해요: 버튼은 손가락 크기 이상, 펼친 칸은 글자 크게 */
+.ask-box { display: grid; gap: 12px; }
+.ask-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: 2px solid #00602f; border-radius: 10px; background: #fff; color: #00602f; font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
+.ask-btn[aria-expanded="true"] { background: #00602f; color: #fff; }
+.ask-panel { display: grid; gap: 14px; }
+.ask-panel dl { margin: 0; display: grid; gap: 10px; }
+.ask-panel dt { font-size: 0.95rem; color: #50505a; font-weight: 700; }
+.ask-panel dd { margin: 2px 0 0; font-size: 1.1rem; }
+.ask-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+@media (prefers-reduced-motion: reduce) { .ask-btn { transition: none; } }

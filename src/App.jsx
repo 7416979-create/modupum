@@ -114,6 +114,47 @@ function SampleNotice({ data }) {
   return <p className="notice">지금은 샘플 화면입니다. 공공 데이터가 연결되면 실제 정보로 바뀝니다.</p>
 }
 
+// 궁금해요: 공고 핵심 칸을 크게 보여주고 소리로 읽어 준다. 전화번호가 있을 때만 전화 버튼을 보인다.
+function AskHelp({ item }) {
+  const [open, setOpen] = useState(false)
+  const facts = [
+    ['기관', item.org || '확인 필요'],
+    ['마감', item.end ? `${item.end}까지` : '확인 필요'],
+    ['대상', item.disabledOnly ? '장애인 대상 명시' : '장애인 대상 미명시, 원문 확인'],
+    ['채용 인원', item.summary?.채용인원 || '확인 필요'],
+    ['고용 형태', item.summary?.고용형태 || '확인 필요'],
+  ]
+  const readAloud = () => {
+    try {
+      const text = facts.map(([k, v]) => `${k}, ${v}`).join('. ')
+      window.speechSynthesis?.cancel()
+      window.speechSynthesis?.speak(new SpeechSynthesisUtterance(text))
+    } catch {
+      // 음성을 쓸 수 없는 기기는 그냥 넘어간다
+    }
+  }
+  return (
+    <div className="ask-box">
+      <button type="button" className="ask-btn" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
+        궁금해요
+      </button>
+      {open && (
+        <div className="ask-panel">
+          <dl>
+            {facts.map(([k, v]) => (
+              <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
+            ))}
+          </dl>
+          <div className="ask-actions">
+            <button type="button" className="ask-btn" onClick={readAloud}>읽어주기</button>
+            {item.phone && <a className="ask-btn" href={`tel:${item.phone}`}>전화하기 {item.phone}</a>}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
 function Home({ go }) {
   const welfare = useData('welfare')
   const jobs = useData('jobs')
@@ -417,6 +458,7 @@ function Jobs() {
                   ) : (
                     <ExternalLink href={i.url} label={`${orgLabel(i.title, i.org)} 원문 보기${i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}`}>원문 보기{i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}</ExternalLink>
                   )}
+                  <AskHelp item={i} />
                 </div>
               </details>
             </li>
