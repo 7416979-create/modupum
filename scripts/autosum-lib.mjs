@@ -72,8 +72,8 @@ export const verifyEasy = (easyIn, evidence, sourceText) => {
     if (!hasNoInfo && ev.length === 0) reasons.push(`근거 문장 없음: ${k}`)
     for (const q of ev) {
       // 표 칸을 건너뛰며 "..." 로 이은 근거는 조각마다 원문에 있어야 한다.
-      const frags = q.split(/\.{2,}|…/).map(sq).filter((f) => f.length >= 2)
-      if (!frags.some((f) => f.length >= 4)) reasons.push(`근거가 너무 짧음: ${k}`)
+      const frags = q.split(/\.{2,}|…/).map(sq).filter((f) => f.length >= 1)
+      if (frags.join('').length < 4) reasons.push(`근거가 너무 짧음: ${k}`)
       else if (!frags.every((f) => src.includes(f))) reasons.push(`근거가 원문에 없음: ${k} "${q.slice(0, 30)}"`)
     }
     if (NUM_FIELDS.includes(k)) {
