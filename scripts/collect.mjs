@@ -7,6 +7,7 @@ import { buildJobs, listUrl, rowsOf } from './jobs-lib.mjs'
 import { GOJOBS_LIST, parseList, buildGojobs, mergeJobs, toJob } from './gojobs-lib.mjs'
 import { enqueueSave } from './review-lib.mjs'
 import { isKead } from './kead-lib.mjs'
+import { carryVerified } from './autosum-lib.mjs'
 import { loadHolidays, jobCollectDecision, isForced } from './workday-lib.mjs'
 import { validateJobs, validateWelfare, isAbnormalDrop } from './validate-lib.mjs'
 import { listUrl as welfareListUrl, parseList as parseWelfareList, toWelfare, stampFirstSeen } from './welfare-lib.mjs'
@@ -107,10 +108,8 @@ async function collectJobs() {
   // 사람이 검증한 요약(verified, easy)은 수집 때마다 지워지지 않게 이전 값을 id 기준으로 옮긴다.
   const prevById = new Map((Array.isArray(prevJobs.items) ? prevJobs.items : []).filter((j) => j.verified === true).map((j) => [j.id, j]))
   items = items.map((j) => {
-    const prev = prevById.get(j.id)
-    if (!prev) return j
-    // urlFixed: 수집 API 의 원문 주소가 잘려 사람이 바로잡은 주소는 그대로 둔다.
-    return { ...j, verified: true, easy: prev.easy, ...(prev.urlFixed ? { url: prev.url, urlFixed: true } : {}) }
+    // urlFixed: 수집 API 의 원문 주소가 잘려 사람이 바로잡은 주소는 그대로 둔다. auto: 자동 요약 내부 표시도 함께 옮긴다.
+    return carryVerified(j, prevById.get(j.id))
   })
   items = [...items, ...keepKead].sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0))
   const out = { sample: false, updatedAt: kstNow.toISOString().slice(0, 16).replace('T', ' '), items }

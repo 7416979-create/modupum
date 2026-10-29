@@ -4,6 +4,7 @@
 
 import { dedupeJobs, normOrg, normTitle } from './dedupe-lib.mjs'
 import { isDisabledOnlyTitle } from './gojobs-lib.mjs'
+import { carryVerified } from './autosum-lib.mjs'
 
 export const KEAD_SOURCE = 'KEAD'
 export const KEAD_SOURCE_LABEL = '한국장애인고용공단(KEAD)'
@@ -196,7 +197,7 @@ export const mergeKead = (existing, keadJobs, today) => {
   const dupes = fresh.filter((j) => duplicatesOf(j, base))
   // 사람이 원문을 보고 채운 쉬운 요약(verified, easy)은 매번 새로 만드는 KEAD 공고에도 id 기준으로 옮긴다.
   const prev = new Map(existing.filter((j) => isKead(j) && j.verified === true && j.easy).map((j) => [j.id, j]))
-  const add = fresh.filter((j) => !dupes.includes(j)).map((j) => (prev.has(j.id) ? { ...j, verified: true, easy: prev.get(j.id).easy } : j))
+  const add = fresh.filter((j) => !dupes.includes(j)).map((j) => carryVerified(j, prev.get(j.id)))
   const merged = dedupeJobs([...base, ...add]).items.sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0))
   return { items: merged, added: add.length, duplicates: dupes.map((d) => d.id) }
 }
