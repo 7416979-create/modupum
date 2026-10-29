@@ -78,7 +78,16 @@ export async function extractJob(job, workDir) {
   let text = ''
   let html = ''
   try {
-    const res = await fetch(job.url, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(30000), redirect: 'follow' })
+    let res
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      try {
+        res = await fetch(job.url, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(45000), redirect: 'follow' })
+        if (res.ok || res.status < 500) break
+      } catch (e) {
+        if (attempt === 3) throw e
+      }
+      await new Promise((r) => setTimeout(r, attempt * 3000))
+    }
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const ctype = res.headers.get('content-type') || ''
     const buf = Buffer.from(await res.arrayBuffer())

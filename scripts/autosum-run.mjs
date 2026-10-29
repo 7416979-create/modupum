@@ -84,7 +84,7 @@ try {
           }
           o.ok = v.ok
           o.reasons.push(...v.reasons)
-          o.easy = ai.json.easy
+          o.easy = v.easy ?? ai.json.easy
           o.model = 'haiku'
         }
       }
@@ -97,7 +97,9 @@ try {
   await mkdir(outDir, { recursive: true })
   await writeFile(path.join(outDir, 'outcomes.json'), JSON.stringify(outcomes, null, 2))
 
-  if (dry) {
+  if (!dry && outcomes.length === 0) {
+    console.log('처리할 공고 없음: 기록·커밋 없이 끝냅니다')
+  } else if (dry) {
     console.log(`시험 실행 끝: 통과 ${outcomes.filter((o) => o.ok).length}/${outcomes.length}. 결과 ${outDir}`)
   } else {
     // 반영: 최신 jobs.json 을 다시 읽어 검증된 결과만 넣는다. 푸시가 거절되면 최신으로 맞춘 뒤 같은 결과를 다시 넣는다.
@@ -109,17 +111,18 @@ try {
       const { items, applied } = applyResults(cur.items, outcomes, today)
       if (items.length < cur.items.length) throw new Error('공고 수가 줄어들어 중단')
       if (applied.length) await writeFile(P.jobs, `${JSON.stringify({ ...cur, items }, null, 2)}\n`)
-      const newReview = updateReview(await readJson(P.review, []), outcomes, today)
+      const stillBlank = new Set(items.filter((j) => needsSummary(j, today)).map((j) => j.id)) // 마감·삭제된 공고는 확인 필요 목록에서 뺀다
+      const newReview = updateReview(await readJson(P.review, []), outcomes, today).filter((r) => stillBlank.has(r.id))
       await mkdir(path.dirname(P.review), { recursive: true })
       await writeFile(P.review, `${JSON.stringify(newReview, null, 2)}\n`)
       const stats = await readJson(P.stats, {})
       const d = stats[today] || { runs: 0, ok: 0, fail: 0, failIds: [] }
-      if (round === 1) { d.runs += 1; d.ok += okN; d.fail += failN; d.failIds = [...new Set([...d.failIds, ...outcomes.filter((o) => !o.ok).map((o) => o.id)])] }
+      { d.runs += 1; d.ok += okN; d.fail += failN; d.failIds = [...new Set([...d.failIds, ...outcomes.filter((o) => !o.ok).map((o) => o.id)])] }
       stats[today] = d
       await writeFile(P.stats, `${JSON.stringify(stats, null, 2)}\n`)
       const pendingNow = buildPending(items, today, await readJson(P.pending, []))
       await writeFile(P.pending, `${JSON.stringify(pendingNow, null, 2)}\n`)
-      if (round === 1) {
+      {
         if (!existsSync(P.log)) await writeFile(P.log, '# 요약 자동 채우기 로그 (PC 작업, 처음 2주 관찰: ~2026-11-12)\n\n')
         await appendFile(P.log, `${stamp2} | 대상 ${outcomes.length} | 통과 ${okN} | 확인 필요 ${failN}${failN ? ` (${outcomes.filter((o) => !o.ok).map((o) => `${o.id}: ${o.reasons[0]}`).join('; ').slice(0, 300)})` : ''}\n`)
       }

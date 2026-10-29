@@ -39,7 +39,8 @@ const NUM_FIELDS = ['언제까지', '몇명', '급여', '일하는시간', '문�
 const asText = (v) => (Array.isArray(v) ? v.join(' ') : String(v ?? ''))
 
 // 자동 생성 요약을 원문 글자와 대조한다. 통과하면 {ok:true}, 아니면 {ok:false, reasons:[...]}.
-export const verifyEasy = (easy, evidence, sourceText) => {
+export const verifyEasy = (easyIn, evidence, sourceText) => {
+  let easy = easyIn
   const reasons = []
   const src = sq(sourceText)
   if (src.length < 300) reasons.push(`원문 글자가 너무 적음(${src.length}자)`)
@@ -52,11 +53,16 @@ export const verifyEasy = (easy, evidence, sourceText) => {
   for (const k of keys) if (![...REQUIRED, ...OPTIONAL].includes(k)) reasons.push(`알 수 없는 칸: ${k}`)
   if (reasons.length) return { ok: false, reasons }
 
+  // 연장 칸은 근거가 원문에 그대로 있을 때만 쓴다. 아니면 칸을 뺀다(실패로 보지 않는다).
+  if ('연장' in easy) {
+    const evs = [].concat(evidence?.['연장'] ?? []).filter((x) => typeof x === 'string' && sq(x).length >= 4)
+    if (!evs.length || !evs.every((q) => src.includes(sq(q)))) { easy = { ...easy }; delete easy.연장 }
+  }
   const srcNums = new Set(numTokens(sourceText))
   let noInfo = 0
   for (const k of keys) {
     const text = asText(easy[k])
-    if (text.length > 400) reasons.push(`너무 김: ${k}`)
+    if (text.length > 900) reasons.push(`너무 김: ${k}`)
     if (/준비\s*중|확인\s*안\s*됨|undefined|null/.test(text)) reasons.push(`금지 문구: ${k}`)
     if (/https?:\/\/|@/.test(text) && !src.includes(sq(text.match(/https?:\/\/\S+|[\w.+-]+@[\w.-]+/)?.[0] ?? '\u0000'))) reasons.push(`원문에 없는 주소·이메일: ${k}`)
     const hasNoInfo = /안 나와 있어요|나와 있지 않아요/.test(text)
@@ -65,8 +71,10 @@ export const verifyEasy = (easy, evidence, sourceText) => {
     const ev = [].concat(evidence?.[k] ?? []).filter((x) => typeof x === 'string' && x.trim())
     if (!hasNoInfo && ev.length === 0) reasons.push(`근거 문장 없음: ${k}`)
     for (const q of ev) {
-      if (sq(q).length < 4) reasons.push(`근거가 너무 짧음: ${k}`)
-      else if (!src.includes(sq(q))) reasons.push(`근거가 원문에 없음: ${k} "${q.slice(0, 30)}"`)
+      // 표 칸을 건너뛰며 "..." 로 이은 근거는 조각마다 원문에 있어야 한다.
+      const frags = q.split(/\.{2,}|…/).map(sq).filter((f) => f.length >= 2)
+      if (!frags.some((f) => f.length >= 4)) reasons.push(`근거가 너무 짧음: ${k}`)
+      else if (!frags.every((f) => src.includes(f))) reasons.push(`근거가 원문에 없음: ${k} "${q.slice(0, 30)}"`)
     }
     if (NUM_FIELDS.includes(k)) {
       for (const t of numTokens(text)) if (!srcNums.has(t)) reasons.push(`숫자 ${t} 가 원문에 없음: ${k}`)
@@ -74,7 +82,7 @@ export const verifyEasy = (easy, evidence, sourceText) => {
   }
   // 빈칸 문구가 너무 많으면 글자 추출이 덜 된 것이다(원문 확인 전에 비우지 않는다).
   if (noInfo >= 5) reasons.push(`빈칸 문구가 ${noInfo}칸: 추출이 덜 됐을 수 있음`)
-  return { ok: reasons.length === 0, reasons }
+  return { ok: reasons.length === 0, reasons, easy }
 }
 
 // 검증 통과한 결과만 최신 공고 목록에 넣는다. 이미 요약이 있는 공고·없는 공고 id 는 건드리지 않는다.
