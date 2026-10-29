@@ -254,6 +254,16 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-10-29T03:56:00.261Z"
+    },
+    {
+      "id": "kead-217221",
+      "title": "[서울지역본부] 경성고등학교 미화 1명 모집(채용시)",
+      "org": "경성고등학교",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217221&menuId=MENU2201",
+      "end": "2026-11-08",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-29T05:25:06.666Z"
     }
   ]
 }
