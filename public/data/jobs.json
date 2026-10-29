@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-29 10:39",
+  "updatedAt": "2026-10-29 11:06",
   "items": [
     {
       "id": "306014",
@@ -171,7 +171,7 @@
       "hires": 1,
       "start": "2026-10-29",
       "end": "2026-11-13",
-      "url": "https://www.ekr.or.kr/planweb/board/list.krc?contentUid=8a8bb3529665d7140199501cd3ef6280&boardUid=402880317cc0644a017cc5e8000f06b7&categoryUid2=8a8bb3529665d71401995199643725f2&categoryUid3=8a8bb3529665d7140199700095dd0557&contentUid=8a8bb3529665d71401995",
+      "url": "https://www.ekr.or.kr/planweb/board/view.krc?dataUid=8a8bb352a08a300001a176d48cbf232b&page=1&boardUid=402880317cc0644a017cc5e8000f06b7&contentUid=8a8bb3529665d7140199501cd3ef6280&searchType=&keyword=&categoryUid1=&categoryUid2=8a8bb3529665d714019951996437",
       "disabledOnly": true
     },
     {
@@ -186,5 +186,5 @@
       "disabledOnly": true
     }
   ],
-  "keadCheckedAt": "2026-10-29 10:39"
+  "keadCheckedAt": "2026-10-29 11:06"
 }
