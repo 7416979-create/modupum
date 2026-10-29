@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-29 09:32",
+  "updatedAt": "2026-10-29 10:24",
   "items": [
     {
       "id": "306014",
@@ -164,6 +164,17 @@
       ]
     },
     {
+      "id": "306471",
+      "title": "한국농어촌공사 금강사업단 공무직(청소원) 보훈·장애인 제한경쟁 채용공고",
+      "org": "한국농어촌공사",
+      "region": "전북",
+      "hires": 1,
+      "start": "2026-10-29",
+      "end": "2026-11-13",
+      "url": "https://www.ekr.or.kr/planweb/board/list.krc?contentUid=8a8bb3529665d7140199501cd3ef6280&boardUid=402880317cc0644a017cc5e8000f06b7&categoryUid2=8a8bb3529665d71401995199643725f2&categoryUid3=8a8bb3529665d7140199700095dd0557&contentUid=8a8bb3529665d71401995",
+      "disabledOnly": true
+    },
+    {
       "id": "302097",
       "title": "2026년 하반기 체험형 청년인턴(장애인 전형) 모집",
       "org": "대한무역투자진흥공사",
@@ -175,5 +186,5 @@
       "disabledOnly": true
     }
   ],
-  "keadCheckedAt": "2026-10-29 09:32"
+  "keadCheckedAt": "2026-10-29 10:24"
 }
