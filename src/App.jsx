@@ -425,7 +425,7 @@ function Jobs() {
                   <span className={`sum-tag dday${soon ? ' soon' : ''}`}>{left === 0 ? '오늘 마감' : `마감 ${left}일 남음${i.end ? ` · ${String(i.end).slice(5).replace('-', '.')}` : ''}`}</span>
                   {i.easy && (
                     <span className="brief-top" aria-label="한눈에 보기">
-                      <span><b>언제까지</b> {i.easy.언제까지}</span>
+                      <span><b>언제까지</b> {i.easy.언제까지} ({left === 0 ? '오늘 마감' : `${left}일 남음`})</span>
                       <span><b>무슨 일 · 고용 형태</b> {i.easy.무슨일고용}</span>
                       <span><b>어디서</b> {i.easy.어디서 ?? NO_INFO}</span>
                     </span>
@@ -452,6 +452,7 @@ function Jobs() {
                         {i.easy.연장 && <div><dt>계약 기간 연장</dt><dd>{i.easy.연장}</dd></div>}
                         <div><dt>문의</dt><dd>{i.easy.문의}</dd></div>
                       </dl>
+                      <p className="src-line">출처: {i.sourceLabel || i.source || '원문 공고'}</p>
                     </details>
                   )}
                   {(i.notes ?? []).map((n) => (

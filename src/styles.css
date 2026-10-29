@@ -251,6 +251,7 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .9rem; }
 .brief-top { display: grid; gap: 4px; margin-top: 8px; font-size: 1rem; font-weight: 500; color: #26262a; }
 .brief-top > span { display: block; }
 .brief-top b { color: #50505a; font-weight: 700; margin-right: 6px; }
+.src-line { margin: 4px 0 0; font-size: .9rem; color: var(--muted); }
 
 /* 궁금해요: 버튼은 손가락 크기 이상, 펼친 칸은 글자 크게 */
 .ask-box { display: grid; gap: 12px; }
