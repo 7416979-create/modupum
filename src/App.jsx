@@ -115,7 +115,7 @@ function SampleNotice({ data }) {
 }
 
 // 원문에 없는 칸은 이 문구로 통일한다(요약 형식 버전 11).
-const NO_INFO = '공고에 안 나와 있어요. 📞 문의에 물어보세요.'
+const NO_INFO = '공고에 안 나와 있어요. 문의에 물어보세요.'
 const infoOr = (v) => (v && v !== '확인 안 됨' ? v : NO_INFO)
 // 원문 대조가 끝나지 않은 공고는 요약을 숨기고 이 배지만 보인다(item.verified === true 일 때만 요약 공개).
 const PENDING = '쉬운 설명 준비 중이에요'
