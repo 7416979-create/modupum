@@ -78,6 +78,11 @@ for (const name of ['jobs', 'welfare', 'news']) {
     if (dupId) issues.push(`${name}.json id 중복 ${dupId}건`)
     if (dupUrl) issues.push(`${name}.json 링크 중복 ${dupUrl}건`)
     if (!d.updatedAt) issues.push(`${name}.json updatedAt 없음`)
+    if (name === 'jobs') {
+      // 마감 전인데 쉬운 요약(easy)이 없는 공고는 화면에 빈칸이 생긴다. 원문 확인 후 채워야 한다.
+      const blank = items.filter((i) => i.end >= today && !(i.verified === true && i.easy)).map((i) => i.id)
+      if (blank.length) issues.push(`jobs.json 쉬운 요약 없는 공고 ${blank.length}건: ${blank.join(', ')} (원문 확인 후 easy 채우기)`)
+    }
   } catch (e) {
     counts[name] = 0
     issues.push(`${name}.json 읽기 실패: ${e.message}`)

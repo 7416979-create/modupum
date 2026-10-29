@@ -118,7 +118,8 @@ function SampleNotice({ data }) {
 const NO_INFO = '공고에 안 나와 있어요. 문의에 물어보세요.'
 const infoOr = (v) => (v && v !== '확인 안 됨' ? v : NO_INFO)
 // 원문 대조가 끝나지 않은 공고는 요약을 숨기고 이 배지만 보인다(item.verified === true 일 때만 요약 공개).
-const PENDING = '쉬운 설명 준비 중이에요'
+// 요약이 아직 없으면 "준비 중" 대신 원문으로 안내한다(빈칸·준비중 문구 금지, 요약은 daily-check 가 알려 채운다).
+const PENDING = '"원문 보기"에서 확인해 주세요'
 
 // 자세히보기: 공고 핵심 칸을 크게 보여준다. 전화번호가 있을 때만 전화 버튼을 보인다.
 function AskHelp({ item }) {

@@ -63,3 +63,12 @@ test('합칠 때 마감 지난 것·이미 있는 공고는 넣지 않고 이전
   assert.equal(mergeKead([same], [job], '2026-10-22').added, 0)
   assert.equal(mergeKead([], [{ ...job, end: '2026-10-01' }], '2026-10-22').added, 0)
 })
+test('이전 KEAD 공고에 채운 쉬운 요약(verified, easy)은 다시 합쳐도 남는다', () => {
+  const [a] = parseList(html)
+  const job = { ...buildJob(a, bodyLines(body), rules), disabledOnly: true, end: '2026-11-30' }
+  const prev = { ...job, verified: true, easy: { 언제까지: 'x' } }
+  const r = mergeKead([prev], [job], '2026-10-22')
+  const got = r.items.find((j) => j.id === job.id)
+  assert.equal(got.verified, true)
+  assert.deepEqual(got.easy, { 언제까지: 'x' })
+})

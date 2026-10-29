@@ -194,7 +194,9 @@ export const mergeKead = (existing, keadJobs, today) => {
   // 장애인 대상이 제목에 명시된 공고만 담는다(명시 없음은 노출하지 않는다).
   const fresh = keadJobs.filter((j) => j.end && j.end >= today && j.disabledOnly === true)
   const dupes = fresh.filter((j) => duplicatesOf(j, base))
-  const add = fresh.filter((j) => !dupes.includes(j))
+  // 사람이 원문을 보고 채운 쉬운 요약(verified, easy)은 매번 새로 만드는 KEAD 공고에도 id 기준으로 옮긴다.
+  const prev = new Map(existing.filter((j) => isKead(j) && j.verified === true && j.easy).map((j) => [j.id, j]))
+  const add = fresh.filter((j) => !dupes.includes(j)).map((j) => (prev.has(j.id) ? { ...j, verified: true, easy: prev.get(j.id).easy } : j))
   const merged = dedupeJobs([...base, ...add]).items.sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0))
   return { items: merged, added: add.length, duplicates: dupes.map((d) => d.id) }
 }

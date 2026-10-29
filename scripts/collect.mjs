@@ -106,7 +106,12 @@ async function collectJobs() {
   const keepKead = (Array.isArray(prevJobs.items) ? prevJobs.items : []).filter((j) => isKead(j) && j.end >= today)
   // 사람이 검증한 요약(verified, easy)은 수집 때마다 지워지지 않게 이전 값을 id 기준으로 옮긴다.
   const prevById = new Map((Array.isArray(prevJobs.items) ? prevJobs.items : []).filter((j) => j.verified === true).map((j) => [j.id, j]))
-  items = items.map((j) => (prevById.has(j.id) ? { ...j, verified: true, easy: prevById.get(j.id).easy } : j))
+  items = items.map((j) => {
+    const prev = prevById.get(j.id)
+    if (!prev) return j
+    // urlFixed: 수집 API 의 원문 주소가 잘려 사람이 바로잡은 주소는 그대로 둔다.
+    return { ...j, verified: true, easy: prev.easy, ...(prev.urlFixed ? { url: prev.url, urlFixed: true } : {}) }
+  })
   items = [...items, ...keepKead].sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0))
   const out = { sample: false, updatedAt: kstNow.toISOString().slice(0, 16).replace('T', ' '), items }
   await writeFile(new URL('../public/data/jobs.json', import.meta.url), `${JSON.stringify(out, null, 2)}\n`)
