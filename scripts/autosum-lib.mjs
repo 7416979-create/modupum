@@ -35,7 +35,29 @@ export const squash = sq
 // 글자 속 숫자 덩어리(쉼표 제거). '2,650,380원' -> 2650380
 export const numTokens = (s) => [...String(s ?? '').replace(/(\d),(?=\d{3}\b)/g, '$1').matchAll(/\d+/g)].map((m) => String(Number(m[0])) === m[0] ? m[0] : m[0].replace(/^0+(?=\d)/, '') )
 
-const NUM_FIELDS = ['언제까지', '몇명', '급여', '일하는시간', '문의', '연장']
+// 시각 문자열("오후 4시", "16:00", "18 시")에서 24시간제 '시'만 뽑는다. 없으면 null.
+const clockHour = (ampm, h, colon) => {
+  let n = Number(h)
+  if (ampm === '오후' && n < 12) n += 12
+  if (ampm === '오전' && n === 12) n = 0
+  return colon === undefined && n > 24 ? null : n
+}
+export const firstClockHour = (s) => {
+  const m = /(오[전후])?\s*(\d{1,2})\s*(?:[:：]\s*\d{2}|시)/.exec(String(s ?? ''))
+  return m ? clockHour(m[1], m[2]) : null
+}
+// 원문에서 "접수마감일 16:00까지", "마감 당일 18시까지 접수분에 한함" 같은 마감일 시각 제한의 '시'들을 찾는다.
+export const deadlineLimitHours = (text) => {
+  const t = String(text ?? '').replace(/\s+/g, ' ')
+  const hours = new Set()
+  for (const m of t.matchAll(/마감\s?(?:일|당일)\s?(?:은|에는|에|의|까지)?\s?(오[전후])?\s?(\d{1,2})\s?(?:[:：]\s?\d{2}|시(?:\s?\d{1,2}\s?분)?)\s?까지/g)) {
+    const h = clockHour(m[1], m[2])
+    if (h !== null && h <= 24) hours.add(h)
+  }
+  return [...hours]
+}
+
+const NUM_FIELDS =['언제까지', '몇명', '급여', '일하는시간', '문의', '연장']
 const asText = (v) => (Array.isArray(v) ? v.join(' ') : String(v ?? ''))
 
 // 자동 생성 요약을 원문 글자와 대조한다. 통과하면 {ok:true}, 아니면 {ok:false, reasons:[...]}.
@@ -52,6 +74,13 @@ export const verifyEasy = (easyIn, evidence, sourceText) => {
   const keys = Object.keys(easy).filter((k) => !(k === '연장' && /안 나와 있어요|없어요/.test(asText(easy[k])))) // 연장 칸은 원문에 있을 때만 쓴다
   for (const k of keys) if (![...REQUIRED, ...OPTIONAL].includes(k)) reasons.push(`알 수 없는 칸: ${k}`)
   if (reasons.length) return { ok: false, reasons }
+
+  // 접수 마감일에 별도 시각 제한("접수마감일 16:00까지 접수에 한함")이 있으면 '언제까지' 칸의 첫 시각이 그 시각이어야 한다.
+  const lim = deadlineLimitHours(sourceText)
+  if (lim.length) {
+    const first = firstClockHour(asText(easy['언제까지']))
+    if (first === null || !lim.includes(first)) reasons.push(`마감일 시각 제한(${lim.map((h) => `${h}시`).join('·')}까지)이 '언제까지' 칸 첫 시각과 다름: 그 시각을 우선 쓰고, 공고에 적힌 다른 시각은 괄호로 덧붙이세요`)
+  }
 
   // 연장 칸은 근거가 원문에 그대로 있을 때만 쓴다. 아니면 칸을 뺀다(실패로 보지 않는다).
   if ('연장' in easy) {

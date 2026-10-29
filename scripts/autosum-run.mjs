@@ -31,11 +31,16 @@ const P = {
 const readJson = async (f, d) => JSON.parse(await readFile(f, 'utf8').catch(() => 'null')) ?? d
 const git = (...a) => execFileSync('git', a, { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim()
 
+// task.log 에 실행마다 남기는 한 줄(타임스탬프·대상·통과·확인필요). daily-check 가 이 줄을 읽는다.
+const runSummary = { total: 0, ok: 0, fail: 0, state: '오류(중간 중단)', dry }
+const runLogLine = (s) => `[${new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 16).replace('T', ' ')}] 실행결과 | 대상 ${s.total} | 통과 ${s.ok} | 확인필요 ${s.fail} | ${s.state}${s.dry ? ' (시험)' : ''}`
+
 // 동시에 두 번 돌지 않게 한다(2시간 넘은 잠금은 죽은 것으로 보고 지운다).
 await mkdir(HOME, { recursive: true })
 const lock = path.join(HOME, 'run.lock')
 if (existsSync(lock) && Date.now() - Number((await readFile(lock, 'utf8').catch(() => '0')) || 0) < 7200000) {
   console.log('이미 실행 중이어서 건너뜁니다')
+  console.log(runLogLine({ total: 0, ok: 0, fail: 0, state: '건너뜀(이미 실행 중)', dry }))
   process.exit(0)
 }
 await writeFile(lock, String(Date.now()))
@@ -96,6 +101,10 @@ try {
   }
   await mkdir(outDir, { recursive: true })
   await writeFile(path.join(outDir, 'outcomes.json'), JSON.stringify(outcomes, null, 2))
+  runSummary.total = outcomes.length
+  runSummary.ok = outcomes.filter((o) => o.ok).length
+  runSummary.fail = outcomes.length - runSummary.ok
+  runSummary.state = outcomes.length === 0 ? '처리할 공고 없음' : '오류(반영·푸시 실패)'
 
   if (!dry && outcomes.length === 0) {
     console.log('처리할 공고 없음: 기록·커밋 없이 끝냅니다')
@@ -142,6 +151,8 @@ try {
       }
     }
   }
+  if (outcomes.length) runSummary.state = '완료'
 } finally {
+  console.log(runLogLine(runSummary))
   await unlock()
 }

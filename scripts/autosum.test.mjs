@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { needsSummary, buildPending, carryVerified, applyResults, verifyEasy, updateReview, numTokens, NO_INFO } from './autosum-lib.mjs'
+import { needsSummary, buildPending, carryVerified, applyResults, verifyEasy, updateReview, numTokens, NO_INFO, deadlineLimitHours, firstClockHour } from './autosum-lib.mjs'
 import { mergeKead } from './kead-lib.mjs'
 import { attachmentLinks, htmlToText } from './autosum-extract.mjs'
 
@@ -97,6 +97,27 @@ test('확인 필요 목록: 실패는 시도 횟수가 늘고 성공은 빠진�
   assert.equal(r.find((x) => x.id === 'a').attempts, 2)
   r = updateReview(r, [{ id: 'a', ok: true, reasons: [] }], today)
   assert.deepEqual(r.map((x) => x.id), ['b'])
+})
+
+test('마감일 별도 시각 제한을 찾는다', () => {
+  assert.deepEqual(deadlineLimitHours('접수기간: 2026. 10. 29.(목) ~ 11. 13.(금) 18:00 (접수마감일 16:00까지 접수에 한함)'), [16])
+  assert.deepEqual(deadlineLimitHours('※ 마감 당일 18 시까지 접수분에 한함'), [18])
+  assert.deepEqual(deadlineLimitHours('접수 마감일 오후 4시까지 접수'), [16])
+  assert.deepEqual(deadlineLimitHours('접수기간 10. 15. ~ 10. 30. 18:00'), [])
+  assert.equal(firstClockHour('2026년 11월 13일(금) 16:00까지'), 16)
+  assert.equal(firstClockHour('2026년 11월 13일(금)'), null)
+})
+
+test('마감일 시각 제한이 있는데 요약이 다른 시각이면 실패 (306471 재발 방지)', () => {
+  const s2 = src.replace('10. 30. 18:00', '10. 30. 18:00 (접수마감일 16:00까지 접수에 한함)')
+  const ev2 = { ...ev, 언제까지: ['접수기간 2026. 10. 15. ~ 10. 30. 18:00 (접수마감일 16:00까지 접수에 한함)'] }
+  const bad = verifyEasy(easy, ev2, s2)
+  assert.ok(!bad.ok)
+  assert.match(bad.reasons.join(), /마감일 시각 제한/)
+  const good = verifyEasy({ ...easy, 언제까지: '2026년 10월 30일 16:00까지 (공고에는 18:00, 마감 날은 16:00까지만 받아요)' }, ev2, s2)
+  assert.deepEqual(good.reasons, [])
+  // 별도 제한이 없으면 기존처럼 통과
+  assert.ok(verifyEasy(easy, ev, src).ok)
 })
 
 test('숫자 덩어리·첨부 링크 찾기', () => {
