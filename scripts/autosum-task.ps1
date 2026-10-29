@@ -3,7 +3,7 @@
 # PC 가 꺼져 있었으면 켜지는 즉시(StartWhenAvailable) 또는 로그인 5분 뒤에 밀린 것을 처리한다. 비밀값은 쓰지 않는다.
 $home1 = 'C:\Users\A\modupum-autosum'
 $repo = Join-Path $home1 'repo'
-$cmd = "Set-Location '$repo'; node scripts\autosum-run.mjs 2>&1 | Out-File -Append -Encoding utf8 '$home1\task.log'"
+$cmd = "[Console]::OutputEncoding=[Text.Encoding]::UTF8; Set-Location '$repo'; node scripts\autosum-run.mjs 2>&1 | Out-File -Append -Encoding utf8 '$home1\task.log'"
 $action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command `"$cmd`""
 $triggers = @(
   (New-ScheduledTaskTrigger -Daily -At '10:40'),
