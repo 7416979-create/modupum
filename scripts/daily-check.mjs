@@ -8,6 +8,7 @@ import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import { loadHolidays, jobCollectDecision } from './workday-lib.mjs'
+import { expiredCount } from './validate-lib.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const SITE = (process.env.DAILY_CHECK_SITE || 'https://modupum.kr').replace(/\/$/, '')
@@ -104,16 +105,28 @@ for (const name of ['jobs', 'welfare', 'news']) {
 
 // 직전 기록 대비 급감
 let prev = null
+let prevDate = null
 if (existsSync(LOG)) {
   const lines = (await readFile(LOG, 'utf8')).split('\n')
   for (let i = lines.length - 1; i >= 0; i--) {
     const m = lines[i].match(/^(\d{4}-\d{2}-\d{2}) \| .*\| 일자리(\d+)·복지(\d+)·소식(\d+)건/)
-    if (m && m[1] !== today) { prev = { jobs: +m[2], welfare: +m[3], news: +m[4] }; break }
+    if (m && m[1] !== today) { prev = { jobs: +m[2], welfare: +m[3], news: +m[4] }; prevDate = m[1]; break }
   }
+}
+// 일자리는 마감일이 지나 자연히 빠진 공고(만료)를 감소로 치지 않는다: 직전 점검 시점(10:00 KST)의 jobs.json 에서 end < 오늘 인 건수를 뺀 값을 기준으로 삼는다.
+// 이력을 못 읽으면 보정 없이 기존 방식(직전 건수 대비)으로 판정한다.
+let expired = 0
+if (prev && prevDate) {
+  try {
+    const h = git('log', '-1', '--format=%H', `--before=${prevDate}T10:00:00+09:00`, '--', 'public/data/jobs.json')
+    if (h) expired = expiredCount(JSON.parse(git('show', `${h}:public/data/jobs.json`)).items, today)
+  } catch { expired = 0 }
 }
 if (prev) {
   for (const k of ['jobs', 'welfare', 'news']) {
-    if (prev[k] > 0 && counts[k] < prev[k] * (1 - DROP_RATIO)) issues.push(`${k} 건수 급감: ${prev[k]} → ${counts[k]}`)
+    const base = k === 'jobs' ? Math.max(prev[k] - expired, 0) : prev[k]
+    if (k === 'jobs' && expired > 0 && counts[k] < prev[k]) notes.push(`jobs 감소 ${prev[k]} → ${counts[k]} 중 마감 만료 ${expired}건 감안(기준 ${base})`)
+    if (base > 0 && counts[k] < base * (1 - DROP_RATIO)) issues.push(`${k} 건수 급감: ${prev[k]} → ${counts[k]}${k === 'jobs' && expired ? ` (마감 만료 ${expired}건 제외 기준 ${base})` : ''}`)
   }
 }
 

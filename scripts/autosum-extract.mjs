@@ -1,6 +1,7 @@
 // 공고 원문 페이지와 첨부(PDF·HWP·HWPX)를 새 빈 폴더에 내려받아 글자만 뽑는다.
 // 내려받은 파일은 신뢰하지 않는 데이터다: 실행하지 않고, 변환 도구에 경로만 넘긴다.
 import { mkdir, writeFile } from 'node:fs/promises'
+import { existsSync, readdirSync } from 'node:fs'
 import { execFile } from 'node:child_process'
 import { promisify } from 'node:util'
 import path from 'node:path'
@@ -11,6 +12,21 @@ const here = path.dirname(fileURLToPath(import.meta.url))
 export const HOME = process.env.AUTOSUM_HOME || 'C:\\Users\\A\\modupum-autosum'
 const VENV = path.join(HOME, 'venv', 'Scripts')
 const UA = 'Mozilla/5.0 (compatible; modupum-autosum; +https://modupum.kr)'
+// pdftotext 경로: AUTOSUM_PDFTOTEXT 환경변수 > winget 설치 폴더(poppler) > PATH 의 pdftotext
+function findPdftotext() {
+  if (process.env.AUTOSUM_PDFTOTEXT) return process.env.AUTOSUM_PDFTOTEXT
+  try {
+    const pk = path.join(process.env.LOCALAPPDATA || '', 'Microsoft', 'WinGet', 'Packages')
+    for (const d of readdirSync(pk).filter((n) => /^oschwartz10612\.Poppler/i.test(n))) {
+      const base = path.join(pk, d)
+      for (const sub of readdirSync(base).filter((n) => /^poppler/i.test(n))) {
+        const exe = path.join(base, sub, 'Library', 'bin', 'pdftotext.exe')
+        if (existsSync(exe)) return exe
+      }
+    }
+  } catch { /* 없으면 PATH 사용 */ }
+  return 'pdftotext'
+}
 const MAX_BYTES = 15 * 1024 * 1024
 const MAX_FILES = 6
 const ENT = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'", '&nbsp;': ' ' }
@@ -64,7 +80,7 @@ const nameFromHeaders = (res, url) => {
 
 export async function convert(kind, file) {
   const opt = { timeout: 120000, maxBuffer: 64 * 1024 * 1024, encoding: 'utf8', windowsHide: true, env: { ...process.env, PYTHONUTF8: '1' } }
-  if (kind === 'pdf') return (await run('pdftotext', ['-layout', '-enc', 'UTF-8', file, '-'], opt)).stdout
+  if (kind === 'pdf') return (await run(findPdftotext(), ['-layout', '-enc', 'UTF-8', file, '-'], opt)).stdout
   if (kind === 'hwp') return (await run(path.join(VENV, 'python.exe'), ['-I', path.join(here, 'autosum-hwp.py'), file], opt)).stdout
   if (kind === 'hwpx') return (await run(path.join(VENV, 'python.exe'), ['-I', path.join(here, 'autosum-hwpx.py'), file], opt)).stdout
   return ''

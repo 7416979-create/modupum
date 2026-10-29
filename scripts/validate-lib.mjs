@@ -98,3 +98,6 @@ export const validateWelfare = (items) => {
 
 // 직전 건수 대비 급감 여부. prev 가 5건 미만이면 비교하지 않는다.
 export const isAbnormalDrop = (prevCount, nextCount) => prevCount >= 5 && nextCount < prevCount * (1 - MAX_DROP)
+
+// 직전 점검 때의 일자리 목록에서 마감일이 오늘 이전이 된(자연 만료) 공고 수. 급감 판정에서 이만큼은 감소로 치지 않는다.
+export const expiredCount = (prevItems, today) => (prevItems || []).filter((j) => j && j.end && String(j.end).slice(0, 10) < today).length

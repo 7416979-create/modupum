@@ -96,3 +96,14 @@ test('복지 검수: 중복 제거, id/제목 없음은 오류', () => {
   assert.equal(r.fixes.length, 1)
   assert.equal(r.errors.length, 2)
 })
+
+test('급감 판정 보정: 마감 만료분을 뺀 기준으로 비교', async () => {
+  const { expiredCount } = await import('./validate-lib.mjs')
+  const prev = [{ end: '2026-10-28' }, { end: '2026-10-28' }, { end: '2026-10-29' }, { end: '2026-11-05' }, { end: '2026-11-06' }, { end: '2026-11-07' }]
+  assert.equal(expiredCount(prev, '2026-10-29'), 2)
+  assert.equal(expiredCount(null, '2026-10-29'), 0)
+  assert.equal(expiredCount([{ end: '' }, {}], '2026-10-29'), 0)
+  assert.equal(isAbnormalDrop(28, 8), true)
+  assert.equal(isAbnormalDrop(28 - 8, 15), false)
+  assert.equal(isAbnormalDrop(28 - 8, 8), true)
+})
