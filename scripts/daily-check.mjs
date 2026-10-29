@@ -122,10 +122,20 @@ if (prev && prevDate) {
     if (h) expired = expiredCount(JSON.parse(git('show', `${h}:public/data/jobs.json`)).items, today)
   } catch { expired = 0 }
 }
+// 의도한 수집 중단·출처 제거 커밋(제목에 '수집 중단' 또는 '[baseline]')이 직전 점검 이후 data 를 바꿨으면 급감을 이상으로 치지 않는다(10-29 오탐 재발 방지).
+let intentionalReset = ''
+if (prev && prevDate) {
+  try {
+    const out = git('log', `--since=${prevDate}T10:00:00+09:00`, '--format=%h %s', '-i', '-E', '--grep=수집 중단|[[]baseline[]]', '--', 'public/data') || ''
+    intentionalReset = out.split(String.fromCharCode(10))[0] || ''
+  } catch { intentionalReset = '' }
+}
+
 if (prev) {
   for (const k of ['jobs', 'welfare', 'news']) {
     const base = k === 'jobs' ? Math.max(prev[k] - expired, 0) : prev[k]
     if (k === 'jobs' && expired > 0 && counts[k] < prev[k]) notes.push(`jobs 감소 ${prev[k]} → ${counts[k]} 중 마감 만료 ${expired}건 감안(기준 ${base})`)
+    if (base > 0 && counts[k] < base * (1 - DROP_RATIO) && intentionalReset) { notes.push(`${k} 건수 감소 ${prev[k]} → ${counts[k]}: 의도한 변경 커밋 감안(${intentionalReset})`); continue }
     if (base > 0 && counts[k] < base * (1 - DROP_RATIO)) issues.push(`${k} 건수 급감: ${prev[k]} → ${counts[k]}${k === 'jobs' && expired ? ` (마감 만료 ${expired}건 제외 기준 ${base})` : ''}`)
   }
 }
