@@ -1,13 +1,14 @@
 // 올리기 직전 검수. 자동으로 고칠 수 있는 것(중복·마감 지남)은 지우고 기록하며, 나머지 위반은 오류로 돌려준다.
 import { dedupeJobs } from './dedupe-lib.mjs'
 import { isNotice } from './gojobs-lib.mjs'
+import { isCopyUrl } from './gojobs-copy-lib.mjs'
 
 const YMD = /^\d{4}-\d{2}-\d{2}$/
 const validDate = (s) => YMD.test(s) && !Number.isNaN(Date.parse(s)) && new Date(s).toISOString().slice(0, 10) === s
 const BAD_TITLE = ['우선채용', '우대']
 export const MAX_DROP = 0.5
 
-export const validateJobs = (items, { today, rules = {} }) => {
+export const validateJobs = (items, { today, rules = {}, copyExists } = {}) => {
   const fixes = []
   const errors = []
   const list = Array.isArray(items) ? items : []
@@ -32,6 +33,14 @@ export const validateJobs = (items, { today, rules = {} }) => {
     if (j?.source === '나라일터' && isNotice(j.title, rules)) {
       fixes.push(`나라일터 결과·합격자 공고 제거: ${j.id} (${j.title})`)
       return false
+    }
+    // 나라일터 공고는 모두품이 가진 사본이 실제로 있을 때만 게시한다(원문 주소가 깨진 채 노출되는 일을 막는다).
+    if (j?.source === '나라일터' && typeof copyExists === 'function') {
+      const sn = String(j.id ?? '').replace(/^gojobs-/, '')
+      if (!isCopyUrl(j.url, sn) || !copyExists(sn)) {
+        fixes.push(`나라일터 사본 없음·링크 불일치 제거: ${j.id} (${j.title})`)
+        return false
+      }
     }
     // 장애인 대상이 제목에 명시되지 않은 공고(disabledOnly 가 true 가 아님)는 자격이 불분명하므로 노출하지 않고 뺀다.
     if (j?.disabledOnly !== true) {

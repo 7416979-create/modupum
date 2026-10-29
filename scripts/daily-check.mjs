@@ -140,6 +140,28 @@ if (prev) {
   }
 }
 
+// 3-1) 나라일터 사본(아카이브): 카드 원문 링크가 가리키는 사본이 저장소에 있고 라이브에서 열리는지, 사본 수집 실패율이 높지 않은지 본다.
+// 나라일터 공고가 늘어나는 것은 정상(10-29 수집 재개)이라 건수 증가는 이상으로 치지 않는다.
+{
+  const go = (data.jobs?.items || []).filter((j) => j.source === '나라일터')
+  evidence.push(`나라일터 공고 ${go.length}건`)
+  let manifest = {}
+  try { manifest = JSON.parse(await readFile(path.join(root, 'public/gojobs/manifest.json'), 'utf8')) } catch { manifest = {} }
+  const lr = manifest.lastRun
+  if (lr && lr.attempted > 0 && lr.failed / lr.attempted >= 0.3) issues.push(`나라일터 사본 실패율 높음: ${lr.failed}/${lr.attempted} (${(lr.errors || []).slice(0, 3).join('; ')})`)
+  else if (lr) notes.push(`나라일터 사본 최근 수집 실패 ${lr.failed}/${lr.attempted}`)
+  const missing = go.filter((j) => !existsSync(path.join(root, 'public/gojobs', String(j.id).replace(/^gojobs-/, ''), 'index.html')))
+  if (missing.length) issues.push(`나라일터 사본 파일 없음 ${missing.length}건: ${missing.slice(0, 3).map((j) => j.id).join(', ')}`)
+  const stale = Object.entries(manifest.items || {}).filter(([, v]) => v.end < today)
+  if (stale.length) issues.push(`마감 지난 나라일터 사본이 남아 있음 ${stale.length}건: ${stale.slice(0, 3).map(([k]) => k).join(', ')}`)
+  for (const j of go.slice(0, 3)) {
+    try {
+      const r = await fetchText(`${j.url}?t=${Date.now()}`)
+      if (r.status !== 200) notes.push(`라이브 사본 응답 ${r.status}: ${j.id}`)
+    } catch (e) { notes.push(`라이브 사본 확인 실패: ${j.id} ${e.message}`) }
+  }
+}
+
 // 4) 검수 스크립트 (--fix 없이 읽기 전용)
 {
   const r = spawnSync(process.execPath, ['scripts/validate-jobs.mjs'], { cwd: root, encoding: 'utf8' })

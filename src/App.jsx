@@ -477,6 +477,9 @@ function Jobs() {
                     </dl>
                   )}
                   <ExternalLink href={i.url} label={`${orgLabel(i.title, i.org)} 원문 보기${i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}`}>원문 보기{i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}</ExternalLink>
+                  {i.source === '나라일터' && (
+                    <p className="copy-note">모두품이 보관한 사본이에요. 최종 확인은 나라일터에서 해 주세요.{i.copiedAt ? ` (수집 ${i.copiedAt})` : ''}</p>
+                  )}
                   {!i.easy && <AskHelp item={i} />}
                 </div>
               </details>

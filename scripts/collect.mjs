@@ -5,7 +5,7 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { buildJobs, listUrl, rowsOf } from './jobs-lib.mjs'
 import { GOJOBS_LIST, parseList, buildGojobs, mergeJobs, toJob } from './gojobs-lib.mjs'
-import { enqueueSave } from './review-lib.mjs'
+import { makeCopies, readManifest } from './gojobs-copy.mjs'
 import { isKead } from './kead-lib.mjs'
 import { carryVerified } from './autosum-lib.mjs'
 import { loadHolidays, jobCollectDecision, isForced } from './workday-lib.mjs'
@@ -76,14 +76,13 @@ async function collectGojobs() {
     await new Promise((r) => setTimeout(r, 3000))
   }
   if (rows.length === 0) throw new Error('받은 공고가 없습니다')
-  // 장애인 대상 표시가 제목에 없는 접수 중 공고는 판정 대기열에 적는다(노출은 review-run 이 확실로 판정한 것만).
-  try {
-    const queued = await enqueueSave(rows.map((r) => toJob(r, rules)), today, rules)
-    if (queued) console.log(`나라일터: 판정 대기열에 ${queued}건 추가`)
-  } catch (e) {
-    console.error(`나라일터 대기열 기록 실패(무시하고 계속): ${e.message}`)
-  }
-  return buildGojobs(rows, rules, today)
+  // 사본 방식: 접수 중 공고의 상세 본문·첨부를 모두품 저장소에 저장하고, 사본이 실제로 만들어진 공고만 게시한다(사본 주소가 카드 원문 링크).
+  // 제목에 장애인 대상이 없는 공고의 판정 대기열 적재는 하지 않는다(대기열 확정 공고는 사본이 없어 게시되지 않기 때문).
+  const wanted = buildGojobs(rows, rules, today)
+  const { ok, failed } = await makeCopies(fetchRetry, wanted, rows, Date.now())
+  console.log(`나라일터 사본: 대상 ${wanted.length}건 중 성공 ${ok.length}건, 실패 ${failed.length}건`)
+  if (wanted.length > 0 && failed.length / wanted.length >= 0.3) console.error(`[경고] 나라일터 사본 실패율 높음: ${failed.length}/${wanted.length} (${failed.map((f) => `${f.id} ${f.error}`).join('; ')})`)
+  return ok
 }
 
 async function collectJobs() {
@@ -100,8 +99,19 @@ async function collectJobs() {
   }
   if (all.length === 0) throw new Error('받은 공고가 없습니다')
   const apiItems = buildJobs(all, rules, today)
-  // 나라일터 공고는 2026-10-28 수집 중단: 직접 열리는 원문 주소가 없어 사용자가 찾을 수 없었다. collectGojobs 는 남겨 두고 호출만 막는다.
+  // 나라일터 공고: 2026-10-28 수집 중단(원문 링크 깨짐) → 2026-10-29 '아카이브 사본' 방식으로 재개. 실패하면 이 부분만 건너뛴다.
   let items = apiItems
+  const prevAll = JSON.parse(await readFile(new URL('../public/data/jobs.json', import.meta.url), 'utf8').catch(() => '{}'))
+  try {
+    const extra = await collectGojobs()
+    items = mergeJobs(apiItems, extra)
+    console.log(`나라일터: ${extra.length}건 중 새로 추가 ${items.length - apiItems.length}건`)
+  } catch (e) {
+    console.error(`나라일터 수집 실패(이전에 게시한 나라일터 공고 중 마감 전·사본 있는 것만 이어 둠): ${e.message}`)
+    const manifest = await readManifest()
+    const keepGo = (Array.isArray(prevAll.items) ? prevAll.items : []).filter((j) => j.source === '나라일터' && j.end >= today && manifest.items?.[j.id.replace(/^gojobs-/, '')])
+    items = mergeJobs(apiItems, keepGo)
+  }
   // KEAD 공고는 별도 단계(collect-kead.mjs)가 채운다. 여기서 지워지지 않게 이전 분 가운데 마감 전인 것을 이어 둔다.
   const prevJobs = JSON.parse(await readFile(new URL('../public/data/jobs.json', import.meta.url), 'utf8').catch(() => '{}'))
   const keepKead = (Array.isArray(prevJobs.items) ? prevJobs.items : []).filter((j) => isKead(j) && j.end >= today)

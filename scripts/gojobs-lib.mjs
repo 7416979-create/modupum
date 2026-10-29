@@ -1,7 +1,8 @@
 // 나라일터(gojobs.go.kr) 공개 채용공고 목록(공고명 검색 결과)에서 제목·기관·마감일만 읽어 화면용 데이터로 바꾼다.
-// 공고 내용은 가져오지 않고, 제목과 원문(나라일터) 링크만 남긴다.
+// 공고 상세 본문·첨부는 gojobs-copy.mjs 가 사본으로 저장하고, 카드의 원문 링크는 그 사본(모두품 주소)을 가리킨다.
 
 import { dedupeJobs } from './dedupe-lib.mjs'
+import { copyUrl } from './gojobs-copy-lib.mjs'
 
 export const GOJOBS_LIST = 'https://www.gojobs.go.kr/apmList.do'
 
@@ -63,7 +64,7 @@ export const isDisabledOnlyTitle = (title, rules) => {
 // 합격자 발표처럼 지원할 수 없는 글은 목록에서 뺀다.
 export const isNotice = (title, rules) => (rules.나라일터_제외 ?? []).some((w) => String(title).includes(w))
 
-// 공고 상세는 나라일터가 POST 로만 열어서 직접 링크가 없다. 제목으로 검색한 목록 주소를 원문 링크로 쓴다.
+// (참고용) 제목 검색 목록 주소. 마감 후 '자료가 없습니다'로 열려 원문 링크로는 쓰지 않는다.
 export const searchUrl = (title, code = '020') =>
   `${GOJOBS_LIST}?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=${encodeURIComponent(code)}&searchKeyword=${encodeURIComponent(title)}`
 
@@ -75,7 +76,7 @@ export const toJob = (row, rules) => ({
   hires: null,
   start: row.start,
   end: row.end,
-  url: searchUrl(row.title, row.code),
+  url: copyUrl(row.sn),
   disabledOnly: isDisabledOnlyTitle(row.title, rules),
   orgType: row.orgType || '',
   source: '나라일터',

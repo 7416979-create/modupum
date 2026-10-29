@@ -32,6 +32,7 @@ test('접수 중 공고 중 장애인전형·제한경쟁만 담는다(일반 �
     ['gojobs-306017', true],
   ])
   assert.equal(jobs[0].source, '나라일터')
+  assert.equal(jobs[0].url, 'https://modupum.kr/gojobs/306018/')
 })
 
 test('띄어쓰기가 달라도 전용으로 알아보고, 합격자 발표는 뺀다', () => {

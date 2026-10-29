@@ -1,6 +1,8 @@
 // 검수 실행: public/data/jobs.json, welfare.json 을 읽어 검사한다. 위반이 있으면 종료 코드 1(워크플로에서 배포 중단).
 // 사용: node scripts/validate-jobs.mjs [--fix]   (--fix: 자동 제거 가능한 것을 파일에도 반영)
 import { readFile, writeFile } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import { validateJobs, validateWelfare } from './validate-lib.mjs'
 
 const fix = process.argv.includes('--fix')
@@ -9,7 +11,7 @@ const today = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10)
 let bad = false
 
 for (const [name, fn] of [
-  ['jobs', (items) => validateJobs(items, { today, rules })],
+  ['jobs', (items) => validateJobs(items, { today, rules, copyExists: (sn) => /^\d+$/.test(sn) && existsSync(fileURLToPath(new URL(`../public/gojobs/${sn}/index.html`, import.meta.url))) })],
   ['welfare', (items) => validateWelfare(items)],
 ]) {
   const url = new URL(`../public/data/${name}.json`, import.meta.url)
