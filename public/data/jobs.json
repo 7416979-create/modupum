@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-29 20:33",
+  "updatedAt": "2026-10-30 07:54",
   "items": [
     {
       "id": "306108",
@@ -131,7 +131,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 07:37"
+      "copiedAt": "2026-10-30 07:53"
     },
     {
       "id": "gojobs-306063",
@@ -145,7 +145,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 07:37"
+      "copiedAt": "2026-10-30 07:53"
     },
     {
       "id": "306061",
@@ -188,7 +188,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 07:37"
+      "copiedAt": "2026-10-30 07:53"
     },
     {
       "id": "gojobs-306290",
@@ -202,7 +202,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 07:37"
+      "copiedAt": "2026-10-30 07:53"
     },
     {
       "id": "306206",
@@ -245,7 +245,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 07:37"
+      "copiedAt": "2026-10-30 07:53"
     },
     {
       "id": "306244",
@@ -288,7 +288,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 07:37"
+      "copiedAt": "2026-10-30 07:53"
     },
     {
       "id": "306235",
@@ -331,7 +331,35 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 07:37"
+      "copiedAt": "2026-10-30 07:53"
+    },
+    {
+      "id": "gojobs-306927",
+      "title": "재정경제부 공무직 근로자(사무원 나급)채용 공고_장애인제한경쟁",
+      "org": "재정경제부",
+      "region": "",
+      "hires": null,
+      "start": "2026-10-28",
+      "end": "2026-11-10",
+      "url": "https://modupum.kr/gojobs/306927/",
+      "disabledOnly": true,
+      "orgType": "국가기관",
+      "source": "나라일터",
+      "copiedAt": "2026-10-30 07:53"
+    },
+    {
+      "id": "gojobs-306714",
+      "title": "2026년 제8회 안양시 지방임기제공무원 임용시험 시행계획 공고(건축구조, 공동주택관리, 도시재생, 치매안심센터 간호사, 영상 기획·촬영·편집, 지하수검침원, 체납차량 번호판 영치 및 공매, [장애인전형]행정업무지원)",
+      "org": "경기도 안양시",
+      "region": "",
+      "hires": null,
+      "start": "2026-10-26",
+      "end": "2026-11-10",
+      "url": "https://modupum.kr/gojobs/306714/",
+      "disabledOnly": true,
+      "orgType": "지자체",
+      "source": "나라일터",
+      "copiedAt": "2026-10-30 07:53"
     },
     {
       "id": "kead-217175",
@@ -376,34 +404,6 @@
       "verified": true
     },
     {
-      "id": "gojobs-306927",
-      "title": "재정경제부 공무직 근로자(사무원 나급)채용 공고_장애인제한경쟁",
-      "org": "재정경제부",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-28",
-      "end": "2026-11-10",
-      "url": "https://modupum.kr/gojobs/306927/",
-      "disabledOnly": true,
-      "orgType": "국가기관",
-      "source": "나라일터",
-      "copiedAt": "2026-10-30 07:37"
-    },
-    {
-      "id": "gojobs-306714",
-      "title": "2026년 제8회 안양시 지방임기제공무원 임용시험 시행계획 공고(건축구조, 공동주택관리, 도시재생, 치매안심센터 간호사, 영상 기획·촬영·편집, 지하수검침원, 체납차량 번호판 영치 및 공매, [장애인전형]행정업무지원)",
-      "org": "경기도 안양시",
-      "region": "",
-      "hires": null,
-      "start": "2026-10-26",
-      "end": "2026-11-10",
-      "url": "https://modupum.kr/gojobs/306714/",
-      "disabledOnly": true,
-      "orgType": "지자체",
-      "source": "나라일터",
-      "copiedAt": "2026-10-30 07:37"
-    },
-    {
       "id": "gojobs-306903",
       "title": "2026년도 제6회 광주시 임기제공무원 채용시험 제공고[읍면동 민원행정 및 사무관리(장애인 구분모집)]",
       "org": "경기도 광주시",
@@ -415,7 +415,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 07:37"
+      "copiedAt": "2026-10-30 07:53"
     },
     {
       "id": "gojobs-306366",
@@ -429,7 +429,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 07:37"
+      "copiedAt": "2026-10-30 07:53"
     },
     {
       "id": "306471",
@@ -473,7 +473,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 07:37"
+      "copiedAt": "2026-10-30 07:53"
     },
     {
       "id": "gojobs-305072",
@@ -487,7 +487,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 07:37"
+      "copiedAt": "2026-10-30 07:53"
     },
     {
       "id": "302097",
@@ -519,5 +519,5 @@
       }
     }
   ],
-  "keadCheckedAt": "2026-10-29 20:33"
+  "keadCheckedAt": "2026-10-30 07:54"
 }
