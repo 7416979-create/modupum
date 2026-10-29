@@ -452,7 +452,7 @@ function Jobs() {
                         {i.easy.연장 && <div><dt>계약 기간 연장</dt><dd>{i.easy.연장}</dd></div>}
                         <div><dt>문의</dt><dd>{i.easy.문의}</dd></div>
                       </dl>
-                      <p className="src-line">출처: {i.sourceLabel || i.source || '원문 공고'}</p>
+                      <p className="src-line">출처: {i.sourceLabel || i.source || i.org}</p>
                     </details>
                   )}
                   {(i.notes ?? []).map((n) => (
