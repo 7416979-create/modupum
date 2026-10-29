@@ -10,7 +10,7 @@ import { isKead } from './kead-lib.mjs'
 import { carryVerified } from './autosum-lib.mjs'
 import { loadHolidays, jobCollectDecision, isForced } from './workday-lib.mjs'
 import { validateJobs, validateWelfare, isAbnormalDrop } from './validate-lib.mjs'
-import { listUrl as welfareListUrl, parseList as parseWelfareList, toWelfare, stampFirstSeen } from './welfare-lib.mjs'
+import { listUrl as welfareListUrl, parseList as parseWelfareList, toWelfare, stampFirstSeen, applyTargetOverrides } from './welfare-lib.mjs'
 
 const key = process.env.DATA_GO_KR_KEY
 
@@ -146,7 +146,8 @@ async function collectWelfare() {
     all.push(...items)
   }
   if (all.length === 0) throw new Error('받은 복지서비스가 없습니다')
-  const checked = validateWelfare(all.map(toWelfare).filter((i) => i.id && i.title))
+  const targetOverrides = JSON.parse(await readFile(new URL('./welfare-target-overrides.json', import.meta.url), 'utf8').catch(() => '{}')).items
+  const checked = validateWelfare(applyTargetOverrides(all.map(toWelfare), targetOverrides).filter((i) => i.id && i.title))
   for (const f of checked.fixes) console.log(`[검수:welfare] 자동 정리 - ${f}`)
   if (checked.errors.length) {
     checked.errors.forEach((e) => console.error(`[검수:welfare] 오류 - ${e}`))

@@ -1,0 +1,17 @@
+{
+  "_설명": "복지 항목별 '지원 대상' 보정. 키=복지 id. API 의 대상 분류 태그가 장애인에게 안 맞는 단일 대상만 담을 때, 공식 원문으로 확인된 사실만 넣는다. 수집 때마다 적용된다.",
+  "items": {
+    "WLF00003271": {
+      "target": "무주택 세대주(장애인가구 우대금리 있음)",
+      "sourceUrl": "https://www.myhome.go.kr/hws/portal/cont/selectSteppingStoneLoanView.do",
+      "note": "복지로 지원대상=소득·순자산 요건을 갖춘 무주택 세대주. 마이홈포털 우대금리: 장애인가구 연 0.2%p. 다자녀는 우대 대상 중 하나일 뿐",
+      "checkedAt": "2026-10-29"
+    },
+    "WLF00003197": {
+      "target": "국내 대학 재학생(소득 9구간 이하)",
+      "sourceUrl": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00003197&wlfareInfoReldBztpCd=01",
+      "note": "복지로 지원대상=대한민국 국적, 국내 대학 학자금 지원 9구간 이하 대학생(성적·이수학점 기준 충족). 다자녀는 원문 대상 아님",
+      "checkedAt": "2026-10-29"
+    }
+  }
+}

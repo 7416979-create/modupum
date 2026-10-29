@@ -67,3 +67,10 @@ export const stampFirstSeen = (prevItems, items, today) => {
     return prev.size > 0 ? { ...it, firstSeen: today } : it
   })
 }
+
+// 항목별 지원 대상 보정(welfare-target-overrides.json 의 items). 보정 값이 있는 id 만 target 을 바꾼다.
+export const applyTargetOverrides = (items, overrides) =>
+  items.map((it) => {
+    const t = overrides?.[it.id]?.target
+    return t ? { ...it, target: t } : it
+  })

@@ -67,7 +67,7 @@
       "title": "내집마련 디딤돌 대출",
       "summary": "무주택 세대주가 주택구입 자금을 빌릴 수 있도록 지원하여 주거 안정을 돕습니다.",
       "category": "주거,서민금융",
-      "target": "다자녀",
+      "target": "무주택 세대주(장애인가구 우대금리 있음)",
       "org": "국토교통부",
       "source": "복지로",
       "url": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00003271&wlfareInfoReldBztpCd=01"
@@ -897,7 +897,7 @@
       "title": "국가장학금(Ⅰ, Ⅱ유형)",
       "summary": "누구나 경제적 여건에 관계없이 의지와 능력에 따라 대학교육의 기회를 가질 수 있도록 소득연계를 통한 대학 등록금을 차등 지원합니다.",
       "category": "교육",
-      "target": "다자녀",
+      "target": "국내 대학 재학생(소득 9구간 이하)",
       "org": "교육부",
       "source": "복지로",
       "url": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00003197&wlfareInfoReldBztpCd=01"

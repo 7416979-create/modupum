@@ -34,3 +34,10 @@ test('목록 주소에 필수 변수가 들어간다', () => {
   const u = listUrl('k/1', 2)
   assert.ok(u.includes('callTp=L') && u.includes('srchKeyCode=003') && u.includes('pageNo=2'))
 })
+
+test('applyTargetOverrides: 보정 id 만 target 을 바꾼다', async () => {
+  const { applyTargetOverrides } = await import('./welfare-lib.mjs')
+  const out = applyTargetOverrides([{ id: 'A', target: '다자녀' }, { id: 'B', target: '저소득' }], { A: { target: '무주택 세대주' } })
+  assert.equal(out[0].target, '무주택 세대주')
+  assert.equal(out[1].target, '저소득')
+})
