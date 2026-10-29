@@ -92,7 +92,7 @@ h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -
 .item details[open] > summary::after { content: '\2212'; color: var(--ink); }
 .item details > summary h2 { margin: 0; font-size: 1.05rem; font-weight: 600; line-height: 1.45; flex: 1; letter-spacing: -.01em; }
 .item details > summary:hover h2 { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
-.sum-tag { flex: none; max-width: 38%; font-size: .9rem; color: var(--muted); text-align: right; }
+.sum-tag { flex: none; max-width: 38%; font-size: 1rem; font-weight: 600; color: #1d1d1f; text-align: right; }
 .sum-tag.dday { white-space: nowrap; max-width: none; font-variant-numeric: tabular-nums; }
 .sum-tag.dday.soon { background: var(--accent); color: #fff; font-weight: 700; padding: 2px 12px; border-radius: var(--pill); }
 .item .detail { padding: 0 0 22px; }
@@ -109,7 +109,7 @@ h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -
 .empty { text-align: center; color: var(--muted); padding: 48px 0; }
 @media (max-width: 560px) {
   .sum-tag { display: none; }
-  .sum-tag.dday { display: block; font-size: .9rem; }
+  .sum-tag.dday { display: block; font-size: 1rem; }
   .list { padding: 2px 16px; }
   .item details > summary { display: grid; grid-template-columns: minmax(0, 1fr) 44px; column-gap: 8px; row-gap: 2px; }
   .item details > summary h2 { grid-column: 1; grid-row: 1; }
@@ -136,7 +136,7 @@ h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -
 .w-panel > div { overflow: hidden; min-height: 0; }
 .w-body { padding: 0 0 24px; }
 .w-body p { margin: 0 0 12px; font-size: 1rem; line-height: 1.65; color: #3a3a3f; max-width: 640px; }
-.w-body p strong { color: #1d1d1f; font-weight: 600; margin-right: 6px; }
+.w-body p strong { color: #1d1d1f; font-weight: 700; margin-right: 6px; }
 .w-body p.period-note { color: #1d1d1f; padding: 8px 12px; border-left: 4px solid #6b6b72; background: #f0f0f3; border-radius: 8px; }
 .w-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 1rem; font-weight: 600; color: #0b57d0; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
 @media (prefers-reduced-motion: reduce) { .w-panel, .w-arrow { transition: none; } }
@@ -146,7 +146,7 @@ h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -
 /* 신청 안내 */
 .facts { margin: 12px 0 4px; max-width: 700px; }
 .facts > div { display: grid; grid-template-columns: 88px 1fr; gap: 14px; padding: 10px 0; border-top: 1px solid var(--line); }
-.facts dt { font-weight: 600; color: var(--ink); font-size: .92rem; }
+.facts dt { font-weight: 700; color: var(--ink); font-size: 1rem; }
 .facts dd { margin: 0; color: var(--ink); line-height: 1.65; font-size: .95rem; }
 .src-links { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 14px 0 0; }
 @media (max-width: 560px) { .facts > div { grid-template-columns: 1fr; gap: 2px; } }
@@ -245,12 +245,12 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .9rem; }
 
 /* 공고 한눈에 보기(언제까지 / 고용 형태 / 어디서) */
 .job-brief { display: grid; gap: 10px; margin: 0 0 12px; padding: 12px 16px; border-radius: 10px; background: #f3f3f0; }
-.job-brief dt { font-size: 0.9rem; color: #50505a; font-weight: 700; }
+.job-brief dt { font-size: 1rem; color: #1d1d1f; font-weight: 700; }
 .job-brief dd { margin: 2px 0 0; font-size: 1.05rem; }
 /* 목록 카드 맨 위 3줄: 펼치지 않아도 보인다 */
-.brief-top { display: grid; gap: 4px; margin-top: 8px; font-size: 1rem; font-weight: 500; color: #26262a; }
+.brief-top { display: grid; gap: 4px; margin-top: 8px; font-size: 1.05rem; font-weight: 500; color: #1d1d1f; }
 .brief-top > span { display: block; }
-.brief-top b { color: #50505a; font-weight: 700; margin-right: 6px; }
+.brief-top b { color: #1d1d1f; font-weight: 700; margin-right: 6px; }
 .src-line { margin: 4px 0 0; font-size: .9rem; color: var(--muted); }
 
 /* 궁금해요: 버튼은 손가락 크기 이상, 펼친 칸은 글자 크게 */
@@ -259,7 +259,7 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .9rem; }
 .ask-btn[aria-expanded="true"] { background: #00602f; color: #fff; }
 .ask-panel { display: grid; gap: 14px; }
 .ask-panel dl { margin: 0; display: grid; gap: 10px; }
-.ask-panel dt { font-size: 0.95rem; color: #50505a; font-weight: 700; }
+.ask-panel dt { font-size: 1rem; color: #1d1d1f; font-weight: 700; }
 .ask-panel dd { margin: 2px 0 0; font-size: 1.1rem; }
 .ask-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 @media (prefers-reduced-motion: reduce) { .ask-btn { transition: none; } }
