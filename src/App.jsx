@@ -475,7 +475,7 @@ function Jobs() {
                     </dl>
                   )}
                   <ExternalLink href={i.url} label={`${orgLabel(i.title, i.org)} 원문 보기${i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}`}>원문 보기{i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}</ExternalLink>
-                  <AskHelp item={i} />
+                  {!i.easy && <AskHelp item={i} />}
                 </div>
               </details>
             </li>
