@@ -1,13 +1,14 @@
 {
   "2026-10-30": {
-    "runs": 1,
-    "ok": 9,
-    "fail": 4,
+    "runs": 2,
+    "ok": 11,
+    "fail": 7,
     "failIds": [
       "gojobs-306682",
       "gojobs-306927",
       "gojobs-306903",
-      "gojobs-306990"
+      "gojobs-306990",
+      "kead-217234"
     ]
   }
 }
