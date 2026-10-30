@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-10-30 09:11",
+  "updatedAt": "2026-10-30 10:44",
   "items": [
     {
       "id": "306108",
@@ -131,7 +131,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 09:10"
+      "copiedAt": "2026-10-30 10:43"
     },
     {
       "id": "gojobs-306063",
@@ -145,7 +145,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 09:10"
+      "copiedAt": "2026-10-30 10:43"
     },
     {
       "id": "kead-216973",
@@ -324,7 +324,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 09:10"
+      "copiedAt": "2026-10-30 10:43"
     },
     {
       "id": "gojobs-306290",
@@ -338,7 +338,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 09:10"
+      "copiedAt": "2026-10-30 10:43"
     },
     {
       "id": "306206",
@@ -381,7 +381,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 09:10"
+      "copiedAt": "2026-10-30 10:43"
     },
     {
       "id": "306244",
@@ -424,7 +424,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 09:10"
+      "copiedAt": "2026-10-30 10:43"
     },
     {
       "id": "kead-217086",
@@ -516,7 +516,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 09:10"
+      "copiedAt": "2026-10-30 10:43"
     },
     {
       "id": "kead-216955",
@@ -575,7 +575,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 09:10"
+      "copiedAt": "2026-10-30 10:43"
     },
     {
       "id": "gojobs-306714",
@@ -589,7 +589,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 09:10"
+      "copiedAt": "2026-10-30 10:43"
     },
     {
       "id": "kead-217175",
@@ -645,7 +645,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 09:10"
+      "copiedAt": "2026-10-30 10:43"
     },
     {
       "id": "gojobs-306366",
@@ -659,7 +659,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 09:10"
+      "copiedAt": "2026-10-30 10:43"
     },
     {
       "id": "kead-217188",
@@ -755,7 +755,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 09:10"
+      "copiedAt": "2026-10-30 10:43"
     },
     {
       "id": "gojobs-305072",
@@ -769,7 +769,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-10-30 09:10"
+      "copiedAt": "2026-10-30 10:43"
     },
     {
       "id": "302097",
@@ -801,5 +801,5 @@
       }
     }
   ],
-  "keadCheckedAt": "2026-10-30 09:11"
+  "keadCheckedAt": "2026-10-30 10:44"
 }
