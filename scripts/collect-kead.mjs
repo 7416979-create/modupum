@@ -79,6 +79,10 @@ async function main() {
     jobs.push(job)
   }
 
+  // 목록 앞쪽(PAGES 쪽)에서 밀려난 오래된 공고라도 이미 싣고 마감 전이면 유지한다(목록에서 지워진 공고는 아니므로 사라지지 않게).
+  const seen = new Set(rows.map((r) => `kead-${r.id}`))
+  for (const [id, j] of known) if (!seen.has(id) && j.end >= today) jobs.push(j)
+
   // 애매한 공고(장애인 대상 제목 명시 없음)는 판정 대기열에 적는다. 노출은 review-run 이 확실로 판정한 것만 한다.
   try {
     const queued = await enqueueSave(jobs, today, rules)
