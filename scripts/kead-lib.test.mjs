@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { parseList, bodyLines, bodyEndDate, summarize, buildJob, mergeKead, viewUrl, UNKNOWN } from './kead-lib.mjs'
+import { parseList, bodyLines, bodyEndDate, summarize, buildJob, isKeadDisabledTitle, mergeKead, viewUrl, UNKNOWN } from './kead-lib.mjs'
 
 const rules = JSON.parse(readFileSync(new URL('./keywords.json', import.meta.url), 'utf8'))
 
@@ -48,9 +48,11 @@ test('마감일이 목록과 본문이 다르면 본문 우선 + 안내문', () 
   assert.equal(job.url, viewUrl('217086'))
   assert.equal(job.org, '한국해외인프라도시개발지원공사')
 })
-test('장애인 전용이 분명하지 않으면 disabledOnly 가 false 이고 안내문은 붙이지 않는다', () => {
+test('제목에 장애인 대상이 없으면 disabledOnly 가 false 이고 안내문은 붙이지 않는다', () => {
   const [a, b] = parseList(html)
-  assert.equal(buildJob(a, [], rules).disabledOnly, false)
+  const c = { ...a, title: '[서울지역본부] 경성고등학교 미화 1명 모집(채용시)' }
+  assert.equal(buildJob(a, [], rules).disabledOnly, true)
+  assert.equal(buildJob(c, [], rules).disabledOnly, false)
   assert.equal(buildJob(a, [], rules).eligibilityNote, undefined)
   assert.equal(buildJob(b, [], rules).disabledOnly, true)
 })
@@ -71,4 +73,24 @@ test('이전 KEAD 공고에 채운 쉬운 요약(verified, easy)은 다시 합�
   const got = r.items.find((j) => j.id === job.id)
   assert.equal(got.verified, true)
   assert.deepEqual(got.easy, { 언제까지: 'x' })
+})
+
+test('KEAD 제목에 장애인 대상이 드러나면 통과, 기관명·우대·혼합은 거른다', () => {
+  const ok = [
+    '[서울남부지사] 2026년 한국해외인프라도시개발지원공사 중증장애인 사무보조 채용공고(~11.5. 16시)',
+    '[경기북부지사] 의정부지방공소청 장애인 공무직근로자(사무원) 경력경쟁채용',
+    '[광주보훈요양원]2026년 제3차 중증장애인 체험형 청년인턴(단시간_일4시간)채용공고',
+    '[서울동부지사] 대한무역투자진흥공사 장애인 체험형 청년 인턴 채용(~11/8)',
+    '[장애인채용] 2026년 농촌진흥청 일반직공무원 경력경쟁채용시험 공고',
+    '장애인 근로자 모집',
+  ]
+  for (const t of ok) assert.equal(isKeadDisabledTitle(t), true, t)
+  const no = [
+    '[경기동부지사] 용인시장애인자립생활센터 권리중심형 일자리 추가 모집',
+    '[서울지역본부] 한국언론진흥재단 체험형 청년인턴 2명 모집(~11/9)',
+    '[서울지역본부] 경성고등학교 미화 1명 모집(채용시)',
+    '일반직 채용 (장애인 우대)',
+    '비장애인 포함 공개경쟁 채용',
+  ]
+  for (const t of no) assert.equal(isKeadDisabledTitle(t), false, t)
 })

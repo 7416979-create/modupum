@@ -8,7 +8,7 @@ import { enqueueSave } from './review-lib.mjs'
 import { listUrl, viewUrl, parseList, bodyLines, viewTitle, buildJob, mergeKead, isKead, KEAD_SOURCE_LABEL } from './kead-lib.mjs'
 
 const UA = 'modupum-bot (+https://modupum.kr)'
-const PAGES = 2
+const PAGES = Number(process.env.KEAD_PAGES || 2)
 const MAX_DETAIL = 20
 const WAIT = 3000
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))

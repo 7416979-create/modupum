@@ -284,6 +284,86 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-10-29T09:33:24.283Z"
+    },
+    {
+      "id": "kead-216941",
+      "title": "[서울지역본부] 한국여성인권진흥원 사무보조 2명 모집(~10/30, 17시)",
+      "org": "한국여성인권진흥원",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216941&menuId=MENU2201",
+      "end": "2026-10-30",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-29T23:53:59.017Z"
+    },
+    {
+      "id": "kead-216848",
+      "title": "[인천지사] 인천숭의초등학교 청소원 채용",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216848&menuId=MENU2201",
+      "end": "2026-10-30",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-29T23:53:59.017Z"
+    },
+    {
+      "id": "kead-216847",
+      "title": "[인천지사] 인천반도체고등학교 청소원 채용",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216847&menuId=MENU2201",
+      "end": "2026-10-30",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-29T23:53:59.017Z"
+    },
+    {
+      "id": "kead-216290",
+      "title": "[서울북부지사] 원묵고등학교 미화직 1명 모집(채용시 마감)",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216290&menuId=MENU2201",
+      "end": "2026-10-30",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-29T23:53:59.017Z"
+    },
+    {
+      "id": "kead-216155",
+      "title": "[서울남부지사] 대영고등학교 미화 직무 채용",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216155&menuId=MENU2201",
+      "end": "2026-11-28",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-29T23:53:59.017Z"
+    },
+    {
+      "id": "kead-216153",
+      "title": "[서울남부지사] 도신초등학교 환경 미화 직무 채용 ~ 채용시",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216153&menuId=MENU2201",
+      "end": "2026-11-28",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-29T23:53:59.017Z"
+    },
+    {
+      "id": "kead-214455",
+      "title": "[서울남부지사] 한국투자증권 반포Pb센터 미화직 채용",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=214455&menuId=MENU2201",
+      "end": "2026-12-31",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-29T23:53:59.017Z"
+    },
+    {
+      "id": "kead-212024",
+      "title": "[강동구가족센터] 아이돌보미 채용",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=212024&menuId=MENU2201",
+      "end": "2026-11-10",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-29T23:53:59.017Z"
     }
   ]
 }

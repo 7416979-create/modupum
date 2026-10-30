@@ -143,6 +143,15 @@ export const employerOf = (lines) => {
   return ''
 }
 
+// KEAD 는 장애인 고용 전문 게시판이라 제목에 장애인 대상이 드러나면('장애인 체험형 인턴', '중증장애인 사무보조', '[장애인채용]') 전용 표현(제한경쟁 등)이 없어도 장애인 대상으로 본다.
+// 기관명(장애인자립생활센터 등)·'비장애인'·우대·여러 직종 혼합('포함')은 대상 표시로 보지 않는다.
+const ORG_WORD = /장애인[가-힣]{0,12}(센터|복지관|협회|단체|공단|재단|시설|학교|회관|연합|협의회|부모회|직업재활|보호작업장|근로사업장)/g
+export const isKeadDisabledTitle = (title) => {
+  const t = String(title ?? '').replace(/\s+/g, '').replace(/비장애인/g, '').replace(ORG_WORD, '')
+  if (!t.includes('장애인')) return false
+  return !/우대|포함/.test(t)
+}
+
 // 장애인 전용인지는 제목에 분명한 표현(제한경쟁·전용 등)이 있을 때만 true. 그 밖에는 단정하지 않는다.
 export const buildJob = (row, lines, rules) => {
   const s = lines.length ? summarize(lines) : { hires: null, summary: null }
@@ -156,7 +165,7 @@ export const buildJob = (row, lines, rules) => {
     notes.push('본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요.')
   }
   if (!lines.length) notes.push('본문을 읽지 못해 요약이 없습니다. 원문에서 확인하세요.')
-  const disabledOnly = isDisabledOnlyTitle(row.title, rules)
+  const disabledOnly = isDisabledOnlyTitle(row.title, rules) || isKeadDisabledTitle(row.title)
   const org = (lines.length && employerOf(lines)) || KEAD_ORG
   return {
     id: `kead-${row.id}`,
