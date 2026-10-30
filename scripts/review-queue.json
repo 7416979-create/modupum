@@ -364,6 +364,26 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-10-29T23:53:59.017Z"
+    },
+    {
+      "id": "kead-217241",
+      "title": "[서울지역본부] 홍익대학교 사무처 구매팀 1인 사무보조 (오후) 구인 ~11.8.(일)",
+      "org": "홍익대학교",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217241&menuId=MENU2201",
+      "end": "2026-11-08",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-30T05:27:03.170Z"
+    },
+    {
+      "id": "kead-217236",
+      "title": "[경기서부지사] 소상공인시장진흥공단 시흥센터 사무 보조 1명 채용(~채용 시)",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217236&menuId=MENU2201",
+      "end": "2026-11-03",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-10-30T05:27:03.170Z"
     }
   ]
 }
