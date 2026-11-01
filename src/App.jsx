@@ -420,31 +420,16 @@ function Jobs() {
           const soon = left <= 3
           return (
             <li key={i.id} className="item">
-              <details>
+              <details onToggle={(e) => { if (e.currentTarget.open) { try { window.umami?.track('easy-open', { type: 'job' }) } catch { /* 무시 */ } } }}>
                 <summary>
                   <h2><Badges period={periodOf(today(), { end: i.end })} region={needsRegion(i, 'jobs')} />{orgLabel(i.title, i.org)}<NewMark on={isNew(today(), i.start)} /></h2>
                   <span className={`sum-tag dday${soon ? ' soon' : ''}`}>{left === 0 ? '오늘 마감' : `마감 ${left}일 남음${i.end ? ` · ${String(i.end).slice(5).replace('-', '.')}` : ''}`}</span>
-                  {i.easy && (
-                    <span className="brief-top" aria-label="한눈에 보기">
-                      <span><b>언제까지</b> {i.easy.언제까지} ({left === 0 ? '오늘 마감' : `${left}일 남음`})</span>
-                      <span><b>무슨 일 · 고용 형태</b> {i.easy.무슨일고용}</span>
-                      <span><b>어디서</b> {i.easy.어디서 ?? NO_INFO}</span>
-                    </span>
-                  )}
                 </summary>
                 <div className="detail">
-                  {!i.easy && (
-                    <dl className="job-brief" aria-label="한눈에 보기">
-                      <div><dt>언제까지</dt><dd>{i.end ? `${i.end}까지 (${left === 0 ? '오늘' : `${left}일 남음`})` : NO_INFO}</dd></div>
-                      <div><dt>무슨 일 · 고용 형태</dt><dd>{i.verified === true ? infoOr(i.summary?.고용형태) : PENDING}</dd></div>
-                      <div><dt>어디서</dt><dd>{[i.org, i.region].filter(Boolean).join(' · ') || NO_INFO}</dd></div>
-                    </dl>
-                  )}
                   {i.easy && (
-                    <details className="easy-detail">
-                      <summary data-umami-event="easy-open" data-umami-event-type="job">자세히 보기</summary>
-                      <dl className="job-brief">
-                        <div><dt>누가 지원할 수 있어요</dt><dd><ul>{i.easy.누가.map((t) => <li key={t}>{t}</li>)}</ul></dd></div>
+                    <>
+                      <dl className="job-brief" aria-label="쉬운 요약">
+                        <div><dt>누가 지원할 수 있어요</dt><dd><ul>{(i.easy.누가 ?? []).map((t) => <li key={t}>{t}</li>)}</ul></dd></div>
                         <div><dt>몇 명</dt><dd>{i.easy.몇명}</dd></div>
                         <div><dt>무슨 일</dt><dd>{i.easy.무슨일}</dd></div>
                         <div><dt>일하는 시간</dt><dd>{i.easy.일하는시간}</dd></div>
@@ -454,8 +439,13 @@ function Jobs() {
                         <div><dt>문의</dt><dd>{i.easy.문의}</dd></div>
                       </dl>
                       <p className="src-line">출처: {i.sourceLabel || i.source || i.org}</p>
-                    </details>
+                    </>
                   )}
+                  <dl className="job-brief" aria-label="한눈에 보기">
+                    <div><dt>언제까지</dt><dd>{i.easy ? `${i.easy.언제까지} (${left === 0 ? '오늘 마감' : `${left}일 남음`})` : (i.end ? `${i.end}까지 (${left === 0 ? '오늘' : `${left}일 남음`})` : NO_INFO)}</dd></div>
+                    <div><dt>무슨 일 · 고용 형태</dt><dd>{i.easy ? i.easy.무슨일고용 : (i.verified === true ? infoOr(i.summary?.고용형태) : PENDING)}</dd></div>
+                    <div><dt>어디서</dt><dd>{i.easy ? (i.easy.어디서 ?? NO_INFO) : ([i.org, i.region].filter(Boolean).join(' · ') || NO_INFO)}</dd></div>
+                  </dl>
                   {(i.notes ?? []).map((n) => (
                     <p key={n} className="period-note"><strong>참고</strong> {n}</p>
                   ))}

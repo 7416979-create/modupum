@@ -90,7 +90,7 @@ h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.08; letter-spacing: -
 .item details > summary::-webkit-details-marker { display: none; }
 .item details > summary::after { content: '+'; flex: none; width: 44px; height: 44px; line-height: 44px; font-size: 1.3rem; text-align: center; border-radius: 50%; background: var(--bg); color: var(--muted); font-weight: 600; }
 .item details[open] > summary::after { content: '\2212'; color: var(--ink); }
-.item details > summary h2 { margin: 0; font-size: 1.05rem; font-weight: 600; line-height: 1.45; flex: 1; letter-spacing: -.01em; }
+.item details > summary h2 { margin: 0; font-size: 1.05rem; font-weight: 600; line-height: 1.45; flex: 1; letter-spacing: -.01em; overflow-wrap: anywhere; min-width: 0; }
 .item details > summary:hover h2 { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
 .sum-tag { flex: none; max-width: 38%; font-size: 1rem; font-weight: 600; color: #1d1d1f; text-align: right; }
 .sum-tag.dday { white-space: nowrap; max-width: none; font-variant-numeric: tabular-nums; }
