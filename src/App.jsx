@@ -442,7 +442,7 @@ function Jobs() {
                   )}
                   {i.easy && (
                     <details className="easy-detail">
-                      <summary>자세히 보기</summary>
+                      <summary data-umami-event="easy-open" data-umami-event-type="job">자세히 보기</summary>
                       <dl className="job-brief">
                         <div><dt>누가 지원할 수 있어요</dt><dd><ul>{i.easy.누가.map((t) => <li key={t}>{t}</li>)}</ul></dd></div>
                         <div><dt>몇 명</dt><dd>{i.easy.몇명}</dd></div>
