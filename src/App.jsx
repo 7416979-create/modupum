@@ -6,10 +6,11 @@ const TABS = [
   { id: 'welfare', label: '복지' },
   { id: 'jobs', label: '일자리' },
   { id: 'apply', label: '신청' },
+  { id: 'calendar', label: '달력' },
   { id: 'news', label: '소식' },
 ]
 const ROUTES = [...TABS.map((t) => t.id), 'about']
-const TITLES = { home: '모두품', welfare: '복지 - 모두품', jobs: '일자리 - 모두품', apply: '신청 안내 - 모두품', news: '소식 - 모두품', about: '이용 안내 - 모두품' }
+const TITLES = { home: '모두품', welfare: '복지 - 모두품', jobs: '일자리 - 모두품', apply: '신청 안내 - 모두품', calendar: '신청·지급 달력 - 모두품', news: '소식 - 모두품', about: '이용 안내 - 모두품' }
 
 // 한국 날짜 기준(UTC 날짜를 쓰면 한국 아침 9시 전에 하루 늦게 계산된다)
 const today = () => new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10)
@@ -319,6 +320,80 @@ function Apply() {
         {data && items.length === 0 && <li className="empty">표시할 항목이 없습니다.</li>}
       </ul>
       <Pager pg={pg} />
+      <TipBox />
+    </section>
+  )
+}
+
+// 신청·지급 달력: 날짜는 calendar.json 에만 둔다. 이번 달 = 매월 항목 + months 에 이번 달이 든 항목. 월별 = months 기준, 매월·비정기는 따로 모은다.
+const tagOf = (it) => {
+  if (it.cycle === '매월') return `매월 ${it.day}일`
+  const m = it.months ?? []
+  if (!m.length) return it.cycle
+  return m.length === 1 ? `매년 ${m[0]}월` : `매년 ${m[0]}~${m[m.length - 1]}월`
+}
+
+function CalItem({ it }) {
+  return (
+    <li className="item">
+      <details>
+        <summary>
+          <h3>{it.name}</h3>
+          <span className="sum-tag dday">{tagOf(it)}</span>
+        </summary>
+        <div className="detail">
+          <p>{it.easy}</p>
+          <dl className="facts">
+            <div><dt>언제</dt><dd>{it.when}</dd></div>
+            <div><dt>누가</dt><dd>{it.target}</dd></div>
+          </dl>
+          <p className="src-links">
+            <ExternalLink href={it.source} label={`${it.name} 출처 ${it.sourceLabel}`}>출처: {it.sourceLabel}</ExternalLink>
+          </p>
+          <p className="cal-checked">{it.checkedAt} 확인</p>
+        </div>
+      </details>
+    </li>
+  )
+}
+
+function Calendar() {
+  const data = useData('calendar')
+  const items = data?.items ?? []
+  const month = Number(today().slice(5, 7))
+  const monthly = items.filter((i) => i.cycle === '매월').sort((a, b) => a.day - b.day)
+  const thisMonth = [...monthly, ...items.filter((i) => i.cycle !== '매월' && i.months?.includes(month))]
+  const loose = items.filter((i) => i.cycle !== '매월' && !i.months?.length)
+  const months = Array.from({ length: 12 }, (_, k) => k + 1)
+    .map((m) => ({ m, list: items.filter((i) => i.cycle !== '매월' && i.months?.includes(m)) }))
+    .filter((x) => x.list.length > 0)
+  return (
+    <section>
+      <h1 className="page-h">신청·지급 달력</h1>
+      <SampleNotice data={data} />
+      <p className="sub">해마다, 다달이 챙기는 일을 모았어요. 날짜는 바뀔 수 있으니 눌러서 출처를 꼭 확인하세요. ({data?.checkedAt ?? ''} 확인)</p>
+      <h2 className="cal-h">이번 달({month}월) 챙길 일</h2>
+      <ul className="list" tabIndex={-1}>
+        {thisMonth.map((it) => <CalItem key={it.id} it={it} />)}
+        {data && thisMonth.length === 0 && <li className="empty">이번 달에 챙길 일이 없습니다.</li>}
+      </ul>
+      {months.length > 0 && <h2 className="cal-h">월별로 보기</h2>}
+      {months.map(({ m, list }) => (
+        <details key={m} className="check-guide" open={m === month}>
+          <summary>{m}월 ({list.length}건)</summary>
+          <ul className="list cal-inner">
+            {list.map((it) => <CalItem key={it.id} it={it} />)}
+          </ul>
+        </details>
+      ))}
+      {loose.length > 0 && (
+        <>
+          <h2 className="cal-h">때가 정해져 있지 않은 일</h2>
+          <ul className="list">
+            {loose.map((it) => <CalItem key={it.id} it={it} />)}
+          </ul>
+        </>
+      )}
       <TipBox />
     </section>
   )
@@ -681,7 +756,7 @@ export default function App() {
           </button>
           <nav aria-label="주 메뉴">
             {TABS.map((t) => (
-              <button key={t.id} className={tab === t.id ? 'on' : ''} aria-current={tab === t.id ? 'page' : undefined} onClick={() => setTab(t.id)}>{t.label}{hasNew(t.id) && <><span className="tab-new" aria-hidden="true">NEW</span><span className="sr">, 새 글 있음</span></>}</button>
+              <button key={t.id} data-umami-event={t.id === 'calendar' ? 'calendar-open' : undefined} className={tab === t.id ? 'on' : ''} aria-current={tab === t.id ? 'page' : undefined} onClick={() => setTab(t.id)}>{t.label}{hasNew(t.id) && <><span className="tab-new" aria-hidden="true">NEW</span><span className="sr">, 새 글 있음</span></>}</button>
             ))}
           </nav>
         </div>
@@ -691,6 +766,7 @@ export default function App() {
         {tab === 'welfare' && <Welfare />}
         {tab === 'jobs' && <Jobs />}
         {tab === 'apply' && <Apply />}
+        {tab === 'calendar' && <Calendar />}
         {tab === 'news' && <News />}
         {tab === 'about' && <About />}
       </main>
