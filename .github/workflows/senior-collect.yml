@@ -1,0 +1,25 @@
+name: senior-collect
+
+# 노인복지 수집 시험(수동 실행 전용). 사이트 배포·커밋·푸시 없음, 결과는 아티팩트로만 올린다.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Collect senior welfare (수집만)
+        run: node scripts/collect-senior.mjs
+        env:
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: senior-result
+          path: senior-result/
