@@ -32,26 +32,6 @@
       "addedAt": "2026-10-23T02:29:42.064Z"
     },
     {
-      "id": "gojobs-305971",
-      "title": "2026년 제6차 채용 공고(공무직, 기간제(장애인제한포함))",
-      "org": "한국여성인권진흥원",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=2026%EB%85%84%20%EC%A0%9C6%EC%B0%A8%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0(%EA%B3%B5%EB%AC%B4%EC%A7%81%2C%20%EA%B8%B0%EA%B0%84%EC%A0%9C(%EC%9E%A5%EC%95%A0%EC%9D%B8%EC%A0%9C%ED%95%9C%ED%8F%AC%ED%95%A8))",
-      "end": "2026-10-30",
-      "source": "나라일터",
-      "status": "pending",
-      "addedAt": "2026-10-23T02:29:42.064Z"
-    },
-    {
-      "id": "gojobs-305855",
-      "title": "한국연구재단 2026년도 체험형 청년인턴(장애)·전문위촉직(변호사)·제8차 사업위촉직 채용 공고",
-      "org": "한국연구재단",
-      "url": "https://www.gojobs.go.kr/apmList.do?menuNo=401&mngrMenuYn=N&selMenuNo=400&upperMenuNo=&searchJobsecode=020&searchKeyword=%ED%95%9C%EA%B5%AD%EC%97%B0%EA%B5%AC%EC%9E%AC%EB%8B%A8%202026%EB%85%84%EB%8F%84%20%EC%B2%B4%ED%97%98%ED%98%95%20%EC%B2%AD%EB%85%84%EC%9D%B8%ED%84%B4(%EC%9E%A5%EC%95%A0)%C2%B7%EC%A0%84%EB%AC%B8%EC%9C%84%EC%B4%89%EC%A7%81(%EB%B3%80%ED%98%B8%EC%82%AC)%C2%B7%EC%A0%9C8%EC%B0%A8%20%EC%82%AC%EC%97%85%EC%9C%84%EC%B4%89%EC%A7%81%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0",
-      "end": "2026-10-30",
-      "source": "나라일터",
-      "status": "pending",
-      "addedAt": "2026-10-23T02:29:42.064Z"
-    },
-    {
       "id": "kead-217086",
       "title": "[서울남부지사] 2026년 한국해외인프라도시개발지원공사 중증장애인 사무보조 채용공고(~11.5. 16시)",
       "org": "한국해외인프라도시개발지원공사",
@@ -72,16 +52,6 @@
       "addedAt": "2026-10-23T02:31:50.589Z"
     },
     {
-      "id": "kead-217045",
-      "title": "[서울남부지사] 가산중학교 미화직(오후) 채용",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217045&menuId=MENU2201",
-      "end": "2026-10-31",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-23T02:31:50.589Z"
-    },
-    {
       "id": "kead-217037",
       "title": "[인천환경공단] 2026년 3차 일반직 및 공무직 공개경쟁채용 공고",
       "org": "한국장애인고용공단",
@@ -90,30 +60,6 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-10-23T02:31:50.589Z"
-    },
-    {
-      "id": "kead-217008",
-      "title": "[서울지역본부] [선린인터넷고등학교(서울 용산구 소재)] 학교청소원 모집안내",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217008&menuId=MENU2201",
-      "end": "2026-10-30",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-23T02:31:50.589Z"
-    },
-    {
-      "id": "kead-217000",
-      "title": "[강원지사] 2군단 사령부 춘천, 화천, 철원 조리원 등 6개 직렬 총 32명 채용 (~ 10.31. 접수 마감)",
-      "org": "제2군단 사령부",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217000&menuId=MENU2201",
-      "end": "2026-10-31",
-      "source": "KEAD",
-      "status": "hidden",
-      "addedAt": "2026-10-23T02:31:50.589Z",
-      "verdict": "불가",
-      "judge": "manual",
-      "judgedAt": "2026-10-23T03:00:04.113Z",
-      "note": "사람 결정 2026-10-23: 장애인 전용 아님, 노출 제외"
     },
     {
       "id": "kead-216999",
@@ -131,16 +77,6 @@
       "org": "한국장애인고용공단",
       "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216995&menuId=MENU2201",
       "end": "2026-11-02",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-23T02:31:50.589Z"
-    },
-    {
-      "id": "kead-216973",
-      "title": "[광주보훈요양원]2026년 제3차 중증장애인 체험형 청년인턴(단시간_일4시간)채용공고",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216973&menuId=MENU2201",
-      "end": "2026-10-30",
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-10-23T02:31:50.589Z"
@@ -186,36 +122,6 @@
       "addedAt": "2026-10-26T01:31:56.147Z"
     },
     {
-      "id": "kead-217121",
-      "title": "[경기동부지사] 용인시장애인자립생활센터 권리중심형 일자리 추가 모집",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217121&menuId=MENU2201",
-      "end": "2026-10-30",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-26T01:31:56.147Z"
-    },
-    {
-      "id": "kead-217132",
-      "title": "[서울북부지사] 한국국제보건의료재단 사무직 직원 2명 모집(채용 시 마감)",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217132&menuId=MENU2201",
-      "end": "2026-10-30",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-26T05:19:31.709Z"
-    },
-    {
-      "id": "kead-217153",
-      "title": "[서울지역본부] 한국은행 인사경영국 사무보조원 채용 안내 1명 ~10.30.(금) 17:00★ 급구",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217153&menuId=MENU2201",
-      "end": "2026-10-30",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-27T01:27:18.665Z"
-    },
-    {
       "id": "kead-217160",
       "title": "[경기북부지사] 의정부지방공소청 장애인 공무직근로자(사무원) 경력경쟁채용",
       "org": "의정부지방공소청 장애인 공무직근로자",
@@ -234,16 +140,6 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-10-28T01:40:34.922Z"
-    },
-    {
-      "id": "kead-217201",
-      "title": "[서울지역본부] [선린인터넷고등학교(서울 용산구 소재)] 학교청소원 모집안내",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217201&menuId=MENU2201",
-      "end": "2026-11-01",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-28T08:23:19.314Z"
     },
     {
       "id": "kead-217215",
@@ -284,46 +180,6 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-10-29T09:33:24.283Z"
-    },
-    {
-      "id": "kead-216941",
-      "title": "[서울지역본부] 한국여성인권진흥원 사무보조 2명 모집(~10/30, 17시)",
-      "org": "한국여성인권진흥원",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216941&menuId=MENU2201",
-      "end": "2026-10-30",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-29T23:53:59.017Z"
-    },
-    {
-      "id": "kead-216848",
-      "title": "[인천지사] 인천숭의초등학교 청소원 채용",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216848&menuId=MENU2201",
-      "end": "2026-10-30",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-29T23:53:59.017Z"
-    },
-    {
-      "id": "kead-216847",
-      "title": "[인천지사] 인천반도체고등학교 청소원 채용",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216847&menuId=MENU2201",
-      "end": "2026-10-30",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-29T23:53:59.017Z"
-    },
-    {
-      "id": "kead-216290",
-      "title": "[서울북부지사] 원묵고등학교 미화직 1명 모집(채용시 마감)",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216290&menuId=MENU2201",
-      "end": "2026-10-30",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-29T23:53:59.017Z"
     },
     {
       "id": "kead-216155",
@@ -384,6 +240,16 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-10-30T05:27:03.170Z"
+    },
+    {
+      "id": "kead-217205",
+      "title": "[인천지사] 2026년도 제9회 인천광역시계양구시설관리공단 직원(기간제근로자) 공개경쟁채용 계획 공고",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217205&menuId=MENU2201",
+      "end": "2026-11-16",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-02T01:12:14.012Z"
     }
   ]
 }
