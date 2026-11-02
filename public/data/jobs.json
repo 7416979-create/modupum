@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-02 12:45",
+  "updatedAt": "2026-11-02 15:54",
   "items": [
     {
       "id": "306061",
@@ -87,7 +87,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-02 10:48",
+      "copiedAt": "2026-11-02 15:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 3일(화) 18:00까지",
@@ -125,7 +125,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-02 10:48",
+      "copiedAt": "2026-11-02 15:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 3일(화) 17:00까지 (마감 날은 17:00까지만 받아요)",
@@ -194,7 +194,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-02 10:48",
+      "copiedAt": "2026-11-02 15:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 4일(수) 18:00까지",
@@ -262,7 +262,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-02 10:48",
+      "copiedAt": "2026-11-02 15:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 5일(목) 18:00까지",
@@ -302,7 +302,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-02 10:48",
+      "copiedAt": "2026-11-02 15:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 5일(목) 18:00까지",
@@ -417,7 +417,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-02 10:48",
+      "copiedAt": "2026-11-02 15:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 6일(금) 18:00까지예요.",
@@ -547,7 +547,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-02 10:48",
+      "copiedAt": "2026-11-02 15:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -578,7 +578,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-02 10:48",
+      "copiedAt": "2026-11-02 15:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -660,7 +660,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-02 10:48",
+      "copiedAt": "2026-11-02 15:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 11일(수) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -697,7 +697,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-02 10:48",
+      "copiedAt": "2026-11-02 15:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 18:00까지 (점심시간 제외)",
@@ -820,7 +820,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-02 10:48",
+      "copiedAt": "2026-11-02 15:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -906,7 +906,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-11-02 10:48",
+      "copiedAt": "2026-11-02 15:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지 접수 기간은 채용 시까지예요. 접수 마감일은 2026-11-30이에요.",
@@ -959,7 +959,34 @@
         "접수": "채용 사이트(kotra.applyin.co.kr)에서 온라인으로 접수해요. 합격하면 부서가 개별로 알려 줘요.",
         "문의": "채용 사이트의 '채용문의' 메뉴나 채용 Q&A를 이용해요."
       }
+    },
+    {
+      "id": "kead-217270",
+      "title": "[경기지역본부] 대한적십자사 경기혈액원 비정규직 장애인 근로자 제한경쟁 채용 공고(수원역센터)",
+      "org": "한국장애인고용공단",
+      "region": "경기도 수원시",
+      "hires": null,
+      "start": "2026-11-02",
+      "end": "2027-01-01",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217270&menuId=MENU2201",
+      "disabledOnly": true,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "확인 안 됨",
+        "고용형태": "본문에 정규직·비정규직 표현이 있음",
+        "접수방법": "확인 안 됨",
+        "장애인관련": [
+          "<대한적십자사 경기혈액원 비정규직(한시적) 장애인 에스코트 채용 공고>",
+          "[장애인만 채용]",
+          "1. 모집개요: 비정규직 장애인 근로자 제한경쟁 채용(1명)"
+        ]
+      },
+      "notes": [
+        "접수 마감일이 목록(2026-11-16)과 본문(2027-01-01)에서 다릅니다. 본문 기준으로 표시했으니 원문에서 꼭 확인하세요."
+      ]
     }
   ],
-  "keadCheckedAt": "2026-11-02 12:45"
+  "keadCheckedAt": "2026-11-02 15:54"
 }
