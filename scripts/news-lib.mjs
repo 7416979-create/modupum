@@ -69,7 +69,7 @@ export const validateNews = (items) => {
   const errors = []
   const ymd = /^\d{4}-\d{2}-\d{2}$/
   for (const n of items) {
-    if (!n.id || !n.title || !ymd.test(n.date) || !/^https:\/\/www\.mohw\.go\.kr\//.test(n.url)) errors.push(`형식 오류: ${n.id || n.title}`)
+    if (!n.id || !n.title || !ymd.test(n.date) || !/^https:\/\/www\.(mohw|moel)\.go\.kr\//.test(n.url)) errors.push(`형식 오류: ${n.id || n.title}`)
   }
   return errors
 }

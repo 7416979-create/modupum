@@ -32,3 +32,7 @@ test('고용노동부 RSS 파싱(dc:date)', async () => {
   assert.ok(isRelevant(r))
   assert.equal(toNews(r).source, '고용노동부 공지')
 })
+
+const { validateNews } = await import('./news-lib.mjs')
+assert.deepEqual(validateNews([{ id: 'moel-notice-1', title: 't', date: '2026-10-29', url: 'https://www.moel.go.kr/news/notice/noticeView.do?bbs_seq=1' }]), [])
+assert.equal(validateNews([{ id: 'x', title: 't', date: '2026-10-29', url: 'https://evil.example/' }]).length, 1)

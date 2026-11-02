@@ -195,7 +195,7 @@ if (newsItems.length) {
   const top = [...newsItems].sort((a, b) => String(b.date).localeCompare(String(a.date)))[0]
   evidence.push(`소식 최신 ${top.date} ${String(top.title).slice(0, 40)}`)
   const age = (Date.now() - parseKst(top.date)) / 86400000
-  if (age > 30) notes.push(`소식 최신 글이 ${Math.floor(age)}일 전`)
+  if (age > 7) notes.push(`소식 최신 글이 ${Math.floor(age)}일 전`)
 }
 
 // 6) 로그 기록

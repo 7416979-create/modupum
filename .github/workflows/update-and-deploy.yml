@@ -48,7 +48,7 @@ jobs:
       - name: Collect policy news (보건복지부 보도자료 RSS, 키 불필요)
         # 실패·이상 시 기존 news.json 을 유지한다.
         continue-on-error: true
-        run: node scripts/collect-news.mjs
+        run: node scripts/collect-news.mjs || echo "::warning title=소식 수집 실패::collect-news.mjs 실패 - 기존 news.json 유지(로그 확인)"
       - name: Collect KEAD jobs (한국장애인고용공단 채용정보, 키 불필요)
         # 실패·차단 시 기존 jobs.json 을 그대로 두고 로그에 남긴다.
         continue-on-error: true
