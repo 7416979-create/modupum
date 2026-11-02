@@ -101,9 +101,13 @@ function useData(name) {
 const tipHref = (site) =>
   site?.tipUrl || (site?.tipEmail ? `mailto:${site.tipEmail}?subject=${encodeURIComponent('[모두품] 정보 제보')}` : '')
 
-function ExternalLink({ href, className, onClick, label, children }) {
+function ExternalLink({ href, className, onClick, label, track, children }) {
+  const handleClick = (e) => {
+    if (track) { try { window.umami?.track('outlink', track) } catch {} }
+    onClick?.(e)
+  }
   return (
-    <a className={className} href={href} aria-label={label ? `${label} (새 창에서 열림)` : undefined} target="_blank" rel="noopener noreferrer" onClick={onClick}>
+    <a className={className} href={href} aria-label={label ? `${label} (새 창에서 열림)` : undefined} target="_blank" rel="noopener noreferrer" onClick={handleClick}>
       {children}
       <span className="sr"> (새 창에서 열림)</span>
     </a>
@@ -266,7 +270,7 @@ function Welfare() {
                       <p className="period-note"><strong>{unknownLabel(i)}</strong> 신청 전 공식 기관에서 {unknownLabel(i) === UNKNOWN_PERIOD_LABEL ? '신청기간을' : '신청기간과 자격을'} 확인하세요.</p>
                     )}
                     <p><strong>지원 대상</strong> {i.target || '원문에서 확인'}</p>
-                    <ExternalLink className="w-link" href={i.url} label={`${i.title} 신청 방법 원문 보기 · 출처 ${i.source}`}>신청 방법 · 원문 보기 (출처 {i.source})</ExternalLink>
+                    <ExternalLink className="w-link" href={i.url} track={{ tab: 'welfare', org: i.source }} label={`${i.title} 신청 방법 원문 보기 · 출처 ${i.source}`}>신청 방법 · 원문 보기 (출처 {i.source})</ExternalLink>
                   </div>
                 </div>
               </div>
@@ -419,7 +423,7 @@ function News() {
               <div className="detail">
                 <div className="tags"><span>{n.source}</span><span>{n.date}</span></div>
                 <p>{n.summary}</p>
-                <ExternalLink href={n.url} label={`${n.title} 원문 보기`}>원문 보기</ExternalLink>
+                <ExternalLink href={n.url} track={{ tab: 'news', org: n.source }} label={`${n.title} 원문 보기`}>원문 보기</ExternalLink>
               </div>
             </details>
           </li>
@@ -541,7 +545,7 @@ function Jobs() {
                       <div><dt>장애인 관련 문구</dt><dd>{infoOr((i.summary.장애인관련 ?? []).join(' / '))}</dd></div>
                     </dl>
                   )}
-                  <ExternalLink href={i.url} label={`${orgLabel(i.title, i.org)} 원문 보기${i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}`}>원문 보기{i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}</ExternalLink>
+                  <ExternalLink href={i.url} track={{ tab: 'jobs', org: i.sourceLabel }} label={`${orgLabel(i.title, i.org)} 원문 보기${i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}`}>원문 보기{i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}</ExternalLink>
                   {i.source === '나라일터' && (
                     <p className="copy-note">모두품이 보관한 사본이에요. 최종 확인은 나라일터에서 해 주세요.{i.copiedAt ? ` (수집 ${i.copiedAt})` : ''}</p>
                   )}
