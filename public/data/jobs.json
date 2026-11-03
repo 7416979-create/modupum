@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-03 10:25",
+  "updatedAt": "2026-11-03 10:43",
   "items": [
     {
       "id": "gojobs-306682",
@@ -14,7 +14,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-03 10:24",
+      "copiedAt": "2026-11-03 10:42",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 3일(화) 18:00까지",
@@ -52,7 +52,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-03 10:24",
+      "copiedAt": "2026-11-03 10:42",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 3일(화) 17:00까지 (마감 날은 17:00까지만 받아요)",
@@ -121,7 +121,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-03 10:24",
+      "copiedAt": "2026-11-03 10:42",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 4일(수) 18:00까지",
@@ -189,7 +189,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-03 10:24",
+      "copiedAt": "2026-11-03 10:42",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 5일(목) 18:00까지",
@@ -229,7 +229,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-03 10:24",
+      "copiedAt": "2026-11-03 10:42",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 5일(목) 18:00까지",
@@ -344,7 +344,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-03 10:24",
+      "copiedAt": "2026-11-03 10:42",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 6일(금) 18:00까지예요.",
@@ -474,7 +474,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-03 10:24",
+      "copiedAt": "2026-11-03 10:42",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -505,7 +505,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-03 10:24",
+      "copiedAt": "2026-11-03 10:42",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -587,7 +587,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-03 10:24",
+      "copiedAt": "2026-11-03 10:42",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 11일(수) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -624,7 +624,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-03 10:24",
+      "copiedAt": "2026-11-03 10:42",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 18:00까지 (점심시간 제외)",
@@ -747,7 +747,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-03 10:24",
+      "copiedAt": "2026-11-03 10:42",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -797,6 +797,58 @@
       "end": "2026-11-16",
       "url": "https://k-water.recruiter.co.kr/",
       "disabledOnly": true
+    },
+    {
+      "id": "kead-217316",
+      "title": "[광주지역본부]소상공인시장진흥공단(광주전남제주지역본부) 장애인 채용공고",
+      "org": "한국장애인고용공단",
+      "region": "전남광주통합특별시 서구",
+      "hires": 3,
+      "start": "2026-11-02",
+      "end": "2026-11-16",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217316&menuId=MENU2201",
+      "disabledOnly": true,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "3 명 ( 장애인 제한경쟁 )",
+        "고용형태": "본문에 계약직·기간제 표현이 있음",
+        "접수방법": "전자우편 (e-mail) 접수 : 이메일(주소는 원문 참조)",
+        "장애인관련": [
+          "[소상공인시장진흥공단(광주전남제주지역본부) 장애인 기간제근로자 채용 공고]",
+          "채용인원 : 3 명 ( 장애인 제한경쟁 )"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ]
+    },
+    {
+      "id": "kead-217297",
+      "title": "[광주지역본부]2026년 제4차 중증장애인 체험형 인턴(단시간_일4시간) 채용공고",
+      "org": "한국장애인고용공단",
+      "region": "전남광주통합특별시 광산구",
+      "hires": null,
+      "start": "2026-11-02",
+      "end": "2026-11-16",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217297&menuId=MENU2201",
+      "disabledOnly": true,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "확인 안 됨",
+        "고용형태": "본문에 계약직·체험형·인턴 표현이 있음",
+        "접수방법": "이메일제출(담당자:이메일(주소는 원문 참조))후 전화연락 요망(담당자 062 448 1123)",
+        "장애인관련": [
+          "중증장애인 체험형 인턴[계약직26.12.8~27.6.30(약7개월근무)/ 만60세이하 지원가능]",
+          "제춯서류:입사지원서,자기소개서(붙임파일참조),장애인증명서"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ]
     },
     {
       "id": "kead-217254",
@@ -855,7 +907,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-11-03 10:24",
+      "copiedAt": "2026-11-03 10:42",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지 접수 기간은 채용 시까지예요. 접수 마감일은 2026-11-30이에요.",
@@ -962,5 +1014,5 @@
       }
     }
   ],
-  "keadCheckedAt": "2026-11-03 10:25"
+  "keadCheckedAt": "2026-11-03 10:43"
 }
