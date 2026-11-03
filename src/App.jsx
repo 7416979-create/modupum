@@ -460,7 +460,6 @@ const chipIntoView = (e) => e.currentTarget.scrollIntoView({ inline: 'center', b
 
 function Jobs() {
   const data = useData('jobs')
-  const [kind, setKind] = useState('전체')
   const [sort, setSort] = useState('최신순')
   const all = useMemo(() => {
     const t = today()
@@ -480,11 +479,10 @@ function Jobs() {
     const week = days.filter((d) => Math.round((Date.parse(t) - Date.parse(d)) / 86400000) <= 6).length
     return { newN, last: last.slice(5), lastN: days.filter((d) => d === last).length, week }
   }, [all])
-  const kinds = useMemo(() => ['전체', ...['국가기관', '지자체', '교육청', '공공기관'].filter((k) => all.some((i) => i.orgType === k))], [all])
   const [area, setArea] = useState('전체')
   const areas = useMemo(() => ['전체', ...REGIONS.map(([k]) => k).filter((k) => all.some((i) => i._regions.includes(k)))], [all])
-  const items = useMemo(() => all.filter((i) => (kind === '전체' || i.orgType === kind) && (area === '전체' || i._regions.includes(area))), [all, kind, area])
-  const pg = usePaged(items, kind + area + sort)
+  const items = useMemo(() => (area === '전체' ? all : all.filter((i) => i._regions.includes(area))), [all, area])
+  const pg = usePaged(items, area + sort)
 
   return (
     <section>
@@ -492,17 +490,8 @@ function Jobs() {
       <SampleNotice data={data} />
       {areas.length > 2 && (
         <div className="kinds kinds-row" role="group" aria-label="지역">
-          <span className="kinds-label" aria-hidden="true">지역</span>
           {areas.map((k) => (
             <button key={k} className={k === area ? 'on' : ''} aria-pressed={k === area} onClick={(e) => { setArea(k); chipIntoView(e) }}>{k}</button>
-          ))}
-        </div>
-      )}
-      {kinds.length > 2 && (
-        <div className="kinds kinds-row" role="group" aria-label="기관 종류">
-          {areas.length > 2 && <span className="kinds-label" aria-hidden="true">기관</span>}
-          {kinds.map((k) => (
-            <button key={k} className={k === kind ? 'on' : ''} aria-pressed={k === kind} onClick={(e) => { setKind(k); chipIntoView(e) }}>{k}</button>
           ))}
         </div>
       )}
@@ -588,7 +577,7 @@ function Jobs() {
             </li>
           )
         })}
-        {data && items.length === 0 && <li className="empty">{all.length ? '조건에 맞는 공고가 없어요. 지역이나 기관을 \'전체\'로 바꿔 보세요.' : '현재 접수 중인 공고가 없습니다.'}</li>}
+        {data && items.length === 0 && <li className="empty">{all.length ? '이 지역에 접수 중인 공고가 없어요. \'전체\'를 눌러 보세요.' : '현재 접수 중인 공고가 없습니다.'}</li>}
       </ul>
       <Pager pg={pg} />
       <details className="check-guide">

@@ -228,9 +228,6 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .9rem; }
 .kinds-row button { flex: 0 0 auto; white-space: nowrap; }
 .kinds-row { overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; scroll-padding-left: 3em; }
 .kinds-row button { scroll-snap-align: start; }
-/* 옆으로 밀어도 줄 이름(지역·기관)은 왼쪽에 붙어 있게 */
-.kinds-label { position: sticky; left: 0; z-index: 1; flex: 0 0 auto; align-self: stretch; display: flex; align-items: center; min-width: 2.6em; padding-right: 6px; margin-right: -2px; background: var(--bg); font-size: .85rem; font-weight: 700; color: var(--muted); }
-.kinds-row + .kinds-row { margin-top: -4px; }
 .jobs-notes { margin: 0 0 12px; }
 .jobs-notes .sub { font-size: .9rem; color: var(--muted); margin: 0 0 4px; }
 .fresh-bar { background: color-mix(in srgb, currentColor 8%, transparent); border-radius: 12px; padding: 8px 12px; margin: 0 0 8px; font-size: .9rem; color: var(--ink); display: flex; flex-direction: column; gap: 2px; }
