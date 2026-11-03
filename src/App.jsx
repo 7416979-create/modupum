@@ -436,13 +436,32 @@ function News() {
   )
 }
 
+// 지역 탭: 광역시는 가까운 도에 묶는다. region 칸 → '어디서' 요약 → 기관명 순으로 찾고, 못 찾으면 '전체'에만 보인다.
+const REGIONS = [
+  ['서울·경기', /서울|인천|경기/],
+  ['강원', /강원/],
+  ['충북', /충북|충청북/],
+  ['충남·대전', /충남|충청남|대전|세종/],
+  ['전북', /전북|전라북/],
+  ['전남·광주', /전남|전라남|광주/],
+  ['경북·대구', /경북|경상북|대구/],
+  ['경남·부산·울산', /경남|경상남|부산|울산/],
+  ['제주', /제주/],
+]
+const regionsOf = (i) => {
+  const src = [i.region, i.easy?.어디서, i.org].find((s) => s && REGIONS.some(([, re]) => re.test(s))) || ''
+  // '경기도 광주시'의 광주는 전남·광주가 아니다
+  const txt = src.replace(/경기도?\s*광주/g, '경기')
+  return REGIONS.filter(([, re]) => re.test(txt)).map(([k]) => k)
+}
+
 function Jobs() {
   const data = useData('jobs')
   const [kind, setKind] = useState('전체')
   const [sort, setSort] = useState('최신순')
   const all = useMemo(() => {
     const t = today()
-    const open = (data?.items ?? []).filter((i) => i.end >= t).map((i) => ({ ...i, orgType: i.orgType || '공공기관' }))
+    const open = (data?.items ?? []).filter((i) => i.end >= t).map((i) => ({ ...i, orgType: i.orgType || '공공기관', _regions: regionsOf(i) }))
     // 최신순: 올라온 날 내림차순, 마감임박순: 마감일 오름차순. 같으면 다른 기준으로 정한다.
     const byStart = (x, y) => String(y.start).localeCompare(String(x.start))
     const byEnd = (x, y) => String(x.end).localeCompare(String(y.end))
@@ -459,15 +478,26 @@ function Jobs() {
     return { newN, last: last.slice(5), lastN: days.filter((d) => d === last).length, week }
   }, [all])
   const kinds = useMemo(() => ['전체', ...['국가기관', '지자체', '교육청', '공공기관'].filter((k) => all.some((i) => i.orgType === k))], [all])
-  const items = useMemo(() => (kind === '전체' ? all : all.filter((i) => i.orgType === kind)), [all, kind])
-  const pg = usePaged(items, kind + sort)
+  const [area, setArea] = useState('전체')
+  const areas = useMemo(() => ['전체', ...REGIONS.map(([k]) => k).filter((k) => all.some((i) => i._regions.includes(k)))], [all])
+  const items = useMemo(() => all.filter((i) => (kind === '전체' || i.orgType === kind) && (area === '전체' || i._regions.includes(area))), [all, kind, area])
+  const pg = usePaged(items, kind + area + sort)
 
   return (
     <section>
       <h1 className="page-h">일자리</h1>
       <SampleNotice data={data} />
+      {areas.length > 2 && (
+        <div className="kinds kinds-row" role="group" aria-label="지역">
+          <span className="kinds-label" aria-hidden="true">지역</span>
+          {areas.map((k) => (
+            <button key={k} className={k === area ? 'on' : ''} aria-pressed={k === area} onClick={() => setArea(k)}>{k}</button>
+          ))}
+        </div>
+      )}
       {kinds.length > 2 && (
         <div className="kinds kinds-row" role="group" aria-label="기관 종류">
+          {areas.length > 2 && <span className="kinds-label" aria-hidden="true">기관</span>}
           {kinds.map((k) => (
             <button key={k} className={k === kind ? 'on' : ''} aria-pressed={k === kind} onClick={() => setKind(k)}>{k}</button>
           ))}
@@ -555,7 +585,7 @@ function Jobs() {
             </li>
           )
         })}
-        {data && items.length === 0 && <li className="empty">현재 접수 중인 공고가 없습니다.</li>}
+        {data && items.length === 0 && <li className="empty">{all.length ? '조건에 맞는 공고가 없어요. 지역이나 기관을 \'전체\'로 바꿔 보세요.' : '현재 접수 중인 공고가 없습니다.'}</li>}
       </ul>
       <Pager pg={pg} />
       <details className="check-guide">
