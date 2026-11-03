@@ -230,6 +230,16 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-03T01:44:55.923Z"
+    },
+    {
+      "id": "kead-217315",
+      "title": "한국남부발전(주) 청년체험형 인턴 채용 (맞춤훈련)",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217315&menuId=MENU2201",
+      "end": "2026-11-11",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-03T05:45:57.401Z"
     }
   ]
 }
