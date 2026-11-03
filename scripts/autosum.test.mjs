@@ -126,3 +126,21 @@ test('숫자 덩어리·첨부 링크 찾기', () => {
   assert.equal(attachmentLinks(html, 'https://e.kr/a/b').length, 2)
   assert.match(htmlToText('<p>가</p><script>x</script><p>나</p>'), /가\n나/)
 })
+
+test('원문 대조는 전각·기호 표기 차이를 같은 글자로 본다', () => {
+  const srcAlt = src.replace('10. 30. 18:00', '10. 30. 18：00').replace('042-620-6239', '042–620–6239').replace('접수기간 2026. 10. 15. ~', '○ 접수기간 2026. 10. 15. ～')
+  const v = verifyEasy(easy, ev, srcAlt)
+  assert.ok(v.ok, JSON.stringify(v.reasons))
+})
+
+test('원문의 한글 수 표기(두 명)는 숫자 대조에서 숫자로 인정한다', () => {
+  const srcKo = src.replace('모집인원 장애 전형 5명', '모집인원 장애 전형 다섯 명')
+  const v = verifyEasy({ ...easy, 몇명: '5명' }, { ...ev, 몇명: ['모집인원 장애 전형 다섯 명'] }, srcKo)
+  assert.ok(v.ok, JSON.stringify(v.reasons))
+})
+
+test('틀린 숫자는 여전히 실패한다', () => {
+  const v = verifyEasy({ ...easy, 몇명: '7명' }, ev, src)
+  assert.ok(!v.ok)
+  assert.match(v.reasons.join(), /숫자 7/)
+})

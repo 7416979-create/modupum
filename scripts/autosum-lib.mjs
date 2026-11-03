@@ -29,8 +29,19 @@ export const carryVerified = (fresh, prev) => {
   }
 }
 
-const sq = (s) => String(s ?? '').replace(/[\s|]+/g, '')
+// 대조용 정규화: 전각·호환 문자(NFKC)를 맞추고, 물결·대시·가운뎃점·글머리 기호 표기 차이는 같은 글자로 본다. 공백과 | 는 지운다.
+const sq = (s) => String(s ?? '')
+  .normalize('NFKC')
+  .replace(/[~∼〜～]/g, '~')
+  .replace(/[‐‑‒–—―−－ー]/g, '-')
+  .replace(/[·・ㆍ•●○◦▪■□◆◇▶▷※*]/g, '')
+  .replace(/[\s|]+/g, '')
 export const squash = sq
+
+// 원문의 한글 수 표기('두 명', '열 시')를 숫자로 바꿔 숫자 대조에 쓴다. 인원·시각 단위가 붙은 경우만 본다.
+const NATIVE_NUM = { 한: 1, 두: 2, 세: 3, 네: 4, 다섯: 5, 여섯: 6, 일곱: 7, 여덟: 8, 아홉: 9, 열: 10 }
+export const nativeNumTokens = (s) =>
+  [...String(s ?? '').matchAll(/(한|두|세|네|다섯|여섯|일곱|여덟|아홉|열)\s?(?=명|시|개|곳|회|분)/g)].map((m) => String(NATIVE_NUM[m[1]]))
 
 // 글자 속 숫자 덩어리(쉼표 제거). '2,650,380원' -> 2650380
 export const numTokens = (s) => [...String(s ?? '').replace(/(\d),(?=\d{3}\b)/g, '$1').matchAll(/\d+/g)].map((m) => String(Number(m[0])) === m[0] ? m[0] : m[0].replace(/^0+(?=\d)/, '') )
@@ -87,7 +98,7 @@ export const verifyEasy = (easyIn, evidence, sourceText) => {
     const evs = [].concat(evidence?.['연장'] ?? []).filter((x) => typeof x === 'string' && sq(x).length >= 4)
     if (!evs.length || !evs.every((q) => src.includes(sq(q)))) { easy = { ...easy }; delete easy.연장 }
   }
-  const srcNums = new Set(numTokens(sourceText))
+  const srcNums = new Set([...numTokens(sourceText), ...nativeNumTokens(sourceText)])
   let noInfo = 0
   for (const k of keys) {
     const text = asText(easy[k])
