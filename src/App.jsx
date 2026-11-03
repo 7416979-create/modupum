@@ -455,6 +455,9 @@ const regionsOf = (i) => {
   return REGIONS.filter(([, re]) => re.test(txt)).map(([k]) => k)
 }
 
+// 폰에서 옆으로 밀리는 칩 줄: 누른 칩을 가운데로 데려와 다음 칩이 보이게 한다
+const chipIntoView = (e) => e.currentTarget.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' })
+
 function Jobs() {
   const data = useData('jobs')
   const [kind, setKind] = useState('전체')
@@ -491,7 +494,7 @@ function Jobs() {
         <div className="kinds kinds-row" role="group" aria-label="지역">
           <span className="kinds-label" aria-hidden="true">지역</span>
           {areas.map((k) => (
-            <button key={k} className={k === area ? 'on' : ''} aria-pressed={k === area} onClick={() => setArea(k)}>{k}</button>
+            <button key={k} className={k === area ? 'on' : ''} aria-pressed={k === area} onClick={(e) => { setArea(k); chipIntoView(e) }}>{k}</button>
           ))}
         </div>
       )}
@@ -499,7 +502,7 @@ function Jobs() {
         <div className="kinds kinds-row" role="group" aria-label="기관 종류">
           {areas.length > 2 && <span className="kinds-label" aria-hidden="true">기관</span>}
           {kinds.map((k) => (
-            <button key={k} className={k === kind ? 'on' : ''} aria-pressed={k === kind} onClick={() => setKind(k)}>{k}</button>
+            <button key={k} className={k === kind ? 'on' : ''} aria-pressed={k === kind} onClick={(e) => { setKind(k); chipIntoView(e) }}>{k}</button>
           ))}
         </div>
       )}
