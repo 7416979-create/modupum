@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-04 14:48",
+  "updatedAt": "2026-11-04 16:01",
   "items": [
     {
       "id": "306206",
@@ -43,7 +43,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 14:47",
+      "copiedAt": "2026-11-04 16:00",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 4일(수) 18:00까지",
@@ -111,7 +111,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 14:47",
+      "copiedAt": "2026-11-04 16:00",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 5일(목) 18:00까지",
@@ -151,7 +151,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 14:47",
+      "copiedAt": "2026-11-04 16:00",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 5일(목) 18:00까지",
@@ -266,7 +266,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 14:47"
+      "copiedAt": "2026-11-04 16:00"
     },
     {
       "id": "gojobs-306749",
@@ -280,7 +280,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 14:47",
+      "copiedAt": "2026-11-04 16:00",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 6일(금) 18:00까지예요.",
@@ -458,7 +458,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 14:47",
+      "copiedAt": "2026-11-04 16:00",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -489,7 +489,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 14:47",
+      "copiedAt": "2026-11-04 16:00",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -571,7 +571,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 14:47",
+      "copiedAt": "2026-11-04 16:00",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 11일(수) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -608,7 +608,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 14:47"
+      "copiedAt": "2026-11-04 16:00"
     },
     {
       "id": "gojobs-306366",
@@ -622,7 +622,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 14:47",
+      "copiedAt": "2026-11-04 16:00",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 18:00까지 (점심시간 제외)",
@@ -745,7 +745,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 14:47",
+      "copiedAt": "2026-11-04 16:00",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -808,7 +808,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 14:47"
+      "copiedAt": "2026-11-04 16:00"
     },
     {
       "id": "kead-217316",
@@ -949,7 +949,7 @@
       "disabledOnly": true,
       "orgType": "공공기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 14:47"
+      "copiedAt": "2026-11-04 16:00"
     },
     {
       "id": "kead-217254",
@@ -1008,7 +1008,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 14:47",
+      "copiedAt": "2026-11-04 16:00",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지 접수 기간은 채용 시까지예요. 접수 마감일은 2026-11-30이에요.",
@@ -1140,5 +1140,5 @@
       }
     }
   ],
-  "keadCheckedAt": "2026-11-04 14:48"
+  "keadCheckedAt": "2026-11-04 16:01"
 }
