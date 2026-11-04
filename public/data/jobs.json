@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-04 16:01",
+  "updatedAt": "2026-11-04 18:51",
   "items": [
     {
       "id": "306206",
@@ -43,7 +43,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 16:00",
+      "copiedAt": "2026-11-04 18:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 4일(수) 18:00까지",
@@ -111,7 +111,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 16:00",
+      "copiedAt": "2026-11-04 18:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 5일(목) 18:00까지",
@@ -151,7 +151,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 16:00",
+      "copiedAt": "2026-11-04 18:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 5일(목) 18:00까지",
@@ -266,7 +266,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 16:00",
+      "copiedAt": "2026-11-04 18:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 6일(금) 18:00까지",
@@ -306,7 +306,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 16:00",
+      "copiedAt": "2026-11-04 18:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 6일(금) 18:00까지예요.",
@@ -484,7 +484,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 16:00",
+      "copiedAt": "2026-11-04 18:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -515,7 +515,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 16:00",
+      "copiedAt": "2026-11-04 18:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -597,7 +597,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 16:00",
+      "copiedAt": "2026-11-04 18:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 11일(수) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -634,7 +634,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 16:00",
+      "copiedAt": "2026-11-04 18:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 17:00까지",
@@ -673,7 +673,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 16:00",
+      "copiedAt": "2026-11-04 18:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 18:00까지 (점심시간 제외)",
@@ -796,7 +796,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 16:00",
+      "copiedAt": "2026-11-04 18:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -859,7 +859,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 16:00"
+      "copiedAt": "2026-11-04 18:50"
     },
     {
       "id": "kead-217316",
@@ -1000,7 +1000,7 @@
       "disabledOnly": true,
       "orgType": "공공기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 16:00"
+      "copiedAt": "2026-11-04 18:50"
     },
     {
       "id": "kead-217254",
@@ -1048,6 +1048,31 @@
       }
     },
     {
+      "id": "kead-217381",
+      "title": "[서울지역본부] KB데이타시스템_IT엔지니어 4명 채용 (장애인만 채용)",
+      "org": "케이비데이타시스템",
+      "region": "서울특별시 마포구",
+      "hires": null,
+      "start": "2026-11-04",
+      "end": "2026-11-27",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217381&menuId=MENU2201",
+      "disabledOnly": true,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "확인 안 됨",
+        "고용형태": "계약직 (12 개월 )",
+        "접수방법": "확인 안 됨",
+        "장애인관련": [
+          "확인 안 됨"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ]
+    },
+    {
       "id": "gojobs-305072",
       "title": "성덕고등학교 2026학년도 야간경비(장애인 제한경쟁) 채용 공고",
       "org": "서울특별시교육청 성덕고등학교",
@@ -1059,7 +1084,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 16:00",
+      "copiedAt": "2026-11-04 18:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지 접수 기간은 채용 시까지예요. 접수 마감일은 2026-11-30이에요.",
@@ -1083,6 +1108,31 @@
         "model": "haiku",
         "trialUntil": "2026-11-12"
       }
+    },
+    {
+      "id": "kead-217383",
+      "title": "[경기지역본부][장애인병행채용] 2026년 경기도경제과학진흥원 시설운영직 직원 채용(~11.16.까지)",
+      "org": "한국장애인고용공단",
+      "region": "경기도 수원시",
+      "hires": null,
+      "start": "2026-11-04",
+      "end": "2026-12-15",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217383&menuId=MENU2201",
+      "disabledOnly": true,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "확인 안 됨",
+        "고용형태": "확인 안 됨",
+        "접수방법": "온라인 접수 (https://recruit.incruit.com/gbsa/)",
+        "장애인관련": [
+          "확인 안 됨"
+        ]
+      },
+      "notes": [
+        "접수 마감일이 목록(2026-11-16)과 본문(2026-12-15)에서 다릅니다. 본문 기준으로 표시했으니 원문에서 꼭 확인하세요."
+      ]
     },
     {
       "id": "kead-217363",
@@ -1214,5 +1264,5 @@
       }
     }
   ],
-  "keadCheckedAt": "2026-11-04 16:01"
+  "keadCheckedAt": "2026-11-04 18:51"
 }
