@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-04 10:42",
+  "updatedAt": "2026-11-04 14:48",
   "items": [
     {
       "id": "306206",
@@ -43,7 +43,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 10:41",
+      "copiedAt": "2026-11-04 14:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 4일(수) 18:00까지",
@@ -111,7 +111,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 10:41",
+      "copiedAt": "2026-11-04 14:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 5일(목) 18:00까지",
@@ -151,7 +151,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 10:41",
+      "copiedAt": "2026-11-04 14:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 5일(목) 18:00까지",
@@ -266,7 +266,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 10:41"
+      "copiedAt": "2026-11-04 14:47"
     },
     {
       "id": "gojobs-306749",
@@ -280,7 +280,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 10:41",
+      "copiedAt": "2026-11-04 14:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 6일(금) 18:00까지예요.",
@@ -458,7 +458,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 10:41",
+      "copiedAt": "2026-11-04 14:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -489,7 +489,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 10:41",
+      "copiedAt": "2026-11-04 14:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -571,7 +571,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 10:41",
+      "copiedAt": "2026-11-04 14:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 11일(수) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -597,6 +597,20 @@
       }
     },
     {
+      "id": "gojobs-305736",
+      "title": "국립국악원 국악연구실 기간제 근로자(휴직대체, 장애인제한 경쟁) 채용 재공고",
+      "org": "문화체육관광부 국립국악원",
+      "region": "",
+      "hires": null,
+      "start": "2026-11-04",
+      "end": "2026-11-12",
+      "url": "https://modupum.kr/gojobs/305736/",
+      "disabledOnly": true,
+      "orgType": "국가기관",
+      "source": "나라일터",
+      "copiedAt": "2026-11-04 14:47"
+    },
+    {
       "id": "gojobs-306366",
       "title": "2026년 농촌진흥청 일반직공무원(전산주사보, 농업서기) 경력경쟁채용시험 공고(장애인구분모집)",
       "org": "농촌진흥청",
@@ -608,7 +622,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 10:41",
+      "copiedAt": "2026-11-04 14:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 18:00까지 (점심시간 제외)",
@@ -731,7 +745,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 10:41",
+      "copiedAt": "2026-11-04 14:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -781,6 +795,20 @@
       "end": "2026-11-16",
       "url": "https://k-water.recruiter.co.kr/",
       "disabledOnly": true
+    },
+    {
+      "id": "gojobs-307484",
+      "title": "[장애인 제한경쟁] 국립중앙도서관 지식정보서비스과 기간제 근로자 채용 공고",
+      "org": "문화체육관광부 국립중앙도서관",
+      "region": "",
+      "hires": null,
+      "start": "2026-11-04",
+      "end": "2026-11-16",
+      "url": "https://modupum.kr/gojobs/307484/",
+      "disabledOnly": true,
+      "orgType": "국가기관",
+      "source": "나라일터",
+      "copiedAt": "2026-11-04 14:47"
     },
     {
       "id": "kead-217316",
@@ -921,7 +949,7 @@
       "disabledOnly": true,
       "orgType": "공공기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 10:41"
+      "copiedAt": "2026-11-04 14:47"
     },
     {
       "id": "kead-217254",
@@ -980,7 +1008,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-11-04 10:41",
+      "copiedAt": "2026-11-04 14:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지 접수 기간은 채용 시까지예요. 접수 마감일은 2026-11-30이에요.",
@@ -1004,6 +1032,31 @@
         "model": "haiku",
         "trialUntil": "2026-11-12"
       }
+    },
+    {
+      "id": "kead-217363",
+      "title": "[경기지역본부][장애인제한경쟁] (재)수원문화재단 2027년 제1회 기간제 근로자 채용 공고(11.24. 하루 방문접수)",
+      "org": "한국장애인고용공단",
+      "region": "경기도 수원시",
+      "hires": null,
+      "start": "2026-11-04",
+      "end": "2026-12-17",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217363&menuId=MENU2201",
+      "disabledOnly": true,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "확인 안 됨",
+        "고용형태": "본문에 기간제 표현이 있음",
+        "접수방법": "확인 안 됨",
+        "장애인관련": [
+          "장애인 등록증 소지자 또는 보훈보상대상자(본인 및 유족)"
+        ]
+      },
+      "notes": [
+        "접수 마감일이 목록(2026-11-24)과 본문(2026-12-17)에서 다릅니다. 본문 기준으로 표시했으니 원문에서 꼭 확인하세요."
+      ]
     },
     {
       "id": "302097",
@@ -1087,5 +1140,5 @@
       }
     }
   ],
-  "keadCheckedAt": "2026-11-04 10:42"
+  "keadCheckedAt": "2026-11-04 14:48"
 }
