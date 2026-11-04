@@ -1,7 +1,15 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-03",
+  "updatedAt": "2026-11-04",
   "items": [
+    {
+      "id": "moel-notice-20261100120",
+      "title": "2027년 장애인고용촉진 유공 정부포상 공고",
+      "summary": "2027년 장애인고용촉진 유공 정부포상 공고",
+      "source": "고용노동부 공지",
+      "date": "2026-11-04",
+      "url": "https://www.moel.go.kr/news/notice/noticeView.do?bbs_seq=20261100120"
+    },
     {
       "id": "mohw-1492422",
       "title": "생활공간에서 의료서비스 받는다, 전국 최초 의료집중형 장애인거주시설 대전 ‘로뎀’ 개소",
