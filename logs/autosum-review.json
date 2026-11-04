@@ -31,10 +31,59 @@
     "org": "한국원자력의학원",
     "end": "2026-11-18",
     "url": "http://kirams.recruiter.co.kr",
-    "attempts": 1,
+    "attempts": 2,
     "last": "2026-11-04",
     "reasons": [
       "원문 글자 부족(31자)."
+    ]
+  },
+  {
+    "id": "gojobs-307473",
+    "title": "서울특별시 영등포구 시간선택제임기제공무원 마급(장애인전용주차구역 단속) 임용시험 시행계획 공고",
+    "org": "서울특별시 영등포구",
+    "end": "2026-11-06",
+    "url": "https://modupum.kr/gojobs/307473/",
+    "attempts": 1,
+    "last": "2026-11-04",
+    "reasons": [
+      "근거 문장 없음: 연장"
+    ]
+  },
+  {
+    "id": "306667",
+    "title": "한국농어촌공사 철원화천지사 공무직(청소원) 보훈ㆍ장애인 제한경쟁 채용 공고",
+    "org": "한국농어촌공사",
+    "end": "2026-11-19",
+    "url": "https://www.ekr.or.kr/planweb/board/view.krc?dataUid=8a8bb352a08a300001a1a3d7ab4d05bb&page=1&boardUid=402880317cc0644a017cc5e8000f06b7&contentUid=8a8bb3529665d7140199501cd3ef6280&searchType=&keyword=&categoryUid1=&categoryUid2=8a8bb3529665d714019951996437",
+    "attempts": 1,
+    "last": "2026-11-04",
+    "reasons": [
+      "원문에 없는 주소·이메일: 접수"
+    ]
+  },
+  {
+    "id": "306663",
+    "title": "한국농어촌공사 청주지사 공무직(청소원) 보훈·장애인 제한경쟁 채용공고",
+    "org": "한국농어촌공사",
+    "end": "2026-11-19",
+    "url": "https://www.ekr.or.kr/planweb/board/view.krc?dataUid=8a8bb352a08a300001a1a3c3f7aa02bf&page=1&boardUid=402880317cc0644a017cc5e8000f06b7&contentUid=8a8bb3529665d7140199501cd3ef6280&searchType=&keyword=&categoryUid1=&categoryUid2=8a8bb3529665d714019951996437",
+    "attempts": 1,
+    "last": "2026-11-04",
+    "reasons": [
+      "근거가 원문에 없음: 급여 \"2,293천원/월   (세전)\"",
+      "원문에 없는 주소·이메일: 접수"
+    ]
+  },
+  {
+    "id": "gojobs-307450",
+    "title": "제목 한국농어촌공사 청주지사 공무직(청소원) 보훈·장애인 제한경쟁채용 공고",
+    "org": "한국농어촌공사",
+    "end": "2026-11-19",
+    "url": "https://modupum.kr/gojobs/307450/",
+    "attempts": 1,
+    "last": "2026-11-04",
+    "reasons": [
+      "원문에 없는 주소·이메일: 접수"
     ]
   }
 ]
