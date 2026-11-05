@@ -19,5 +19,5 @@ const logs = []
 const samples = []
 const { jobs, stats } = await collectMixed(all, { today, excludeIds: new Set(base.map((j) => j.id)), getDetail: async (sn) => { const r = (await (await fetch(detailUrl(key, sn), { signal: AbortSignal.timeout(30000) })).json())?.result; if (samples.length < 8 && r) samples.push({ sn, files: r.files, nsteps: (r.steps ?? []).length }); return r }, log: (m) => logs.push(m) })
 const kinds = {}
-await writeFile(new URL('../logs/diag-alio.json', import.meta.url), JSON.stringify({ today, total: all.length, base: base.length, stats, kinds, samples, cache: JSON.parse(readFileSync(new URL('./mixed-cache.json', import.meta.url), 'utf8')).items, mixed: jobs.map((j) => ({ id: j.id, org: j.org, title: j.title, end: j.end, src: j.mixedSource, ev: j.mixedEvidence })), logs }, null, 1))
+await writeFile(new URL(`../logs/diag-alio-${process.env.GITHUB_RUN_ID || 'local'}.json`, import.meta.url), JSON.stringify({ today, total: all.length, base: base.length, stats, kinds, samples, cache: JSON.parse(readFileSync(new URL('./mixed-cache.json', import.meta.url), 'utf8')).items, mixed: jobs.map((j) => ({ id: j.id, org: j.org, title: j.title, end: j.end, src: j.mixedSource, ev: j.mixedEvidence })), logs }, null, 1))
 console.log(JSON.stringify(stats), jobs.length)
