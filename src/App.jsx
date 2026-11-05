@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { jobShareUrl, parseRoute, pageOfId } from './jobLink'
 import { isNew, periodOf, needsRegion, unknownLabel, UNKNOWN_PERIOD_LABEL, newestNew, showTabNew } from './status'
 
 const TABS = [
@@ -65,7 +66,7 @@ function usePaged(items, resetKey = '') {
     // 키보드 포커스도 목록 맨 위로 옮겨 화면 밖 페이지 번호에 남지 않게 한다
     document.querySelector('.list')?.focus({ preventScroll: true })
   }
-  return { slice, page: cur, total, go, note, count: items.length }
+  return { slice, page: cur, total, go, setPage, note, count: items.length }
 }
 
 function Pager({ pg }) {
@@ -458,7 +459,51 @@ const regionsOf = (i) => {
 // 폰에서 옆으로 밀리는 칩 줄: 누른 칩을 가운데로 데려와 다음 칩이 보이게 한다
 const chipIntoView = (e) => e.currentTarget.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' })
 
-function Jobs() {
+// 공유하기: 공유창이 되는 기기는 시스템 공유창, 아니면 주소를 복사한다. 사용자가 공유창을 닫은 경우엔 아무 안내도 하지 않는다.
+function ShareButton({ item }) {
+  const [msg, setMsg] = useState('')
+  const name = orgLabel(item.title, item.org)
+  const url = jobShareUrl(window.location.origin, window.location.pathname, item.id)
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(url)
+      return true
+    } catch {
+      try {
+        const ta = document.createElement('textarea')
+        ta.value = url
+        ta.setAttribute('readonly', '')
+        ta.style.position = 'fixed'
+        ta.style.opacity = '0'
+        document.body.appendChild(ta)
+        ta.select()
+        const ok = document.execCommand('copy')
+        document.body.removeChild(ta)
+        return ok
+      } catch { return false }
+    }
+  }
+  const share = async () => {
+    setMsg('')
+    if (typeof navigator.share === 'function') {
+      try {
+        await navigator.share({ title: `${name} - 모두품`, url })
+        return
+      } catch (e) {
+        if (e && e.name === 'AbortError') return
+      }
+    }
+    setMsg((await copy()) ? '주소를 복사했어요' : `주소를 복사하지 못했어요. 이 주소를 직접 복사해 주세요: ${url}`)
+  }
+  return (
+    <>
+      <button type="button" className="ask-btn share-btn" aria-label={`${name} 공고 공유하기`} onClick={share}>공유하기</button>
+      <span className="share-msg" role="status" aria-live="polite">{msg}</span>
+    </>
+  )
+}
+
+function Jobs({ focusId = '' }) {
   const data = useData('jobs')
   const [sort, setSort] = useState('최신순')
   const all = useMemo(() => {
@@ -484,9 +529,32 @@ function Jobs() {
   const items = useMemo(() => (area === '전체' ? all : all.filter((i) => i._regions.includes(area))), [all, area])
   const pg = usePaged(items, area + sort)
 
+  // 공유 주소(#/jobs/<id>)로 들어오면 지역 탭·쪽과 상관없이 그 공고를 찾아 펼친다. 없으면(마감 등) 안내만 한다.
+  const [reveal, setReveal] = useState('')
+  const [missing, setMissing] = useState(false)
+  useEffect(() => {
+    setMissing(false)
+    setReveal('')
+    if (!focusId || !data) return
+    if (all.some((i) => String(i.id) === focusId)) { setArea('전체'); setReveal(focusId) } else setMissing(true)
+  }, [focusId, data, all])
+  useEffect(() => {
+    if (!reveal || area !== '전체') return
+    const n = pageOfId(items, reveal, PAGE_SIZE)
+    if (n && n !== pg.page) { pg.setPage(n); return }
+    const li = [...document.querySelectorAll('.list > li[data-job-id]')].find((el) => el.dataset.jobId === reveal)
+    if (!li) return
+    const d = li.querySelector('details')
+    if (d) d.open = true
+    li.scrollIntoView({ block: 'start' })
+    li.querySelector('summary')?.focus({ preventScroll: true })
+    setReveal('')
+  }, [reveal, area, items, pg.page, pg.slice]) // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <section>
       <h1 className="page-h">일자리</h1>
+      {missing && <p className="share-gone" role="status">이 공고는 마감되어 내려갔어요. 아래에서 접수 중인 다른 공고를 확인해 보세요.</p>}
       <SampleNotice data={data} />
       {areas.length > 2 && (
         <div className="kinds kinds-row" role="group" aria-label="지역">
@@ -520,7 +588,7 @@ function Jobs() {
           const left = daysLeft(i.end)
           const soon = left <= 3
           return (
-            <li key={i.id} className="item">
+            <li key={i.id} className="item" data-job-id={String(i.id)}>
               <details onToggle={(e) => { if (e.currentTarget.open) { try { window.umami?.track('easy-open', { type: 'job' }) } catch { /* 무시 */ } } }}>
                 <summary>
                   <h2><Badges period={periodOf(today(), { end: i.end })} region={needsRegion(i, 'jobs')} />{orgLabel(i.title, i.org)}<NewMark on={isNew(today(), i.start)} />{i.mixed && <span className="mixed-chip">일부 분야만 장애인 대상</span>}</h2>
@@ -570,7 +638,10 @@ function Jobs() {
                       <div><dt>장애인 관련 문구</dt><dd>{infoOr((i.summary.장애인관련 ?? []).join(' / '))}</dd></div>
                     </dl>
                   )}
-                  <ExternalLink href={i.url} track={{ tab: 'jobs', org: i.sourceLabel }} label={`${orgLabel(i.title, i.org)} 원문 보기${i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}`}>원문 보기{i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}</ExternalLink>
+                  <div className="detail-actions">
+                    <ExternalLink href={i.url} track={{ tab: 'jobs', org: i.sourceLabel }} label={`${orgLabel(i.title, i.org)} 원문 보기${i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}`}>원문 보기{i.sourceLabel ? ` · 출처 ${i.sourceLabel}` : ''}</ExternalLink>
+                    <ShareButton item={i} />
+                  </div>
                   {i.source === '나라일터' && (
                     <p className="copy-note">모두품이 보관한 사본이에요. 최종 확인은 나라일터에서 해 주세요.{i.copiedAt ? ` (수집 ${i.copiedAt})` : ''}</p>
                   )}
@@ -716,10 +787,7 @@ function useAnalytics(code, tab) {
   return on
 }
 
-const readHash = () => {
-  const h = window.location.hash.replace('#/', '').replace('#', '')
-  return ROUTES.includes(h) ? h : 'home'
-}
+const readRoute = () => parseRoute(window.location.hash, ROUTES)
 
 const SEEN_KEY = 'tab-seen-'
 const readSeen = (id) => { try { return localStorage.getItem(SEEN_KEY + id) || '' } catch { return '' } }
@@ -747,7 +815,8 @@ function useTabNew(tab) {
 }
 
 export default function App() {
-  const [tab, setTabState] = useState(readHash)
+  const [route, setRoute] = useState(readRoute)
+  const tab = route.tab
   const site = useData('site')
   const counting = useAnalytics(site?.analytics?.goatcounter, tab)
   const hasNew = useTabNew(tab)
@@ -760,7 +829,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    const onHash = () => setTabState(readHash())
+    const onHash = () => setRoute(readRoute())
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
@@ -793,7 +862,7 @@ export default function App() {
       <main id="main" ref={mainRef} tabIndex={-1}>
         {tab === 'home' && <Home go={setTab} />}
         {tab === 'welfare' && <Welfare />}
-        {tab === 'jobs' && <Jobs />}
+        {tab === 'jobs' && <Jobs focusId={route.jobId} />}
         {tab === 'apply' && <Apply />}
         {tab === 'calendar' && <Calendar />}
         {tab === 'news' && <News />}
