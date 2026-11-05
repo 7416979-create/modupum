@@ -61,7 +61,7 @@ const attachText = async (file, workDir, n) => {
   let url = String(file?.url ?? '')
   if (!url && file?.recrutAtchFileNo) url = `https://www.alio.go.kr/download/download.json?fileNo=${encodeURIComponent(file.recrutAtchFileNo)}`
   url = url.replace(/^http:\/\//i, 'https://')
-  if (!/^https:\/\/(www\.)?alio\.go\.kr\//.test(url)) return { error: `지원하지 않는 첨부 주소(${String(file?.url ?? '').slice(0, 40)})` }
+  if (!/^https:\/\/(www\.)?alio\.go\.kr\//.test(url)) return { error: `지원하지 않는 첨부 주소(${String(file?.url ?? '').slice(0, 90)})` }
   const res = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(60000) })
   if (!res.ok) return { error: `HTTP ${res.status}` }
   if (Number(res.headers.get('content-length') || 0) > MAX_BYTES) return { error: '첨부가 너무 큼' }
