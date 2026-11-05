@@ -16,15 +16,18 @@ jobs:
       - run: |
           sudo apt-get install -y poppler-utils >/dev/null
           pip install pyhwp >/dev/null
+      - run: node scripts/diag-probe.mjs
+        env:
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
       - run: node scripts/diag-alio.mjs
         env:
-          MIXED_MAX_ROWS: '600'
+          MIXED_MAX_ROWS: '120'
           MIXED_BUDGET_MIN: '38'
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
       - run: |
           git config user.name "modupum-bot"
           git config user.email "modupum-bot@users.noreply.github.com"
-          git add logs/diag-alio-*.json
+          git add logs/diag-alio-*.json logs/diag-probe-*.json
           git commit -m "diag: alio fields"
           git pull --rebase origin main
           git push
