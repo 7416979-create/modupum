@@ -72,10 +72,13 @@ export const validateJobs = (items, { today, rules = {}, copyExists } = {}) => {
       errors.push(`${tag}: 시작일이 마감일보다 늦음`)
     }
     const t = String(j.title ?? '')
-    const hit = kead ? undefined : titleExclude.find((w) => t.includes(w))
+    // mixed(일부 모집분야만 장애인 제한경쟁): 제목에 '장애'가 없거나 '포함'이 있어도 되지만, 근거 문장이 반드시 있어야 한다.
+    if (j.mixed === true && (typeof j.mixedEvidence !== 'string' || !j.mixedEvidence.trim())) errors.push(`${tag}: mixed 공고에 근거 문장(mixedEvidence) 없음`)
+    const titleRules = j.mixed === true ? BAD_TITLE : titleExclude
+    const hit = kead ? undefined : titleRules.find((w) => t.includes(w))
     if (hit) errors.push(`${tag}: 제목에 제외 표현 '${hit}'`)
     // 대기열에서 원문 근거로 확정된 공고(reviewed)는 제목에 '장애'가 없을 수 있으므로 이 검사에서 뺀다.
-    if (t && !kead && !j.reviewed && !t.includes('장애')) errors.push(`${tag}: 제목에 '장애' 없음`)
+    if (t && !kead && !j.reviewed && j.mixed !== true && !t.includes('장애')) errors.push(`${tag}: 제목에 '장애' 없음`)
   }
   return { items: cur, fixes, errors }
 }

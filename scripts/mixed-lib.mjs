@@ -2,6 +2,7 @@
 // 판정은 키워드 규칙만 쓰고(AI 키 불필요), 근거 문장을 데이터에 남긴다. 애매하면 숨긴다.
 // 우대·가점만 있는 공고, 비장애인 문구, 결격사유·법령 문구만 있는 공고는 통과시키지 않는다.
 import { toJob } from './jobs-lib.mjs'
+import { dedupeJobs } from './dedupe-lib.mjs'
 
 // 공백·기호를 모두 지운 글자로 비교한다(표 안에서 글자가 갈라져도 잡기 위해).
 export const squash = (s) => String(s ?? '').normalize('NFKC').replace(/[\s​|·・ㆍ,，、:：;；]+/g, '')
@@ -15,7 +16,7 @@ const DEDICATED = [
 ]
 
 // 근거 주변에 이런 말이 있으면 전용이 아니라고 보고 버린다.
-const NEGATIVE = ['비장애인', '우대', '가점', '가산', '결격', '고용촉진', '직업재활', '장애인복지법', '「', '」', '『', '』', '의무고용', '해당없음', '제한없', '구분없', '불문']
+const NEGATIVE = ['비장애인', '우대', '가점', '가산', '결격', '고용촉진', '직업재활', '장애인복지법', '「', '」', '『', '』', '의무고용', '해당없음', '제한없', '구분없', '불문', '미해당', '미적용', '적용안', '제외', '%']
 
 const WINDOW = 16
 
@@ -91,3 +92,11 @@ export const pickCandidates = (rows, { today, excludeIds = new Set() }) => {
 // 캐시에서 오늘 이후 마감인 것만 남긴다.
 export const pruneCache = (cache, today) =>
   Object.fromEntries(Object.entries(cache ?? {}).filter(([, v]) => v?.end && v.end >= today))
+
+// 공식 출처에서 직접 확인한 수동 확정 공고(scripts/mixed-manual.json)를 목록에 넣는다. 마감 전이고 근거가 있는 것만, 같은 공고가 이미 있으면 하나만 남긴다.
+export const applyManual = (items, manual, today) => {
+  const live = (Array.isArray(manual) ? manual : []).filter((j) => j?.id && j.title && j.mixed === true && j.mixedEvidence && j.end >= today)
+  if (!live.length) return { items, added: 0 }
+  const merged = dedupeJobs([...items, ...live]).items.sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0))
+  return { items: merged, added: merged.length - items.length }
+}

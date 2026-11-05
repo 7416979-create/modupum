@@ -3,10 +3,11 @@
 // 키가 없거나 호출이 실패하면 기존 파일을 그대로 두고 끝낸다(빈 데이터로 덮어쓰지 않는다).
 
 import { readFile, writeFile } from 'node:fs/promises'
-import { buildJobs, listUrl, rowsOf } from './jobs-lib.mjs'
+import { buildJobs, listUrl, detailUrl, rowsOf } from './jobs-lib.mjs'
 import { GOJOBS_LIST, parseList, buildGojobs, mergeJobs, toJob } from './gojobs-lib.mjs'
 import { makeCopies, readManifest } from './gojobs-copy.mjs'
 import { isKead } from './kead-lib.mjs'
+import { collectMixed } from './mixed-run.mjs'
 import { carryVerified } from './autosum-lib.mjs'
 import { loadHolidays, jobCollectDecision, isForced } from './workday-lib.mjs'
 import { validateJobs, validateWelfare, isAbnormalDrop } from './validate-lib.mjs'
@@ -85,6 +86,14 @@ async function collectGojobs() {
   return ok
 }
 
+// 공고 상세(/detail): 첨부 files·모집단계 steps 가 여기에만 온다. 키는 주소에만 쓰고 출력하지 않는다.
+const detailOf = async (sn) => {
+  const json = await getJson(detailUrl(key, sn))
+  const code = Number(json?.resultCode ?? 0)
+  if (code !== 0 && code !== 200) throw new Error(`상세 응답 코드 ${code}`)
+  return json?.result
+}
+
 async function collectJobs() {
   const all = []
   let total = Infinity
@@ -98,7 +107,18 @@ async function collectJobs() {
     all.push(...rows)
   }
   if (all.length === 0) throw new Error('받은 공고가 없습니다')
-  const apiItems = buildJobs(all, rules, today)
+  let apiItems = buildJobs(all, rules, today)
+  // 제목에 '장애'가 없어도 모집분야 중 장애인 제한경쟁이 있는 공고(mixed): 행 글자·첨부 글자로 규칙 판정한다. 실패하면 이 부분만 건너뛴다.
+  try {
+    const { jobs: mixedJobs, stats } = await collectMixed(all, { today, excludeIds: new Set(apiItems.map((j) => j.id)), getDetail: detailOf })
+    console.log(`일부 분야 장애인 제한경쟁(mixed): ${mixedJobs.length}건 게시 · ${JSON.stringify(stats)}`)
+    apiItems = [...apiItems, ...mixedJobs].sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0))
+  } catch (e) {
+    console.error(`mixed 판정 실패(이전에 게시한 mixed 공고 중 마감 전인 것만 이어 둠): ${e.message}`)
+    const prevMixed = JSON.parse(await readFile(new URL('../public/data/jobs.json', import.meta.url), 'utf8').catch(() => '{}'))
+    const keepMixed = (Array.isArray(prevMixed.items) ? prevMixed.items : []).filter((j) => j.mixed === true && j.end >= today && !apiItems.some((a) => a.id === j.id))
+    apiItems = [...apiItems, ...keepMixed].sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0))
+  }
   // 나라일터 공고: 2026-10-28 수집 중단(원문 링크 깨짐) → 2026-10-29 '아카이브 사본' 방식으로 재개. 실패하면 이 부분만 건너뛴다.
   let items = apiItems
   const prevAll = JSON.parse(await readFile(new URL('../public/data/jobs.json', import.meta.url), 'utf8').catch(() => '{}'))

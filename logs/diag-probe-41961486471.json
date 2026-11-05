@@ -1,6 +1,0 @@
-{
- "status": 429,
- "ctype": "application/json",
- "len": 213,
- "head": "{\n  \"OpenAPI_ServiceResponse\": {\n    \"cmmMsgHeader\": {\n      \"errMsg\": \"LIMITED_NUMBER_OF_SERVICE_REQUESTS_EXCEEDS_ERROR\",\n      \"returnAuthMsg\": \"일일 서비스 요청제한 횟수 초과 에러\",\n      \"returnReasonCode\": \"22\"\n    }\n  }\n}\n"
-}

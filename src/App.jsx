@@ -505,7 +505,7 @@ function Jobs() {
         {data?.updatedAt && <p className="sub">마지막 갱신 {data.updatedAt} · 접수 중 {all.length}건</p>}
         <details className="jobs-help">
           <summary>안내 보기</summary>
-          <p className="sub">공공기관·국가기관·지자체의 채용 공고 가운데 제목에 장애인 대상이 명시된 공고만 싣습니다(예: 장애인 제한경쟁·장애인 구분모집). 장애인 대상이 드러나지 않은 일반 공개채용은 싣지 않습니다.</p>
+          <p className="sub">공공기관·국가기관·지자체의 채용 공고 가운데 제목에 장애인 대상이 명시된 공고를 싣습니다(예: 장애인 제한경쟁·장애인 구분모집). 제목에 없어도 공고문에 장애인 제한경쟁 모집분야가 있으면 '일부 모집분야만 장애인 대상'이라고 표시해 싣습니다. 장애인 대상이 드러나지 않은 일반 공개채용은 싣지 않습니다.</p>
         </details>
       </div>
       <div className="seg-wrap">
@@ -523,7 +523,7 @@ function Jobs() {
             <li key={i.id} className="item">
               <details onToggle={(e) => { if (e.currentTarget.open) { try { window.umami?.track('easy-open', { type: 'job' }) } catch { /* 무시 */ } } }}>
                 <summary>
-                  <h2><Badges period={periodOf(today(), { end: i.end })} region={needsRegion(i, 'jobs')} />{orgLabel(i.title, i.org)}<NewMark on={isNew(today(), i.start)} /></h2>
+                  <h2><Badges period={periodOf(today(), { end: i.end })} region={needsRegion(i, 'jobs')} />{orgLabel(i.title, i.org)}<NewMark on={isNew(today(), i.start)} />{i.mixed && <span className="mixed-chip">일부 분야만 장애인 대상</span>}</h2>
                   <span className={`sum-tag dday${soon ? ' soon' : ''}`}>{left === 0 ? '오늘 마감' : `마감 ${left}일 남음${i.end ? ` · ${String(i.end).slice(5).replace('-', '.')}` : ''}`}</span>
                 </summary>
                 <div className="detail">
@@ -547,6 +547,9 @@ function Jobs() {
                     <div><dt>무슨 일 · 고용 형태</dt><dd>{i.easy ? i.easy.무슨일고용 : (i.verified === true ? infoOr(i.summary?.고용형태) : PENDING)}</dd></div>
                     <div><dt>어디서</dt><dd>{i.easy ? (i.easy.어디서 ?? NO_INFO) : ([i.org, i.region].filter(Boolean).join(' · ') || NO_INFO)}</dd></div>
                   </dl>
+                  {i.mixed && (
+                    <p className="period-note"><strong>일부 모집분야만 장애인 대상이에요.</strong> 해당 분야를 공고에서 꼭 확인하세요.{(i.mixedFields ?? []).length > 0 ? <><br />해당 분야: {i.mixedFields.join(' / ')}</> : null}{i.mixedEvidence ? <><br />공고에 적힌 글: {i.mixedEvidence}</> : null}</p>
+                  )}
                   {(i.notes ?? []).map((n) => (
                     <p key={n} className="period-note"><strong>참고</strong> {n}</p>
                   ))}

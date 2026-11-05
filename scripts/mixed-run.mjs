@@ -42,6 +42,7 @@ const hwpText = async (file, dir) => {
       .replace(/<\/(p|tr|div|h\d|li)>|<br\s*\/?>/gi, '\n')
       .replace(/<\/t[dh]>/gi, ' | ')
       .replace(/<[^>]+>/g, '')
+      .replace(/&#(\d+);/g, (_, n) => (n === '13' || n === '10' ? '\n' : String.fromCharCode(Number(n))))
       .replace(/&nbsp;/g, ' ')
       .replace(/&lt;/g, '<')
       .replace(/&gt;/g, '>')
@@ -58,8 +59,9 @@ const hwpxText = async (file) => {
 
 // 첨부 한 개의 글자. 지원하지 않는 형식·실패는 { error } 로 돌려준다.
 export const attachText = async (file, workDir, n) => {
+  // 응답의 opendata 주소는 /new 로 되돌려 보내므로, 파일 번호가 있으면 항상 www 다운로드 주소로 받는다.
   let url = String(file?.url ?? '')
-  if (!url && file?.recrutAtchFileNo) url = `https://www.alio.go.kr/download/download.json?fileNo=${encodeURIComponent(file.recrutAtchFileNo)}`
+  if (file?.recrutAtchFileNo) url = `https://www.alio.go.kr/download/download.json?fileNo=${encodeURIComponent(file.recrutAtchFileNo)}`
   url = url.replace(/^http:\/\//i, 'https://')
   if (!/^https:\/\/([a-z0-9-]+\.)?alio\.go\.kr\//.test(url)) return { error: `지원하지 않는 첨부 주소(${String(file?.url ?? '').slice(0, 90)})` }
   const res = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(60000) })

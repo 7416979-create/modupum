@@ -39,6 +39,11 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - name: Install attachment text tools (poppler for PDF, pyhwp for HWP; 실패해도 수집은 계속)
+        continue-on-error: true
+        run: |
+          sudo apt-get install -y poppler-utils >/dev/null
+          pip install pyhwp >/dev/null
       - name: Collect public data
         # 수집이 실패해도 기존 데이터로 빌드·배포를 계속한다(실패는 로그에 남는다).
         continue-on-error: true
@@ -53,6 +58,9 @@ jobs:
         # 실패·차단 시 기존 jobs.json 을 그대로 두고 로그에 남긴다.
         continue-on-error: true
         run: node scripts/collect-kead.mjs
+      - name: Apply manual-confirmed mixed jobs (기관 공식 공고로 직접 확인한 일부 분야 장애인 제한경쟁 공고, 마감 후 자동 제외)
+        continue-on-error: true
+        run: node scripts/mixed-manual-apply.mjs
       - name: Review ambiguous jobs (Gemini 묶음 판정, 하루 1회 주기 · 키 없으면 건너뜀)
         # 대기열이 비었거나 주기가 안 됐으면 호출하지 않는다. 실패하면 대기 항목은 2차(Haiku)로 남는다.
         continue-on-error: true
@@ -72,7 +80,7 @@ jobs:
         run: |
           git config user.name "modupum-bot"
           git config user.email "modupum-bot@users.noreply.github.com"
-          git add -A public/data public/gojobs scripts/review-queue.json scripts/pending.json
+          git add -A public/data public/gojobs scripts/review-queue.json scripts/pending.json scripts/mixed-cache.json
           git diff --cached --quiet || git commit -m "data: auto update"
           # PC 요약 작업(autosum)이 먼저 푸시했을 수 있으므로 최신 위에 얹어 푸시한다. 충돌하면 이번 분은 건너뛰고 다음 수집이 다시 만든다.
           git pull --rebase origin main || git rebase --abort

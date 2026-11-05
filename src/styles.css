@@ -273,3 +273,5 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .9rem; }
 .cal-h { font-size: 1.35rem; font-weight: 700; letter-spacing: -.02em; margin: 32px 0 12px; }
 .cal-inner { padding: 0; background: transparent; }
 .cal-checked { font-size: .85rem; margin: 0; }
+
+.mixed-chip { display: inline-block; margin-left: 8px; padding: 1px 10px; font-size: .85rem; font-weight: 600; color: #1d1d1f; background: #f0f0f3; border: 1px solid #6b6b72; border-radius: var(--pill); vertical-align: middle; white-space: nowrap; }

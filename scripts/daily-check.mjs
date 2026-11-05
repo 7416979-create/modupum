@@ -81,7 +81,7 @@ for (const name of ['jobs', 'welfare', 'news']) {
     if (!d.updatedAt) issues.push(`${name}.json updatedAt 없음`)
     if (name === 'jobs') {
       // 마감 전인데 쉬운 요약(easy)이 없는 공고는 화면에 빈칸이 생긴다. 원문 확인 후 채워야 한다.
-      const blank = items.filter((i) => i.end >= today && !(i.verified === true && i.easy)).map((i) => i.id)
+      const blank = items.filter((i) => i.end >= today && !(i.verified === true && i.easy) && i.mixed !== true).map((i) => i.id)
       if (blank.length) issues.push(`jobs.json 쉬운 요약 없는 공고 ${blank.length}건: ${blank.join(', ')} (원문 확인 후 easy 채우기)`)
       // 요약 자동 채우기(autosum, PC 작업) 기록: 어제까지의 성공/실패, 확인 필요 목록, 자동 요약 건수를 참고로 남긴다(2주 관찰: ~2026-11-12).
       try {

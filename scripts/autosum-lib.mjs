@@ -7,7 +7,8 @@ export const OPTIONAL = ['연장']
 export const AUTO_TRIAL_END = '2026-11-12' // 처음 2주 관찰 기간 끝
 
 // 마감 전인데 쉬운 요약이 없는 공고인가(daily-check 의 빈칸 판정과 같은 기준)
-export const needsSummary = (j, today) => j?.end >= today && !(j.verified === true && j.easy)
+// mixed(일부 모집분야만 장애인 대상) 공고는 자동 요약이 '누가 지원할 수 있어요'를 잘못 쓸 수 있어 대기 목록에 넣지 않는다.
+export const needsSummary = (j, today) => j?.end >= today && j?.mixed !== true && !(j.verified === true && j.easy)
 
 // 클라우드(Actions)가 올리는 대기 목록. since 는 처음 대기에 들어온 날을 이어 둔다.
 export const buildPending = (items, today, prevPending = []) => {
