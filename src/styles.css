@@ -279,6 +279,7 @@ footer p { margin: 4px 0; color: var(--muted); font-size: .9rem; }
 /* 공고 공유하기 */
 .detail-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 4px; }
 .share-btn { min-width: 44px; }
+.detail-actions + .ask-box { margin-top: 12px; }
 .share-msg { flex: 1 1 100%; font-weight: 600; color: var(--ink); overflow-wrap: anywhere; }
 .share-msg:empty { display: none; }
 .share-gone { margin: 8px 0 14px; padding: 10px 14px; border-left: 4px solid var(--accent); background: var(--tint); border-radius: 8px; color: var(--ink); font-weight: 600; }
