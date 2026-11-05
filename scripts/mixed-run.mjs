@@ -14,8 +14,8 @@ import { judgeRow, judgeAttachText, pickCandidates, needsFetch, pruneCache, toMi
 const run = promisify(execFile)
 const here = path.dirname(fileURLToPath(import.meta.url))
 const UA = 'modupum-bot (+https://modupum.kr)'
-export const CACHE_FILE = new URL('./mixed-cache.json', import.meta.url)
-export const MAX_ROWS_PER_RUN = Number(process.env.MIXED_MAX_ROWS || 60) // 실행당 첨부를 받아 보는 공고 수 상한
+export const CACHE_FILE = process.env.MIXED_CACHE_FILE || new URL('./mixed-cache.json', import.meta.url)
+export const MAX_ROWS_PER_RUN = Number(process.env.MIXED_MAX_ROWS || 40) // 실행당 첨부를 받아 보는 공고 수 상한
 const MAX_FILES = 4
 const MAX_BYTES = 15 * 1024 * 1024
 const BUDGET_MS = Number(process.env.MIXED_BUDGET_MIN || 8) * 60 * 1000 // 첨부 확인에 쓰는 총 시간 상한
@@ -57,7 +57,7 @@ const hwpxText = async (file) => {
 }
 
 // 첨부 한 개의 글자. 지원하지 않는 형식·실패는 { error } 로 돌려준다.
-const attachText = async (file, workDir, n) => {
+export const attachText = async (file, workDir, n) => {
   let url = String(file?.url ?? '')
   if (!url && file?.recrutAtchFileNo) url = `https://www.alio.go.kr/download/download.json?fileNo=${encodeURIComponent(file.recrutAtchFileNo)}`
   url = url.replace(/^http:\/\//i, 'https://')
@@ -112,6 +112,8 @@ export const collectMixed = async (rows, { today, excludeIds = new Set(), getDet
   stats.후보 = cands.length
   const started = Date.now()
   let fetched = 0
+  let halted = false
+  let detailFails = 0 // 하루 호출 한도(429) 같은 오류가 연달아 나면 더 부르지 않는다
   const jobs = []
   for (const it of cands) {
     const id = String(it.recrutPblntSn)
@@ -122,16 +124,19 @@ export const collectMixed = async (rows, { today, excludeIds = new Set(), getDet
       if (r1) e = { ...r1, end, tries: 0, checkedAt: today }
     }
     if (needsFetch(e)) {
-      if (fetched >= MAX_ROWS_PER_RUN || Date.now() - started > BUDGET_MS) { stats.미확인대기 += 1; continue }
+      if (halted || fetched >= MAX_ROWS_PER_RUN || Date.now() - started > BUDGET_MS) { stats.미확인대기 += 1; continue }
       let detail
       try {
         detail = await getDetail(id)
         if (!detail || typeof detail !== 'object') throw new Error('상세 응답 없음')
       } catch (err) {
+        detailFails += 1
         log(`[mixed] 상세 조회 실패(다음에 다시 시도) ${id}: ${String(err.message).slice(0, 60)}`)
         stats.미확인대기 += 1
+        if (detailFails >= 3 && !halted) { halted = true; log('[mixed] 상세 조회가 연달아 실패해 이번 실행의 새 확인을 멈춥니다(이미 판정한 공고는 그대로 게시)') }
         continue
       }
+      detailFails = 0
       fetched += 1
       const merged = { ...it, ...detail }
       const v = judgeRow(merged) ?? (await judgeAttachments(merged))
