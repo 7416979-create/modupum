@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-05 10:49",
+  "updatedAt": "2026-11-05 11:57",
   "items": [
     {
       "id": "306244",
@@ -43,7 +43,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-05 10:48",
+      "copiedAt": "2026-11-05 11:56",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 5일(목) 18:00까지",
@@ -83,7 +83,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-05 10:48",
+      "copiedAt": "2026-11-05 11:56",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 5일(목) 18:00까지",
@@ -198,7 +198,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-05 10:48",
+      "copiedAt": "2026-11-05 11:56",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 6일(금) 18:00까지",
@@ -238,7 +238,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-05 10:48",
+      "copiedAt": "2026-11-05 11:56",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 6일(금) 18:00까지예요.",
@@ -416,7 +416,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-05 10:48",
+      "copiedAt": "2026-11-05 11:56",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -447,7 +447,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-05 10:48",
+      "copiedAt": "2026-11-05 11:56",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -529,7 +529,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-05 10:48",
+      "copiedAt": "2026-11-05 11:56",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 11일(수) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -555,6 +555,44 @@
       }
     },
     {
+      "id": "kead-217388",
+      "title": "[강원지사] 한국관광공사 장애인 체험형 청년인턴 채용안내",
+      "org": "한국장애인고용공단",
+      "region": "강원특별자치도 원주시",
+      "hires": 12,
+      "start": "2026-11-05",
+      "end": "2026-11-11",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217388&menuId=MENU2201",
+      "disabledOnly": true,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "12명",
+        "고용형태": "재택근무",
+        "접수방법": "온라인 채용 홈페이지 접수(https://kto.recruit-zone.co.kr)",
+        "장애인관련": [
+          "장애인고용촉진 및 직업재활법에 의거한 장애인 또는 중증장애인",
+          "* 장애인증명서 등으로 장애인고용촉진 및 직업재활법에 의거한 장애인임을 확인할 수 있는 자"
+        ]
+      },
+      "notes": []
+    },
+    {
+      "id": "gojobs-307611",
+      "title": "[양주출입국·외국인사무소] 2026년도 제3회 공무직근로자(사무보조원, 장애인 제한경쟁) 채용 공고",
+      "org": "법무부 양주출입국.외국인사무소",
+      "region": "",
+      "hires": null,
+      "start": "2026-11-05",
+      "end": "2026-11-12",
+      "url": "https://modupum.kr/gojobs/307611/",
+      "disabledOnly": true,
+      "orgType": "국가기관",
+      "source": "나라일터",
+      "copiedAt": "2026-11-05 11:56"
+    },
+    {
       "id": "gojobs-307589",
       "title": "2026년도 해남군 시간선택제임기제공무원(장애인구분) 경력경쟁채용시험 시행계획 공고",
       "org": "전남광주통합특별시 해남군",
@@ -566,7 +604,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-05 10:48"
+      "copiedAt": "2026-11-05 11:56"
     },
     {
       "id": "gojobs-305736",
@@ -580,7 +618,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-05 10:48",
+      "copiedAt": "2026-11-05 11:56",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 17:00까지",
@@ -619,7 +657,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-05 10:48",
+      "copiedAt": "2026-11-05 11:56",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 18:00까지 (점심시간 제외)",
@@ -742,7 +780,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-05 10:48",
+      "copiedAt": "2026-11-05 11:56",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -805,7 +843,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-05 10:48",
+      "copiedAt": "2026-11-05 11:56",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 16일(월) 18:00까지",
@@ -972,7 +1010,7 @@
       "disabledOnly": true,
       "orgType": "공공기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-05 10:48"
+      "copiedAt": "2026-11-05 11:56"
     },
     {
       "id": "306720",
@@ -1088,7 +1126,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-11-05 10:48",
+      "copiedAt": "2026-11-05 11:56",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지 접수 기간은 채용 시까지예요. 접수 마감일은 2026-11-30이에요.",
@@ -1291,5 +1329,5 @@
       }
     }
   ],
-  "keadCheckedAt": "2026-11-05 10:49"
+  "keadCheckedAt": "2026-11-05 11:57"
 }

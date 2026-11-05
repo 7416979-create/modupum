@@ -230,6 +230,16 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-03T09:45:30.658Z"
+    },
+    {
+      "id": "kead-217390",
+      "title": "[경기지역본부] 소상공인시장진흥공단 화성,평택센터 단기근로자 채용",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217390&menuId=MENU2201",
+      "end": "2026-11-09",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-05T02:59:18.232Z"
     }
   ]
 }
