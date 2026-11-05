@@ -58,13 +58,16 @@ const hwpxText = async (file) => {
 
 // 첨부 한 개의 글자. 지원하지 않는 형식·실패는 { error } 로 돌려준다.
 const attachText = async (file, workDir, n) => {
-  if (!file?.url || !/^https:\/\/www\.alio\.go\.kr\//.test(file.url)) return { error: '지원하지 않는 첨부 주소' }
-  const res = await fetch(file.url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(60000) })
+  let url = String(file?.url ?? '')
+  if (!url && file?.recrutAtchFileNo) url = `https://www.alio.go.kr/download/download.json?fileNo=${encodeURIComponent(file.recrutAtchFileNo)}`
+  url = url.replace(/^http:\/\//i, 'https://')
+  if (!/^https:\/\/(www\.)?alio\.go\.kr\//.test(url)) return { error: `지원하지 않는 첨부 주소(${String(file?.url ?? '').slice(0, 40)})` }
+  const res = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(60000) })
   if (!res.ok) return { error: `HTTP ${res.status}` }
   if (Number(res.headers.get('content-length') || 0) > MAX_BYTES) return { error: '첨부가 너무 큼' }
   const buf = Buffer.from(await res.arrayBuffer())
   if (buf.length > MAX_BYTES) return { error: '첨부가 너무 큼' }
-  const name = file.atchFileNm || nameFromHeaders(res, file.url)
+  const name = file.atchFileNm || nameFromHeaders(res, url)
   const kind = kindOf(`${name}`, buf)
   if (!kind) return { error: `지원 안 하는 형식(${name})` }
   const f = path.join(workDir, `att${n}.${kind}`)
