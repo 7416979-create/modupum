@@ -6,7 +6,7 @@ import path from 'node:path'
 import { attachText } from './mixed-run.mjs'
 import { judgeAttachText } from './mixed-lib.mjs'
 
-const d = JSON.parse(readFileSync(new URL('../logs/diag-alio.json', import.meta.url), 'utf8'))
+const d = JSON.parse(readFileSync(new URL('../logs/diag-samples.json', import.meta.url), 'utf8'))
 const out = []
 const dir = await mkdtemp(path.join(tmpdir(), 'dfiles-'))
 for (const s of d.samples ?? []) {
