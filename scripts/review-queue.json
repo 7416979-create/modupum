@@ -250,6 +250,26 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-05T04:24:22.203Z"
+    },
+    {
+      "id": "kead-217399",
+      "title": "[서울지역본부] IBK기업은행 2026년 하반기 2차 시간선택제 준정규직(장애·보훈) 채용공고(~11.18. 13시까지)",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217399&menuId=MENU2201",
+      "end": "2026-11-18",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-05T05:51:39.910Z"
+    },
+    {
+      "id": "kead-217394",
+      "title": "[경기서부지사] 소상공인시장진흥공단 안양센터 단기기간제 사무행정 1명 채용",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217394&menuId=MENU2201",
+      "end": "2026-11-09",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-05T05:51:39.910Z"
     }
   ]
 }
