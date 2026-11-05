@@ -43,8 +43,8 @@
     "org": "한국농어촌공사",
     "end": "2026-11-19",
     "url": "https://www.ekr.or.kr/planweb/board/view.krc?dataUid=8a8bb352a08a300001a1a3d7ab4d05bb&page=1&boardUid=402880317cc0644a017cc5e8000f06b7&contentUid=8a8bb3529665d7140199501cd3ef6280&searchType=&keyword=&categoryUid1=&categoryUid2=8a8bb3529665d714019951996437",
-    "attempts": 2,
-    "last": "2026-11-04",
+    "attempts": 3,
+    "last": "2026-11-05",
     "reasons": [
       "원문에 없는 주소·이메일: 접수"
     ]
@@ -55,10 +55,11 @@
     "org": "한국농어촌공사",
     "end": "2026-11-19",
     "url": "https://www.ekr.or.kr/planweb/board/view.krc?dataUid=8a8bb352a08a300001a1a3c3f7aa02bf&page=1&boardUid=402880317cc0644a017cc5e8000f06b7&contentUid=8a8bb3529665d7140199501cd3ef6280&searchType=&keyword=&categoryUid1=&categoryUid2=8a8bb3529665d714019951996437",
-    "attempts": 2,
-    "last": "2026-11-04",
+    "attempts": 3,
+    "last": "2026-11-05",
     "reasons": [
-      "원문에 없는 주소·이메일: 접수"
+      "원문에 없는 주소·이메일: 접수",
+      "근거가 원문에 없음: 접수 \"7. 접수방법: 채용홈페이지에서 온라인 접수 / 주소:\""
     ]
   },
   {
@@ -67,22 +68,10 @@
     "org": "한국농어촌공사",
     "end": "2026-11-19",
     "url": "https://modupum.kr/gojobs/307450/",
-    "attempts": 2,
-    "last": "2026-11-04",
+    "attempts": 3,
+    "last": "2026-11-05",
     "reasons": [
       "원문에 없는 주소·이메일: 접수"
-    ]
-  },
-  {
-    "id": "gojobs-307484",
-    "title": "[장애인 제한경쟁] 국립중앙도서관 지식정보서비스과 기간제 근로자 채용 공고",
-    "org": "문화체육관광부 국립중앙도서관",
-    "end": "2026-11-16",
-    "url": "https://modupum.kr/gojobs/307484/",
-    "attempts": 1,
-    "last": "2026-11-04",
-    "reasons": [
-      "근거가 원문에 없음: 몇명 \"인원 1명\""
     ]
   }
 ]
