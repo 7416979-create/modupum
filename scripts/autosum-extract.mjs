@@ -64,14 +64,14 @@ export const attachmentLinks = (html, base) => {
   return out.slice(0, MAX_FILES)
 }
 
-const kindOf = (name, buf) => {
+export const kindOf = (name, buf) => {
   if (buf.subarray(0, 4).toString('latin1') === '%PDF') return 'pdf'
   if (buf.subarray(0, 4).toString('hex') === 'd0cf11e0') return 'hwp'
   if (buf.subarray(0, 2).toString('latin1') === 'PK' && /hwpx|generalfile|download/i.test(name)) return 'hwpx'
   return null
 }
 
-const nameFromHeaders = (res, url) => {
+export const nameFromHeaders = (res, url) => {
   const cd = res.headers.get('content-disposition') || ''
   const m = /filename\*=UTF-8''([^;]+)|filename="?([^";]+)"?/i.exec(cd)
   if (m) { try { return decodeURIComponent(m[1] || m[2]) } catch { return m[1] || m[2] } }

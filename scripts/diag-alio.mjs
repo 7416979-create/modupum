@@ -1,32 +1,23 @@
-// 임시 진단: ALIO API 목록·상세 응답의 필드만 logs/diag-alio.json 에 남긴다. 키 값은 출력하지 않는다. 확인 후 삭제한다.
+// 임시 진단(확인 후 삭제): 새 규칙을 실제 ALIO 데이터에 돌려 결과만 logs/diag-alio.json 에 남긴다. 키 값은 출력하지 않는다.
 import { writeFile } from 'node:fs/promises'
-import { listUrl, rowsOf } from './jobs-lib.mjs'
+import { listUrl, rowsOf, buildJobs } from './jobs-lib.mjs'
+import { collectMixed } from './mixed-run.mjs'
+import { readFileSync } from 'node:fs'
 
 const key = process.env.DATA_GO_KR_KEY || ''
-const clean = (s) => String(s ?? '').split(key).join('[KEY]').split(encodeURIComponent(key)).join('[KEY]')
-const out = { at: new Date().toISOString(), rows: 0, keys: [], krict: [], mentions: [], detailTries: [] }
+const rules = JSON.parse(readFileSync(new URL('./keywords.json', import.meta.url), 'utf8'))
+const today = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10)
 const all = []
 for (let p = 1; p <= 30; p += 1) {
-  try {
-    const r = await fetch(listUrl(key, p), { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(30000) })
-    const j = await r.json()
-    const rows = rowsOf(j)
-    if (!rows.length) break
-    all.push(...rows)
-  } catch (e) { out.listError = clean(e.message); break }
+  const j = await (await fetch(listUrl(key, p), { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(30000) })).json()
+  const rows = rowsOf(j)
+  if (!rows.length) break
+  all.push(...rows)
 }
-out.rows = all.length
-out.keys = [...new Set(all.flatMap((r) => Object.keys(r)))]
-out.krict = all.filter((r) => /화학연구원/.test(r.instNm ?? '')).map((r) => r)
-out.mentions = all.filter((r) => /장애/.test(JSON.stringify(r)) && !/장애/.test(r.recrutPbancTtl ?? '')).map((r) => ({ sn: r.recrutPblntSn, inst: r.instNm, title: r.recrutPbancTtl, end: r.pbancEndYmd, hit: (JSON.stringify(r).match(/.{0,30}장애.{0,30}/g) || []).slice(0, 3) }))
-const sn = out.krict[0]?.recrutPblntSn ?? all[0]?.recrutPblntSn
-for (const name of ['pblntSn', 'sn', 'recrutPblntSn']) {
-  try {
-    const url = `https://apis.data.go.kr/1051000/recruitment/detail?serviceKey=${key.includes('%') ? key : encodeURIComponent(key)}&resultType=json&${name}=${sn}`
-    const r = await fetch(url, { signal: AbortSignal.timeout(30000) })
-    const t = clean(await r.text())
-    out.detailTries.push({ name, sn, status: r.status, len: t.length, body: t.slice(0, 20000) })
-  } catch (e) { out.detailTries.push({ name, error: clean(e.message) }) }
-}
-await writeFile(new URL('../logs/diag-alio.json', import.meta.url), JSON.stringify(out, null, 1))
-console.log('rows', out.rows, 'krict', out.krict.length, 'mentions', out.mentions.length)
+const base = buildJobs(all, rules, today)
+const logs = []
+const { jobs, stats } = await collectMixed(all, { today, excludeIds: new Set(base.map((j) => j.id)), log: (m) => logs.push(m) })
+const kinds = {}
+for (const r of all) for (const f of r.files ?? []) { const e = /\.([a-z0-9]+)$/i.exec(f.atchFileNm ?? '')?.[1]?.toLowerCase() ?? '?'; kinds[e] = (kinds[e] ?? 0) + 1 }
+await writeFile(new URL('../logs/diag-alio.json', import.meta.url), JSON.stringify({ today, total: all.length, base: base.length, stats, kinds, mixed: jobs.map((j) => ({ id: j.id, org: j.org, title: j.title, end: j.end, src: j.mixedSource, ev: j.mixedEvidence })), logs }, null, 1))
+console.log(JSON.stringify(stats), jobs.length)
