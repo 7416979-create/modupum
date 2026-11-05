@@ -7,7 +7,7 @@ permissions:
 jobs:
   diag:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,7 +19,7 @@ jobs:
       - run: node scripts/diag-alio.mjs
         env:
           MIXED_MAX_ROWS: '600'
-          MIXED_BUDGET_MIN: '20'
+          MIXED_BUDGET_MIN: '28'
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
       - run: |
           git config user.name "modupum-bot"

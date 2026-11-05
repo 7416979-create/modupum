@@ -101,7 +101,8 @@ const judgeAttachments = async (it) => {
 }
 
 // rows: 전체 ALIO 행. excludeIds: 이미 제목 규칙으로 올라가는 공고 id. 반환: { jobs, stats }
-export const collectMixed = async (rows, { today, excludeIds = new Set(), log = console.log } = {}) => {
+// getDetail(sn): 상세 응답의 result(첨부 files·모집단계 steps 포함)를 돌려주는 함수. 목록 응답에는 첨부가 없다.
+export const collectMixed = async (rows, { today, excludeIds = new Set(), getDetail, log = console.log } = {}) => {
   const items = pruneCache(await readCache(), today)
   const stats = { 후보: 0, 행근거: 0, 첨부확인: 0, 근거없음: 0, 글자없음: 0, 미확인대기: 0 }
   const cands = pickCandidates(rows, { today, excludeIds })
@@ -119,11 +120,22 @@ export const collectMixed = async (rows, { today, excludeIds = new Set(), log = 
     }
     if (needsFetch(e)) {
       if (fetched >= MAX_ROWS_PER_RUN || Date.now() - started > BUDGET_MS) { stats.미확인대기 += 1; continue }
+      let detail
+      try {
+        detail = await getDetail(id)
+        if (!detail || typeof detail !== 'object') throw new Error('상세 응답 없음')
+      } catch (err) {
+        log(`[mixed] 상세 조회 실패(다음에 다시 시도) ${id}: ${String(err.message).slice(0, 60)}`)
+        stats.미확인대기 += 1
+        continue
+      }
       fetched += 1
-      const v = await judgeAttachments(it)
+      const merged = { ...it, ...detail }
+      const v = judgeRow(merged) ?? (await judgeAttachments(merged))
+      await sleep(500)
       e = { ...v, end, tries: v.state === 'noText' ? (e?.tries ?? 0) + 1 : 0, checkedAt: today }
       stats.첨부확인 += 1
-      if (v.state === 'noText') log(`[mixed] 탈락(본문 글자 없음) ${id} ${it.instNm} ${it.recrutPbancTtl} - ${v.why} (시도 ${e.tries}/${MAX_TRIES})`)
+      if (v.state === 'noText') log(`[mixed] 탈락(본문 글자 없음) ${id} ${it.instNm} ${String(it.recrutPbancTtl).slice(0, 40)} - ${v.why} (시도 ${e.tries}/${MAX_TRIES})`)
     }
     items[id] = e
     if (e.state === 'yes') { jobs.push(toMixedJob(it, e)); stats.행근거 += e.source === '공고 정보' ? 1 : 0 }

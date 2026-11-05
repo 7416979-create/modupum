@@ -53,3 +53,6 @@ export const serviceKeyParam = (key) => (key.includes('%') ? key : encodeURIComp
 export const listUrl = (key, pageNo, numOfRows = 100) =>
   'https://apis.data.go.kr/1051000/recruitment/list' +
   `?serviceKey=${serviceKeyParam(key)}&ongoingYn=Y&numOfRows=${numOfRows}&pageNo=${pageNo}&resultType=json`
+
+export const detailUrl = (key, sn) =>
+  `https://apis.data.go.kr/1051000/recruitment/detail?serviceKey=${serviceKeyParam(key)}&resultType=json&sn=${encodeURIComponent(sn)}`
