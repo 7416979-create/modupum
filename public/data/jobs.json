@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-06 02:00",
+  "updatedAt": "2026-11-06 10:51",
   "items": [
     {
       "id": "306235",
@@ -43,7 +43,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-06 01:59",
+      "copiedAt": "2026-11-06 10:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 6일(금) 18:00까지",
@@ -83,7 +83,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-06 01:59",
+      "copiedAt": "2026-11-06 10:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 6일(금) 18:00까지예요.",
@@ -261,7 +261,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-06 01:59",
+      "copiedAt": "2026-11-06 10:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -292,7 +292,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-06 01:59",
+      "copiedAt": "2026-11-06 10:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -363,6 +363,20 @@
       "verified": true
     },
     {
+      "id": "306683",
+      "title": "[대전병원] 2026년도 하반기 청년(체험형)인턴 장애전형 채용 공고",
+      "org": "근로복지공단",
+      "region": "대전",
+      "hires": 8,
+      "start": "2026-11-04",
+      "end": "2026-11-11",
+      "url": "https://www.comwel.or.kr/recruit/hp/main.do",
+      "disabledOnly": true,
+      "mixed": true,
+      "mixedEvidence": "| 장애인 전형",
+      "mixedSource": "첨부: 261104 [대전병원] 26년도 하반기 청년(체험형)인턴 장애전형 채용 공고문.hwp"
+    },
+    {
       "id": "gojobs-306903",
       "title": "2026년도 제6회 광주시 임기제공무원 채용시험 제공고[읍면동 민원행정 및 사무관리(장애인 구분모집)]",
       "org": "경기도 광주시",
@@ -374,7 +388,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-06 01:59",
+      "copiedAt": "2026-11-06 10:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 11일(수) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -435,7 +449,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-06 01:59",
+      "copiedAt": "2026-11-06 10:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 18시까지 (방문은 평일 09:00~18:00, 우편은 마감일 18시까지 도착해야 해요)",
@@ -475,7 +489,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-06 01:59",
+      "copiedAt": "2026-11-06 10:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일 18:00까지 (접수는 11월 10일부터예요)",
@@ -516,7 +530,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-06 01:59",
+      "copiedAt": "2026-11-06 10:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 17:00까지",
@@ -555,7 +569,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-06 01:59",
+      "copiedAt": "2026-11-06 10:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 18:00까지 (점심시간 제외)",
@@ -678,7 +692,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-06 01:59"
+      "copiedAt": "2026-11-06 10:50"
     },
     {
       "id": "gojobs-306990",
@@ -692,7 +706,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-06 01:59",
+      "copiedAt": "2026-11-06 10:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -755,7 +769,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-06 01:59",
+      "copiedAt": "2026-11-06 10:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 16일(월) 18:00까지",
@@ -782,6 +796,30 @@
         "model": "haiku",
         "trialUntil": "2026-11-12"
       }
+    },
+    {
+      "id": "kead-217427",
+      "title": "[서울동부지사] 한국체육산업개발 [장애인 제한경쟁 채용 공고]",
+      "org": "한국체육산업개발",
+      "region": "서울특별시 송파구",
+      "hires": null,
+      "start": "2026-11-06",
+      "end": "2026-11-16",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217427&menuId=MENU2201",
+      "disabledOnly": true,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "/ 근무장소 : 1 명 / 서울시 송파구 올림픽공원",
+        "고용형태": "무기계약직 (3 개월 수습기간 후 평가를 통한 무기직 전환 )",
+        "접수방법": "자사 홈페이지 온라인 접수",
+        "장애인관련": [
+          "한국체육산업개발 ( 주 ) 장애인 제한경쟁 채용공고",
+          "3. 지원자격 : [ 장애인복지법 ] 제 32 조에 따른 장애인 등록자"
+        ]
+      },
+      "notes": []
     },
     {
       "id": "kead-217297",
@@ -875,7 +913,7 @@
       "disabledOnly": true,
       "orgType": "공공기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-06 01:59"
+      "copiedAt": "2026-11-06 10:50"
     },
     {
       "id": "manual-krict-170",
@@ -1035,7 +1073,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-11-06 01:59",
+      "copiedAt": "2026-11-06 10:50",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지 접수 기간은 채용 시까지예요. 접수 마감일은 2026-11-30이에요.",
@@ -1238,5 +1276,5 @@
       }
     }
   ],
-  "keadCheckedAt": "2026-11-06 02:00"
+  "keadCheckedAt": "2026-11-06 10:51"
 }
