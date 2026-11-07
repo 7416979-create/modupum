@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { needsSummary, buildPending, carryVerified, applyResults, verifyEasy, updateReview, numTokens, linkTokens, NO_INFO, deadlineLimitHours, firstClockHour } from './autosum-lib.mjs'
 import { mergeKead } from './kead-lib.mjs'
-import { attachmentLinks, htmlToText } from './autosum-extract.mjs'
+import { attachmentLinks, htmlToText, alioDetailUrl } from './autosum-extract.mjs'
 
 const today = '2026-10-29'
 const src = `채용 공고\n접수기간 2026. 10. 15. ~ 10. 30. 18:00\n근무지 대전청사 월 2,160,000원 세전\n모집인원 장애 전형 5명\n문의 042-620-6239\n${'지원 자격은 장애인 등록을 한 사람이며 공고 내용을 자세히 읽어야 합니다. '.repeat(10)}`
@@ -169,4 +169,11 @@ test('근거 없는 연장 칸은 빼고 통과한다', () => {
   const w = verifyEasy({ ...easy, 연장: '1년 더 할 수 있어요.' }, { ...ev, 연장: ['원문에 없는 연장 문장입니다'] }, src)
   assert.ok(w.ok, w.reasons.join())
   assert.ok(!('연장' in w.easy))
+})
+
+test('JOB-ALIO 상세 주소는 숫자 id 만 만든다', () => {
+  assert.equal(alioDetailUrl('306614'), 'https://job.alio.go.kr/recruitview.do?idx=306614')
+  assert.equal(alioDetailUrl('kead-217388'), null)
+  assert.equal(alioDetailUrl('gojobs-307450'), null)
+  assert.equal(attachmentLinks('<a href="https://www.alio.go.kr/download/download.json?fileNo=1">공고문.pdf</a>', 'https://job.alio.go.kr/').length, 1)
 })

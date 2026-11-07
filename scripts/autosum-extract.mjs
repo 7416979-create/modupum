@@ -45,6 +45,10 @@ export const htmlToText = (html) =>
     .filter(Boolean)
     .join('\n')
 
+const MIN_SOURCE_CHARS = 300
+// 숫자로만 된 id 는 공공기관 채용정보(JOB-ALIO) 공고 번호다.
+export const alioDetailUrl = (id) => (/^\d+$/.test(String(id ?? '')) ? `https://job.alio.go.kr/recruitview.do?idx=${id}` : null)
+
 // 첨부로 보이는 링크: 확장자가 문서이거나 다운로드 경로
 export const attachmentLinks = (html, base) => {
   const out = []
@@ -128,10 +132,10 @@ export async function extractJob(job, workDir) {
     warnings.push(`원문 페이지 읽기 실패: ${e.message}`)
   }
   let n = 0
-  for (const a of attachmentLinks(html, job.url)) {
+  const readAttachments = async (pageHtml, base) => { for (const a of attachmentLinks(pageHtml, base)) {
     n += 1
     try {
-      const res = await fetch(a.url, { headers: { 'user-agent': UA, referer: job.url }, signal: AbortSignal.timeout(60000) })
+      const res = await fetch(a.url, { headers: { 'user-agent': UA, referer: base }, signal: AbortSignal.timeout(60000) })
       if (!res.ok) { warnings.push(`첨부 HTTP ${res.status}: ${a.label}`); continue }
       if (Number(res.headers.get('content-length') || 0) > MAX_BYTES) { warnings.push(`첨부가 너무 큼: ${a.label}`); continue }
       const buf = Buffer.from(await res.arrayBuffer())
@@ -147,6 +151,22 @@ export async function extractJob(job, workDir) {
       text += `\n===== 첨부: ${a.label || name} =====\n${t}\n`
     } catch (e) {
       warnings.push(`첨부 처리 실패(${a.label}): ${String(e.message).slice(0, 80)}`)
+    }
+  } }
+  await readAttachments(html, job.url)
+  // 공고 주소가 채용 사이트 첫 화면이면 글자가 거의 없다. 이때 JOB-ALIO 상세 페이지의 응시자격과 공고문 첨부를 읽는다.
+  const alio = alioDetailUrl(job.id)
+  if (alio && text.replace(/\s/g, '').length < MIN_SOURCE_CHARS) {
+    try {
+      const res = await fetch(alio, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(45000) })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const alioHtml = await res.text()
+      const t = htmlToText(alioHtml)
+      parts.push({ label: 'JOB-ALIO 상세', chars: t.length })
+      text += `\n===== JOB-ALIO 상세 =====\n${t}\n`
+      await readAttachments(alioHtml, alio)
+    } catch (e) {
+      warnings.push(`JOB-ALIO 상세 읽기 실패: ${String(e.message).slice(0, 80)}`)
     }
   }
   await writeFile(path.join(workDir, 'source.txt'), text)
