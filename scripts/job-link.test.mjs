@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { jobHash, jobShareUrl, jobIdFromHash, parseRoute, pageOfId } from '../src/jobLink.js'
 
-const ROUTES = ['home', 'welfare', 'jobs', 'apply', 'calendar', 'news', 'about']
+const ROUTES = ['home', 'welfare', 'jobs', 'apply', 'calendar', 'news', 'about', 'rare']
 
 test('공고 id 가 주소와 서로 오간다', () => {
   for (const id of ['306244', 'gojobs-307214', 'kead-12', 'manual-krict-1', 307214]) {
@@ -32,6 +32,7 @@ test('경로를 나눈다', () => {
   assert.deepEqual(parseRoute('#/jobs/gojobs-1', ROUTES), { tab: 'jobs', jobId: 'gojobs-1' })
   assert.deepEqual(parseRoute('#/jobs', ROUTES), { tab: 'jobs', jobId: '' })
   assert.deepEqual(parseRoute('#/calendar', ROUTES), { tab: 'calendar', jobId: '' })
+  assert.deepEqual(parseRoute('#/rare', ROUTES), { tab: 'rare', jobId: '' })
   assert.deepEqual(parseRoute('#/nothing', ROUTES), { tab: 'home', jobId: '' })
   assert.deepEqual(parseRoute('', ROUTES), { tab: 'home', jobId: '' })
 })

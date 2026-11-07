@@ -10,8 +10,8 @@ const TABS = [
   { id: 'calendar', label: '달력' },
   { id: 'news', label: '소식' },
 ]
-const ROUTES = [...TABS.map((t) => t.id), 'about']
-const TITLES = { home: '모두품', welfare: '복지 - 모두품', jobs: '일자리 - 모두품', apply: '신청 안내 - 모두품', calendar: '신청·지급 달력 - 모두품', news: '소식 - 모두품', about: '이용 안내 - 모두품' }
+const ROUTES = [...TABS.map((t) => t.id), 'about', 'rare']
+const TITLES = { home: '모두품', welfare: '복지 - 모두품', jobs: '일자리 - 모두품', apply: '신청 안내 - 모두품', calendar: '신청·지급 달력 - 모두품', news: '소식 - 모두품', about: '이용 안내 - 모두품', rare: '희귀질환 정보 안내 - 모두품' }
 
 // 한국 날짜 기준(UTC 날짜를 쓰면 한국 아침 9시 전에 하루 늦게 계산된다)
 const today = () => new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10)
@@ -244,7 +244,8 @@ function Welfare() {
     <section>
       <h1 className="page-h">복지</h1>
       <SampleNotice data={data} />
-      <input className="search" type="search" placeholder="검색어를 입력하세요" value={q} onChange={(e) => setQ(e.target.value)} aria-label="복지 검색" />
+      <RareLink />
+      <input className="search"type="search" placeholder="검색어를 입력하세요" value={q} onChange={(e) => setQ(e.target.value)} aria-label="복지 검색" />
       <p className="sr" role="status">{data ? `${items.length}건` : ''}</p>
       <ul className="list list-w" tabIndex={-1}>
         {pg.slice.map((i) => {
@@ -298,6 +299,7 @@ function Apply() {
       <SampleNotice data={data} />
       <p className="sub">{data?.scope ?? ''}</p>
       <p className="apply-note">금액과 기준은 해마다, 지역마다 달라집니다. 신청 전에 원문에서 다시 확인하세요. ({data?.checkedAt ?? ''} 확인)</p>
+      <RareLink />
       <ul className="list" tabIndex={-1}>
         {pg.slice.map((g) => (
           <li key={g.id} className="item">
@@ -325,6 +327,72 @@ function Apply() {
         {data && items.length === 0 && <li className="empty">표시할 항목이 없습니다.</li>}
       </ul>
       <Pager pg={pg} />
+      <TipBox />
+    </section>
+  )
+}
+
+// 메뉴를 늘리지 않고 복지·신청 안내 화면에서 들어간다.
+function RareLink() {
+  return (
+    <p className="src-links rare-link">
+      <a href="#/rare" onClick={() => window.scrollTo({ top: 0 })}>희귀질환이 있다면: 정보 안내 보기</a>
+    </p>
+  )
+}
+
+// 희귀질환 정보 안내: 내용은 rare.json 에만 둔다. 병별 설명과 치료·운동 권고는 넣지 않고 공식 기관으로 연결한다.
+function Rare() {
+  const data = useData('rare')
+  return (
+    <section>
+      <h1 className="page-h">희귀질환 정보 안내</h1>
+      <p className="sub">모두품은 모두를 품는 공간이라 희귀질환 정보도 함께 나눕니다. 병의 종류와 상관없이 쓸 수 있는 제도를 의료비, 장애 등록, 돌봄, 일자리 순서로 모았습니다. 필요한 것부터 보셔도 됩니다.</p>
+      <p className="apply-note">금액과 기준은 바뀔 수 있습니다. 신청 전에 원문에서 다시 확인하세요. ({data?.checkedAt ?? ''} 확인)</p>
+      {(data?.groups ?? []).map((g) => (
+        <div key={g.id}>
+          <h2 className="cal-h">{g.title}</h2>
+          <ul className="list">
+            {g.items.map((it) => (
+              <li key={it.id} className="item">
+                <details>
+                  <summary><h3>{it.name}</h3></summary>
+                  <div className="detail">
+                    <p>{it.summary}</p>
+                    <dl className="facts">
+                      {it.facts.map(([k, v]) => (
+                        <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
+                      ))}
+                    </dl>
+                    <p className="src-links">
+                      {it.links.map((l) => (
+                        <ExternalLink key={l.url} href={l.url}>{l.label}</ExternalLink>
+                      ))}
+                    </p>
+                  </div>
+                </details>
+              </li>
+            ))}
+          </ul>
+          {g.id === 'work' && (
+            <p className="src-links">
+              <a href="#/jobs" onClick={() => window.scrollTo({ top: 0 })}>모두품에서 접수 중인 일자리 보기</a>
+            </p>
+          )}
+        </div>
+      ))}
+      <h2 className="cal-h">치료·재활·운동</h2>
+      <p className="apply-note">병마다 맞는 방법이 달라 모두품에서 직접 권하지 않습니다. 담당 의료진과 상의하시고, 질환 정보는 공식 기관에서 확인하세요.</p>
+      <ul className="more-list">
+        {(data?.institutions ?? []).map((l) => (
+          <li key={l.url}>
+            <ExternalLink href={l.url}>
+              <strong>{l.name}</strong>
+              <span>{l.org} · {l.desc}</span>
+            </ExternalLink>
+          </li>
+        ))}
+      </ul>
       <TipBox />
     </section>
   )
@@ -867,6 +935,7 @@ export default function App() {
         {tab === 'calendar' && <Calendar />}
         {tab === 'news' && <News />}
         {tab === 'about' && <About />}
+        {tab === 'rare' && <Rare />}
       </main>
       <SurveyPopup url={site?.feedbackUrl} />
       <footer>
