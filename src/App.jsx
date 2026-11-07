@@ -341,6 +341,48 @@ function RareLink() {
   )
 }
 
+// 매일 자동 수집되는 소식·복지 목록에서 '희귀'가 들어간 것만 골라 보여 준다. 위에서 이미 안내한 제도는 뺀다.
+const RARE_RE = /희귀/
+function RareAuto({ names }) {
+  const news = (useData('news')?.items ?? []).filter((n) => RARE_RE.test(n.title + n.summary)).slice(0, 5)
+  const welfare = (useData('welfare')?.items ?? []).filter((w) => RARE_RE.test(w.title + w.summary) && !names.includes(w.title))
+  return (
+    <>
+      {welfare.length > 0 && (
+        <>
+          <h2 className="cal-h">복지 목록의 희귀질환 관련 제도</h2>
+          <ul className="more-list">
+            {welfare.map((w) => (
+              <li key={w.id}>
+                <ExternalLink href={w.url} track={{ tab: 'rare', org: w.org }}>
+                  <strong>{w.title}</strong>
+                  <span>{w.org} · {w.summary}</span>
+                </ExternalLink>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      {news.length > 0 && (
+        <>
+          <h2 className="cal-h">최근 희귀질환 소식</h2>
+          <p className="apply-note">공식 기관 발표에서 매일 자동으로 모읍니다.</p>
+          <ul className="more-list">
+            {news.map((n) => (
+              <li key={n.id}>
+                <ExternalLink href={n.url} track={{ tab: 'rare', org: n.source }}>
+                  <strong>{n.title}</strong>
+                  <span>{n.source} · {n.date}</span>
+                </ExternalLink>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </>
+  )
+}
+
 // 희귀질환 정보 안내: 내용은 rare.json 에만 둔다. 병별 설명과 치료·운동 권고는 넣지 않고 공식 기관으로 연결한다.
 function Rare() {
   const data = useData('rare')
@@ -381,6 +423,7 @@ function Rare() {
           )}
         </div>
       ))}
+      <RareAuto names={(data?.groups ?? []).flatMap((g) => g.items.map((it) => it.name))} />
       <h2 className="cal-h">희귀질환 정보 찾을 곳</h2>
       <p className="apply-note">질환 정보, 진단, 약은 아래 공식 기관에서 확인하세요. 치료·재활·운동은 병마다 맞는 방법이 달라 모두품에서 직접 권하지 않습니다. 담당 의료진과 상의하세요.</p>
       <ul className="more-list">
