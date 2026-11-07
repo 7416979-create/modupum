@@ -24,3 +24,4 @@
 2026-11-07 09:48 | 대상 7 | 통과 0 | 확인 필요 7 (kead-217388: 요약 생성 실패: claude 종료코드 1: SessionEnd hook [powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\A\Desktop\프로젝트관리\도구\세션저장.ps1"] failed: Hook cancelled
 ; 306616: 요약 생성 실패: claude 종료코드 1: SessionEnd hook [powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\A\Desktop\프로젝트관)
 2026-11-07 09:57 | 대상 7 | 통과 4 | 확인 필요 3 (306616: 근거가 너무 짧음: 몇명; 306658: 근거가 너무 짧음: 어디서; gojobs-307450: 요약 생성 실패: JSON 해석 실패: Expected ',' or '}' after property value in JSON at position 1490 (line 1 column 1491))
+2026-11-07 10:40 | 대상 3 | 통과 1 | 확인 필요 2 (306616: 근거가 너무 짧음: 몇명; 306658: 근거가 원문에 없음: 누가 "장애인복지법 시행령 제2조에 따른 장애인 기준에 해당하")
