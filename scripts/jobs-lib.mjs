@@ -29,6 +29,19 @@ export const isDisabledOnly = (it, rules) => {
   return false
 }
 
+// 기관이 채용 첫 화면 주소만 올린 공고(주소 뒤가 비었거나 공고 번호가 없음)는 눌러도 공고가 안 보인다.
+// 이때는 같은 공고의 ALIO 상세 화면으로 보낸다(자동 요약도 이 주소에서 원문을 읽는다).
+export const alioViewUrl = (id) => `https://job.alio.go.kr/recruitview.do?idx=${id}`
+export const isHomepageUrl = (u) => {
+  try {
+    const { pathname, search } = new URL(u)
+    return pathname.replace(/\/+$/, '') === '' || !/\d/.test(pathname + search)
+  } catch {
+    return true
+  }
+}
+const jobUrl = (it) => (isHomepageUrl(it.srcUrl ?? '') ? alioViewUrl(it.recrutPblntSn) : it.srcUrl)
+
 export const toJob = (it) => ({
   id: String(it.recrutPblntSn),
   title: it.recrutPbancTtl ?? '',
@@ -37,7 +50,7 @@ export const toJob = (it) => ({
   hires: it.recrutNope ?? null,
   start: toIsoDate(it.pbancBgngYmd),
   end: toIsoDate(it.pbancEndYmd),
-  url: it.srcUrl ?? '',
+  url: jobUrl(it),
   disabledOnly: true,
 })
 

@@ -43,3 +43,15 @@ test('키는 이미 인코딩된 값이면 그대로 쓴다', () => {
   assert.ok(listUrl('a%2Fb', 1).includes('serviceKey=a%2Fb&'))
   assert.ok(listUrl('a/b', 1).includes('serviceKey=a%2Fb&'))
 })
+
+test('채용 첫 화면만 가리키는 원문 링크는 ALIO 공고 화면으로 바꾼다', async () => {
+  const { toJob, isHomepageUrl } = await import('./jobs-lib.mjs')
+  for (const u of ['http://kirams.recruiter.co.kr', 'https://k-water.recruiter.co.kr/career/home', 'https://www.comwel.or.kr/recruit/hp/main.do', '']) {
+    assert.equal(isHomepageUrl(u), true, u)
+  }
+  for (const u of ['https://www.krei.re.kr/krei/page/69?cmd=view&pst=505869&pageIndex=1', 'https://kotra.applyin.co.kr/jobs/22547']) {
+    assert.equal(isHomepageUrl(u), false, u)
+  }
+  assert.equal(toJob({ recrutPblntSn: 306658, srcUrl: 'http://kirams.recruiter.co.kr' }).url, 'https://job.alio.go.kr/recruitview.do?idx=306658')
+  assert.equal(toJob({ recrutPblntSn: 302097, srcUrl: 'https://kotra.applyin.co.kr/jobs/22547' }).url, 'https://kotra.applyin.co.kr/jobs/22547')
+})
