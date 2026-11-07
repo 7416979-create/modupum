@@ -69,10 +69,13 @@
     ]
   },
   "2026-11-07": {
-    "runs": 0,
-    "ok": 0,
-    "fail": 0,
-    "failIds": [],
-    "authFail": true
+    "runs": 1,
+    "ok": 4,
+    "fail": 3,
+    "failIds": [
+      "306616",
+      "306658",
+      "gojobs-307450"
+    ]
   }
 }
