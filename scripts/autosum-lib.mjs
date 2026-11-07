@@ -160,3 +160,6 @@ export const updateReview = (review, outcomes, today) => {
 }
 
 export const MAX_ATTEMPTS = 3
+
+// 공고 문제가 아니라 PC의 Claude 로그인 만료. 공고별 실패로 세지 않는다.
+export const isAuthError = (msg) => /Failed to authenticate|OAuth session expired|Please run \/login|Not logged in/i.test(String(msg ?? ''))

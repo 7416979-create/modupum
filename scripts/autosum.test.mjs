@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { needsSummary, buildPending, carryVerified, applyResults, verifyEasy, updateReview, numTokens, linkTokens, NO_INFO, deadlineLimitHours, firstClockHour } from './autosum-lib.mjs'
+import { needsSummary, buildPending, carryVerified, applyResults, verifyEasy, updateReview, numTokens, linkTokens, isAuthError, NO_INFO, deadlineLimitHours, firstClockHour } from './autosum-lib.mjs'
 import { mergeKead } from './kead-lib.mjs'
 import { attachmentLinks, htmlToText, alioDetailUrl } from './autosum-extract.mjs'
 
@@ -176,4 +176,9 @@ test('JOB-ALIO 상세 주소는 숫자 id 만 만든다', () => {
   assert.equal(alioDetailUrl('kead-217388'), null)
   assert.equal(alioDetailUrl('gojobs-307450'), null)
   assert.equal(attachmentLinks('<a href="https://www.alio.go.kr/download/download.json?fileNo=1">공고문.pdf</a>', 'https://job.alio.go.kr/').length, 1)
+})
+
+test('로그인 만료는 공고 실패와 구분한다', () => {
+  assert.ok(isAuthError('claude 종료코드 1: Failed to authenticate: OAuth session expired and could not be refreshed'))
+  assert.ok(!isAuthError('claude 종료코드 1: 응답에 JSON 없음'))
 })

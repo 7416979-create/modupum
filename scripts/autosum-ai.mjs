@@ -45,7 +45,7 @@ export function askHaiku(job, text, cwd, fix = '') {
       p.stderr.on('data', (d) => (err += d))
       p.on('close', (code) => {
         clearTimeout(timer)
-        if (code !== 0) return resolve({ error: `claude 종료코드 ${code}: ${err.slice(0, 200)}` })
+        if (code !== 0) return resolve({ error: `claude 종료코드 ${code}: ${(out.trim() || err).slice(0, 200)}` })
         const m = /\{[\s\S]*\}/.exec(out)
         if (!m) return resolve({ error: '응답에 JSON 없음' })
         try { resolve({ json: JSON.parse(m[0]) }) } catch (e) { resolve({ error: `JSON 해석 실패: ${e.message}` }) }

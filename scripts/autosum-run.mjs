@@ -10,7 +10,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { HOME, extractJob } from './autosum-extract.mjs'
 import { askHaiku } from './autosum-ai.mjs'
-import { needsSummary, verifyEasy, applyResults, updateReview, buildPending, MAX_ATTEMPTS } from './autosum-lib.mjs'
+import { needsSummary, verifyEasy, applyResults, updateReview, buildPending, MAX_ATTEMPTS, isAuthError } from './autosum-lib.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const args = process.argv.slice(2)
@@ -60,6 +60,7 @@ try {
   console.log(`대상 ${targets.length}건: ${targets.map((j) => j.id).join(', ') || '-'}`)
 
   const outcomes = []
+  let authFail = false
   const outDir = path.join(HOME, 'runs', stamp)
   for (const job of targets) {
     const wd = path.join(outDir, String(job.id).replace(/[^\w-]/g, '_'))
@@ -74,6 +75,7 @@ try {
       } else {
         let ai = await askHaiku(job, ex.text, path.join(wd, 'ai'))
         if (ai.error) ai = await askHaiku(job, ex.text, path.join(wd, 'ai')) // 한 번 더 시도
+        if (isAuthError(ai.error)) { authFail = true; console.log(`Claude 로그인 만료: ${ai.error}`); break }
         if (ai.error) o.reasons.push(`요약 생성 실패: ${ai.error}`)
         else {
           await writeFile(path.join(wd, 'ai.json'), JSON.stringify(ai.json, null, 2))
@@ -104,9 +106,21 @@ try {
   runSummary.total = outcomes.length
   runSummary.ok = outcomes.filter((o) => o.ok).length
   runSummary.fail = outcomes.length - runSummary.ok
-  runSummary.state = outcomes.length === 0 ? '처리할 공고 없음' : '오류(반영·푸시 실패)'
+  runSummary.state = authFail ? '오류(Claude 로그인 만료)' : outcomes.length === 0 ? '처리할 공고 없음' : '오류(반영·푸시 실패)'
 
-  if (!dry && outcomes.length === 0) {
+  if (authFail && !dry) {
+    // 반영 없이 만료 사실만 남겨 Actions 점검이 알 수 있게 한다.
+    outcomes.length = 0
+    const stats = await readJson(P.stats, {})
+    stats[today] = { ...(stats[today] || { runs: 0, ok: 0, fail: 0, failIds: [] }), authFail: true }
+    await writeFile(P.stats, `${JSON.stringify(stats, null, 2)}
+`)
+    git('add', 'logs/autosum-stats.json')
+    if (git('status', '--porcelain', '--', 'logs/autosum-stats.json')) {
+      git('commit', '-m', 'autosum: Claude 로그인 만료 기록')
+      try { git('push', 'origin', 'HEAD:main') } catch { console.log('만료 기록 푸시 실패') }
+    }
+  } else if (!dry && outcomes.length === 0) {
     console.log('처리할 공고 없음: 기록·커밋 없이 끝냅니다')
   } else if (dry) {
     console.log(`시험 실행 끝: 통과 ${outcomes.filter((o) => o.ok).length}/${outcomes.length}. 결과 ${outDir}`)
@@ -126,7 +140,7 @@ try {
       await writeFile(P.review, `${JSON.stringify(newReview, null, 2)}\n`)
       const stats = await readJson(P.stats, {})
       const d = stats[today] || { runs: 0, ok: 0, fail: 0, failIds: [] }
-      { d.runs += 1; d.ok += okN; d.fail += failN; d.failIds = [...new Set([...d.failIds, ...outcomes.filter((o) => !o.ok).map((o) => o.id)])] }
+      { d.runs += 1; d.ok += okN; d.fail += failN; delete d.authFail; d.failIds = [...new Set([...d.failIds, ...outcomes.filter((o) => !o.ok).map((o) => o.id)])] }
       stats[today] = d
       await writeFile(P.stats, `${JSON.stringify(stats, null, 2)}\n`)
       const pendingNow = buildPending(items, today, await readJson(P.pending, []))
@@ -151,7 +165,7 @@ try {
       }
     }
   }
-  if (outcomes.length) runSummary.state = '완료'
+  if (outcomes.length && !authFail) runSummary.state = '완료'
 } finally {
   console.log(runLogLine(runSummary))
   await unlock()

@@ -93,6 +93,7 @@ for (const name of ['jobs', 'welfare', 'news']) {
         const autoLive = items.filter((i) => i.auto).length
         notes.push(`자동요약 누적 성공${sum.ok}·실패${sum.fail}${last ? ` (최근 ${days[days.length - 1]} 성공${last.ok}·실패${last.fail})` : ' (아직 실행 기록 없음)'}, 자동 요약 공개 ${autoLive}건, 확인 필요 ${review.length}건${review.length ? `: ${review.map((r) => `${r.id}(${r.org}, ${String(r.reasons?.[0] ?? '').slice(0, 40)})`).join('; ')}` : ''}`)
         evidence.push(`autosum 실행일 ${days.length}일`)
+        if (last?.authFail) issues.push('PC의 Claude 로그인이 만료되어 요약 자동 채우기가 멈춤 (PC 터미널에서 claude 실행 후 /login)')
       } catch (e) {
         notes.push(`자동요약 기록 읽기 실패: ${e.message}`)
       }
