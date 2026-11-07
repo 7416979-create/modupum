@@ -151,6 +151,9 @@
   ],
   "institutions": [
     { "name": "희귀질환 헬프라인", "org": "질병관리청", "desc": "질환별 정보와 지원사업 안내", "url": "https://helpline.kdca.go.kr/cdchelp/ph/rdiz/selectRdizInfList.do?menu=A0100" },
-    { "name": "권역별 희귀질환 전문기관", "org": "질병관리청", "desc": "전국 19개 전문기관의 진료 지원", "url": "https://helpline.kdca.go.kr/cdchelp/ph/ptlcontents/selectPtlConSent.do?schSno=169&menu=D0100" }
+    { "name": "자주 묻는 질문·온라인 상담", "org": "질병관리청 희귀질환 헬프라인", "desc": "희귀질환 지정 기준, 받을 수 있는 지원, 신청 서류 질문과 답", "url": "https://helpline.kdca.go.kr/cdchelp/ph/onlCnsl/selectFaqList.do?menu=E0200" },
+    { "name": "권역별 희귀질환 전문기관 목록", "org": "질병관리청", "desc": "전국 19곳 전문기관의 위치와 연락처를 지역별로 찾기", "url": "https://helpline.kdca.go.kr/cdchelp/ph/supbiz/selectMedOrgList.do?menu=D0200" },
+    { "name": "유전자 진단지원 사업", "org": "질병관리청", "desc": "대상 극희귀질환 확진을 위한 유전자 검사비 무료 지원 (문의 043-719-8786)", "url": "https://helpline.kdca.go.kr/cdchelp/ph/ptlcontents/selectPtlConSent.do?schSno=121&menu=B0204" },
+    { "name": "한국희귀·필수의약품센터", "org": "식품의약품안전처 산하", "desc": "국내에서 구하기 어려운 희귀의약품 구입 신청(환자 온라인 신청)", "url": "https://www.kodc.or.kr/index" }
   ]
 }

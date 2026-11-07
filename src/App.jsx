@@ -381,8 +381,8 @@ function Rare() {
           )}
         </div>
       ))}
-      <h2 className="cal-h">치료·재활·운동</h2>
-      <p className="apply-note">병마다 맞는 방법이 달라 모두품에서 직접 권하지 않습니다. 담당 의료진과 상의하시고, 질환 정보는 공식 기관에서 확인하세요.</p>
+      <h2 className="cal-h">희귀질환 정보 찾을 곳</h2>
+      <p className="apply-note">질환 정보, 진단, 약은 아래 공식 기관에서 확인하세요. 치료·재활·운동은 병마다 맞는 방법이 달라 모두품에서 직접 권하지 않습니다. 담당 의료진과 상의하세요.</p>
       <ul className="more-list">
         {(data?.institutions ?? []).map((l) => (
           <li key={l.url}>
