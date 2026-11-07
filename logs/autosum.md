@@ -21,3 +21,5 @@
 ; 306616: 요약 생성 실패: claude 종료코드 1: SessionEnd hook [powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\A\Desktop\프로젝트관)
 2026-11-07 09:47 | 대상 2 | 통과 0 | 확인 필요 2 (306614: 요약 생성 실패: claude 종료코드 1: SessionEnd hook [powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\A\Desktop\프로젝트관리\도구\세션저장.ps1"] failed: Hook cancelled
 ; 306658: 요약 생성 실패: claude 종료코드 1: SessionEnd hook [powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\A\Desktop\프로젝트관리\도구\)
+2026-11-07 09:48 | 대상 7 | 통과 0 | 확인 필요 7 (kead-217388: 요약 생성 실패: claude 종료코드 1: SessionEnd hook [powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\A\Desktop\프로젝트관리\도구\세션저장.ps1"] failed: Hook cancelled
+; 306616: 요약 생성 실패: claude 종료코드 1: SessionEnd hook [powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\A\Desktop\프로젝트관)
