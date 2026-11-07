@@ -69,6 +69,11 @@ export const deadlineLimitHours = (text) => {
   return [...hours]
 }
 
+// 글 속 주소·이메일만 뽑는다. '(https://a.kr)에서', 'a.kr.' 처럼 뒤에 붙은 괄호·조사·문장부호는 주소가 아니다.
+export const linkTokens = (s) =>
+  [...String(s ?? '').matchAll(/https?:\/\/[A-Za-z0-9._~:/?#@!$&*+=%-]+|[\w.+-]+\s?@\s?[\w-]+(?:\.[\w-]+)+/g)]
+    .map((m) => m[0].replace(/[.,:;!?]+$/, ''))
+
 const NUM_FIELDS =['언제까지', '몇명', '급여', '일하는시간', '문의', '연장']
 const asText = (v) => (Array.isArray(v) ? v.join(' ') : String(v ?? ''))
 
@@ -102,10 +107,14 @@ export const verifyEasy = (easyIn, evidence, sourceText) => {
   const srcNums = new Set([...numTokens(sourceText), ...nativeNumTokens(sourceText)])
   let noInfo = 0
   for (const k of keys) {
+    if (!(k in easy)) continue // 위에서 뺀 연장 칸은 검사하지 않는다
     const text = asText(easy[k])
     if (text.length > 900) reasons.push(`너무 김: ${k}`)
     if (/준비\s*중|확인\s*안\s*됨|undefined|null/.test(text)) reasons.push(`금지 문구: ${k}`)
-    if (/https?:\/\/|@/.test(text) && !src.includes(sq(text.match(/https?:\/\/\S+|[\w.+-]+@[\w.-]+/)?.[0] ?? '\u0000'))) reasons.push(`원문에 없는 주소·이메일: ${k}`)
+    if (/https?:\/\/|@/.test(text)) {
+      const links = linkTokens(text)
+      if (!links.length || !links.every((l) => src.includes(sq(l)))) reasons.push(`원문에 없는 주소·이메일: ${k}`)
+    }
     const hasNoInfo = /안 나와 있어요|나와 있지 않아요/.test(text)
     if (hasNoInfo) noInfo += 1
     // 근거 문장: 빈칸 문구가 아닌 칸은 근거가 1개 이상 있어야 하고, 모두 원문에 그대로 있어야 한다.

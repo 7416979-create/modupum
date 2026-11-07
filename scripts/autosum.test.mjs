@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { needsSummary, buildPending, carryVerified, applyResults, verifyEasy, updateReview, numTokens, NO_INFO, deadlineLimitHours, firstClockHour } from './autosum-lib.mjs'
+import { needsSummary, buildPending, carryVerified, applyResults, verifyEasy, updateReview, numTokens, linkTokens, NO_INFO, deadlineLimitHours, firstClockHour } from './autosum-lib.mjs'
 import { mergeKead } from './kead-lib.mjs'
 import { attachmentLinks, htmlToText } from './autosum-extract.mjs'
 
@@ -143,4 +143,30 @@ test('틀린 숫자는 여전히 실패한다', () => {
   const v = verifyEasy({ ...easy, 몇명: '7명' }, ev, src)
   assert.ok(!v.ok)
   assert.match(v.reasons.join(), /숫자 7/)
+})
+
+test('주소 뒤에 붙은 괄호·조사는 주소로 보지 않는다', () => {
+  const src2 = `${src}\n접수 방법 채용 홈페이지 https://recruit.incruit.com/ekr 온라인 접수, 이메일 greenalmond@korea.kr`
+  const ev2 = { ...ev, 접수: ['접수 방법 채용 홈페이지 https://recruit.incruit.com/ekr 온라인 접수'] }
+  assert.deepEqual(linkTokens('홈페이지(https://recruit.incruit.com/ekr)에서 내요.'), ['https://recruit.incruit.com/ekr'])
+  assert.deepEqual(linkTokens('이메일 greenalmond @korea.kr로 내요.'), ['greenalmond @korea.kr'])
+  assert.ok(verifyEasy({ ...easy, 접수: '채용 홈페이지(https://recruit.incruit.com/ekr)에서 내요.' }, ev2, src2).ok)
+  assert.ok(verifyEasy({ ...easy, 접수: '이메일 greenalmond @korea.kr로 내요.' }, { ...ev, 접수: ['이메일 greenalmond@korea.kr'] }, src2).ok)
+})
+
+test('원문에 없는 주소는 여전히 막고, 두 번째 주소도 검사한다', () => {
+  const src2 = `${src}\n접수 https://a.example.kr 온라인`
+  const ev2 = { ...ev, 접수: ['접수 https://a.example.kr 온라인'] }
+  assert.ok(!verifyEasy({ ...easy, 접수: '채용 홈페이지(https://b.example.kr)에서 내요.' }, ev2, src2).ok)
+  assert.ok(!verifyEasy({ ...easy, 접수: 'https://a.example.kr 또는 https://b.example.kr 에서 내요.' }, ev2, src2).ok)
+  assert.ok(!verifyEasy({ ...easy, 접수: '@ 표시만 있어요.' }, ev2, src2).ok)
+})
+
+test('근거 없는 연장 칸은 빼고 통과한다', () => {
+  const v = verifyEasy({ ...easy, 연장: '1년 더 할 수 있어요.' }, ev, src)
+  assert.ok(v.ok, v.reasons.join())
+  assert.ok(!('연장' in v.easy))
+  const w = verifyEasy({ ...easy, 연장: '1년 더 할 수 있어요.' }, { ...ev, 연장: ['원문에 없는 연장 문장입니다'] }, src)
+  assert.ok(w.ok, w.reasons.join())
+  assert.ok(!('연장' in w.easy))
 })
