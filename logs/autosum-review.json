@@ -5,12 +5,10 @@
     "org": "한국농촌경제연구원",
     "end": "2026-11-16",
     "url": "https://www.krei.re.kr/krei/page/69?cmd=view&pst=505869&pageIndex=1",
-    "attempts": 3,
-    "last": "2026-11-03",
+    "attempts": 4,
+    "last": "2026-11-07",
     "reasons": [
-      "근거가 너무 짧음: 몇명",
-      "원문에 없는 주소·이메일: 접수",
-      "근거 문장 없음: 연장"
+      "요약 생성 실패: claude 종료코드 1: SessionEnd hook [powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\A\\Desktop\\프로젝트관리\\도구\\세션저장.ps1\"] failed: Hook cancelled\n"
     ]
   },
   {
@@ -43,10 +41,10 @@
     "org": "한국농어촌공사",
     "end": "2026-11-19",
     "url": "https://www.ekr.or.kr/planweb/board/view.krc?dataUid=8a8bb352a08a300001a1a3d7ab4d05bb&page=1&boardUid=402880317cc0644a017cc5e8000f06b7&contentUid=8a8bb3529665d7140199501cd3ef6280&searchType=&keyword=&categoryUid1=&categoryUid2=8a8bb3529665d714019951996437",
-    "attempts": 3,
-    "last": "2026-11-05",
+    "attempts": 4,
+    "last": "2026-11-07",
     "reasons": [
-      "원문에 없는 주소·이메일: 접수"
+      "요약 생성 실패: claude 종료코드 1: SessionEnd hook [powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\A\\Desktop\\프로젝트관리\\도구\\세션저장.ps1\"] failed: Hook cancelled\n"
     ]
   },
   {
@@ -55,11 +53,10 @@
     "org": "한국농어촌공사",
     "end": "2026-11-19",
     "url": "https://www.ekr.or.kr/planweb/board/view.krc?dataUid=8a8bb352a08a300001a1a3c3f7aa02bf&page=1&boardUid=402880317cc0644a017cc5e8000f06b7&contentUid=8a8bb3529665d7140199501cd3ef6280&searchType=&keyword=&categoryUid1=&categoryUid2=8a8bb3529665d714019951996437",
-    "attempts": 3,
-    "last": "2026-11-05",
+    "attempts": 4,
+    "last": "2026-11-07",
     "reasons": [
-      "원문에 없는 주소·이메일: 접수",
-      "근거가 원문에 없음: 접수 \"7. 접수방법: 채용홈페이지에서 온라인 접수 / 주소:\""
+      "요약 생성 실패: claude 종료코드 1: SessionEnd hook [powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\A\\Desktop\\프로젝트관리\\도구\\세션저장.ps1\"] failed: Hook cancelled\n"
     ]
   },
   {
@@ -68,10 +65,10 @@
     "org": "한국농어촌공사",
     "end": "2026-11-19",
     "url": "https://modupum.kr/gojobs/307450/",
-    "attempts": 3,
-    "last": "2026-11-05",
+    "attempts": 4,
+    "last": "2026-11-07",
     "reasons": [
-      "원문에 없는 주소·이메일: 접수"
+      "요약 생성 실패: claude 종료코드 1: SessionEnd hook [powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\A\\Desktop\\프로젝트관리\\도구\\세션저장.ps1\"] failed: Hook cancelled\n"
     ]
   },
   {
@@ -80,10 +77,10 @@
     "org": "한국장애인고용공단",
     "end": "2026-11-11",
     "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217388&menuId=MENU2201",
-    "attempts": 3,
-    "last": "2026-11-06",
+    "attempts": 4,
+    "last": "2026-11-07",
     "reasons": [
-      "원문에 없는 주소·이메일: 접수"
+      "요약 생성 실패: claude 종료코드 1: SessionEnd hook [powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\A\\Desktop\\프로젝트관리\\도구\\세션저장.ps1\"] failed: Hook cancelled\n"
     ]
   }
 ]
