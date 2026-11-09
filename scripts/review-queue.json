@@ -2,26 +2,6 @@
   "lastRunAt": null,
   "items": [
     {
-      "id": "kead-216999",
-      "title": "[서울북부지사] 서울교통공사 하반기 신입사원 공개채용 공고(11.03. 10:00~11.09. 18:00)",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=216999&menuId=MENU2201",
-      "end": "2026-11-09",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-23T02:31:50.589Z"
-    },
-    {
-      "id": "kead-217127",
-      "title": "[서울지역본부] 한국언론진흥재단 체험형 청년인턴 2명 모집(~11/9)",
-      "org": "한국언론진흥재단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217127&menuId=MENU2201",
-      "end": "2026-11-09",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-10-26T01:31:56.147Z"
-    },
-    {
       "id": "kead-217188",
       "title": "[장애인채용] 2026년 농촌진흥청 일반직공무원 경력경쟁채용시험 공고",
       "org": "한국장애인고용공단",
@@ -112,16 +92,6 @@
       "addedAt": "2026-11-02T03:46:45.695Z"
     },
     {
-      "id": "kead-217268",
-      "title": "[서울지역본부] 서민금융진흥원 하반기 금융전문직 장애 전형 채용(~11.9. 15시)",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217268&menuId=MENU2201",
-      "end": "2026-11-09",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-11-02T06:55:41.062Z"
-    },
-    {
       "id": "kead-217319",
       "title": "[서울북부지사] 서울의료원 기간제근로자 6명 채용(~11.12 16시)",
       "org": "한국장애인고용공단",
@@ -152,41 +122,11 @@
       "addedAt": "2026-11-03T09:45:30.658Z"
     },
     {
-      "id": "kead-217390",
-      "title": "[경기지역본부] 소상공인시장진흥공단 화성,평택센터 단기근로자 채용",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217390&menuId=MENU2201",
-      "end": "2026-11-09",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-11-05T02:59:18.232Z"
-    },
-    {
-      "id": "kead-217392",
-      "title": "[경기서부지사] 소상공인시장진흥공단 광명센터 단기기간제 근로자 1명 채용",
-      "org": "소상공인시장진흥공단 광명센터",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217392&menuId=MENU2201",
-      "end": "2026-11-09",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-11-05T04:24:22.203Z"
-    },
-    {
       "id": "kead-217399",
       "title": "[서울지역본부] IBK기업은행 2026년 하반기 2차 시간선택제 준정규직(장애·보훈) 채용공고(~11.18. 13시까지)",
       "org": "한국장애인고용공단",
       "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217399&menuId=MENU2201",
       "end": "2026-11-18",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-11-05T05:51:39.910Z"
-    },
-    {
-      "id": "kead-217394",
-      "title": "[경기서부지사] 소상공인시장진흥공단 안양센터 단기기간제 사무행정 1명 채용",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217394&menuId=MENU2201",
-      "end": "2026-11-09",
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-05T05:51:39.910Z"
