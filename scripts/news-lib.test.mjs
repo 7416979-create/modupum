@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { parseRss, isRelevant, toNews, mergeNews } from './news-lib.mjs'
+import { SOURCES, parseRss, isRelevant, toNews, mergeNews, validateNews } from './news-lib.mjs'
 
 const xml = `<rss><channel><item><title><![CDATA[최중증 발달장애인·희귀질환자 가족에 의한 활동지원 2028년까지 연장]]></title>
 <link>https://www.mohw.go.kr/board.es?mid=a10503000000&amp;bid=0027&amp;list_no=1492211&amp;act=view</link>
@@ -33,6 +33,13 @@ test('고용노동부 RSS 파싱(dc:date)', async () => {
   assert.equal(toNews(r).source, '고용노동부 공지')
 })
 
-const { validateNews } = await import('./news-lib.mjs')
 assert.deepEqual(validateNews([{ id: 'moel-notice-1', title: 't', date: '2026-10-29', url: 'https://www.moel.go.kr/news/notice/noticeView.do?bbs_seq=1' }]), [])
 assert.equal(validateNews([{ id: 'x', title: 't', date: '2026-10-29', url: 'https://evil.example/' }]).length, 1)
+
+{
+  const src = SOURCES.find((s) => s.prefix === 'seoul-welfare')
+  const [r] = parseRss(`<item><title>서울시 장애인 특별공급 안내</title><link>https://news.seoul.go.kr/welfare/archives/584505</link><pubDate>2026-11-09 08:38:14</pubDate><description><![CDATA[서울시 장애인 특별공급 안내]]></description></item>`, src)
+  assert.equal(r.id, 'seoul-welfare-584505')
+  assert.equal(r.date, '2026-11-09')
+  assert.deepEqual(validateNews([toNews(r)]), [])
+}

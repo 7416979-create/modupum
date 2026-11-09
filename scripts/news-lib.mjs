@@ -8,6 +8,8 @@ export const SOURCES = [
   { name: '고용노동부 정책자료', rss: 'https://www.moel.go.kr/rss/policy.do', prefix: 'moel-policy', idRe: /bbs_seq=(\d+)/, link: (no) => `https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=${no}` },
   { name: '고용노동부 공지', rss: 'https://www.moel.go.kr/rss/notice.do', prefix: 'moel-notice', idRe: /bbs_seq=(\d+)/, link: (no) => `https://www.moel.go.kr/news/notice/noticeView.do?bbs_seq=${no}` },
   { name: '보건복지부 공고', rss: 'https://www.mohw.go.kr/rss/board.es?mid=a10501010000&bid=0003&cg_code=C01', prefix: 'mohw-notice', idRe: /list_no=(\d+)/, link: (no) => `https://www.mohw.go.kr/board.es?mid=a10501010000&bid=0003&act=view&list_no=${no}` },
+  // 공공누리 제4유형(출처표시·상업적 이용금지·변경금지): 제목+원문 링크+출처만 싣는다.
+  { name: '서울시 복지 소식', rss: 'https://news.seoul.go.kr/welfare/feed', prefix: 'seoul-welfare', idRe: /archives\/(\d+)/, link: (no) => `https://news.seoul.go.kr/welfare/archives/${no}` },
 ]
 export const MAX_NEWS = 200
 
@@ -26,7 +28,8 @@ export const parseRss = (xml, src = SOURCES[0]) =>
   String(xml).split('<item>').slice(1).map((b) => {
     const no = field(b, 'link').match(src.idRe)?.[1]
     // 복지부는 pubDate(GMT), 고용노동부는 dc:date(한국시간 'YYYY-MM-DD HH:MM:SS')
-    const dc = field(b, 'dc:date').slice(0, 10)
+    // 서울시는 pubDate 가 한국시간 'YYYY-MM-DD HH:MM:SS' 형식
+    const dc = (field(b, 'dc:date') || field(b, 'pubDate')).slice(0, 10)
     const t = Date.parse(field(b, 'pubDate'))
     return {
       id: no ? `${src.prefix}-${no}` : '',
@@ -69,7 +72,7 @@ export const validateNews = (items) => {
   const errors = []
   const ymd = /^\d{4}-\d{2}-\d{2}$/
   for (const n of items) {
-    if (!n.id || !n.title || !ymd.test(n.date) || !/^https:\/\/www\.(mohw|moel)\.go\.kr\//.test(n.url)) errors.push(`형식 오류: ${n.id || n.title}`)
+    if (!n.id || !n.title || !ymd.test(n.date) || !/^https:\/\/(www\.(mohw|moel)\.go\.kr|news\.seoul\.go\.kr)\//.test(n.url)) errors.push(`형식 오류: ${n.id || n.title}`)
   }
   return errors
 }
