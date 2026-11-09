@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-09 10:49",
+  "updatedAt": "2026-11-09 16:20",
   "items": [
     {
       "id": "kead-217349",
@@ -51,6 +51,20 @@
       }
     },
     {
+      "id": "306319",
+      "title": "2026년 청년인턴 공개채용 ",
+      "org": "정보통신정책연구원",
+      "region": "충북",
+      "hires": 1,
+      "start": "2026-10-26",
+      "end": "2026-11-10",
+      "url": "https://www.kisdi.re.kr/bbs/view.do?key=m2101113056115&bbsSn=115171",
+      "disabledOnly": true,
+      "mixed": true,
+      "mixedEvidence": "(장애인 제한경쟁)",
+      "mixedSource": "첨부: 1. 채용공고문.hwp"
+    },
+    {
       "id": "gojobs-306927",
       "title": "재정경제부 공무직 근로자(사무원 나급)채용 공고_장애인제한경쟁",
       "org": "재정경제부",
@@ -62,7 +76,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-09 10:48",
+      "copiedAt": "2026-11-09 16:19",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -93,7 +107,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-09 10:48",
+      "copiedAt": "2026-11-09 16:19",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 10일(화) 18:00까지",
@@ -203,7 +217,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-09 10:48",
+      "copiedAt": "2026-11-09 16:19",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 11일(수) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -289,7 +303,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-09 10:48",
+      "copiedAt": "2026-11-09 16:19",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 18시까지 (방문은 평일 09:00~18:00, 우편은 마감일 18시까지 도착해야 해요)",
@@ -329,7 +343,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-09 10:48",
+      "copiedAt": "2026-11-09 16:19",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일 18:00까지 (접수는 11월 10일부터예요)",
@@ -370,7 +384,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-09 10:48",
+      "copiedAt": "2026-11-09 16:19",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 17:00까지",
@@ -409,7 +423,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-09 10:48",
+      "copiedAt": "2026-11-09 16:19",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 18:00까지 (점심시간 제외)",
@@ -532,7 +546,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-09 10:48",
+      "copiedAt": "2026-11-09 16:19",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지",
@@ -573,7 +587,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-09 10:48",
+      "copiedAt": "2026-11-09 16:19",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -674,6 +688,34 @@
       }
     },
     {
+      "id": "306837",
+      "title": "[동해병원] 2026년도 하반기 청년(체험형)인턴 장애전형 채용 공고",
+      "org": "근로복지공단",
+      "region": "강원",
+      "hires": 6,
+      "start": "2026-11-09",
+      "end": "2026-11-16",
+      "url": "https://job.alio.go.kr/recruitview.do?idx=306837",
+      "disabledOnly": true,
+      "mixed": true,
+      "mixedEvidence": "| 장애인 전형",
+      "mixedSource": "첨부: 261109 [동해병원] 26년도 하반기 청년(체험형)인턴 장애전형 채용 공고문.hwp"
+    },
+    {
+      "id": "306827",
+      "title": "[인천병원] 2026년도 하반기 청년(체험형)인턴 장애전형 채용 공고",
+      "org": "근로복지공단",
+      "region": "인천",
+      "hires": 10,
+      "start": "2026-11-09",
+      "end": "2026-11-16",
+      "url": "https://job.alio.go.kr/recruitview.do?idx=306827",
+      "disabledOnly": true,
+      "mixed": true,
+      "mixedEvidence": "| 장애인 전형",
+      "mixedSource": "첨부: 261109 [인천병원] 26년도 하반기 청년(체험형)인턴 장애전형 채용 공고문.hwp"
+    },
+    {
       "id": "gojobs-307484",
       "title": "[장애인 제한경쟁] 국립중앙도서관 지식정보서비스과 기간제 근로자 채용 공고",
       "org": "문화체육관광부 국립중앙도서관",
@@ -685,7 +727,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-09 10:48",
+      "copiedAt": "2026-11-09 16:19",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 16일(월) 18:00까지",
@@ -921,7 +963,7 @@
       "disabledOnly": true,
       "orgType": "공공기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-09 10:48",
+      "copiedAt": "2026-11-09 16:19",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 19일(목) 16:00까지 (마감 날은 16:00까지만 받아요)",
@@ -1106,7 +1148,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-11-09 10:48",
+      "copiedAt": "2026-11-09 16:19",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지 접수 기간은 채용 시까지예요. 접수 마감일은 2026-11-30이에요.",
@@ -1309,5 +1351,5 @@
       }
     }
   ],
-  "keadCheckedAt": "2026-11-09 10:49"
+  "keadCheckedAt": "2026-11-09 16:20"
 }
