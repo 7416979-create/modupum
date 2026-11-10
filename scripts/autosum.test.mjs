@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { splitBlank, needsSummary, buildPending, carryVerified, applyResults, verifyEasy, updateReview, numTokens, linkTokens, isAuthError, NO_INFO, deadlineLimitHours, firstClockHour } from './autosum-lib.mjs'
+import { splitBlank, mixedEligible, mixedNote, needsSummary, buildPending, carryVerified, applyResults, verifyEasy, updateReview, numTokens, linkTokens, isAuthError, NO_INFO, deadlineLimitHours, firstClockHour } from './autosum-lib.mjs'
 import { mergeKead } from './kead-lib.mjs'
 import { attachmentLinks, htmlToText, alioDetailUrl } from './autosum-extract.mjs'
 
@@ -19,6 +19,53 @@ test('요약 필요 판정', () => {
   assert.ok(needsSummary({ end: '2026-10-30' }, today))
   assert.ok(!needsSummary({ end: '2026-10-30', verified: true, easy: {} }, today))
   assert.ok(!needsSummary({ end: '2026-10-28' }, today))
+})
+
+test('병행 공고는 장애인 전용 표시와 근거가 있을 때만 자동 요약 대상', () => {
+  const m = { end: '2026-10-30', mixed: true, disabledOnly: true, mixedEvidence: '장애인 제한경쟁' }
+  assert.ok(needsSummary(m, today))
+  assert.ok(needsSummary({ ...m, mixedEvidence: undefined, mixedFields: ['행정 1명 (장애인 제한경쟁)'] }, today))
+  assert.ok(!needsSummary({ ...m, mixedEvidence: undefined }, today)) // 근거 없음 → 수동
+  assert.ok(!needsSummary({ ...m, disabledOnly: false }, today)) // 전용 표시 없음 → 수동
+  assert.ok(!needsSummary({ ...m, verified: true, easy: {} }, today)) // 이미 요약 있음
+  assert.ok(mixedEligible(m) && !mixedEligible({ end: 'x' }))
+  assert.equal(mixedNote({ mixed: false }), '')
+  assert.match(mixedNote(m), /장애인 대상 분야만/)
+})
+
+test('병행 공고 요약은 장애인 모집분야 내용이 없으면 실패', () => {
+  const job = { mixed: true }
+  assert.ok(verifyEasy(easy, ev, src, job).ok) // 누가·몇명·근거에 '장애' 있음
+  const noDis = { ...easy, 누가: ['누구나 지원할 수 있어요'], 몇명: '5명' }
+  const evNoDis = { ...ev, 누가: ['공고 내용을 자세히 읽어야 합니다'], 몇명: ['모집인원 장애 전형 5명'] }
+  const r1 = verifyEasy(noDis, evNoDis, src, job)
+  assert.ok(!r1.ok && r1.reasons.some((x) => x.includes('누가·몇명 칸에 장애인')))
+  const r2 = verifyEasy(easy, { ...ev, 누가: ['공고 내용을 자세히 읽어야 합니다'], 몇명: ['공고 내용을 자세히 읽어야 합니다'] }, src, job)
+  assert.ok(!r2.ok && r2.reasons.some((x) => x.includes('근거 문장이 없음')))
+  assert.ok(verifyEasy(noDis, evNoDis, src).ok) // 병행이 아니면 이 검사는 하지 않는다
+})
+
+test('병행 공고 몇명 숫자는 장애인 분야와 함께 나온 근거에 묶여야 한다', () => {
+  const job = { mixed: true }
+  // 일반 분야에도 똑같이 있는 문장("모집인원 1명")만 근거로 쓰면 실패
+  const evGeneric = { ...ev, 몇명: ['모집인원 5명'] }
+  const r = verifyEasy(easy, evGeneric, src.replace('모집인원 장애 전형 5명', '모집인원 5명 장애인 5'), job)
+  assert.ok(!r.ok && r.reasons.some((x) => x.includes('몇명 숫자가 장애인 모집분야와')))
+  // 우대 문장은 장애인 분야 근거가 아니다
+  const evBonus = { ...ev, 몇명: ['장애인 5명 우대 5%'], 누가: ['공고 내용을 자세히 읽어야 합니다'] }
+  assert.ok(!verifyEasy(easy, evBonus, src + ' 장애인 5명 우대 5%', job).ok)
+  // 수집 때 남긴 장애인 분야 근거에 숫자가 있으면 통과(한국화학연구원처럼 근거 문장이 일반 문장이어도)
+  const jobFields = { mixed: true, mixedFields: ['대외협력실 행정업무 지원 5명 (장애인 제한경쟁, 대전)'] }
+  assert.ok(verifyEasy(easy, evGeneric, src.replace('모집인원 장애 전형 5명', '모집인원 5명'), jobFields).reasons.every((x) => !x.includes('몇명 숫자')))
+  // 병행이 아니면 이 검사는 하지 않는다
+  assert.ok(verifyEasy(easy, evGeneric, src.replace('모집인원 장애 전형 5명', '모집인원 5명')).ok)
+})
+
+test('병행 공고에 자동 요약을 넣으면 표시가 남는다', () => {
+  const items = [{ id: 'a', end: '2026-10-30', mixed: true }, { id: 'b', end: '2026-10-30' }]
+  const r = applyResults(items, [{ id: 'a', ok: true, easy: { x: 1 } }, { id: 'b', ok: true, easy: { x: 1 } }], today)
+  assert.equal(r.items[0].auto.mixed, true)
+  assert.equal(r.items[1].auto.mixed, undefined)
 })
 
 test('요약 빈 공고는 대기(하루 이하)와 막힘(하루 초과·대기 목록에 없음)으로 나눈다', () => {

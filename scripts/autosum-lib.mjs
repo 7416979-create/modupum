@@ -6,9 +6,18 @@ export const REQUIRED = ['언제까지', '무슨일고용', '어디서', '누가
 export const OPTIONAL = ['연장']
 export const AUTO_TRIAL_END = '2026-11-12' // 처음 2주 관찰 기간 끝
 
+// 병행(mixed: 모집분야 중 일부만 장애인 대상) 공고도 자동 요약 대상이다. 단 장애인 전용 표시(disabledOnly)와
+// 근거(mixedEvidence 또는 mixedFields)가 있는 것만. 요약은 mixedNote 로 장애인 분야만 쓰게 하고, verifyEasy 가
+// 장애인 모집분야 내용이 들어 있는지 따로 검사한다. 조건이 없는 병행 공고는 daily-check 가 '수동 필요'로 알린다.
+export const mixedEligible = (j) => j?.mixed === true && j.disabledOnly === true && !!(j.mixedEvidence || (Array.isArray(j.mixedFields) && j.mixedFields.length))
+
 // 마감 전인데 쉬운 요약이 없는 공고인가(daily-check 의 빈칸 판정과 같은 기준)
-// mixed(일부 모집분야만 장애인 대상) 공고는 자동 요약이 '누가 지원할 수 있어요'를 잘못 쓸 수 있어 대기 목록에 넣지 않는다.
-export const needsSummary = (j, today) => j?.end >= today && j?.mixed !== true && !(j.verified === true && j.easy)
+export const needsSummary = (j, today) => j?.end >= today && !(j.verified === true && j.easy) && (j.mixed !== true || mixedEligible(j))
+
+// 병행 공고 요약 프롬프트에 붙이는 주의 문구. 병행이 아니면 빈 글.
+export const mixedNote = (job) => job?.mixed === true
+  ? `\n주의: 이 공고는 모집 분야가 여러 개이고 그중 장애인 대상 분야만 이 사이트의 대상이다(장애인 분야 근거: ${[job.mixedEvidence, ...(Array.isArray(job.mixedFields) ? job.mixedFields : [])].filter(Boolean).join(' / ').slice(0, 300)}). 누가·몇명·무슨일·일하는시간·급여는 장애인 대상 분야 내용만 쓰고 일반·보훈·휴직대체 등 다른 분야의 자격·인원·조건은 쓰지 않는다. 장애인 분야와 다른 분야가 구분되지 않는 칸은 "${NO_INFO}. 문의에 물어보세요."라고 쓴다. 누가 칸에는 장애인 대상이라는 조건을 반드시 쓴다. 몇명 칸의 근거는 장애인 모집분야 표기와 그 인원이 함께 보이게 원문에서 복사한다(분야 표기와 인원이 다른 줄이면 "..." 로 이어서 한 근거로 쓴다). 우대·가점 문장은 근거로 쓰지 않는다.\n`
+  : ''
 
 // 클라우드(Actions)가 올리는 대기 목록. since 는 처음 대기에 들어온 날을 이어 둔다.
 export const buildPending = (items, today, prevPending = []) => {
@@ -93,7 +102,7 @@ const NUM_FIELDS =['언제까지', '몇명', '급여', '일하는시간', '문�
 const asText = (v) => (Array.isArray(v) ? v.join(' ') : String(v ?? ''))
 
 // 자동 생성 요약을 원문 글자와 대조한다. 통과하면 {ok:true}, 아니면 {ok:false, reasons:[...]}.
-export const verifyEasy = (easyIn, evidence, sourceText) => {
+export const verifyEasy = (easyIn, evidence, sourceText, job = null) => {
   let easy = easyIn
   const reasons = []
   const src = sq(sourceText)
@@ -147,6 +156,22 @@ export const verifyEasy = (easyIn, evidence, sourceText) => {
   }
   // 빈칸 문구가 너무 많으면 글자 추출이 덜 된 것이다(원문 확인 전에 비우지 않는다).
   if (noInfo >= 5) reasons.push(`빈칸 문구가 ${noInfo}칸: 추출이 덜 됐을 수 있음`)
+  // 병행 공고: 장애인 모집분야 내용이 누가·몇명 칸과 근거 문장에 들어 있어야 한다(다른 분야 자격을 쓰는 사고 방지).
+  if (job?.mixed === true) {
+    if (!/장애/.test(`${asText(easy['누가'])} ${asText(easy['몇명'])}`)) reasons.push('병행 공고: 누가·몇명 칸에 장애인 모집분야 내용이 없음')
+    // 우대·가점·가산·% 가 든 문장은 장애인 모집분야를 보여 주는 근거로 치지 않는다(mixed-lib 의 NEGATIVE 와 같은 생각).
+    const disabledEv = (q) => /장애/.test(String(q)) && !/우대|가점|가산|%/.test(String(q))
+    const evs = [].concat(evidence?.['누가'] ?? [], evidence?.['몇명'] ?? [])
+    if (!evs.some(disabledEv)) reasons.push('병행 공고: 장애인 분야를 보여 주는 근거 문장이 없음')
+    // 다른 분야 인원이 섞이지 않게: 몇명 숫자는 '장애인' 이 든 근거 문장에 같이 있거나, 수집 때 남긴 장애인 분야 근거(mixedEvidence·mixedFields)에 있어야 한다.
+    const nums = numTokens(asText(easy['몇명']))
+    if (nums.length) {
+      const hay = [job.mixedEvidence, ...(Array.isArray(job.mixedFields) ? job.mixedFields : [])].filter(Boolean).join(' ')
+      const byEvidence = [].concat(evidence?.['몇명'] ?? []).some((q) => disabledEv(q) && nums.every((n) => numTokens(q).includes(n)))
+      const byMixed = hay && nums.every((n) => numTokens(hay).includes(n))
+      if (!byEvidence && !byMixed) reasons.push('병행 공고: 몇명 숫자가 장애인 모집분야와 함께 나온 근거 문장이 없음(분야 표기와 인원이 다른 줄이면 "..." 로 이어서 한 근거로 복사)')
+    }
+  }
   return { ok: reasons.length === 0, reasons, easy }
 }
 
@@ -158,7 +183,7 @@ export const applyResults = (items, results, today) => {
     const r = byId.get(j.id)
     if (!r || (j.verified === true && j.easy)) return j
     applied.push(j.id)
-    return { ...j, verified: true, easy: r.easy, auto: { at: today, model: r.model || 'haiku', trialUntil: AUTO_TRIAL_END } }
+    return { ...j, verified: true, easy: r.easy, auto: { at: today, model: r.model || 'haiku', trialUntil: AUTO_TRIAL_END, ...(j.mixed === true ? { mixed: true } : {}) } }
   })
   return { items: out, applied }
 }

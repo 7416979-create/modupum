@@ -76,7 +76,7 @@ test('캐시는 마감 지난 항목을 지운다', () => {
   assert.deepEqual(Object.keys(pruneCache({ a: { end: '2026-11-01' }, b: { end: '2026-11-06' } }, '2026-11-05')), ['b'])
 })
 
-test('mixed 공고는 검수를 통과하고(근거 필수) 자동 요약 대기에서 빠진다', () => {
+test('mixed 공고는 검수를 통과하고(근거 필수) 근거가 있으면 자동 요약 대기에 들어간다', () => {
   const j = toMixedJob(row({ recrutPblntSn: 9002 }), { evidence: '일반계약직(장애인 제한경쟁) 행정직 1명', source: '첨부: a.pdf' })
   assert.equal(j.mixed, true)
   assert.equal(j.disabledOnly, true)
@@ -85,7 +85,8 @@ test('mixed 공고는 검수를 통과하고(근거 필수) 자동 요약 대기
   assert.equal(ok.items.length, 1)
   const noEvidence = validateJobs([{ ...j, mixedEvidence: '' }], { today: '2026-11-05', rules: {} })
   assert.equal(noEvidence.errors.length, 1)
-  assert.equal(needsSummary(j, '2026-11-05'), false)
+  assert.equal(needsSummary(j, '2026-11-05'), true) // 11-10 정책: 병행 공고도 근거가 있으면 장애인 분야만 요약(verifyEasy 가 따로 검사)
+  assert.equal(needsSummary({ ...j, mixedEvidence: '' }, '2026-11-05'), false) // 근거가 없으면 자동 요약 안 함(수동)
   assert.equal(squash(' 장애인 | 제한 경쟁 '), '장애인제한경쟁')
 })
 

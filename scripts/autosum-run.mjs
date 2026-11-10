@@ -80,12 +80,12 @@ try {
         if (ai.error) o.reasons.push(`요약 생성 실패: ${ai.error}`)
         else {
           await writeFile(path.join(wd, 'ai.json'), JSON.stringify(ai.json, null, 2))
-          let v = verifyEasy(ai.json.easy, ai.json.evidence, ex.text)
+          let v = verifyEasy(ai.json.easy, ai.json.evidence, ex.text, job)
           if (!v.ok) {
             // 검사에서 걸린 이유를 알려 주고 한 번만 고쳐 쓰게 한다(통과 기준은 그대로).
             const ai2 = await askHaiku(job, ex.text, path.join(wd, 'ai'), v.reasons.slice(0, 8).join(String.fromCharCode(10)))
             if (!ai2.error) {
-              const v2 = verifyEasy(ai2.json.easy, ai2.json.evidence, ex.text)
+              const v2 = verifyEasy(ai2.json.easy, ai2.json.evidence, ex.text, job)
               await writeFile(path.join(wd, 'ai2.json'), JSON.stringify(ai2.json, null, 2))
               if (v2.ok || v2.reasons.length < v.reasons.length) { ai = ai2; v = v2 }
             }

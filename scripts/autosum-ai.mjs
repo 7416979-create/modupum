@@ -1,7 +1,7 @@
 // 추출한 글자만 claude -p (haiku) 에 주고 쉬운 요약 칸과 칸별 근거 문장을 받는다. API 키는 쓰지 않는다(구독 로그인).
 import { spawn } from 'node:child_process'
 import { mkdir } from 'node:fs/promises'
-import { NO_INFO } from './autosum-lib.mjs'
+import { NO_INFO, mixedNote } from './autosum-lib.mjs'
 
 export const CLAUDE = process.env.AUTOSUM_CLAUDE || 'C:\\Users\\A\\AppData\\Roaming\\npm\\node_modules\\@anthropic-ai\\claude-code\\bin\\claude.exe'
 const MAX_CHARS = 60000
@@ -10,7 +10,7 @@ const SYSTEM = '너는 장애인 구직자를 위한 채용 공고 요약 담당
 
 const promptOf = (job, text) => `아래 공고 원문에서 쉬운 말 요약을 만든다.
 
-공고: ${job.org} / ${job.title} / 마감 ${job.end}
+공고: ${job.org} / ${job.title} / 마감 ${job.end}${mixedNote(job)}
 
 규칙:
 - 원문에 있는 사실만 쓴다. 추측·계산·보충 금지. 숫자(급여·인원·날짜·시간·전화)는 원문 그대로 옮긴다.

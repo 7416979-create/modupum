@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import { loadHolidays, jobCollectDecision } from './workday-lib.mjs'
 import { expiredCount } from './validate-lib.mjs'
-import { splitBlank } from './autosum-lib.mjs'
+import { splitBlank, mixedEligible, MAX_ATTEMPTS } from './autosum-lib.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const SITE = (process.env.DAILY_CHECK_SITE || 'https://modupum.kr').replace(/\/$/, '')
@@ -102,6 +102,14 @@ for (const name of ['jobs', 'welfare', 'news']) {
         const autoLive = items.filter((i) => i.auto).length
         notes.push(`자동요약 누적 성공${sum.ok}·실패${sum.fail}${last ? ` (최근 ${days[days.length - 1]} 성공${last.ok}·실패${last.fail})` : ' (아직 실행 기록 없음)'}, 자동 요약 공개 ${autoLive}건, 확인 필요 ${review.length}건${review.length ? `: ${review.map((r) => `${r.id}(${r.org}, ${String(r.reasons?.[0] ?? '').slice(0, 40)})`).join('; ')}` : ''}`)
         evidence.push(`autosum 실행일 ${days.length}일`)
+        // 놓침 방지: 자동 요약이 3번 실패해 더는 시도하지 않는 공고는 사람이 봐야 한다. 조용히 쌓이지 않게 실패로 알린다.
+        const abandoned = review.filter((r) => (r.attempts || 0) >= MAX_ATTEMPTS && r.end >= today)
+        if (abandoned.length) issues.push(`자동 요약이 ${MAX_ATTEMPTS}번 실패해 사람이 봐야 하는 공고 ${abandoned.length}건: ${abandoned.map((r) => r.id).join(', ')}`)
+        // 병행 공고인데 자동 요약 조건(장애인 전용 표시·근거)이 없으면 자동으로는 안 채워진다. 수동 필요로 알린다.
+        const manual = items.filter((i) => i.end >= today && i.mixed === true && !(i.verified === true && i.easy) && !mixedEligible(i)).map((i) => i.id)
+        if (manual.length) issues.push(`병행 공고 ${manual.length}건은 자동 요약 조건(장애인 전용 표시·근거)이 없어 수동 요약 필요: ${manual.join(', ')}`)
+        const mixedAuto = items.filter((i) => i.mixed === true && i.auto).length
+        if (mixedAuto) notes.push(`병행 공고 자동 요약 ${mixedAuto}건(장애인 분야만 썼는지 표본 확인 권장)`)
         if (last?.authFail) issues.push('PC의 Claude 로그인이 만료되어 요약 자동 채우기가 멈춤 (PC 터미널에서 claude 실행 후 /login)')
       } catch (e) {
         notes.push(`자동요약 기록 읽기 실패: ${e.message}`)
