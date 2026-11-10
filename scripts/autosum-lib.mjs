@@ -18,6 +18,21 @@ export const buildPending = (items, today, prevPending = []) => {
     .map((j) => ({ id: j.id, title: j.title, org: j.org, end: j.end, url: j.url, since: since.get(j.id) || today }))
 }
 
+// daily-check 용: 요약이 빈 공고를 '자동 채우기 대기 중'과 '막힘'으로 나눈다.
+// 대기 목록에 들어온 지 하루 이하면 다음 자동 실행(하루 세 번)을 기다리는 중이라 실패로 보지 않는다.
+// 하루를 넘겼거나 대기 목록에도 없으면 막힌 것이라 사람이 봐야 한다.
+export const splitBlank = (items, pending, today) => {
+  const since = new Map((pending || []).map((p) => [p.id, p.since]))
+  const yesterday = new Date(Date.parse(today) - 86400000).toISOString().slice(0, 10)
+  const waiting = []
+  const stuck = []
+  for (const j of (items || []).filter((x) => needsSummary(x, today))) {
+    const s = since.get(j.id)
+    ;(s && s >= yesterday ? waiting : stuck).push(j.id)
+  }
+  return { waiting, stuck }
+}
+
 // 수집 때 새로 만든 공고(fresh)에 이전 공고(prev)의 검증된 요약·내부 표시를 옮긴다. 요약이 사라지면 안 된다.
 export const carryVerified = (fresh, prev) => {
   if (!prev || prev.verified !== true || !prev.easy) return fresh

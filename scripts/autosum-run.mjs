@@ -57,6 +57,7 @@ try {
   if (idsArg) targets = targets.filter((j) => idsArg.includes(j.id))
   // 3번 실패한 공고는 사람이 보기 전까지 다시 시도하지 않는다(--ids 로 지정하면 시도).
   if (!idsArg) targets = targets.filter((j) => (attempts.get(j.id) || 0) < MAX_ATTEMPTS)
+  targets.sort((a, b) => String(a.end).localeCompare(String(b.end))) // 마감 임박 공고부터 채운다(한 번에 못 끝내도 급한 것이 먼저)
   console.log(`대상 ${targets.length}건: ${targets.map((j) => j.id).join(', ') || '-'}`)
 
   const outcomes = []

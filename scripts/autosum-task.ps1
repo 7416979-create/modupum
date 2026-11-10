@@ -12,6 +12,6 @@ $triggers = @(
   (New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME)
 )
 $triggers[3].Delay = 'PT5M'
-$settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -MultipleInstances IgnoreNew -ExecutionTimeLimit (New-TimeSpan -Minutes 45)
+$settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -MultipleInstances IgnoreNew -ExecutionTimeLimit (New-TimeSpan -Minutes 45) -RestartCount 2 -RestartInterval (New-TimeSpan -Minutes 30)  # 실패하면 30분 뒤 2번까지 다시 시도(11-10 오퍼스 권고)
 Register-ScheduledTask -TaskName 'modupum-autosum' -Action $action -Trigger $triggers -Settings $settings -Description '모두품 공고 요약 자동 채우기(원문 추출, haiku 요약, 검증, 푸시)' -Force | Out-Null
 Get-ScheduledTask -TaskName 'modupum-autosum' | Select-Object TaskName, State

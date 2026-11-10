@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import { loadHolidays, jobCollectDecision } from './workday-lib.mjs'
 import { expiredCount } from './validate-lib.mjs'
+import { splitBlank } from './autosum-lib.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const SITE = (process.env.DAILY_CHECK_SITE || 'https://modupum.kr').replace(/\/$/, '')
@@ -81,8 +82,16 @@ for (const name of ['jobs', 'welfare', 'news']) {
     if (!d.updatedAt) issues.push(`${name}.json updatedAt 없음`)
     if (name === 'jobs') {
       // 마감 전인데 쉬운 요약(easy)이 없는 공고는 화면에 빈칸이 생긴다. 원문 확인 후 채워야 한다.
-      const blank = items.filter((i) => i.end >= today && !(i.verified === true && i.easy) && i.mixed !== true).map((i) => i.id)
-      if (blank.length) issues.push(`jobs.json 쉬운 요약 없는 공고 ${blank.length}건: ${blank.join(', ')} (원문 확인 후 easy 채우기)`)
+      // 대기 목록(pending.json)에 들어온 지 하루 이하인 공고는 자동 채우기(하루 세 번)를 기다리는 중이라 실패로 치지 않는다.
+      let pendingList = []
+      try {
+        pendingList = JSON.parse(await readFile(path.join(root, 'scripts/pending.json'), 'utf8').catch(() => '[]'))
+      } catch (e) {
+        issues.push(`pending.json 읽기 실패(JSON 깨짐): ${e.message.split('\n')[0]}`) // 아래 자동요약 통계·로그인 점검은 계속 한다
+      }
+      const { waiting, stuck } = splitBlank(items, pendingList, today)
+      if (waiting.length) notes.push(`쉬운 요약 자동 채우기 대기 ${waiting.length}건: ${waiting.join(', ')} (다음 자동 실행 대기, 하루 넘기면 실패로 표시)`)
+      if (stuck.length) issues.push(`jobs.json 쉬운 요약 없는 공고 ${stuck.length}건: ${stuck.join(', ')} (대기 목록에 없거나 하루 넘게 안 채워짐, 원문 확인 후 easy 채우기)`)
       // 요약 자동 채우기(autosum, PC 작업) 기록: 어제까지의 성공/실패, 확인 필요 목록, 자동 요약 건수를 참고로 남긴다(2주 관찰: ~2026-11-12).
       try {
         const stats = JSON.parse(await readFile(path.join(root, 'logs/autosum-stats.json'), 'utf8').catch(() => '{}'))

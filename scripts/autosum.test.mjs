@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { needsSummary, buildPending, carryVerified, applyResults, verifyEasy, updateReview, numTokens, linkTokens, isAuthError, NO_INFO, deadlineLimitHours, firstClockHour } from './autosum-lib.mjs'
+import { splitBlank, needsSummary, buildPending, carryVerified, applyResults, verifyEasy, updateReview, numTokens, linkTokens, isAuthError, NO_INFO, deadlineLimitHours, firstClockHour } from './autosum-lib.mjs'
 import { mergeKead } from './kead-lib.mjs'
 import { attachmentLinks, htmlToText, alioDetailUrl } from './autosum-extract.mjs'
 
@@ -19,6 +19,23 @@ test('요약 필요 판정', () => {
   assert.ok(needsSummary({ end: '2026-10-30' }, today))
   assert.ok(!needsSummary({ end: '2026-10-30', verified: true, easy: {} }, today))
   assert.ok(!needsSummary({ end: '2026-10-28' }, today))
+})
+
+test('요약 빈 공고는 대기(하루 이하)와 막힘(하루 초과·대기 목록에 없음)으로 나눈다', () => {
+  const today = '2026-11-10'
+  const items = [
+    { id: 'a', end: '2026-11-20' }, // 오늘 대기 시작 → 대기
+    { id: 'b', end: '2026-11-20' }, // 어제 대기 시작 → 대기(경계)
+    { id: 'c', end: '2026-11-20' }, // 이틀 전부터 → 막힘
+    { id: 'd', end: '2026-11-20' }, // 대기 목록에 없음 → 막힘
+    { id: 'e', end: '2026-11-20', verified: true, easy: { x: 1 } }, // 요약 있음 → 제외
+    { id: 'f', end: '2026-11-01' }, // 마감 지남 → 제외
+    { id: 'g', end: '2026-11-20', mixed: true }, // 일부 분야만 장애인 → 제외
+  ]
+  const pending = [{ id: 'a', since: '2026-11-10' }, { id: 'b', since: '2026-11-09' }, { id: 'c', since: '2026-11-08' }]
+  assert.deepEqual(splitBlank(items, pending, today), { waiting: ['a', 'b'], stuck: ['c', 'd'] })
+  assert.deepEqual(splitBlank([], [], today), { waiting: [], stuck: [] })
+  assert.deepEqual(splitBlank(items, undefined, today).waiting, [])
 })
 
 test('대기 목록은 처음 들어온 날을 이어 둔다', () => {
