@@ -160,6 +160,16 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-09T07:21:51.343Z"
+    },
+    {
+      "id": "kead-217503",
+      "title": "[서울북부지사] 한국사회보장정보원 직원 채용 모집 안내(~11.16. 16:00)",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217503&menuId=MENU2201",
+      "end": "2026-11-16",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-10T07:54:22.852Z"
     }
   ]
 }
