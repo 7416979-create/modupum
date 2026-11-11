@@ -150,6 +150,16 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-10T07:54:22.852Z"
+    },
+    {
+      "id": "kead-217529",
+      "title": "[서울지역본부] 중구시설관리공단 미화원 채용(~11.13. 18시)",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217529&menuId=MENU2201",
+      "end": "2026-11-13",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-11T01:44:03.285Z"
     }
   ]
 }
