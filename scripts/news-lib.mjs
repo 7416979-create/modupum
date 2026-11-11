@@ -10,6 +10,8 @@ export const SOURCES = [
   { name: '보건복지부 공고', rss: 'https://www.mohw.go.kr/rss/board.es?mid=a10501010000&bid=0003&cg_code=C01', prefix: 'mohw-notice', idRe: /list_no=(\d+)/, link: (no) => `https://www.mohw.go.kr/board.es?mid=a10501010000&bid=0003&act=view&list_no=${no}` },
   // 공공누리 제4유형(출처표시·상업적 이용금지·변경금지): 제목+원문 링크+출처만 싣는다.
   { name: '서울시 복지 소식', rss: 'https://news.seoul.go.kr/welfare/feed', prefix: 'seoul-welfare', idRe: /archives\/(\d+)/, link: (no) => `https://news.seoul.go.kr/welfare/archives/${no}` },
+  // 공공누리 제1유형(출처표시): 제목+원문 링크+출처만 싣는다. 본문은 description 이 아니라 contents 태그.
+  { name: '경기도 보도자료', rss: 'https://gnews.gg.go.kr/rss/gnewsRssBodo.do', prefix: 'gg-bodo', idRe: /number=(\d+)/, descTag: 'contents', link: (no) => `https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&number=${no}` },
 ]
 export const MAX_NEWS = 200
 
@@ -34,7 +36,7 @@ export const parseRss = (xml, src = SOURCES[0]) =>
     return {
       id: no ? `${src.prefix}-${no}` : '',
       title: field(b, 'title'),
-      desc: field(b, 'description'),
+      desc: field(b, src.descTag || 'description'),
       url: no ? src.link(no) : '',
       source: src.name,
       date: /^\d{4}-\d{2}-\d{2}$/.test(dc) ? dc : Number.isNaN(t) ? '' : new Date(t + 9 * 3600000).toISOString().slice(0, 10),
@@ -72,7 +74,7 @@ export const validateNews = (items) => {
   const errors = []
   const ymd = /^\d{4}-\d{2}-\d{2}$/
   for (const n of items) {
-    if (!n.id || !n.title || !ymd.test(n.date) || !/^https:\/\/(www\.(mohw|moel)\.go\.kr|news\.seoul\.go\.kr)\//.test(n.url)) errors.push(`형식 오류: ${n.id || n.title}`)
+    if (!n.id || !n.title || !ymd.test(n.date) || !/^https:\/\/(www\.(mohw|moel)\.go\.kr|news\.seoul\.go\.kr|gnews\.gg\.go\.kr)\//.test(n.url)) errors.push(`형식 오류: ${n.id || n.title}`)
   }
   return errors
 }

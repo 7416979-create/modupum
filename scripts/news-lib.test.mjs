@@ -43,3 +43,12 @@ assert.equal(validateNews([{ id: 'x', title: 't', date: '2026-10-29', url: 'http
   assert.equal(r.date, '2026-11-09')
   assert.deepEqual(validateNews([toNews(r)]), [])
 }
+
+{
+  const src = SOURCES.find((s) => s.prefix === 'gg-bodo')
+  const [r] = parseRss(`<item><title>경기도 장애인 일자리 확대</title><link>https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&amp;number=71957</link><pubDate>Tue, 10 Nov 2026 09:00:00 +0900</pubDate><contents>본문</contents></item>`, src)
+  assert.equal(r.id, 'gg-bodo-71957')
+  assert.equal(r.desc, '본문')
+  assert.equal(r.date, '2026-11-10')
+  assert.deepEqual(validateNews([toNews(r)]), [])
+}

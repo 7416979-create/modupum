@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-10",
+  "updatedAt": "2026-11-11",
   "items": [
     {
       "id": "seoul-welfare-584565",
@@ -41,6 +41,14 @@
       "source": "서울시 복지 소식",
       "date": "2026-11-10",
       "url": "https://news.seoul.go.kr/welfare/archives/584544"
+    },
+    {
+      "id": "gg-bodo-71957",
+      "title": "경기도공익활동지원센터, 기업·공익단체 협력사례 공유 행사 17일 개최",
+      "summary": "경기도공익활동지원센터, 기업·공익단체 협력사례 공유 행사 17일 개최",
+      "source": "경기도 보도자료",
+      "date": "2026-11-10",
+      "url": "https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&number=71957"
     },
     {
       "id": "mohw-1492473",
