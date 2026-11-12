@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-12 14:47",
+  "updatedAt": "2026-11-12 16:48",
   "items": [
     {
       "id": "gojobs-307611",
@@ -14,7 +14,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-12 14:45",
+      "copiedAt": "2026-11-12 16:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 18시까지 (방문은 평일 09:00~18:00, 우편은 마감일 18시까지 도착해야 해요)",
@@ -54,7 +54,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-12 14:45",
+      "copiedAt": "2026-11-12 16:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일 18:00까지 (접수는 11월 10일부터예요)",
@@ -95,7 +95,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-12 14:45",
+      "copiedAt": "2026-11-12 16:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 17:00까지",
@@ -134,7 +134,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-12 14:45",
+      "copiedAt": "2026-11-12 16:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 12일(목) 18:00까지 (점심시간 제외)",
@@ -257,7 +257,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-12 14:45",
+      "copiedAt": "2026-11-12 16:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지",
@@ -299,7 +299,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-12 14:45",
+      "copiedAt": "2026-11-12 16:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지",
@@ -340,7 +340,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-12 14:45",
+      "copiedAt": "2026-11-12 16:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -533,7 +533,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-12 14:45",
+      "copiedAt": "2026-11-12 16:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 16일(월) 18:00까지",
@@ -866,7 +866,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-12 14:45",
+      "copiedAt": "2026-11-12 16:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 18일(수) 18:00까지 도착해야 해요",
@@ -967,6 +967,20 @@
       }
     },
     {
+      "id": "306978",
+      "title": "[창원병원] 2026년도 하반기 청년(체험형)인턴 장애전형 채용 공고",
+      "org": "근로복지공단",
+      "region": "경남",
+      "hires": 9,
+      "start": "2026-11-12",
+      "end": "2026-11-19",
+      "url": "https://job.alio.go.kr/recruitview.do?idx=306978",
+      "disabledOnly": true,
+      "mixed": true,
+      "mixedEvidence": "| 장애인 전형",
+      "mixedSource": "첨부: 261112 [창원병원] 26년도 하반기 청년(체험형)인턴 장애전형 채용 공고문.hwp"
+    },
+    {
       "id": "gojobs-307450",
       "title": "제목 한국농어촌공사 청주지사 공무직(청소원) 보훈·장애인 제한경쟁채용 공고",
       "org": "한국농어촌공사",
@@ -978,7 +992,7 @@
       "disabledOnly": true,
       "orgType": "공공기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-12 14:45",
+      "copiedAt": "2026-11-12 16:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 19일(목) 16:00까지 (마감 날은 16:00까지만 받아요)",
@@ -1152,7 +1166,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-12 14:45",
+      "copiedAt": "2026-11-12 16:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 23일(월) 18:00까지",
@@ -1396,7 +1410,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-11-12 14:45",
+      "copiedAt": "2026-11-12 16:47",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지 접수 기간은 채용 시까지예요. 접수 마감일은 2026-11-30이에요.",
@@ -1599,5 +1613,5 @@
       }
     }
   ],
-  "keadCheckedAt": "2026-11-12 14:47"
+  "keadCheckedAt": "2026-11-12 16:48"
 }
