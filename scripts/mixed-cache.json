@@ -2524,10 +2524,9 @@
    "checkedAt": "2026-11-09"
   },
   "306866": {
-   "state": "noText",
-   "why": "첨부 처리 실패: spawn pdftotext ENOENT",
+   "state": "no",
    "end": "2026-11-27",
-   "tries": 1,
+   "tries": 0,
    "checkedAt": "2026-11-12"
   },
   "306869": {
@@ -2675,10 +2674,9 @@
    "checkedAt": "2026-11-10"
   },
   "306897": {
-   "state": "noText",
-   "why": "첨부 처리 실패: spawn pdftotext ENOENT",
+   "state": "no",
    "end": "2026-11-27",
-   "tries": 1,
+   "tries": 0,
    "checkedAt": "2026-11-12"
   },
   "306900": {
@@ -2917,17 +2915,51 @@
    "checkedAt": "2026-11-11"
   },
   "306941": {
-   "state": "noText",
-   "why": "지원 안 하는 형식(채용 지원 서류(레지던트).zip)",
+   "state": "no",
    "end": "2026-11-20",
-   "tries": 1,
+   "tries": 0,
    "checkedAt": "2026-11-12"
   },
   "306942": {
-   "state": "noText",
-   "why": "지원 안 하는 형식(채용 지원 서류(인턴).zip)",
+   "state": "no",
    "end": "2027-01-22",
-   "tries": 1,
+   "tries": 0,
+   "checkedAt": "2026-11-12"
+  },
+  "306947": {
+   "state": "no",
+   "end": "2026-11-25",
+   "tries": 0,
+   "checkedAt": "2026-11-12"
+  },
+  "306948": {
+   "state": "no",
+   "end": "2026-11-18",
+   "tries": 0,
+   "checkedAt": "2026-11-12"
+  },
+  "306949": {
+   "state": "no",
+   "end": "2026-11-26",
+   "tries": 0,
+   "checkedAt": "2026-11-12"
+  },
+  "306950": {
+   "state": "no",
+   "end": "2026-11-26",
+   "tries": 0,
+   "checkedAt": "2026-11-12"
+  },
+  "306951": {
+   "state": "no",
+   "end": "2026-11-19",
+   "tries": 0,
+   "checkedAt": "2026-11-12"
+  },
+  "306952": {
+   "state": "no",
+   "end": "2026-11-19",
+   "tries": 0,
    "checkedAt": "2026-11-12"
   }
  }
