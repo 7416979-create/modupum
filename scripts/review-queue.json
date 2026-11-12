@@ -150,6 +150,26 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-11T01:44:03.285Z"
+    },
+    {
+      "id": "kead-217575",
+      "title": "[서울지역본부] 홍익대학교 본사 사무보조 모집 ~11.16",
+      "org": "홍익대학교",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217575&menuId=MENU2201",
+      "end": "2026-11-16",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-12T05:48:03.145Z"
+    },
+    {
+      "id": "kead-217567",
+      "title": "[경기동부지사] 용인시육아종합지원센터 보정점 장난감 세척원 1명 모집(~11.26)",
+      "org": "용인시육아종합지원센터",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217567&menuId=MENU2201",
+      "end": "2026-11-26",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-12T05:48:03.145Z"
     }
   ]
 }
