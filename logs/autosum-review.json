@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": "307021",
+    "title": "2026년 7차 직원(위촉연구원(과제 수행)) 채용 공고",
+    "org": "한국나노기술원",
+    "end": "2026-11-30",
+    "url": "https://www.kanc.re.kr/gnb04/snb02_02.do?mode=view&cid=5767",
+    "attempts": 1,
+    "last": "2026-11-13",
+    "reasons": [
+      "요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets Nov 16, 10pm (Asia/Seoul)"
+    ]
+  }
+]
