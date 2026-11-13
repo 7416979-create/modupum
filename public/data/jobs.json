@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-13 14:45",
+  "updatedAt": "2026-11-13 16:23",
   "items": [
     {
       "id": "306471",
@@ -44,7 +44,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-13 14:44",
+      "copiedAt": "2026-11-13 16:22",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지",
@@ -86,7 +86,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-13 14:44",
+      "copiedAt": "2026-11-13 16:22",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지",
@@ -127,7 +127,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-13 14:44",
+      "copiedAt": "2026-11-13 16:22",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 13일(금) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -320,7 +320,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-13 14:44",
+      "copiedAt": "2026-11-13 16:22",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 16일(월) 18:00까지",
@@ -653,7 +653,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-13 14:44",
+      "copiedAt": "2026-11-13 16:22",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 18일(수) 18:00까지 도착해야 해요",
@@ -806,7 +806,7 @@
       "disabledOnly": true,
       "orgType": "공공기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-13 14:44",
+      "copiedAt": "2026-11-13 16:22",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 19일(목) 16:00까지 (마감 날은 16:00까지만 받아요)",
@@ -980,7 +980,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-13 14:44",
+      "copiedAt": "2026-11-13 16:22",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 23일(월) 18:00까지",
@@ -1080,6 +1080,20 @@
         "model": "haiku",
         "trialUntil": "2026-11-12"
       }
+    },
+    {
+      "id": "gojobs-308523",
+      "title": "농림축산검역본부 제주지역본부 공무직근로자 채용(장애인전형) 공고",
+      "org": "농림축산식품부 농림축산검역본부 제주지역본부",
+      "region": "",
+      "hires": null,
+      "start": "2026-11-13",
+      "end": "2026-11-25",
+      "url": "https://modupum.kr/gojobs/308523/",
+      "disabledOnly": true,
+      "orgType": "국가기관",
+      "source": "나라일터",
+      "copiedAt": "2026-11-13 16:22"
     },
     {
       "id": "kead-217542",
@@ -1213,6 +1227,20 @@
       }
     },
     {
+      "id": "307021",
+      "title": "2026년 7차 직원(위촉연구원(과제 수행)) 채용 공고",
+      "org": "한국나노기술원",
+      "region": "경기",
+      "hires": 16,
+      "start": "2026-11-13",
+      "end": "2026-11-30",
+      "url": "https://www.kanc.re.kr/gnb04/snb02_02.do?mode=view&cid=5767",
+      "disabledOnly": true,
+      "mixed": true,
+      "mixedEvidence": "* 동점자는 보훈대상자, 장애인, 전형별 개별 점수 합산 고득점자 순으로 합격자 선정",
+      "mixedSource": "공고 정보"
+    },
+    {
       "id": "gojobs-305072",
       "title": "성덕고등학교 2026학년도 야간경비(장애인 제한경쟁) 채용 공고",
       "org": "서울특별시교육청 성덕고등학교",
@@ -1224,7 +1252,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-11-13 14:44",
+      "copiedAt": "2026-11-13 16:22",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지 접수 기간은 채용 시까지예요. 접수 마감일은 2026-11-30이에요.",
@@ -1427,5 +1455,5 @@
       }
     }
   ],
-  "keadCheckedAt": "2026-11-13 14:45"
+  "keadCheckedAt": "2026-11-13 16:23"
 }
