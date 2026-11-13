@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-12",
+  "updatedAt": "2026-11-13",
   "items": [
     {
       "id": "seoul-welfare-584685",
@@ -9,6 +9,14 @@
       "source": "서울시 복지 소식",
       "date": "2026-11-12",
       "url": "https://news.seoul.go.kr/welfare/archives/584685"
+    },
+    {
+      "id": "gg-bodo-71976",
+      "title": "경기도공익활동지원센터, 5개 시군서 시민사회 활성화 공론장 개최",
+      "summary": "경기도공익활동지원센터, 5개 시군서 시민사회 활성화 공론장 개최",
+      "source": "경기도 보도자료",
+      "date": "2026-11-12",
+      "url": "https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&number=71976"
     },
     {
       "id": "seoul-welfare-584616",
