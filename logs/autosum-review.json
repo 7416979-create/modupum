@@ -5,10 +5,11 @@
     "org": "한국나노기술원",
     "end": "2026-11-30",
     "url": "https://www.kanc.re.kr/gnb04/snb02_02.do?mode=view&cid=5767",
-    "attempts": 1,
-    "last": "2026-11-13",
+    "attempts": 2,
+    "last": "2026-11-14",
     "reasons": [
-      "요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets Nov 16, 10pm (Asia/Seoul)"
+      "빈칸 문구가 7칸: 추출이 덜 됐을 수 있음",
+      "병행 공고: 장애인 분야를 보여 주는 근거 문장이 없음"
     ]
   }
 ]
