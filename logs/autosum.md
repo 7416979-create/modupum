@@ -43,3 +43,4 @@
 2026-11-14 10:40 | 대상 3 | 통과 2 | 확인 필요 1 (307021: 빈칸 문구가 7칸: 추출이 덜 됐을 수 있음)
 2026-11-14 14:40 | 대상 1 | 통과 0 | 확인 필요 1 (307021: 빈칸 문구가 7칸: 추출이 덜 됐을 수 있음)
 2026-11-16 10:40 | 대상 2 | 통과 0 | 확인 필요 2 (manual-krict-170: 요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets 10pm (Asia/Seoul); 307024: 요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets 10pm (Asia/Seoul))
+2026-11-16 14:40 | 대상 2 | 통과 0 | 확인 필요 2 (manual-krict-170: 요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets 10pm (Asia/Seoul); 307024: 요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets 10pm (Asia/Seoul))
