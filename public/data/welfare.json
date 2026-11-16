@@ -1,7 +1,17 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-16 10:41",
+  "updatedAt": "2026-11-16 14:41",
   "items": [
+    {
+      "id": "WLF00004639",
+      "title": "전기요금 복지할인",
+      "summary": "기초생활수급자, 차상위계층, 기초연금수급자, 장애인, 국가유공자의 전기요금 부담을 경감하고자 요금감면을 지원합니다.",
+      "category": "생활지원",
+      "target": "보훈대상자,장애인,저소득",
+      "org": "기후에너지환경부",
+      "source": "복지로",
+      "url": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00004639&wlfareInfoReldBztpCd=01"
+    },
     {
       "id": "WLF00000026",
       "title": "장애인자립자금대여",
@@ -451,16 +461,6 @@
       "org": "보건복지부",
       "source": "복지로",
       "url": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00000032&wlfareInfoReldBztpCd=01"
-    },
-    {
-      "id": "WLF00004639",
-      "title": "전기요금 복지할인",
-      "summary": "기초생활수급자, 차상위계층, 기초연금수급자, 장애인, 국가유공자의 전기요금 부담을 경감하고자 요금감면을 지원합니다.",
-      "category": "생활지원",
-      "target": "보훈대상자,장애인,저소득",
-      "org": "기후에너지환경부",
-      "source": "복지로",
-      "url": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00004639&wlfareInfoReldBztpCd=01"
     },
     {
       "id": "WLF00000027",

@@ -2304,7 +2304,7 @@
    "state": "noText",
    "why": "지원 안 하는 형식(2. Consent form Application for IBS.docx)",
    "end": "2026-12-27",
-   "tries": 2,
+   "tries": 3,
    "checkedAt": "2026-11-16"
   },
   "306891": {
@@ -3043,6 +3043,72 @@
   "307044": {
    "state": "no",
    "end": "2026-12-01",
+   "tries": 0,
+   "checkedAt": "2026-11-16"
+  },
+  "307045": {
+   "state": "no",
+   "end": "2026-11-23",
+   "tries": 0,
+   "checkedAt": "2026-11-16"
+  },
+  "307046": {
+   "state": "no",
+   "end": "2026-11-30",
+   "tries": 0,
+   "checkedAt": "2026-11-16"
+  },
+  "307049": {
+   "state": "no",
+   "end": "2026-11-20",
+   "tries": 0,
+   "checkedAt": "2026-11-16"
+  },
+  "307050": {
+   "state": "no",
+   "end": "2026-11-30",
+   "tries": 0,
+   "checkedAt": "2026-11-16"
+  },
+  "307052": {
+   "state": "no",
+   "end": "2026-11-20",
+   "tries": 0,
+   "checkedAt": "2026-11-16"
+  },
+  "307053": {
+   "state": "no",
+   "end": "2026-11-20",
+   "tries": 0,
+   "checkedAt": "2026-11-16"
+  },
+  "307054": {
+   "state": "no",
+   "end": "2026-11-23",
+   "tries": 0,
+   "checkedAt": "2026-11-16"
+  },
+  "307055": {
+   "state": "no",
+   "end": "2026-11-23",
+   "tries": 0,
+   "checkedAt": "2026-11-16"
+  },
+  "307056": {
+   "state": "no",
+   "end": "2026-11-30",
+   "tries": 0,
+   "checkedAt": "2026-11-16"
+  },
+  "307057": {
+   "state": "no",
+   "end": "2026-11-23",
+   "tries": 0,
+   "checkedAt": "2026-11-16"
+  },
+  "307058": {
+   "state": "no",
+   "end": "2026-11-23",
    "tries": 0,
    "checkedAt": "2026-11-16"
   }
