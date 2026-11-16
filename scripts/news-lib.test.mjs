@@ -52,3 +52,18 @@ assert.equal(validateNews([{ id: 'x', title: 't', date: '2026-10-29', url: 'http
   assert.equal(r.date, '2026-11-10')
   assert.deepEqual(validateNews([toNews(r)]), [])
 }
+
+{
+  const src = SOURCES.find((s) => s.prefix === 'koddi-press')
+  const html = `<table><tbody><tr>
+<td>2517</td>
+<td class="left"><a href="./press_view.jsp?brdNum=7430905&amp;brdType=PRESS&amp;searchParamUrl=pageSize%3D20">한국장애인개발원?서울관광재단, 맞손</a></td>
+<td>2026-11-16</td>
+<td>1</td></tr></tbody></table>`
+  const [r] = src.parse(html, src)
+  assert.equal(r.id, 'koddi-press-7430905')
+  assert.equal(r.title, '한국장애인개발원·서울관광재단, 맞손')
+  assert.equal(r.url, 'https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430905&brdType=PRESS')
+  assert.equal(isRelevant(r), true)
+  assert.deepEqual(validateNews([toNews(r)]), [])
+}

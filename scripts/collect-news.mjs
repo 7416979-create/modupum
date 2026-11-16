@@ -14,7 +14,8 @@ try {
     try {
       const res = await fetch(src.rss, { headers: { 'User-Agent': 'modupum-bot (+https://modupum.kr)' }, signal: AbortSignal.timeout(30000) })
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      const got = parseRss(await res.text(), src)
+      const text = await res.text()
+      const got = src.parse ? src.parse(text, src) : parseRss(text, src)
       if (got.length === 0) throw new Error('받은 글이 없습니다')
       rows.push(...got)
       okSources += 1

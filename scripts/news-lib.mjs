@@ -12,6 +12,8 @@ export const SOURCES = [
   { name: '서울시 복지 소식', rss: 'https://news.seoul.go.kr/welfare/feed', prefix: 'seoul-welfare', idRe: /archives\/(\d+)/, link: (no) => `https://news.seoul.go.kr/welfare/archives/${no}` },
   // 공공누리 제1유형(출처표시): 제목+원문 링크+출처만 싣는다. 본문은 description 이 아니라 contents 태그.
   { name: '경기도 보도자료', rss: 'https://gnews.gg.go.kr/rss/gnewsRssBodo.do', prefix: 'gg-bodo', idRe: /number=(\d+)/, descTag: 'contents', link: (no) => `https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&number=${no}` },
+  // 공공누리 제4유형(출처표시·상업적 이용금지·변경금지): RSS 가 없어 목록 HTML 을 읽고 제목+원문 링크+출처만 싣는다.
+  { name: '한국장애인개발원 보도자료', rss: 'https://www.koddi.or.kr/bbs/press.jsp', prefix: 'koddi-press', parse: (html, src) => parseKoddiList(html, src) },
 ]
 export const MAX_NEWS = 200
 
@@ -42,6 +44,17 @@ export const parseRss = (xml, src = SOURCES[0]) =>
       date: /^\d{4}-\d{2}-\d{2}$/.test(dc) ? dc : Number.isNaN(t) ? '' : new Date(t + 9 * 3600000).toISOString().slice(0, 10),
     }
   })
+
+// 한국장애인개발원 보도자료 목록(HTML 표) 파싱. 제목의 가운뎃점이 '?' 로 깨져 오는 것은 글자 사이일 때만 '·' 로 고친다.
+export const parseKoddiList = (html, src) =>
+  [...String(html).matchAll(/<tr>\s*<td>\d+<\/td>\s*<td class="left"><a href="\.\/press_view\.jsp\?brdNum=(\d+)&amp;brdType=PRESS[^"]*">([\s\S]*?)<\/a><\/td>\s*<td>(\d{4}-\d{2}-\d{2})<\/td>/g)].map((m) => ({
+    id: `${src.prefix}-${m[1]}`,
+    title: decode(m[2].replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim().replace(/(?<=[가-힣A-Za-z])\?(?=[가-힣A-Za-z])/g, '·'),
+    desc: '',
+    url: `https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=${m[1]}&brdType=PRESS`,
+    source: src.name,
+    date: m[3],
+  }))
 
 // 제목에 키워드가 있거나, 본문 앞부분(300자)에 '장애'가 있으면 관련 소식으로 본다.
 export const isRelevant = (r) => NEWS_KEYWORDS.some((k) => r.title.includes(k)) || r.desc.slice(0, 300).includes('장애')
@@ -74,7 +87,7 @@ export const validateNews = (items) => {
   const errors = []
   const ymd = /^\d{4}-\d{2}-\d{2}$/
   for (const n of items) {
-    if (!n.id || !n.title || !ymd.test(n.date) || !/^https:\/\/(www\.(mohw|moel)\.go\.kr|news\.seoul\.go\.kr|gnews\.gg\.go\.kr)\//.test(n.url)) errors.push(`형식 오류: ${n.id || n.title}`)
+    if (!n.id || !n.title || !ymd.test(n.date) || !/^https:\/\/(www\.(mohw|moel)\.go\.kr|news\.seoul\.go\.kr|gnews\.gg\.go\.kr|www\.koddi\.or\.kr)\//.test(n.url)) errors.push(`형식 오류: ${n.id || n.title}`)
   }
   return errors
 }

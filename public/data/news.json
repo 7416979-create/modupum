@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-16",
+  "updatedAt": "2026-11-17",
   "items": [
     {
       "id": "mohw-1492560",
@@ -17,6 +17,54 @@
       "source": "서울시 복지 소식",
       "date": "2026-11-16",
       "url": "https://news.seoul.go.kr/welfare/archives/584709"
+    },
+    {
+      "id": "koddi-press-7430905",
+      "title": "한국장애인개발원·서울관광재단, ‘누구나 누리는 관광’으로 한국 장애정책 알리기 위해 맞손",
+      "summary": "한국장애인개발원·서울관광재단, ‘누구나 누리는 관광’으로 한국 장애정책 알리기 위해 맞손",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-16",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430905&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430903",
+      "title": "한국장애인개발원, 전 직원 워크숍서 인권·윤리경영·상호존중 실천 다짐",
+      "summary": "한국장애인개발원, 전 직원 워크숍서 인권·윤리경영·상호존중 실천 다짐",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-16",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430903&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430899",
+      "title": "개발원 서울센터, 서울시 공무원 발달장애인 공공후견 실무역량 강화",
+      "summary": "개발원 서울센터, 서울시 공무원 발달장애인 공공후견 실무역량 강화",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-16",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430899&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430897",
+      "title": "개발원 전북센터, 장애영유아의 선택과 표현 존중하는 ‘오감 톡톡, 맛있는 동행’ 개최",
+      "summary": "개발원 전북센터, 장애영유아의 선택과 표현 존중하는 ‘오감 톡톡, 맛있는 동행’ 개최",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-16",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430897&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430895",
+      "title": "한국장애인개발원, 2026년 국가통계 통합DB 자료관리 최우수기관’ 선정",
+      "summary": "한국장애인개발원, 2026년 국가통계 통합DB 자료관리 최우수기관’ 선정",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-16",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430895&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430893",
+      "title": "개발원 전남센터, 전남광주통합특별시 공무원 대상 발달장애인 지원사업 실무교육 실시",
+      "summary": "개발원 전남센터, 전남광주통합특별시 공무원 대상 발달장애인 지원사업 실무교육 실시",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-16",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430893&brdType=PRESS"
     },
     {
       "id": "seoul-welfare-584691",
@@ -105,6 +153,102 @@
       "source": "경기도 보도자료",
       "date": "2026-11-10",
       "url": "https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&number=71957"
+    },
+    {
+      "id": "koddi-press-7430845",
+      "title": "개발원 전북센터, 최중증 발달장애인 개별 욕구에 맞는 돌봄 방안 모색",
+      "summary": "개발원 전북센터, 최중증 발달장애인 개별 욕구에 맞는 돌봄 방안 모색",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-10",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430845&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430843",
+      "title": "개발원 충남센터-금산군장애인복지관, 장애아동·발달장애인 복지서비스 연계 협력",
+      "summary": "개발원 충남센터-금산군장애인복지관, 장애아동·발달장애인 복지서비스 연계 협력",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-10",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430843&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430839",
+      "title": "개발원 서울센터, 관악구발달장애인평생교육센터와 발달장애인·가족 복지서비스 연계 협력",
+      "summary": "개발원 서울센터, 관악구발달장애인평생교육센터와 발달장애인·가족 복지서비스 연계 협력",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-10",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430839&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430837",
+      "title": "개발원 대구센터, 영유아 발달지연 조기발견 위한 실무자 교육 실시",
+      "summary": "개발원 대구센터, 영유아 발달지연 조기발견 위한 실무자 교육 실시",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-10",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430837&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430835",
+      "title": "개발원 부산센터, ‘하나되는 학마을잔치’서 퀴즈로 발달장애 이해 도와",
+      "summary": "개발원 부산센터, ‘하나되는 학마을잔치’서 퀴즈로 발달장애 이해 도와",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-10",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430835&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430833",
+      "title": "발달장애인 행동통제보다 이해와 예방을",
+      "summary": "발달장애인 행동통제보다 이해와 예방을",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-10",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430833&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430831",
+      "title": "개발원 충북센터, 발달장애인 공공후견인 후보자 확보 방안 논의",
+      "summary": "개발원 충북센터, 발달장애인 공공후견인 후보자 확보 방안 논의",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-10",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430831&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430829",
+      "title": "개발원 제주센터-제주영유아발달지원센터, 발달지연 영유아·장애아동 맞춤형 지원 협력",
+      "summary": "개발원 제주센터-제주영유아발달지원센터, 발달지연 영유아·장애아동 맞춤형 지원 협력",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-10",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430829&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430827",
+      "title": "개발원 전북센터, 발달장애인 의사·선택 존중하는 활동서비스 지원 사례 공유",
+      "summary": "개발원 전북센터, 발달장애인 의사·선택 존중하는 활동서비스 지원 사례 공유",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-10",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430827&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430825",
+      "title": "개발원 부산센터-메드윌병원, 장애위험 영유아·장애아동 맞춤형 지원 협력",
+      "summary": "개발원 부산센터-메드윌병원, 장애위험 영유아·장애아동 맞춤형 지원 협력",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-10",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430825&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430823",
+      "title": "개발원 대전센터, 개소 10주년 맞아 발달장애인 지원 성과와 발전 방향 나눈다",
+      "summary": "개발원 대전센터, 개소 10주년 맞아 발달장애인 지원 성과와 발전 방향 나눈다",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-10",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430823&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430821",
+      "title": "개발원 경북센터, ‘2026 배리어프리 樂(낙) 페스타’서 장애아동·발달장애인 복지서비스 안내",
+      "summary": "개발원 경북센터, ‘2026 배리어프리 樂(낙) 페스타’서 장애아동·발달장애인 복지서비스 안내",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-10",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430821&brdType=PRESS"
     },
     {
       "id": "mohw-1492473",
