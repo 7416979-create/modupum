@@ -42,26 +42,6 @@
       "addedAt": "2026-10-29T23:53:59.017Z"
     },
     {
-      "id": "kead-217205",
-      "title": "[인천지사] 2026년도 제9회 인천광역시계양구시설관리공단 직원(기간제근로자) 공개경쟁채용 계획 공고",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217205&menuId=MENU2201",
-      "end": "2026-11-16",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-11-02T01:12:14.012Z"
-    },
-    {
-      "id": "kead-217265",
-      "title": "[경기동부지사] 대한적십자가 경기혈액원(야탑센터) 안내 보조원 1명 채용 (~11월 16일 09:00 까지 접수)",
-      "org": "대한적십자사 경기혈액원",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217265&menuId=MENU2201",
-      "end": "2026-11-16",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-11-02T03:46:45.695Z"
-    },
-    {
       "id": "kead-217319",
       "title": "[서울북부지사] 서울의료원 기간제근로자 6명 채용(~11.12 16시)",
       "org": "한국장애인고용공단",
@@ -112,26 +92,6 @@
       "addedAt": "2026-11-09T07:21:51.343Z"
     },
     {
-      "id": "kead-217503",
-      "title": "[서울북부지사] 한국사회보장정보원 직원 채용 모집 안내(~11.16. 16:00)",
-      "org": "한국장애인고용공단",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217503&menuId=MENU2201",
-      "end": "2026-11-16",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-11-10T07:54:22.852Z"
-    },
-    {
-      "id": "kead-217575",
-      "title": "[서울지역본부] 홍익대학교 본사 사무보조 모집 ~11.16",
-      "org": "홍익대학교",
-      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217575&menuId=MENU2201",
-      "end": "2026-11-16",
-      "source": "KEAD",
-      "status": "pending",
-      "addedAt": "2026-11-12T05:48:03.145Z"
-    },
-    {
       "id": "kead-217567",
       "title": "[경기동부지사] 용인시육아종합지원센터 보정점 장난감 세척원 1명 모집(~11.26)",
       "org": "용인시육아종합지원센터",
@@ -140,6 +100,16 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-12T05:48:03.145Z"
+    },
+    {
+      "id": "kead-217634",
+      "title": "[경기북부지사] 국민건강보험공단 일산병원 병원업무 보조 직원 채용(7명)",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217634&menuId=MENU2201",
+      "end": "2026-12-01",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-16T19:00:35.260Z"
     }
   ]
 }
