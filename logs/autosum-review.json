@@ -35,17 +35,5 @@
     "reasons": [
       "요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets 10pm (Asia/Seoul)"
     ]
-  },
-  {
-    "id": "gojobs-308652",
-    "title": "[양주출입국·외국인사무소] 2026년도 제3회 공무직근로자(사무보조원, 장애인 제한경쟁) 채용 재공고",
-    "org": "법무부 양주출입국.외국인사무소",
-    "end": "2026-11-23",
-    "url": "https://modupum.kr/gojobs/308652/",
-    "attempts": 1,
-    "last": "2026-11-16",
-    "reasons": [
-      "요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets 10pm (Asia/Seoul)"
-    ]
   }
 ]

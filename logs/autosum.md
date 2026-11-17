@@ -45,3 +45,4 @@
 2026-11-16 10:40 | 대상 2 | 통과 0 | 확인 필요 2 (manual-krict-170: 요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets 10pm (Asia/Seoul); 307024: 요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets 10pm (Asia/Seoul))
 2026-11-16 14:40 | 대상 2 | 통과 0 | 확인 필요 2 (manual-krict-170: 요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets 10pm (Asia/Seoul); 307024: 요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets 10pm (Asia/Seoul))
 2026-11-16 18:40 | 대상 3 | 통과 0 | 확인 필요 3 (manual-krict-170: 요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets 10pm (Asia/Seoul); gojobs-308652: 요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets 10pm (Asia/Seoul); 307024: 요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets 10pm (Asia/Seoul))
+2026-11-17 10:40 | 대상 2 | 통과 2 | 확인 필요 0
