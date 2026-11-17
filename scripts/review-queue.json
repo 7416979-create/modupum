@@ -110,6 +110,16 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-16T19:00:35.260Z"
+    },
+    {
+      "id": "kead-217670",
+      "title": "[대전지역본부] 한국청소년정책연구원 행정원(정보보안 및 정보시스템 운영)",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217670&menuId=MENU2201",
+      "end": "2026-12-02",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-17T08:37:58.449Z"
     }
   ]
 }
