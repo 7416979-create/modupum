@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-17",
+  "updatedAt": "2026-11-18",
   "items": [
     {
       "id": "seoul-welfare-584715",
@@ -17,6 +17,14 @@
       "source": "서울시 복지 소식",
       "date": "2026-11-17",
       "url": "https://news.seoul.go.kr/welfare/archives/584760"
+    },
+    {
+      "id": "gg-bodo-72000",
+      "title": "배움이 일상이 되는 경기도…‘제6회 경기도 평생학습대상’ 우수사례 12건 선정",
+      "summary": "배움이 일상이 되는 경기도…‘제6회 경기도 평생학습대상’ 우수사례 12건 선정",
+      "source": "경기도 보도자료",
+      "date": "2026-11-17",
+      "url": "https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&number=72000"
     },
     {
       "id": "mohw-1492560",
