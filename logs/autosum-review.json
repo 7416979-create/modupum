@@ -35,5 +35,17 @@
     "reasons": [
       "요약 생성 실패: claude 종료코드 1: You've hit your weekly limit · resets 10pm (Asia/Seoul)"
     ]
+  },
+  {
+    "id": "307202",
+    "title": "2027년 상반기 청년 체험형 인턴(장애인제한경쟁/단시간근로제) 공개채용 공고",
+    "org": "영화진흥위원회",
+    "end": "2026-12-03",
+    "url": "https://kofic.or.kr/kofic/business/board/selectBoardDetail.do?boardNumber=4&boardSeqNumber=76684",
+    "attempts": 1,
+    "last": "2026-11-18",
+    "reasons": [
+      "빈칸 문구가 8칸: 추출이 덜 됐을 수 있음"
+    ]
   }
 ]
