@@ -42,10 +42,10 @@
     "org": "영화진흥위원회",
     "end": "2026-12-03",
     "url": "https://kofic.or.kr/kofic/business/board/selectBoardDetail.do?boardNumber=4&boardSeqNumber=76684",
-    "attempts": 1,
-    "last": "2026-11-18",
+    "attempts": 2,
+    "last": "2026-11-19",
     "reasons": [
-      "빈칸 문구가 8칸: 추출이 덜 됐을 수 있음"
+      "빈칸 문구가 7칸: 추출이 덜 됐을 수 있음"
     ]
   }
 ]
