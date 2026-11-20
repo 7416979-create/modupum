@@ -1,7 +1,79 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-19",
+  "updatedAt": "2026-11-20",
   "items": [
+    {
+      "id": "koddi-press-7430949",
+      "title": "개발원 전북센터, 발달장애인 공공후견 현장 과제 논의",
+      "summary": "개발원 전북센터, 발달장애인 공공후견 현장 과제 논의",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-20",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430949&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430947",
+      "title": "개발원 충남센터-전국장애아동보육제공기관협의회 충남협의회, 발달지연 아동 조기발견·조기개입 맞손",
+      "summary": "개발원 충남센터-전국장애아동보육제공기관협의회 충남협의회, 발달지연 아동 조기발견·조기개입 맞손",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-20",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430947&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430945",
+      "title": "개발원 제주센터-대한물리치료사협회 제주지부, 장애아동 지원을 위한 물리치료 자문체계 구축",
+      "summary": "개발원 제주센터-대한물리치료사협회 제주지부, 장애아동 지원을 위한 물리치료 자문체계 구축",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-20",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430945&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430943",
+      "title": "개발원 광주센터, 장애아동 개인별지원계획·영유아 조기개입서비스 연계",
+      "summary": "개발원 광주센터, 장애아동 개인별지원계획·영유아 조기개입서비스 연계",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-20",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430943&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430941",
+      "title": "개발원 경기센터, 어린이집과 장애아동 조기발견·조기개입 서비스 연계 강화",
+      "summary": "개발원 경기센터, 어린이집과 장애아동 조기발견·조기개입 서비스 연계 강화",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-20",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430941&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430937",
+      "title": "충북 발달장애인 활동서비스, 현장의 목소리로 더 나은 방향을 찾다",
+      "summary": "충북 발달장애인 활동서비스, 현장의 목소리로 더 나은 방향을 찾다",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-20",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430937&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430935",
+      "title": "개발원 제주센터, 자기결정부터 올레길 완주까지… 발달장애인 지원 사례 공유",
+      "summary": "개발원 제주센터, 자기결정부터 올레길 완주까지… 발달장애인 지원 사례 공유",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-20",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430935&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430933",
+      "title": "개발원 전북센터-원광대학교 WON 웰니스센터, 발달장애인 건강·가족 심리 지원 협력",
+      "summary": "개발원 전북센터-원광대학교 WON 웰니스센터, 발달장애인 건강·가족 심리 지원 협력",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-20",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430933&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7430931",
+      "title": "개발원 부산센터-부산광역시피해장애아동쉼터, 피해장애아동 회복·권리구제 위해 맞손",
+      "summary": "개발원 부산센터-부산광역시피해장애아동쉼터, 피해장애아동 회복·권리구제 위해 맞손",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-20",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7430931&brdType=PRESS"
+    },
     {
       "id": "seoul-welfare-584800",
       "title": "(일정변경)(#광주)'경기광주역 롯데캐슬 시그니처 2단지' 서울시 장애인 특별공급 기관추천 일정 6차 변경 안내",
