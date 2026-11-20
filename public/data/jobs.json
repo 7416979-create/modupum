@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-20 02:46",
+  "updatedAt": "2026-11-20 10:46",
   "items": [
     {
       "id": "306872",
@@ -130,7 +130,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-20 02:45",
+      "copiedAt": "2026-11-20 10:45",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 23일(월) 18:00까지예요. 우편은 그 시각까지 도착해야 해요.",
@@ -171,7 +171,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-20 02:45",
+      "copiedAt": "2026-11-20 10:45",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 23일(월) 18:00까지",
@@ -320,7 +320,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-20 02:45",
+      "copiedAt": "2026-11-20 10:45",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 25일(수) 18:00까지 (접수 마감일 18:00까지 도착한 것만 유효해요)",
@@ -361,7 +361,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-20 02:45",
+      "copiedAt": "2026-11-20 10:45",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 25일(수) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -480,7 +480,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-20 02:45",
+      "copiedAt": "2026-11-20 10:45",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 26일(목) 18:00까지예요. 그 시각까지 도착한 전자우편만 접수돼요.",
@@ -506,6 +506,31 @@
         "model": "haiku",
         "trialUntil": "2026-11-12"
       }
+    },
+    {
+      "id": "kead-217741",
+      "title": "[장애인만 채용] 민주평화통일자문회의 인천 검단구협의회 사무원(무기계약직) 채용 안내",
+      "org": "한국장애인고용공단",
+      "region": "인천광역시 검단구",
+      "hires": null,
+      "start": "2026-11-19",
+      "end": "2026-11-26",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217741&menuId=MENU2201",
+      "disabledOnly": true,
+      "orgType": "공공기관",
+      "source": "KEAD",
+      "sourceLabel": "한국장애인고용공단(KEAD)",
+      "summary": {
+        "채용인원": "확인 안 됨",
+        "고용형태": "본문에 무기계약직·무기계약·계약직 표현이 있음",
+        "접수방법": "확인 안 됨",
+        "장애인관련": [
+          "[장애인만 채용]"
+        ]
+      },
+      "notes": [
+        "본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요."
+      ]
     },
     {
       "id": "kead-217674",
@@ -601,7 +626,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-20 02:45",
+      "copiedAt": "2026-11-20 10:45",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 27일(금) 18:00까지 (우편은 마감일 18시까지 도착해야 해요)",
@@ -716,7 +741,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-20 02:45",
+      "copiedAt": "2026-11-20 10:45",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지예요. 등기우편은 이 날 우체국 소인(빠른등기)까지 유효해요.",
@@ -756,7 +781,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-11-20 02:45",
+      "copiedAt": "2026-11-20 10:45",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지 접수 기간은 채용 시까지예요. 접수 마감일은 2026-11-30이에요.",
@@ -1052,5 +1077,5 @@
       }
     }
   ],
-  "keadCheckedAt": "2026-11-20 02:46"
+  "keadCheckedAt": "2026-11-20 10:46"
 }
