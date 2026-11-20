@@ -110,6 +110,26 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-18T01:46:37.663Z"
+    },
+    {
+      "id": "kead-217761",
+      "title": "[서울북부지사] 서울양원숲초 미화직 1명 모집(~11.23.)",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217761&menuId=MENU2201",
+      "end": "2026-11-23",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-20T05:47:08.590Z"
+    },
+    {
+      "id": "kead-217758",
+      "title": "[서울남부지사] 서울양목초등학교 환경미화직 채용",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217758&menuId=MENU2201",
+      "end": "2026-11-25",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-20T05:47:08.590Z"
     }
   ]
 }
