@@ -126,3 +126,9 @@ test('수동 확정 공고는 마감 전이면 넣고, 이미 있으면 중복 �
   assert.equal(r3.items.length, 1)
   assert.equal(r3.items[0].id, '306999')
 })
+
+test('동점자 순위 문구의 "장애인, 전형별"은 장애인 전형 근거가 아니다(11-21 나노기술원 오탐)', async () => {
+  const { findDedicated } = await import('./mixed-lib.mjs')
+  assert.equal(findDedicated('* 동점자는 보훈대상자, 장애인, 전형별 개별 점수 합산 고득점자 순으로 합격자 선정'), null)
+  assert.ok(findDedicated('채용분야: 일반행정(장애인 전형) 1명'))
+})
