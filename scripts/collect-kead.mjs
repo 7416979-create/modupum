@@ -6,10 +6,13 @@ import { readFile, writeFile } from 'node:fs/promises'
 import { loadHolidays, jobCollectDecision, isForced } from './workday-lib.mjs'
 import { enqueueSave } from './review-lib.mjs'
 import { listUrl, viewUrl, parseList, bodyLines, viewTitle, buildJob, mergeKead, isKead, KEAD_SOURCE_LABEL } from './kead-lib.mjs'
+import { attachmentUrl, readAttachment } from './attach-lib.mjs'
 
 const UA = 'modupum-bot (+https://modupum.kr)'
 const PAGES = Number(process.env.KEAD_PAGES || 2)
 const MAX_DETAIL = 20
+// 첨부는 전용으로 잡힌 새 공고의 첫 번째 첨부 1건만 받는다(하루 호출은 상세 조회 상한의 1.5배 이내).
+const ATTACH_MAX = 10
 const WAIT = 3000
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
@@ -51,6 +54,7 @@ async function main() {
 
   const jobs = []
   let detail = 0
+  let attachRead = 0
   for (const row of rows) {
     const id = `kead-${row.id}`
     if (row.end && row.end < today) continue
@@ -59,19 +63,31 @@ async function main() {
       continue
     }
     let lines = []
+    let attachUrl = ''
     if (detail < MAX_DETAIL) {
       detail += 1
       try {
         const html = await getText(viewUrl(row.id))
         // 목록과 같은 글인지 제목으로 확인한다.
-        if (viewTitle(html).replace(/\s+/g, '') === row.title.replace(/\s+/g, '')) lines = bodyLines(html)
+        if (viewTitle(html).replace(/\s+/g, '') === row.title.replace(/\s+/g, '')) {
+          lines = bodyLines(html)
+          attachUrl = attachmentUrl(html)
+        }
         else console.error(`KEAD ${row.id}: 상세 제목이 목록과 달라 본문을 쓰지 않습니다`)
       } catch (e) {
         console.error(`KEAD ${row.id}: 본문 읽기 실패(${e.message}). 목록 정보만 사용합니다`)
       }
       await sleep(WAIT)
     }
-    const job = buildJob(row, lines, rules)
+    let job = buildJob(row, lines, rules)
+    // 전용으로 잡힌 새 공고만 첨부를 본다. 첨부에 우대만 있으면 전용을 해제한다.
+    if (job.disabledOnly && lines.length && attachUrl && attachRead < ATTACH_MAX) {
+      attachRead += 1
+      const attach = await readAttachment(attachUrl, UA)
+      await sleep(WAIT)
+      console.log(`KEAD ${row.id}: 첨부 형식 ${attach.kind}, ${attach.text ? '글자 읽음' : '글자 못 읽음'}`)
+      job = buildJob(row, lines, rules, attach)
+    }
     if (!job.end) {
       console.error(`KEAD ${row.id}: 마감일을 알 수 없어 제외합니다`)
       continue

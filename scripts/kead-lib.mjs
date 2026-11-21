@@ -171,7 +171,8 @@ export const restrictLineOf = (lines) => {
 }
 
 // 장애인 전용 = 제목에 분명한 표현(제한경쟁·전용 등)이 있거나, 제목이 장애인 대상이고 기관 본문에 제한 표현(장애인 제한 채용 등)이 있을 때만 true.
-export const buildJob = (row, lines, rules) => {
+// attach: 첨부 공고문을 읽은 결과({ kind, text }). 없거나 못 읽었으면 기존 판정을 그대로 둔다.
+export const buildJob = (row, lines, rules, attach = null) => {
   const s = lines.length ? summarize(lines) : { hires: null, summary: null }
   const listEnd = row.end
   const bodyEnd = lines.length ? bodyEndDate(lines, listEnd) : ''
@@ -191,6 +192,15 @@ export const buildJob = (row, lines, rules) => {
   if (disabledOnly && lines.length && isPreferenceOnlyBody(lines)) {
     disabledOnly = false
     notes.push('제목에는 장애인 대상으로 보이나, 원문은 장애인을 우대사항으로만 적고 있어 장애인 전용 공고로 표시하지 않았습니다. 원문에서 확인하세요.')
+  }
+  // 첨부 공고문: 우대만 있고 제한 표현이 없으면 전용 해제(더 엄격한 쪽). 못 읽었으면 전용은 유지하고 안내만 붙인다.
+  if (disabledOnly && attach) {
+    if (attach.text && isPreferenceOnlyBody([attach.text])) {
+      disabledOnly = false
+      notes.push('첨부 공고문에서 장애인을 우대로만 적고 있어 장애인 전용 공고로 표시하지 않았습니다. 원문에서 확인하세요.')
+    } else if (!attach.text) {
+      notes.push('첨부 공고문은 확인하지 못했습니다. 원문에서 확인하세요.')
+    }
   }
   // 전용으로 본 근거 한 줄(60자 이내): 본문의 제한 표현 줄을 쓰고, 없으면 제목. 전용이 아니면 빈 값(화면에 안 나옴).
   const disabledEvidence = disabledOnly ? restrictLineOf(lines) || cut(row.title.replace(/\s+/g, ' ').trim(), 60) : ''
