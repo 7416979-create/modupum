@@ -31,6 +31,10 @@ jobs:
         continue-on-error: true
         env:
           DAILY_CHECK_REPORT: '1'
+      - name: Check preference-only listings
+        # 우대·가점만 있는 공고가 전용으로 올라갔는지 확인. 경고만 하고 배포·로그 커밋은 막지 않는다.
+        run: node scripts/check-preference-only.mjs
+        continue-on-error: true
       - name: Commit log
         run: |
           git config user.name "modupum-bot"

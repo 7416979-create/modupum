@@ -729,6 +729,7 @@ function Jobs({ focusId = '' }) {
                   {i.mixed && (
                     <p className="period-note"><strong>일부 모집분야만 장애인 대상이에요.</strong> 해당 분야를 공고에서 꼭 확인하세요.{(i.mixedFields ?? []).length > 0 ? <><br />해당 분야: {i.mixedFields.join(' / ')}</> : null}{i.mixedEvidence ? <><br />공고에 적힌 글: {i.mixedEvidence}</> : null}</p>
                   )}
+                  {i.disabledEvidence ? <p className="period-note">전형 근거: {i.disabledEvidence}</p> : null}
                   {(i.notes ?? []).map((n) => (
                     <p key={n} className="period-note"><strong>참고</strong> {n}</p>
                   ))}

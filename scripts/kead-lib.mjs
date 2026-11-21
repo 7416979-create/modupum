@@ -164,6 +164,12 @@ export const isPreferenceOnlyBody = (lines) => {
   return /우대/.test(text) && /장애인/.test(text)
 }
 
+// 본문에서 기관이 쓴 제한 표현이 든 줄(60자 이내). 없으면 ''. 고용공단 표시 '[장애인만 채용]'은 빼고 본다.
+export const restrictLineOf = (lines) => {
+  const hit = lines.map((l) => l.replace(KEAD_TAG, ' ').replace(/\s+/g, ' ').trim()).find((l) => RESTRICT_IN_BODY.test(l))
+  return hit ? cut(hit, 60) : ''
+}
+
 // 장애인 전용 = 제목에 분명한 표현(제한경쟁·전용 등)이 있거나, 제목이 장애인 대상이고 기관 본문에 제한 표현(장애인 제한 채용 등)이 있을 때만 true.
 export const buildJob = (row, lines, rules) => {
   const s = lines.length ? summarize(lines) : { hires: null, summary: null }
@@ -186,6 +192,8 @@ export const buildJob = (row, lines, rules) => {
     disabledOnly = false
     notes.push('제목에는 장애인 대상으로 보이나, 원문은 장애인을 우대사항으로만 적고 있어 장애인 전용 공고로 표시하지 않았습니다. 원문에서 확인하세요.')
   }
+  // 전용으로 본 근거 한 줄(60자 이내): 본문의 제한 표현 줄을 쓰고, 없으면 제목. 전용이 아니면 빈 값(화면에 안 나옴).
+  const disabledEvidence = disabledOnly ? restrictLineOf(lines) || cut(row.title.replace(/\s+/g, ' ').trim(), 60) : ''
   const org = (lines.length && employerOf(lines)) || KEAD_ORG
   return {
     id: `kead-${row.id}`,
@@ -197,6 +205,7 @@ export const buildJob = (row, lines, rules) => {
     end,
     url: viewUrl(row.id),
     disabledOnly,
+    disabledEvidence,
     orgType: '공공기관',
     source: KEAD_SOURCE,
     sourceLabel: KEAD_SOURCE_LABEL,

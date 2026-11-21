@@ -118,3 +118,17 @@ test('KEAD 제목에 장애인 대상이 드러나면 통과, 기관명·우대�
   ]
   for (const t of no) assert.equal(isKeadDisabledTitle(t), false, t)
 })
+
+test('전용 공고는 근거 한 줄(disabledEvidence)을 갖고, 전용이 아니면 근거는 비어 있다', () => {
+  const [a] = parseList(html)
+  const row = { ...a, title: '[장애인만 채용] 우체국 집배 보조 채용' }
+  const restricted = ['[장애인만 채용]', '1. 채용방식 : 장애인 제한 채용', '- 만 18세 이상']
+  const j = buildJob(row, restricted, rules)
+  assert.equal(j.disabledOnly, true)
+  assert.equal(j.disabledEvidence, '1. 채용방식 : 장애인 제한 채용')
+  assert.equal(buildJob(row, ['[장애인만 채용]', '- 장애인 우대', '- 만 18세 이상'], rules).disabledEvidence, '')
+  // 본문 근거가 없고 제목 규칙으로 전용이면 제목을 근거로 쓴다(60자 이내).
+  const t = buildJob({ ...a, title: '[강원] 장애인 제한경쟁 채용' }, [], rules)
+  assert.equal(t.disabledEvidence, '[강원] 장애인 제한경쟁 채용')
+  assert.ok(buildJob({ ...a, title: `[강원] 장애인 제한경쟁 ${'가'.repeat(80)}` }, [], rules).disabledEvidence.length <= 60)
+})
