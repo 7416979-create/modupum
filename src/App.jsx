@@ -702,7 +702,7 @@ function Jobs({ focusId = '' }) {
             <li key={i.id} className="item" data-job-id={String(i.id)}>
               <details onToggle={(e) => { if (e.currentTarget.open) { try { window.umami?.track('easy-open', { type: 'job' }) } catch { /* 무시 */ } } }}>
                 <summary>
-                  <h2><Badges period={periodOf(today(), { end: i.end })} region={needsRegion(i, 'jobs')} />{orgLabel(i.title, i.org)}<NewMark on={isNew(today(), i.start)} />{i.mixed && <span className="mixed-chip">일부 분야만 장애인 대상</span>}</h2>
+                  <h2><Badges period={periodOf(today(), { end: i.end })} region={needsRegion(i, 'jobs')} />{orgLabel(i.title, i.org)}<NewMark on={isNew(today(), i.start)} />{i.mixed && <span className="mixed-chip">장애인 구분모집</span>}</h2>
                   <span className={`sum-tag dday${soon ? ' soon' : ''}`}>{left === 0 ? '오늘 마감' : `마감 ${left}일 남음${i.end ? ` · ${String(i.end).slice(5).replace('-', '.')}` : ''}`}</span>
                 </summary>
                 <div className="detail">
@@ -727,7 +727,7 @@ function Jobs({ focusId = '' }) {
                     <div><dt>어디서</dt><dd>{i.easy ? (i.easy.어디서 ?? NO_INFO) : ([i.org, i.region].filter(Boolean).join(' · ') || NO_INFO)}</dd></div>
                   </dl>
                   {i.mixed && (
-                    <p className="period-note"><strong>일부 모집분야만 장애인 대상이에요.</strong> 해당 분야를 공고에서 꼭 확인하세요.{(i.mixedFields ?? []).length > 0 ? <><br />해당 분야: {i.mixedFields.join(' / ')}</> : null}{i.mixedEvidence ? <><br />공고에 적힌 글: {i.mixedEvidence}</> : null}</p>
+                    <p className="period-note"><strong>장애인 구분모집 공고예요.</strong> 해당 분야를 공고에서 꼭 확인하세요.{(i.mixedFields ?? []).length > 0 ? <><br />해당 분야: {i.mixedFields.join(' / ')}</> : null}{i.mixedEvidence ? <><br />공고에 적힌 글: {i.mixedEvidence}</> : null}</p>
                   )}
                   {i.disabledEvidence ? <p className="period-note">전형 근거: {i.disabledEvidence}</p> : null}
                   {(i.notes ?? []).map((n) => (

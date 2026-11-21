@@ -470,7 +470,7 @@
       "start": "2026-11-16",
       "end": "2026-11-30",
       "url": "https://job.alio.go.kr/recruitview.do?idx=307024",
-      "disabledOnly": true,
+      "disabledOnly": false,
       "mixed": true,
       "mixedEvidence": "ㅇ 제한경쟁(장애인, 미화·경비)",
       "mixedSource": "공고 정보"
@@ -484,7 +484,7 @@
       "start": "2026-11-19",
       "end": "2026-11-30",
       "url": "https://modupum.kr/gojobs/400052/",
-      "disabledOnly": true,
+      "disabledOnly": false,
       "orgType": "국가기관",
       "source": "나라일터",
       "copiedAt": "2026-11-20 22:39",
@@ -513,7 +513,9 @@
         "at": "2026-11-20",
         "model": "haiku",
         "trialUntil": "2026-11-12"
-      }
+      },
+      "mixed": true,
+      "mixedEvidence": "장애인 제한경쟁·구분모집(일부 분야)"
     },
     {
       "id": "gojobs-305072",
@@ -646,7 +648,7 @@
       "start": "2026-11-20",
       "end": "2026-12-07",
       "url": "http://www.ksif.or.kr/index.do, https://ksif.fairyhr.com/",
-      "disabledOnly": true,
+      "disabledOnly": false,
       "mixed": true,
       "mixedEvidence": "체험형 청년인턴(장애인 제한경쟁)",
       "mixedSource": "공고 정보",
@@ -678,14 +680,16 @@
     },
     {
       "id": "307234",
-      "title": "[한국전력국제원자력대학원대학교] 기간제근로자 채용 (휴직대체 및 제한경쟁_장애인)",
+      "title": "[한국전력국제원자력대학원대학교] 기간제근로자 채용 (휴직대체, 장애인 1명 제한전형 포함) 신규채용 공고",
       "org": "한국전력국제원자력대학원대학교",
       "region": "울산",
       "hires": 3,
       "start": "2026-11-19",
       "end": "2026-12-10",
       "url": "https://www.kings.ac.kr/cop/bbs/selectBoardArticle.do?bbsId=BBSMSTR_000000000245&nttId=5366",
-      "disabledOnly": true
+      "disabledOnly": false,
+      "mixed": true,
+      "mixedEvidence": "장애인 제한경쟁·구분모집(일부 분야)"
     },
     {
       "id": "kead-217363",
