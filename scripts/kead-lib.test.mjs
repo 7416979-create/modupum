@@ -51,9 +51,11 @@ test('마감일이 목록과 본문이 다르면 본문 우선 + 안내문', () 
 test('제목에 장애인 대상이 없으면 disabledOnly 가 false 이고 안내문은 붙이지 않는다', () => {
   const [a, b] = parseList(html)
   const c = { ...a, title: '[서울지역본부] 경성고등학교 미화 1명 모집(채용시)' }
-  assert.equal(buildJob(a, [], rules).disabledOnly, true)
+  // 고용공단 제목의 '장애인만' 표시만으로는 전용으로 보지 않는다(원문 확인 전까지). 제한경쟁 등 명확한 표현만 전용.
+  assert.equal(buildJob(a, [], rules).disabledOnly, false)
   assert.equal(buildJob(c, [], rules).disabledOnly, false)
-  assert.equal(buildJob(a, [], rules).eligibilityNote, undefined)
+  assert.equal(buildJob({ ...a, title: '[강원] 장애인 제한경쟁 채용' }, [], rules).disabledOnly, true)
+  // '장애인 전형'은 명확한 전용 표현이라 전용으로 본다.
   assert.equal(buildJob(b, [], rules).disabledOnly, true)
 })
 test('합칠 때 마감 지난 것·이미 있는 공고는 넣지 않고 이전 KEAD 분은 바꾼다', () => {

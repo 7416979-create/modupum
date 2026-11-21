@@ -152,6 +152,14 @@ export const isKeadDisabledTitle = (title) => {
   return !/우대|포함/.test(t)
 }
 
+// 원문이 장애인을 '우대'로만 적고 제한·전용 표현이 없으면 true(장애인 전용이 아님).
+const RESTRICT_IN_BODY = /제한\s*경쟁|장애인\s*만|장애인\s*전용|장애인에게만|장애인으로만|장애인\s*대상으로\s*한정/
+export const isPreferenceOnlyBody = (lines) => {
+  const text = lines.join(' ').replace(/\s+/g, ' ')
+  if (RESTRICT_IN_BODY.test(text)) return false
+  return /우대사항/.test(text) && /장애인/.test(text)
+}
+
 // 장애인 전용인지는 제목에 분명한 표현(제한경쟁·전용 등)이 있을 때만 true. 그 밖에는 단정하지 않는다.
 export const buildJob = (row, lines, rules) => {
   const s = lines.length ? summarize(lines) : { hires: null, summary: null }
@@ -165,7 +173,13 @@ export const buildJob = (row, lines, rules) => {
     notes.push('본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요.')
   }
   if (!lines.length) notes.push('본문을 읽지 못해 요약이 없습니다. 원문에서 확인하세요.')
-  const disabledOnly = isDisabledOnlyTitle(row.title, rules) || isKeadDisabledTitle(row.title)
+  // 고용공단 제목의 '[장애인만 채용]' 같은 표시만으로는 전용으로 보지 않는다. 제목에 제한경쟁·장애인 전형 같은 명확한 표현이 있을 때만 전용으로 본다(11-21, 검단구 공고 오분류).
+  let disabledOnly = isDisabledOnlyTitle(row.title, rules)
+  // 제목에 '장애인만'이 있어도 원문이 '우대사항'으로만 장애인을 적고 제한 표현이 없으면 전용으로 올리지 않는다(검단구 공고 사례, 11-21).
+  if (disabledOnly && lines.length && isPreferenceOnlyBody(lines)) {
+    disabledOnly = false
+    notes.push('제목에는 장애인 대상으로 보이나, 원문은 장애인을 우대사항으로만 적고 있어 장애인 전용 공고로 표시하지 않았습니다. 원문에서 확인하세요.')
+  }
   const org = (lines.length && employerOf(lines)) || KEAD_ORG
   return {
     id: `kead-${row.id}`,
