@@ -58,6 +58,28 @@ test('제목에 장애인 대상이 없으면 disabledOnly 가 false 이고 안�
   // '장애인 전형'은 명확한 전용 표현이라 전용으로 본다.
   assert.equal(buildJob(b, [], rules).disabledOnly, true)
 })
+test('검단구 사례: 제목 장애인만 + 본문 우대사항만이면 전용이 아니고, 제한경쟁 표현이 있으면 전용 유지', () => {
+  const [a] = parseList(html)
+  const row = { ...a, title: '[장애인만 채용] 민주평화통일자문회의 인천 검단구협의회 사무원(무기계약직) 채용 안내' }
+  const prefOnly = ['1. 모집직종 : 사무원(무기계약직)', '※기본사항 및 응시자격', '- 장애인 우대사항 적용', '- 만 18세 이상, 만 60세 이하인 자']
+  assert.equal(buildJob(row, prefOnly, rules).disabledOnly, false)
+  // 제목에 전용 표현(장애인 전형)이 있어도 본문이 우대사항만이면 전용으로 올리지 않고 안내문을 붙인다.
+  const job = buildJob({ ...row, title: '[장애인 전형] 검단구 사무원 채용' }, prefOnly, rules)
+  assert.equal(job.disabledOnly, false)
+  assert.match(String(job.notes), /우대사항으로만/)
+  const restricted = [...prefOnly, '※제한경쟁 채용(장애인)']
+  assert.equal(buildJob({ ...row, title: '[장애인 제한경쟁] 검단구 사무원 채용' }, restricted, rules).disabledOnly, true)
+})
+test('본문 첫 줄의 고용공단 표시 [장애인만 채용]은 제한 표현으로 치지 않고, 기관이 쓴 장애인 제한 채용은 전용으로 본다', () => {
+  const [a] = parseList(html)
+  const row = { ...a, title: '[장애인만 채용] 우체국 집배 보조 채용' }
+  const tagOnly = ['[장애인만 채용]', '1. 모집직종 : 사무원', '- 만 18세 이상']
+  assert.equal(buildJob(row, tagOnly, rules).disabledOnly, false)
+  const restricted = ['[장애인만 채용]', '1. 채용방식 : 장애인 제한 채용', '- 만 18세 이상']
+  assert.equal(buildJob(row, restricted, rules).disabledOnly, true)
+  const pref = ['[장애인만 채용]', '- 장애인 우대', '- 만 18세 이상']
+  assert.equal(buildJob(row, pref, rules).disabledOnly, false)
+})
 test('합칠 때 마감 지난 것·이미 있는 공고는 넣지 않고 이전 KEAD 분은 바꾼다', () => {
   const [a] = parseList(html)
   const job = buildJob(a, bodyLines(body), rules)

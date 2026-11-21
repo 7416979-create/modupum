@@ -153,14 +153,18 @@ export const isKeadDisabledTitle = (title) => {
 }
 
 // 원문이 장애인을 '우대'로만 적고 제한·전용 표현이 없으면 true(장애인 전용이 아님).
-const RESTRICT_IN_BODY = /제한\s*경쟁|장애인\s*만|장애인\s*전용|장애인에게만|장애인으로만|장애인\s*대상으로\s*한정/
+// 고용공단이 본문 맨 앞에 자동으로 붙이는 '[장애인만 채용]' 표시는 기관이 쓴 응시자격이 아니므로 본문 판정에서 지운다(11-21 검단구 사례).
+const KEAD_TAG = /\[\s*장애인\s*만?\s*채용\s*\]/g
+const bodyText = (lines) => lines.join(' ').replace(KEAD_TAG, ' ').replace(/\s+/g, ' ')
+const RESTRICT_IN_BODY = /제한\s*경쟁|장애인\s*제한\s*(채용|경쟁|모집)|장애인만\s*(응시|지원|채용)|장애인\s*전용|장애인에게만|장애인으로\s*(응시\s*)?(자격을?\s*)?한정|장애인으로만|장애인\s*대상으로\s*한정/
+export const hasRestrictInBody = (lines) => RESTRICT_IN_BODY.test(bodyText(lines))
 export const isPreferenceOnlyBody = (lines) => {
-  const text = lines.join(' ').replace(/\s+/g, ' ')
+  const text = bodyText(lines)
   if (RESTRICT_IN_BODY.test(text)) return false
-  return /우대사항/.test(text) && /장애인/.test(text)
+  return /우대/.test(text) && /장애인/.test(text)
 }
 
-// 장애인 전용인지는 제목에 분명한 표현(제한경쟁·전용 등)이 있을 때만 true. 그 밖에는 단정하지 않는다.
+// 장애인 전용 = 제목에 분명한 표현(제한경쟁·전용 등)이 있거나, 제목이 장애인 대상이고 기관 본문에 제한 표현(장애인 제한 채용 등)이 있을 때만 true.
 export const buildJob = (row, lines, rules) => {
   const s = lines.length ? summarize(lines) : { hires: null, summary: null }
   const listEnd = row.end
@@ -173,8 +177,10 @@ export const buildJob = (row, lines, rules) => {
     notes.push('본문에서 접수 마감일을 확인하지 못해 목록의 마감일을 표시했습니다. 원문에서 확인하세요.')
   }
   if (!lines.length) notes.push('본문을 읽지 못해 요약이 없습니다. 원문에서 확인하세요.')
-  // 고용공단 제목의 '[장애인만 채용]' 같은 표시만으로는 전용으로 보지 않는다. 제목에 제한경쟁·장애인 전형 같은 명확한 표현이 있을 때만 전용으로 본다(11-21, 검단구 공고 오분류).
-  let disabledOnly = isDisabledOnlyTitle(row.title, rules)
+  // 고용공단 제목·본문의 '[장애인만 채용]' 표시만으로는 전용으로 보지 않는다(11-21, 검단구 공고 오분류).
+  // 제목이 장애인 대상이면 본문에서 기관이 쓴 제한 표현을 한 번 더 확인해 전용으로 올린다(우체국 '장애인 제한 채용' 같은 공고가 빠지지 않게).
+  let disabledOnly = isDisabledOnlyTitle(row.title, rules) ||
+    (lines.length > 0 && isKeadDisabledTitle(row.title) && hasRestrictInBody(lines))
   // 제목에 '장애인만'이 있어도 원문이 '우대사항'으로만 장애인을 적고 제한 표현이 없으면 전용으로 올리지 않는다(검단구 공고 사례, 11-21).
   if (disabledOnly && lines.length && isPreferenceOnlyBody(lines)) {
     disabledOnly = false
