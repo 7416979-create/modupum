@@ -78,6 +78,8 @@ export const parseResult = (text, validIds) => {
   const out = []
   for (const r of arr) {
     if (!r || typeof r.id !== 'string' || !validIds.has(r.id)) continue
+    // 11-21 실패 원인: 검토 모델이 '전용' 대신 '적합'으로 씀(10건). 뜻이 같으므로 '전용'으로 맞춘다.
+    if (r.verdict === '적합') r.verdict = '전용'
     if (!VERDICTS.includes(r.verdict)) throw new Error(`알 수 없는 판정: ${String(r.verdict).slice(0, 20)}`)
     out.push({
       id: r.id,

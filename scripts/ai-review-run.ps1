@@ -26,7 +26,11 @@ $prompt = [IO.File]::ReadAllText((Join-Path $repo 'scripts\ai-review-prompt.md')
 $prompt += "`n검토 묶음 파일: $bundleFile`n"
 $ClaudeArgs = @('-p', '--model', 'haiku', '--allowedTools', 'Read', 'WebFetch')
 $prevEAP = $ErrorActionPreference; $ErrorActionPreference = 'Continue'
+# 11-21 수정: 한글이 깨지지 않도록 입출력을 UTF-8로 맞춘다(기본은 cp949라 결과가 깨짐)
+$prevOutEnc = [Console]::OutputEncoding; $prevInEnc = [Console]::InputEncoding; $prevOEnc = $OutputEncoding
+[Console]::OutputEncoding = $utf8; [Console]::InputEncoding = $utf8; $OutputEncoding = $utf8
 $out = $prompt | & $claude @ClaudeArgs 2>$null
+[Console]::OutputEncoding = $prevOutEnc; [Console]::InputEncoding = $prevInEnc; $OutputEncoding = $prevOEnc
 $ErrorActionPreference = $prevEAP
 $text = ($out | Out-String)
 [IO.File]::WriteAllText($resultFile, $text, $utf8)
