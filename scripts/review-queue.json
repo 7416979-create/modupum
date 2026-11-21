@@ -140,6 +140,28 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-20T09:53:13.948Z"
+    },
+    {
+      "id": "307024",
+      "title": "2026년도 하반기 한국광해광업공단 무기계약직 채용 공고",
+      "org": "한국광해광업공단",
+      "url": "https://job.alio.go.kr/recruitview.do?idx=307024",
+      "end": "2026-11-30",
+      "source": "",
+      "status": "ai-ambiguous",
+      "reason": "애매는 대기열",
+      "addedAt": "2026-11-21T06:38:45.988Z"
+    },
+    {
+      "id": "gojobs-400052",
+      "title": "서울중앙지방공소청 2026년도 제1회 공무직근로자(사무원) 채용 공고(장애인 구분 모집)",
+      "org": "공소청 서울광역공소청 서울중앙지방공소청",
+      "url": "https://modupum.kr/gojobs/400052/",
+      "end": "2026-11-30",
+      "source": "나라일터",
+      "status": "ai-ambiguous",
+      "reason": "애매는 대기열",
+      "addedAt": "2026-11-21T06:38:45.988Z"
     }
   ]
 }
