@@ -3,6 +3,7 @@
 // 키가 없거나 호출이 실패하면 기존 파일을 그대로 두고 끝낸다(빈 데이터로 덮어쓰지 않는다).
 
 import { readFile, writeFile } from 'node:fs/promises'
+import { loadHideIds, filterHidden } from './ai-review-lib.mjs' // AI 재검토에서 숨긴 공고 id 는 다시 올리지 않는다
 import { buildJobs, listUrl, detailUrl, rowsOf } from './jobs-lib.mjs'
 import { GOJOBS_LIST, parseList, buildGojobs, mergeJobs, toJob } from './gojobs-lib.mjs'
 import { makeCopies, readManifest } from './gojobs-copy.mjs'
@@ -142,6 +143,7 @@ async function collectJobs() {
     return carryVerified(j, prevById.get(j.id))
   })
   items = [...items, ...keepKead].sort((a, b) => (a.end < b.end ? -1 : a.end > b.end ? 1 : 0))
+  items = filterHidden(items, await loadHideIds())
   const out = { sample: false, updatedAt: kstNow.toISOString().slice(0, 16).replace('T', ' '), items }
   await writeFile(new URL('../public/data/jobs.json', import.meta.url), `${JSON.stringify(out, null, 2)}\n`)
   console.log(`일자리: 전체 ${all.length}건 중 ${items.length}건 저장`)

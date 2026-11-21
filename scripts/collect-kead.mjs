@@ -3,6 +3,7 @@
 // 어떤 오류가 나도 기존 jobs.json 은 건드리지 않고 정상 종료한다(전체 수집·배포를 막지 않는다).
 
 import { readFile, writeFile } from 'node:fs/promises'
+import { loadHideIds, filterHidden } from './ai-review-lib.mjs' // AI 재검토에서 숨긴 공고 id 는 다시 올리지 않는다
 import { loadHolidays, jobCollectDecision, isForced } from './workday-lib.mjs'
 import { enqueueSave } from './review-lib.mjs'
 import { listUrl, viewUrl, parseList, bodyLines, viewTitle, buildJob, mergeKead, isKead, KEAD_SOURCE_LABEL } from './kead-lib.mjs'
@@ -110,7 +111,7 @@ async function main() {
   if (r.duplicates.length) console.log(`KEAD: 이미 있는 공고와 겹쳐 제외 ${r.duplicates.join(', ')}`)
   // keadCheckedAt: KEAD 목록을 실제로 읽어 합친 시각(성공했을 때만 바뀐다). 서버에서 KEAD 수집이 되는지 배포된 jobs.json 으로 확인하는 데 쓴다.
   const stamp = kstNow.toISOString().slice(0, 16).replace('T', ' ')
-  const out = { ...data, updatedAt: stamp, keadCheckedAt: stamp, items: r.items }
+  const out = { ...data, updatedAt: stamp, keadCheckedAt: stamp, items: filterHidden(r.items, await loadHideIds()) }
   await writeFile(jobsUrl, `${JSON.stringify(out, null, 2)}\n`)
   console.log(`KEAD(${KEAD_SOURCE_LABEL}): 새로 본문 읽음 ${detail}건, 저장 ${r.added}건 추가`)
 }
