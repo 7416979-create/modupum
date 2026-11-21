@@ -1,10 +1,12 @@
-// 판정 결과 적용: 기록(ai-review-log.json), 숨김(ai-review-hide.json), '애매'는 review-queue.json 에 넣고,
-// 숨김 공고는 jobs.json 에서도 뺀다. 결과가 없거나 깨졌으면 아무 파일도 바꾸지 않고 종료 코드 1.
+// 판정 결과 적용: 기록(ai-review-log.json), 숨김(ai-review-hide.json), 대기열(review-queue.json),
+// 숨김 공고는 jobs.json 에서도 뺀다. 안전장치(전용 제목·수동 확정·인용문 모순·폭주)는 코드가 AI 판정보다 우선한다.
+// 결과가 없거나 깨졌으면 아무 파일도 바꾸지 않고 종료 코드 1(없으면 0).
 // 사용: node scripts/ai-review-apply.mjs [--dry-run]
 import { writeFile, readFile } from 'node:fs/promises'
+import { isDisabledOnlyTitle } from './gojobs-lib.mjs'
 import {
   JOBS_FILE, LOG_FILE, HIDE_FILE, QUEUE_FILE, BUNDLE_FILE, RESULT_FILE,
-  readJsonOr, parseResult, planApply, removeHidden,
+  readJsonOr, parseResult, planApply, removeHidden, loadManualIds, setTitleChecker,
 } from './ai-review-lib.mjs'
 
 const dry = process.argv.includes('--dry-run')
@@ -37,19 +39,25 @@ if (results.length === 0) {
   process.exit(0)
 }
 
+const rules = await readJsonOr(new URL('./keywords.json', import.meta.url), null)
+setTitleChecker((t) => (rules ? isDisabledOnlyTitle(t, rules) : false))
+const manualIds = await loadManualIds()
 const log = await readJsonOr(LOG_FILE, {})
 const hide = await readJsonOr(HIDE_FILE, { items: [] })
 const queue = await readJsonOr(QUEUE_FILE, { lastRunAt: null, items: [] })
 const jobs = await readJsonOr(JOBS_FILE, null)
 const now = new Date().toISOString()
-const plan = planApply(results, log, hide, queue, bundleById, now)
+const plan = planApply(results, log, hide, queue, bundleById, now, manualIds, rules)
 const hideIds = new Set(plan.hide.items.map((x) => x.id))
 const cut = jobs && Array.isArray(jobs.items) ? removeHidden(jobs, hideIds) : null
 
 const counts = results.reduce((a, r) => ({ ...a, [r.verdict]: (a[r.verdict] || 0) + 1 }), {})
 console.log(`판정 ${results.length}건: ${JSON.stringify(counts)}`)
 for (const r of results) if (r.verdict !== '전용') console.log(`- ${r.verdict} ${r.id}: ${r.reason} | 근거: ${r.quote}`)
-console.log(`숨김 추가 ${plan.added.hide.length}건, 대기열 추가 ${plan.added.queue.length}건, jobs.json 에서 제외 ${cut ? cut.removed : 0}건`)
+if (plan.added.warning) console.log(`경고: ${plan.added.warning}`)
+console.log(`유지 ${plan.added.kept.length}건(전용 또는 보호), 숨김 추가 ${plan.added.hide.length}건, 대기열 추가 ${plan.added.queue.length}건, jobs.json 에서 제외 ${cut ? cut.removed : 0}건`)
+if (plan.added.hide.length) console.log(`숨김 예정 id: ${plan.added.hide.join(', ')}`)
+if (plan.added.queue.length) console.log(`대기열 id: ${plan.added.queue.join(', ')}`)
 
 if (dry) {
   console.log('--dry-run: 파일은 바꾸지 않았습니다')
