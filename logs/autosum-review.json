@@ -1,18 +1,5 @@
 [
   {
-    "id": "307021",
-    "title": "2026년 7차 직원(위촉연구원(과제 수행)) 채용 공고",
-    "org": "한국나노기술원",
-    "end": "2026-11-30",
-    "url": "https://www.kanc.re.kr/gnb04/snb02_02.do?mode=view&cid=5767",
-    "attempts": 3,
-    "last": "2026-11-14",
-    "reasons": [
-      "빈칸 문구가 7칸: 추출이 덜 됐을 수 있음",
-      "병행 공고: 장애인 분야를 보여 주는 근거 문장이 없음"
-    ]
-  },
-  {
     "id": "307024",
     "title": "2026년도 하반기 한국광해광업공단 무기계약직 채용 공고",
     "org": "한국광해광업공단",
@@ -46,6 +33,43 @@
     "last": "2026-11-20",
     "reasons": [
       "빈칸 문구가 9칸: 추출이 덜 됐을 수 있음"
+    ]
+  },
+  {
+    "id": "307307",
+    "title": "2026년 5차 기간제 근로자 채용공고",
+    "org": "재단법인 건설기술교육원",
+    "end": "2026-12-07",
+    "url": "https://www.kicte.or.kr/portal/community/noticeViewAction.do?buSeqNo=25222",
+    "attempts": 2,
+    "last": "2026-11-23",
+    "reasons": [
+      "빈칸 문구가 9칸: 추출이 덜 됐을 수 있음"
+    ]
+  },
+  {
+    "id": "307272",
+    "title": "2027년 상반기 KOICA 글로벌연수사업 모니터링 인턴 모집",
+    "org": "한국국제협력단",
+    "end": "2026-12-08",
+    "url": "https://www.koica.go.kr/koica_kr/984/subview.do",
+    "attempts": 2,
+    "last": "2026-11-23",
+    "reasons": [
+      "빈칸 문구가 10칸: 추출이 덜 됐을 수 있음",
+      "병행 공고: 장애인 분야를 보여 주는 근거 문장이 없음"
+    ]
+  },
+  {
+    "id": "307331",
+    "title": "2027년 신규직원 및 기간제근로자(장애인) 채용계획 공고",
+    "org": "국제식물검역인증원",
+    "end": "2026-12-07",
+    "url": "https://www.ipab.or.kr/kor/CMS/Board/Board.do?mCode=MN015&mode=view&mgr_seq=50&board_seq=8262",
+    "attempts": 1,
+    "last": "2026-11-23",
+    "reasons": [
+      "빈칸 문구가 8칸: 추출이 덜 됐을 수 있음"
     ]
   }
 ]
