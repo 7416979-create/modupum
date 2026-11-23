@@ -276,6 +276,16 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-23T05:37:25.560Z"
+    },
+    {
+      "id": "kead-217809",
+      "title": "법무부 서울출입국·외국인청 공무직근로자 채용 공고(~11.27)",
+      "org": "법무부 서울출입국 . 외국인청",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217809&menuId=MENU2201",
+      "end": "2026-11-27",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-23T09:51:59.927Z"
     }
   ]
 }

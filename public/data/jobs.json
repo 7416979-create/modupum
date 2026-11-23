@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-23 17:20",
+  "updatedAt": "2026-11-23 18:50",
   "items": [
     {
       "id": "gojobs-308652",
@@ -14,7 +14,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-23 17:19",
+      "copiedAt": "2026-11-23 18:49",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 23일(월) 18:00까지예요. 우편은 그 시각까지 도착해야 해요.",
@@ -55,7 +55,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-23 17:19",
+      "copiedAt": "2026-11-23 18:49",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 23일(월) 18:00까지",
@@ -204,7 +204,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-23 17:19",
+      "copiedAt": "2026-11-23 18:49",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 25일(수) 18:00까지 (접수 마감일 18:00까지 도착한 것만 유효해요)",
@@ -245,7 +245,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-23 17:19",
+      "copiedAt": "2026-11-23 18:49",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 25일(수) 18:00까지 (마감 날은 18:00까지만 받아요)",
@@ -317,7 +317,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-23 17:19",
+      "copiedAt": "2026-11-23 18:49",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 26일(목) 18:00까지예요. 그 시각까지 도착한 전자우편만 접수돼요.",
@@ -432,7 +432,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-23 17:19",
+      "copiedAt": "2026-11-23 18:49",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 27일(금) 18:00까지 (우편은 마감일 18시까지 도착해야 해요)",
@@ -487,7 +487,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-23 17:19",
+      "copiedAt": "2026-11-23 18:49",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지 (등기우편은 마감일 우체국 소인분까지 유효해요)",
@@ -527,7 +527,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-11-23 17:19",
+      "copiedAt": "2026-11-23 18:49",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지 접수 기간은 채용 시까지예요. 접수 마감일은 2026-11-30이에요.",
@@ -703,7 +703,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-23 17:19",
+      "copiedAt": "2026-11-23 18:49",
       "verified": true,
       "easy": {
         "언제까지": "2026년 12월 4일(금) 18:00까지",
@@ -1021,5 +1021,5 @@
       }
     }
   ],
-  "keadCheckedAt": "2026-11-23 17:20"
+  "keadCheckedAt": "2026-11-23 18:50"
 }
