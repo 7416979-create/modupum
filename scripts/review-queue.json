@@ -266,6 +266,16 @@
       "status": "ai-ambiguous",
       "reason": "애매는 대기열",
       "addedAt": "2026-11-23T05:31:42.604Z"
+    },
+    {
+      "id": "kead-217755",
+      "title": "[서울지역본부] 국악방송_방송제작지원(행정지원) 2명 채용(장애인만 채용)",
+      "org": "국악방송",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217755&menuId=MENU2201",
+      "end": "2026-12-08",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-23T05:37:25.560Z"
     }
   ]
 }
