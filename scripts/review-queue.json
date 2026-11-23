@@ -244,6 +244,28 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-22T16:44:09.203Z"
+    },
+    {
+      "id": "307307",
+      "title": "2026년 5차 기간제 근로자 채용공고",
+      "org": "재단법인 건설기술교육원",
+      "url": "https://www.kicte.or.kr/portal/community/noticeViewAction.do?buSeqNo=25222",
+      "end": "2026-12-07",
+      "source": "",
+      "status": "ai-ambiguous",
+      "reason": "애매는 대기열",
+      "addedAt": "2026-11-23T05:31:42.604Z"
+    },
+    {
+      "id": "307272",
+      "title": "2027년 상반기 KOICA 글로벌연수사업 모니터링 인턴 모집",
+      "org": "한국국제협력단",
+      "url": "https://www.koica.go.kr/koica_kr/984/subview.do",
+      "end": "2026-12-08",
+      "source": "",
+      "status": "ai-ambiguous",
+      "reason": "애매는 대기열",
+      "addedAt": "2026-11-23T05:31:42.604Z"
     }
   ]
 }
