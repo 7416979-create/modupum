@@ -16,6 +16,12 @@ const TITLES = { home: '모두품', welfare: '복지 - 모두품', jobs: '일자
 // 한국 날짜 기준(UTC 날짜를 쓰면 한국 아침 9시 전에 하루 늦게 계산된다)
 const today = () => new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10)
 const daysLeft = (end) => Math.round((Date.parse(end) - Date.parse(today())) / 86400000)
+// 목록 카드용 급여 한 줄: 쉬운 요약(easy.급여)의 첫 문장만, 원문 금액 그대로 씀
+const payShort = (s) => {
+  if (typeof s !== 'string' || !s.trim()) return ''
+  const first = s.split(/(?:이에요|예요)[.\s]|[.。]\s/)[0].replace(/(이에요|예요)(?=\()/g, '').replace(/(이에요|예요)\.?$/, '').trim()
+  return first.length > 42 ? `${first.slice(0, 41)}…` : first
+}
 
 // 테스트 기간(3개월) 설문 마감일. 이 날짜 이후에는 팝업을 띄우지 않는다.
 const SURVEY_END = '2027-01-19'
@@ -702,7 +708,7 @@ function Jobs({ focusId = '' }) {
             <li key={i.id} className="item" data-job-id={String(i.id)}>
               <details onToggle={(e) => { if (e.currentTarget.open) { try { window.umami?.track('easy-open', { type: 'job' }) } catch { /* 무시 */ } } }}>
                 <summary>
-                  <h2><Badges period={periodOf(today(), { end: i.end })} region={needsRegion(i, 'jobs')} />{orgLabel(i.title, i.org)}<NewMark on={isNew(today(), i.start)} />{i.mixed && <span className="mixed-chip">장애인 구분모집</span>}</h2>
+                  <h2><Badges period={periodOf(today(), { end: i.end })} region={needsRegion(i, 'jobs')} />{orgLabel(i.title, i.org)}<NewMark on={isNew(today(), i.start)} />{i.mixed && <span className="mixed-chip">장애인 구분모집</span>}{payShort(i.easy?.급여) && <span className="job-pay">급여 {payShort(i.easy.급여)}</span>}</h2>
                   <span className={`sum-tag dday${soon ? ' soon' : ''}`}>{left === 0 ? '오늘 마감' : `마감 ${left}일 남음${i.end ? ` · ${String(i.end).slice(5).replace('-', '.')}` : ''}`}</span>
                 </summary>
                 <div className="detail">
