@@ -41,10 +41,10 @@
     "org": "재단법인 건설기술교육원",
     "end": "2026-12-07",
     "url": "https://www.kicte.or.kr/portal/community/noticeViewAction.do?buSeqNo=25222",
-    "attempts": 2,
-    "last": "2026-11-23",
+    "attempts": 3,
+    "last": "2026-11-24",
     "reasons": [
-      "빈칸 문구가 9칸: 추출이 덜 됐을 수 있음"
+      "빈칸 문구가 10칸: 추출이 덜 됐을 수 있음"
     ]
   },
   {
@@ -53,10 +53,11 @@
     "org": "한국국제협력단",
     "end": "2026-12-08",
     "url": "https://www.koica.go.kr/koica_kr/984/subview.do",
-    "attempts": 2,
-    "last": "2026-11-23",
+    "attempts": 3,
+    "last": "2026-11-24",
     "reasons": [
-      "빈칸 문구가 10칸: 추출이 덜 됐을 수 있음",
+      "근거 문장 없음: 누가",
+      "빈칸 문구가 9칸: 추출이 덜 됐을 수 있음",
       "병행 공고: 장애인 분야를 보여 주는 근거 문장이 없음"
     ]
   },
@@ -66,10 +67,10 @@
     "org": "국제식물검역인증원",
     "end": "2026-12-07",
     "url": "https://www.ipab.or.kr/kor/CMS/Board/Board.do?mCode=MN015&mode=view&mgr_seq=50&board_seq=8262",
-    "attempts": 1,
-    "last": "2026-11-23",
+    "attempts": 2,
+    "last": "2026-11-24",
     "reasons": [
-      "빈칸 문구가 8칸: 추출이 덜 됐을 수 있음"
+      "빈칸 문구가 7칸: 추출이 덜 됐을 수 있음"
     ]
   }
 ]
