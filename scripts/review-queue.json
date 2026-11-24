@@ -298,6 +298,26 @@
       "status": "ai-ambiguous",
       "reason": "애매는 대기열",
       "addedAt": "2026-11-24T05:31:54.358Z"
+    },
+    {
+      "id": "kead-217825",
+      "title": "[인천지사] (재)제물포문화재단 기간제근로자 2명 채용 안내",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217825&menuId=MENU2201",
+      "end": "2026-12-08",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-24T05:38:32.794Z"
+    },
+    {
+      "id": "kead-217806",
+      "title": "[인천지사] 2027년 장애인 기간제 근로자 채용 공고(인천시청)",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217806&menuId=MENU2201",
+      "end": "2026-12-04",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-24T05:38:32.794Z"
     }
   ]
 }
