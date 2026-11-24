@@ -266,6 +266,16 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-23T09:51:59.927Z"
+    },
+    {
+      "id": "kead-217817",
+      "title": "[한국은행 강남본부] 사무보조원 채용 안내",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217817&menuId=MENU2201",
+      "end": "2026-12-04",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-24T01:50:05.664Z"
     }
   ]
 }
