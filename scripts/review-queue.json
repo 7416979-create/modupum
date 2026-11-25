@@ -358,6 +358,16 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-25T09:02:31.221Z"
+    },
+    {
+      "id": "kead-217860",
+      "title": "2026년 경북연구원 제1차 정규직 연구원 및 전문위원 공개채용",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217860&menuId=MENU2201",
+      "end": "2026-12-09",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-25T09:46:36.525Z"
     }
   ]
 }
