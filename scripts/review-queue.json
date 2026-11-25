@@ -328,6 +328,36 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-25T01:20:14.633Z"
+    },
+    {
+      "id": "kead-217856",
+      "title": "[경기지역본부] 대한적십자사 경기도지사 장애인 채용(~12.11.(금)까지 도착분에 한함)",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217856&menuId=MENU2201",
+      "end": "2026-12-11",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-25T09:02:31.221Z"
+    },
+    {
+      "id": "kead-217846",
+      "title": "[서울지역본부] [서울남정초등학교병설유치원] 청소 및 시설관리 보조직원 모집안내",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217846&menuId=MENU2201",
+      "end": "2026-12-04",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-25T09:02:31.221Z"
+    },
+    {
+      "id": "kead-217845",
+      "title": "[경기동부지사] 한국전자기술연구원 사무행정 2명 채용(채용시 마감)",
+      "org": "한국전자기술연구원",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217845&menuId=MENU2201",
+      "end": "2026-12-31",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-25T09:02:31.221Z"
     }
   ]
 }
