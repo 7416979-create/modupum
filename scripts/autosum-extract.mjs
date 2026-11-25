@@ -45,7 +45,6 @@ export const htmlToText = (html) =>
     .filter(Boolean)
     .join('\n')
 
-const MIN_SOURCE_CHARS = 300
 // 숫자로만 된 id 는 공공기관 채용정보(JOB-ALIO) 공고 번호다.
 export const alioDetailUrl = (id) => (/^\d+$/.test(String(id ?? '')) ? `https://job.alio.go.kr/recruitview.do?idx=${id}` : null)
 
@@ -132,7 +131,11 @@ export async function extractJob(job, workDir) {
     warnings.push(`원문 페이지 읽기 실패: ${e.message}`)
   }
   let n = 0
+  const seen = new Set() // 같은 첨부를 외부 사이트와 JOB-ALIO 양쪽에서 두 번 읽지 않는다
   const readAttachments = async (pageHtml, base) => { for (const a of attachmentLinks(pageHtml, base)) {
+    const key = String(a.label || '').replace(/\s+/g, '')
+    if (key && seen.has(key)) continue
+    if (key) seen.add(key)
     n += 1
     try {
       const res = await fetch(a.url, { headers: { 'user-agent': UA, referer: base }, signal: AbortSignal.timeout(60000) })
@@ -154,9 +157,10 @@ export async function extractJob(job, workDir) {
     }
   } }
   await readAttachments(html, job.url)
-  // 공고 주소가 채용 사이트 첫 화면이면 글자가 거의 없다. 이때 JOB-ALIO 상세 페이지의 응시자격과 공고문 첨부를 읽는다.
+  // 기관 사이트는 첨부가 안 보이거나(목록 화면·로그인·스크립트 링크) 일부만 보이는 일이 잦다(11-25: 6건 연속 실패).
+  // 숫자 id 공고는 글자 양과 상관없이 JOB-ALIO 상세 페이지의 응시자격과 공고문 첨부도 함께 읽는다(이미 읽은 첨부는 건너뜀).
   const alio = alioDetailUrl(job.id)
-  if (alio && text.replace(/\s/g, '').length < MIN_SOURCE_CHARS) {
+  if (alio) {
     try {
       const res = await fetch(alio, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(45000) })
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
