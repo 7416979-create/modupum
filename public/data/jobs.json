@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-26 00:00",
+  "updatedAt": "2026-11-26 03:54",
   "items": [
     {
       "id": "307096",
@@ -126,7 +126,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-25 23:59",
+      "copiedAt": "2026-11-26 03:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 27일(금) 18:00까지 (우편은 마감일 18시까지 도착해야 해요)",
@@ -200,7 +200,7 @@
       "disabledOnly": true,
       "orgType": "교육청",
       "source": "나라일터",
-      "copiedAt": "2026-11-25 23:59",
+      "copiedAt": "2026-11-26 03:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 11월 30일(월)까지 접수 기간은 채용 시까지예요. 접수 마감일은 2026-11-30이에요.",
@@ -428,7 +428,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-25 23:59",
+      "copiedAt": "2026-11-26 03:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 12월 3일(목) 18:00까지 (마감 날은 18:00까지 도착분만 받아요)",
@@ -505,7 +505,7 @@
       "disabledOnly": true,
       "orgType": "국가기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-25 23:59",
+      "copiedAt": "2026-11-26 03:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 12월 4일(금)까지예요. 등기우편은 우체국 소인이 12월 4일(금)까지 찍히면 유효해요.",
@@ -547,7 +547,7 @@
       "disabledOnly": true,
       "orgType": "지자체",
       "source": "나라일터",
-      "copiedAt": "2026-11-25 23:59",
+      "copiedAt": "2026-11-26 03:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 12월 4일(금) 18:00까지",
@@ -747,6 +747,31 @@
       }
     },
     {
+      "id": "307308",
+      "title": "2027년 건설기술교육원 신입사원 신규채용 공고",
+      "org": "재단법인 건설기술교육원",
+      "region": "서울,인천",
+      "hires": 3,
+      "start": "2026-11-26",
+      "end": "2026-12-10",
+      "url": "http://kicte.incruit.com/hire/viewhire.asp?projectid=105&rltnfrjstjfrydbr9046=1",
+      "disabledOnly": true,
+      "mixed": true,
+      "mixedEvidence": "장애인 전용 주차구역 구비",
+      "mixedSource": "첨부: 2027년도 신입사원 신규채용 공고문 부속서류(붙임2. 자격가점 인정  자격종목).hwp"
+    },
+    {
+      "id": "307452",
+      "title": "[대한적십자사 경기도지사] 한시적근로자(장애인) 채용공고",
+      "org": "대한적십자사",
+      "region": "경기",
+      "hires": 3,
+      "start": "2026-11-26",
+      "end": "2026-12-11",
+      "url": "https://job.alio.go.kr/recruitview.do?idx=307452",
+      "disabledOnly": true
+    },
+    {
       "id": "gojobs-400409",
       "title": "부산과학기술고등교육진흥원(BISTEP) 2026년 제2차 체험형 인턴(장애인 제한) 채용",
       "org": "재단법인부산과학기술고등교육진흥원",
@@ -758,7 +783,7 @@
       "disabledOnly": true,
       "orgType": "공공기관",
       "source": "나라일터",
-      "copiedAt": "2026-11-25 23:59",
+      "copiedAt": "2026-11-26 03:53",
       "verified": true,
       "easy": {
         "언제까지": "2026년 12월 11일(금) 18:00까지",
@@ -917,5 +942,5 @@
       }
     }
   ],
-  "keadCheckedAt": "2026-11-26 00:00"
+  "keadCheckedAt": "2026-11-26 03:54"
 }
