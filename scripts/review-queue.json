@@ -361,6 +361,26 @@
       "status": "ai-ambiguous",
       "reason": "애매는 대기열",
       "addedAt": "2026-11-26T00:04:23.014Z"
+    },
+    {
+      "id": "kead-217869",
+      "title": "[서울지역본부] KB손해보험_사무보조 2명 채용 (장애인만 채용)",
+      "org": "KB 손해보험",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217869&menuId=MENU2201",
+      "end": "2026-12-04",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-26T05:37:40.997Z"
+    },
+    {
+      "id": "kead-217868",
+      "title": "2026년 제3차 한국전력공사 인천본부 장애인 체험형 인턴 모집공고",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217868&menuId=MENU2201",
+      "end": "2026-11-30",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-26T05:37:40.997Z"
     }
   ]
 }
