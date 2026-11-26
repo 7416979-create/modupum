@@ -328,6 +328,39 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-25T09:46:36.525Z"
+    },
+    {
+      "id": "307456",
+      "title": "2026년 청년인턴 공개채용 재공고",
+      "org": "정보통신정책연구원",
+      "url": "https://www.kisdi.re.kr/bbs/view.do?bbsSn=115212&key=m2101113056115&pageIndex=1&sc=&sw=",
+      "end": "2026-12-04",
+      "source": "",
+      "status": "ai-ambiguous",
+      "reason": "애매는 대기열",
+      "addedAt": "2026-11-26T00:04:23.014Z"
+    },
+    {
+      "id": "307308",
+      "title": "2027년 건설기술교육원 신입사원 신규채용 공고",
+      "org": "재단법인 건설기술교육원",
+      "url": "http://kicte.incruit.com/hire/viewhire.asp?projectid=105&rltnfrjstjfrydbr9046=1",
+      "end": "2026-12-10",
+      "source": "",
+      "status": "ai-ambiguous",
+      "reason": "애매는 대기열",
+      "addedAt": "2026-11-26T00:04:23.014Z"
+    },
+    {
+      "id": "307452",
+      "title": "[대한적십자사 경기도지사] 한시적근로자(장애인) 채용공고",
+      "org": "대한적십자사",
+      "url": "https://job.alio.go.kr/recruitview.do?idx=307452",
+      "end": "2026-12-11",
+      "source": "",
+      "status": "ai-ambiguous",
+      "reason": "애매는 대기열",
+      "addedAt": "2026-11-26T00:04:23.014Z"
     }
   ]
 }
