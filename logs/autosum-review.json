@@ -5,10 +5,10 @@
     "org": "재단법인 건설기술교육원",
     "end": "2026-12-10",
     "url": "https://kicte.incruit.com/hire/viewhire.asp?projectid=105",
-    "attempts": 2,
+    "attempts": 3,
     "last": "2026-11-26",
     "reasons": [
-      "요약 생성 실패: JSON 해석 실패: Expected ',' or '}' after property value in JSON at position 1385 (line 1 column 1386)"
+      "병행 공고: 장애인 분야를 보여 주는 근거 문장이 없음"
     ]
   }
 ]
