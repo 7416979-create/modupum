@@ -341,6 +341,17 @@
       "source": "KEAD",
       "status": "pending",
       "addedAt": "2026-11-26T05:37:40.997Z"
+    },
+    {
+      "id": "307325",
+      "title": "제30기 KOICA 청년인턴(홍보분야) 모집 공고",
+      "org": "한국국제협력단",
+      "url": "https://koica.recruiter.co.kr/career/jobs/135113",
+      "end": "2026-12-11",
+      "source": "",
+      "status": "ai-ambiguous",
+      "reason": "애매는 대기열",
+      "addedAt": "2026-11-27T05:31:29.339Z"
     }
   ]
 }
