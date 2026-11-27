@@ -1,7 +1,71 @@
 {
   "sample": false,
-  "updatedAt": "2026-11-26",
+  "updatedAt": "2026-11-27",
   "items": [
+    {
+      "id": "mohw-1492694",
+      "title": "퇴원환자 77.2% 재활 위해 지역사회 연계, 국립재활원, 사후관리 지원사업 결과 공유",
+      "summary": "퇴원환자 77.2% 재활 위해 지역사회 연계, 국립재활원, 사후관리 지원사업 결과 공유",
+      "source": "보건복지부 보도자료",
+      "date": "2026-11-27",
+      "url": "https://www.mohw.go.kr/board.es?mid=a10503000000&bid=0027&act=view&list_no=1492694"
+    },
+    {
+      "id": "koddi-press-7431027",
+      "title": "개발원 전북센터, 전주지방공소청 등 4개 기관과 발달장애인 맞춤형 교육·취업지원 협력",
+      "summary": "개발원 전북센터, 전주지방공소청 등 4개 기관과 발달장애인 맞춤형 교육·취업지원 협력",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-27",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7431027&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7431025",
+      "title": "한국장애인개발원, 12. 11.까지 ‘마음을 잇는 수어댄스 챌린지’ 진행",
+      "summary": "한국장애인개발원, 12. 11.까지 ‘마음을 잇는 수어댄스 챌린지’ 진행",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-27",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7431025&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7431023",
+      "title": "한국장애인개발원, 돌봄기관 4곳·장애아동·발달장애인 55가구에 겨울 이불 전달",
+      "summary": "한국장애인개발원, 돌봄기관 4곳·장애아동·발달장애인 55가구에 겨울 이불 전달",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-27",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7431023&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7431021",
+      "title": "개발원 세종센터, 전문지원단 자문으로 최중증 발달장애인 맞춤형 돌봄 해법 모색",
+      "summary": "개발원 세종센터, 전문지원단 자문으로 최중증 발달장애인 맞춤형 돌봄 해법 모색",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-27",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7431021&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7431019",
+      "title": "개발원 경북센터, 발달장애인 활동서비스 이용자 맞춤 지원 방법 공유",
+      "summary": "개발원 경북센터, 발달장애인 활동서비스 이용자 맞춤 지원 방법 공유",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-27",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7431019&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7431017",
+      "title": "개발원 부산센터, 사립특수학교 3곳과 장애아동 교육·복지서비스 연계",
+      "summary": "개발원 부산센터, 사립특수학교 3곳과 장애아동 교육·복지서비스 연계",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-27",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7431017&brdType=PRESS"
+    },
+    {
+      "id": "koddi-press-7431015",
+      "title": "“청렴을 일상으로, 투명함을 세상으로”…한국장애인개발원 등 6개 기관, 공동 실천 다짐",
+      "summary": "“청렴을 일상으로, 투명함을 세상으로”…한국장애인개발원 등 6개 기관, 공동 실천 다짐",
+      "source": "한국장애인개발원 보도자료",
+      "date": "2026-11-27",
+      "url": "https://www.koddi.or.kr/bbs/press_view.jsp?brdNum=7431015&brdType=PRESS"
+    },
     {
       "id": "seoul-welfare-584953",
       "title": "(새소식2026-128)(#인천)'영종에테르자이르네' 서울시 장애인 특별공급 기관추천 안내",

@@ -352,6 +352,16 @@
       "status": "ai-ambiguous",
       "reason": "애매는 대기열",
       "addedAt": "2026-11-27T05:31:29.339Z"
+    },
+    {
+      "id": "kead-217902",
+      "title": "[서울북부지사] 대한적십자사 서울특별시지사 경비원 모집(~12.09. 18:00)",
+      "org": "한국장애인고용공단",
+      "url": "https://www.kead.or.kr/bbs/jobinfo/bbsView.do?bbsCode=jobinfo&bbsCnId=217902&menuId=MENU2201",
+      "end": "2026-12-09",
+      "source": "KEAD",
+      "status": "pending",
+      "addedAt": "2026-11-27T09:14:31.661Z"
     }
   ]
 }
