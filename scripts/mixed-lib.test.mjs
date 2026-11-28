@@ -132,3 +132,10 @@ test('동점자 순위 문구의 "장애인, 전형별"은 장애인 전형 근�
   assert.equal(findDedicated('* 동점자는 보훈대상자, 장애인, 전형별 개별 점수 합산 고득점자 순으로 합격자 선정'), null)
   assert.ok(findDedicated('채용분야: 일반행정(장애인 전형) 1명'))
 })
+
+test('장애인 전용 주차구역·화장실 등 시설 문구는 채용 근거가 아니다(11-28 307308 재발 방지)', () => {
+  assert.equal(findDedicated('청사 내 장애인 전용 주차구역 및 장애인 전용 화장실 운영'), null)
+  assert.equal(findDedicated('장애인전용승강기 및 경사로 설치'), null)
+  assert.ok(findDedicated('모집분야: 주차매표(장애인 제한경쟁) 1명'))
+  assert.ok(findDedicated('채용분야: 장애인 전용 채용 1명'))
+})
